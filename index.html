@@ -342,7 +342,7 @@
       letter-spacing: 1px;
     }
 
-    /* COUNTDOWN SECTION (DIRECTLY UNDER MUHURTHAM) */
+    /* COUNTDOWN SECTION */
     .countdown-wrap {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -465,7 +465,7 @@
       font-size: 1.1rem;
     }
 
-    /* DIGITAL GUESTBOOK / WISH WALL (PERSISTENT STORAGE) */
+    /* DIGITAL GUESTBOOK / WISH WALL (FIREBASE CLOUD DATABASE) */
     .guestbook-card {
       background: #FFFDF9;
       border: 1px solid #EFE2CF;
@@ -527,7 +527,7 @@
 
     /* GUEST WISHES SCROLLING TICKER */
     .wishes-ticker-box {
-      max-height: 220px;
+      max-height: 240px;
       overflow-y: auto;
       border: 1px dashed #E3D1B4;
       border-radius: 14px;
@@ -601,7 +601,7 @@
 </head>
 <body>
 
-  <!-- Audio Element configured with exact filename matching your uploaded mp3 -->
+  <!-- Audio Element with exact filename -->
   <audio id="weddingAudio" src="Divine Nadaswaram.mp3" loop preload="auto"></audio>
 
   <!-- SCREEN 1: REACHING HANDS -> UNITED HANDS TOUCH SEQUENCE -->
@@ -675,7 +675,7 @@
         <div class="event-time">9:15 AM</div>
       </div>
 
-      <!-- Countdown Clock (Moved up directly under Muhurtham) -->
+      <!-- Countdown Clock -->
       <div class="countdown-wrap">
         <div>
           <div class="count-val" id="days">--</div>
@@ -741,12 +741,14 @@
         <div class="wish-input-group">
           <input type="text" id="guestName" placeholder="Your Name (e.g. Ramesh Uncle)" maxlength="40">
           <input type="text" id="guestWish" placeholder="Your blessing / wish..." maxlength="120">
-          <button class="btn-post-wish" onclick="postGuestWish()">✨ Send Blessing</button>
+          <button class="btn-post-wish" id="postWishBtn" onclick="postGuestWish()">✨ Send Blessing</button>
         </div>
 
         <!-- Scrolling Ticker Container -->
         <div class="wishes-ticker-box" id="wishesBox">
-          <!-- Wishes load dynamically from LocalStorage and initial list -->
+          <div style="text-align:center; padding:12px; color:#8C7355; font-size:0.85rem;">
+            Loading blessings... 🪷
+          </div>
         </div>
       </div>
 
@@ -762,6 +764,7 @@
   </div>
 
   <script>
+    // Universal extension fallback
     const extList = ['.jpeg', '.jpg', '.png', '.jfif'];
     function handleImgError(img, baseName) {
       let attempt = parseInt(img.getAttribute('data-att') || '0');
@@ -788,14 +791,11 @@
 
       screen.classList.add('connecting');
 
-      // Play audio on tap
       if (audio) {
         audio.play().then(() => {
           isPlaying = true;
           document.getElementById('audioToggle').innerText = '🔊';
-        }).catch(e => {
-          console.log('Audio autoplay policy note:', e);
-        });
+        }).catch(e => console.log('Audio autoplay policy:', e));
       }
 
       setTimeout(() => {
@@ -812,20 +812,16 @@
         isPlaying = false;
         btn.innerText = '🔇';
       } else {
-        audio.play().then(() => {
-          isPlaying = true;
-          btn.innerText = '🔊';
-        }).catch(e => console.log('Audio playback error:', e));
+        audio.play();
+        isPlaying = true;
+        btn.innerText = '🔊';
       }
     }
 
-    // Akshintalu / Flower shower counter
-    let totalBlessings = parseInt(localStorage.getItem('wedding_blessings_count') || '342');
-    document.getElementById('blessingCount').innerText = totalBlessings;
-
+    // Interactive Akshintalu / Flower Shower Counter
+    let totalBlessings = 342;
     function showerAkshintalu() {
       totalBlessings++;
-      localStorage.setItem('wedding_blessings_count', totalBlessings);
       const counter = document.getElementById('blessingCount');
       if (counter) counter.innerText = totalBlessings;
 
@@ -834,7 +830,7 @@
           particleCount: 85,
           angle: 90,
           spread: 80,
-          origin: { x: 0.5, y: 0 },
+          origin: { y: 0 },
           colors: ['#FFD700', '#FFA500', '#C41E3A', '#FF4081', '#FFFDD0'],
           shapes: ['circle', 'square'],
           scalar: 0.9,
@@ -844,37 +840,57 @@
       }
     }
 
-    // Persistent Guestbook Wishes Management
-    const initialWishes = [
+    /* FIREBASE REALTIME DATABASE CLOUD INTEGRATION */
+    const FIREBASE_ENDPOINT = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/wishes.json";
+
+    const defaultStarterWishes = [
       { name: "Ramesh & Family", wish: "Wishing you both a lifetime of happiness, divine harmony, and endless love! 💐" },
       { name: "Suresh Sharma", wish: "Hearty congratulations Sampath & Harika! May God bless you both abundantly. 🪷" },
       { name: "Priya & Anand", wish: "May Lord Rama & Sita bless your sacred union forever! 💛" }
     ];
 
-    function loadWishes() {
+    async function loadCloudWishes() {
       const box = document.getElementById('wishesBox');
-      box.innerHTML = '';
-      
-      const stored = localStorage.getItem('wedding_guest_wishes');
-      let currentWishes = [];
-      if (stored) {
-        currentWishes = JSON.parse(stored);
-      } else {
-        currentWishes = initialWishes;
-        localStorage.setItem('wedding_guest_wishes', JSON.stringify(currentWishes));
-      }
+      try {
+        const response = await fetch(FIREBASE_ENDPOINT);
+        const data = await response.json();
 
-      currentWishes.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'wish-item';
-        card.innerHTML = `<div class="wish-text">"${escapeHtml(item.wish)}"</div><div class="wish-author">— ${escapeHtml(item.name)}</div>`;
-        box.appendChild(card);
-      });
+        box.innerHTML = '';
+
+        if (data) {
+          // Convert database object into array and show latest wishes at top
+          const wishes = Object.values(data).reverse();
+          wishes.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'wish-item';
+            card.innerHTML = `<div class="wish-text">"${escapeHtml(item.wish)}"</div><div class="wish-author">— ${escapeHtml(item.name)}</div>`;
+            box.appendChild(card);
+          });
+        } else {
+          // If database is empty, display starter wishes
+          defaultStarterWishes.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'wish-item';
+            card.innerHTML = `<div class="wish-text">"${escapeHtml(item.wish)}"</div><div class="wish-author">— ${escapeHtml(item.name)}</div>`;
+            box.appendChild(card);
+          });
+        }
+      } catch (err) {
+        console.log("Could not load from Firebase:", err);
+        box.innerHTML = '';
+        defaultStarterWishes.forEach(item => {
+          const card = document.createElement('div');
+          card.className = 'wish-item';
+          card.innerHTML = `<div class="wish-text">"${escapeHtml(item.wish)}"</div><div class="wish-author">— ${escapeHtml(item.name)}</div>`;
+          box.appendChild(card);
+        });
+      }
     }
 
-    function postGuestWish() {
+    async function postGuestWish() {
       const nameInput = document.getElementById('guestName');
       const wishInput = document.getElementById('guestWish');
+      const postBtn = document.getElementById('postWishBtn');
       const name = nameInput.value.trim();
       const wish = wishInput.value.trim();
 
@@ -883,23 +899,38 @@
         return;
       }
 
-      // Add to persistent storage
-      const stored = localStorage.getItem('wedding_guest_wishes');
-      const currentWishes = stored ? JSON.parse(stored) : initialWishes;
-      currentWishes.unshift({ name: name, wish: wish });
-      localStorage.setItem('wedding_guest_wishes', JSON.stringify(currentWishes));
+      postBtn.innerText = "Saving to Cloud...";
+      postBtn.disabled = true;
 
-      // Reload UI list
-      loadWishes();
+      try {
+        // Save permanently to Firebase Realtime Database
+        await fetch(FIREBASE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            wish: wish,
+            timestamp: Date.now()
+          })
+        });
 
-      nameInput.value = '';
-      wishInput.value = '';
+        nameInput.value = '';
+        wishInput.value = '';
 
-      showerAkshintalu();
+        // Reload the full list from cloud
+        await loadCloudWishes();
+        showerAkshintalu();
+      } catch (err) {
+        alert("Unable to save wish right now. Please check your internet connection.");
+        console.error(err);
+      } finally {
+        postBtn.innerText = "✨ Send Blessing";
+        postBtn.disabled = false;
+      }
     }
 
     function escapeHtml(text) {
-      return text.replace(/[&<>"']/g, function(m) {
+      return String(text).replace(/[&<>"']/g, function(m) {
         return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
       });
     }
@@ -923,7 +954,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      loadWishes();
+      loadCloudWishes();
       setInterval(updateCountdown, 1000);
       updateCountdown();
     });
