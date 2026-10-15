@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Wedding Invitation | Sampath &amp; Harika</title>
-  <meta name="description" content="Wedding Ceremony of Sampath &amp; Harika on Thursday, November 26, 2026.">
+  <title>Wedding Invitation | Sampath &amp; Sarika</title>
+  <meta name="description" content="Wedding Ceremony of Sampath &amp; Sarika on Thursday, November 26, 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -85,7 +85,7 @@
       transform: scale(1.03);
     }
 
-    /* LARGER CENTER TOUCH PULSE */
+    /* CENTER TOUCH PULSE (DISAPPEARS IMMEDIATELY UPON CLICK) */
     .center-touch-pulse {
       position: absolute;
       top: 50%;
@@ -101,7 +101,7 @@
       justify-content: center;
       z-index: 10;
       animation: pulseTarget 1.8s infinite ease-in-out;
-      transition: transform 0.35s ease, opacity 0.35s ease;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
     }
     @keyframes pulseTarget {
       0%, 100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.85; }
@@ -113,12 +113,13 @@
       filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
     }
     .hands-overlay-screen.connecting .center-touch-pulse {
-      transform: translate(-50%, -50%) scale(1.6);
-      opacity: 0;
-      pointer-events: none;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      display: none !important;
     }
 
-    /* TAP GUIDE PROMPT (FADES AWAY ON CLICK) */
+    /* TAP GUIDE PROMPT (FADES AWAY UPON CLICK) */
     .tap-guide-prompt {
       position: absolute;
       bottom: clamp(26px, 5vh, 40px);
@@ -137,16 +138,17 @@
       z-index: 10;
       white-space: nowrap;
       animation: bouncePrompt 1.6s infinite ease-in-out;
-      transition: opacity 0.4s ease, transform 0.4s ease;
+      transition: opacity 0.3s ease, transform 0.3s ease;
     }
     @keyframes bouncePrompt {
       0%, 100% { transform: translate(-50%, 0); }
       50% { transform: translate(-50%, -6px); }
     }
     .hands-overlay-screen.connecting .tap-guide-prompt {
-      opacity: 0;
-      transform: translate(-50%, 15px);
-      pointer-events: none;
+      opacity: 0 !important;
+      transform: translate(-50%, 15px) !important;
+      pointer-events: none !important;
+      display: none !important;
     }
 
     /* MAIN INVITATION CONTAINER */
@@ -442,12 +444,12 @@
     <!-- Stage 2 Image: United Holding Hands (hands-open.jpg) -->
     <img src="hands-open.jpg" alt="Holding Hands" class="hands-layer-united" id="handsUnited" onerror="handleImgError(this, 'hands-open')">
 
-    <!-- Larger Interactive Touch Target -->
+    <!-- Interactive Touch Target (Removed immediately on click) -->
     <div class="center-touch-pulse" id="touchPulse">
       <span>🤝</span>
     </div>
 
-    <!-- Tap Guide Prompt (Fades away upon tap) -->
+    <!-- Tap Guide Prompt (Removed immediately on click) -->
     <div class="tap-guide-prompt" id="tapPrompt">Tap in the middle to unite hands 💛</div>
   </div>
 
@@ -459,9 +461,9 @@
     <!-- Hero Couple Scene -->
     <div class="hero-ceremony-section">
       <div class="hero-img-box">
-        <img src="couple-ceremony.jpg" alt="Sampath &amp; Harika Wedding" onerror="handleImgError(this, 'couple-ceremony')">
+        <img src="couple-ceremony.jpg" alt="Sampath &amp; Sarika Wedding" onerror="handleImgError(this, 'couple-ceremony')">
       </div>
-      <h1 class="hero-couple-names">Sampath &amp; Harika</h1>
+      <h1 class="hero-couple-names">Sampath &amp; Sarika</h1>
       <p class="hero-sub-text">We invite you to celebrate our wedding</p>
     </div>
 
@@ -517,7 +519,7 @@
           <a class="btn-item btn-maps" href="https://www.google.com/maps/search/?api=1&amp;query=VIP+Gardens+Suraram+Hyderabad" target="_blank">
             📍 View on Google Maps
           </a>
-          <a class="btn-item btn-whatsapp" href="https://wa.me/917675975990?text=Congratulations%20Sampath%20%26%20Harika!%20%F0%9F%92%90" target="_blank">
+          <a class="btn-item btn-whatsapp" href="https://wa.me/917675975990?text=Congratulations%20Sampath%20%26%20Sarika!%20%F0%9F%92%90" target="_blank">
             💐 Send Wishes on WhatsApp
           </a>
         </div>
@@ -549,7 +551,7 @@
     <div class="footer-note">
       <p>We can't wait to celebrate this auspicious day with you ❤️</p>
       <div style="font-size:0.85rem; letter-spacing:1px; margin-bottom:4px; opacity:0.85;">With Love,</div>
-      <div class="footer-couple-sig">Sampath &amp; Harika</div>
+      <div class="footer-couple-sig">Sampath &amp; Sarika</div>
     </div>
 
   </div>
@@ -574,11 +576,17 @@
       isTransitioning = true;
 
       const screen = document.getElementById('handsScreen');
+      const pulse = document.getElementById('touchPulse');
+      const prompt = document.getElementById('tapPrompt');
 
-      // 1. Reveal united hands (hands-open.jpg) and immediately fade out the tap pill
+      // 1. Immediately remove the 🤝 icon and text prompt completely from view
+      if (pulse) pulse.style.display = 'none';
+      if (prompt) prompt.style.display = 'none';
+
+      // 2. Reveal united hands (hands-open.jpg)
       screen.classList.add('connecting');
 
-      // 2. Start festive music
+      // 3. Play audio
       if (audio) {
         audio.play().then(() => {
           isPlaying = true;
@@ -586,7 +594,7 @@
         }).catch(e => console.log('Autoplay handled'));
       }
 
-      // 3. Give guests 3.2 seconds to view hands-open.jpg before dissolving into the invitation
+      // 4. Exact 3-second display pause (3000ms) before revealing wedding invitation
       setTimeout(() => {
         screen.classList.add('dismissed');
         if (typeof confetti === 'function') {
@@ -597,7 +605,7 @@
             colors: ['#A31D24', '#F4E2B8', '#FFA800', '#FFFFFF']
           });
         }
-      }, 3200);
+      }, 3000);
     }
 
     function toggleAudio() {
