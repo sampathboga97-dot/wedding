@@ -186,7 +186,7 @@
       display: block;
     }
 
-    /* TRADITIONAL TELUGU MANGAALA ASHTAKAM SHLOKA */
+    /* TRADITIONAL TELUGU MANGALA ASHTAKAM SHLOKA */
     .sacred-wedding-shloka {
       font-family: 'Noto Sans Telugu', sans-serif;
       font-size: 0.88rem;
@@ -342,7 +342,7 @@
       letter-spacing: 1px;
     }
 
-    /* COUNTDOWN SECTION (PLACED RIGHT UNDER MUHURTHAM) */
+    /* COUNTDOWN SECTION (DIRECTLY UNDER MUHURTHAM) */
     .countdown-wrap {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -465,7 +465,7 @@
       font-size: 1.1rem;
     }
 
-    /* DIGITAL GUESTBOOK / WISH WALL */
+    /* DIGITAL GUESTBOOK / WISH WALL (PERSISTENT STORAGE) */
     .guestbook-card {
       background: #FFFDF9;
       border: 1px solid #EFE2CF;
@@ -527,7 +527,7 @@
 
     /* GUEST WISHES SCROLLING TICKER */
     .wishes-ticker-box {
-      max-height: 180px;
+      max-height: 220px;
       overflow-y: auto;
       border: 1px dashed #E3D1B4;
       border-radius: 14px;
@@ -540,7 +540,7 @@
     .wish-item {
       background: #FFFFFF;
       border-radius: 10px;
-      padding: 8px 12px;
+      padding: 10px 12px;
       border: 1px solid #F0E3D0;
       box-shadow: 0 2px 6px rgba(0,0,0,0.02);
       font-size: 0.88rem;
@@ -548,11 +548,11 @@
     .wish-text {
       color: #382E26;
       font-style: italic;
-      margin-bottom: 2px;
+      margin-bottom: 3px;
       line-height: 1.4;
     }
     .wish-author {
-      font-size: 0.76rem;
+      font-size: 0.78rem;
       font-weight: 700;
       color: var(--gold-deep);
       text-align: right;
@@ -601,8 +601,8 @@
 </head>
 <body>
 
-  <!-- Audio Element configured with your exact Nadaswaram & Thavil MP3 file name -->
-  <audio id="weddingAudio" src="Divine Nadaswaram & Thavil Music 🙏 Traditional South Indian Mangala Isai #shortsbeta.mp3" loop preload="auto"></audio>
+  <!-- Audio Element configured with exact filename matching your uploaded mp3 -->
+  <audio id="weddingAudio" src="Divine Nadaswaram.mp3" loop preload="auto"></audio>
 
   <!-- SCREEN 1: REACHING HANDS -> UNITED HANDS TOUCH SEQUENCE -->
   <div class="hands-overlay-screen" id="handsScreen" onclick="handleHandConnect()">
@@ -746,18 +746,7 @@
 
         <!-- Scrolling Ticker Container -->
         <div class="wishes-ticker-box" id="wishesBox">
-          <div class="wish-item">
-            <div class="wish-text">"Wishing you both a lifetime of happiness, divine harmony, and endless love! 💐"</div>
-            <div class="wish-author">— Ramesh &amp; Family</div>
-          </div>
-          <div class="wish-item">
-            <div class="wish-text">"Hearty congratulations Sampath &amp; Harika! May God bless you both abundantly. 🪷"</div>
-            <div class="wish-author">— Suresh Sharma</div>
-          </div>
-          <div class="wish-item">
-            <div class="wish-text">"May Lord Rama &amp; Sita bless your sacred union forever! 💛"</div>
-            <div class="wish-author">— Priya &amp; Anand</div>
-          </div>
+          <!-- Wishes load dynamically from LocalStorage and initial list -->
         </div>
       </div>
 
@@ -799,11 +788,14 @@
 
       screen.classList.add('connecting');
 
+      // Play audio on tap
       if (audio) {
         audio.play().then(() => {
           isPlaying = true;
           document.getElementById('audioToggle').innerText = '🔊';
-        }).catch(e => console.log('Autoplay handled'));
+        }).catch(e => {
+          console.log('Audio autoplay policy note:', e);
+        });
       }
 
       setTimeout(() => {
@@ -820,21 +812,24 @@
         isPlaying = false;
         btn.innerText = '🔇';
       } else {
-        audio.play();
-        isPlaying = true;
-        btn.innerText = '🔊';
+        audio.play().then(() => {
+          isPlaying = true;
+          btn.innerText = '🔊';
+        }).catch(e => console.log('Audio playback error:', e));
       }
     }
 
-    // Interactive Akshintalu (Golden Turmeric Rice + Red Vermilion + Soft Petals)
-    let totalBlessings = 342;
+    // Akshintalu / Flower shower counter
+    let totalBlessings = parseInt(localStorage.getItem('wedding_blessings_count') || '342');
+    document.getElementById('blessingCount').innerText = totalBlessings;
+
     function showerAkshintalu() {
       totalBlessings++;
+      localStorage.setItem('wedding_blessings_count', totalBlessings);
       const counter = document.getElementById('blessingCount');
       if (counter) counter.innerText = totalBlessings;
 
       if (typeof confetti === 'function') {
-        // Shower from top: Akshintalu (gold-yellow & vermilion red rice + rose petals)
         confetti({
           particleCount: 85,
           angle: 90,
@@ -849,7 +844,34 @@
       }
     }
 
-    // Guestbook: Add Live Wishes to the ticker
+    // Persistent Guestbook Wishes Management
+    const initialWishes = [
+      { name: "Ramesh & Family", wish: "Wishing you both a lifetime of happiness, divine harmony, and endless love! 💐" },
+      { name: "Suresh Sharma", wish: "Hearty congratulations Sampath & Harika! May God bless you both abundantly. 🪷" },
+      { name: "Priya & Anand", wish: "May Lord Rama & Sita bless your sacred union forever! 💛" }
+    ];
+
+    function loadWishes() {
+      const box = document.getElementById('wishesBox');
+      box.innerHTML = '';
+      
+      const stored = localStorage.getItem('wedding_guest_wishes');
+      let currentWishes = [];
+      if (stored) {
+        currentWishes = JSON.parse(stored);
+      } else {
+        currentWishes = initialWishes;
+        localStorage.setItem('wedding_guest_wishes', JSON.stringify(currentWishes));
+      }
+
+      currentWishes.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'wish-item';
+        card.innerHTML = `<div class="wish-text">"${escapeHtml(item.wish)}"</div><div class="wish-author">— ${escapeHtml(item.name)}</div>`;
+        box.appendChild(card);
+      });
+    }
+
     function postGuestWish() {
       const nameInput = document.getElementById('guestName');
       const wishInput = document.getElementById('guestWish');
@@ -857,23 +879,22 @@
       const wish = wishInput.value.trim();
 
       if (!name || !wish) {
-        alert("Please enter both your name and a blessing message! 💛");
+        alert("Please enter both your name and your blessing message! 💛");
         return;
       }
 
-      const box = document.getElementById('wishesBox');
-      const newCard = document.createElement('div');
-      newCard.className = 'wish-item';
-      newCard.innerHTML = `<div class="wish-text">"${escapeHtml(wish)}"</div><div class="wish-author">— ${escapeHtml(name)}</div>`;
+      // Add to persistent storage
+      const stored = localStorage.getItem('wedding_guest_wishes');
+      const currentWishes = stored ? JSON.parse(stored) : initialWishes;
+      currentWishes.unshift({ name: name, wish: wish });
+      localStorage.setItem('wedding_guest_wishes', JSON.stringify(currentWishes));
 
-      // Insert at the top of ticker
-      box.insertBefore(newCard, box.firstChild);
+      // Reload UI list
+      loadWishes();
 
-      // Clear input fields
       nameInput.value = '';
       wishInput.value = '';
 
-      // Shower petals to celebrate the wish
       showerAkshintalu();
     }
 
@@ -900,8 +921,12 @@
       document.getElementById('mins').innerText = String(Math.floor((diff % (1000 * 60)) / (1000 * 60))).padStart(2, '0');
       document.getElementById('secs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
     }
-    setInterval(updateCountdown, 1000);
-    updateCountdown();
+
+    window.addEventListener('DOMContentLoaded', () => {
+      loadWishes();
+      setInterval(updateCountdown, 1000);
+      updateCountdown();
+    });
   </script>
 </body>
 </html>
