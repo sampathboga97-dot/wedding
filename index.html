@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Wedding Invitation | Sampath &amp; Harika</title>
+  <meta name="description" content="Wedding Ceremony of Sampath &amp; Harika on Thursday, November 26, 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -25,6 +26,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      overflow-x: hidden;
     }
 
     /* FULL-SCREEN REACHING HANDS TOUCH OVERLAY */
@@ -34,14 +36,14 @@
       width: 100vw;
       height: 100dvh;
       z-index: 1000;
-      background: #EED7B8;
+      background: radial-gradient(circle at 50% 50%, #FFE8C7 0%, #F5CF98 50%, #D8A562 100%);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: space-between;
       overflow: hidden;
       cursor: pointer;
-      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.9s ease;
+      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.85s ease;
     }
     .hands-overlay-screen.dismissed {
       opacity: 0;
@@ -49,6 +51,7 @@
       pointer-events: none;
     }
 
+    /* Background Reaching Image */
     .hands-bg-img {
       position: absolute;
       inset: 0;
@@ -56,63 +59,71 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      transition: transform 0.6s ease;
+      transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.7s ease;
     }
 
-    /* Interactive Center Touch Target */
-    .center-touch-target {
+    /* Radiant Center Touch Indicator */
+    .center-touch-pulse {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 130px;
-      height: 130px;
+      width: 110px;
+      height: 110px;
       border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 235, 180, 0.45) 0%, rgba(255, 255, 255, 0.05) 70%, transparent 100%);
+      background: radial-gradient(circle, rgba(255,255,255,0.7) 0%, rgba(255,225,140,0.4) 40%, transparent 75%);
+      box-shadow: 0 0 35px rgba(255, 220, 140, 0.85);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 35px rgba(255, 220, 140, 0.6);
-      animation: pulseRings 2s infinite ease-in-out;
       z-index: 10;
+      animation: pulseTarget 1.8s infinite ease-in-out;
+      transition: transform 0.4s ease, opacity 0.4s ease;
     }
-    @keyframes pulseRings {
-      0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
-      50% { transform: translate(-50%, -50%) scale(1.18); opacity: 1; }
+    @keyframes pulseTarget {
+      0%, 100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.75; }
+      50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
     }
-
-    .shakehand-anim {
-      animation: shakeHandsEffect 0.8s ease-in-out forwards !important;
-    }
-    @keyframes shakeHandsEffect {
-      0% { transform: scale(1); }
-      20% { transform: scale(1.05) rotate(2deg); }
-      40% { transform: scale(1.08) rotate(-2deg); }
-      60% { transform: scale(1.12) rotate(2deg); }
-      80% { transform: scale(1.15) rotate(0deg); }
-      100% { transform: scale(1.22); opacity: 0.1; }
+    .center-touch-pulse span {
+      font-size: 28px;
     }
 
+    /* Shakehand zoom transition */
+    .hands-overlay-screen.connecting .hands-bg-img {
+      transform: scale(1.12) rotate(1.5deg);
+      filter: brightness(1.1);
+    }
+    .hands-overlay-screen.connecting .center-touch-pulse {
+      transform: translate(-50%, -50%) scale(1.6);
+      opacity: 0;
+    }
+
+    /* Tap prompt pill */
     .tap-guide-prompt {
       position: absolute;
-      bottom: clamp(24px, 5vh, 40px);
+      bottom: clamp(26px, 5vh, 40px);
       left: 50%;
       transform: translateX(-50%);
       font-family: 'Playfair Display', serif;
       font-style: italic;
-      font-size: clamp(1rem, 2.5vh, 1.25rem);
-      color: #FFFFFF;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.65);
+      font-size: clamp(0.95rem, 2.4vh, 1.15rem);
+      color: #5C3A10;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(4px);
+      padding: 9px 22px;
+      border-radius: 25px;
+      border: 1px solid rgba(220, 175, 110, 0.6);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       z-index: 10;
       white-space: nowrap;
-      animation: bouncePrompt 1.8s infinite ease-in-out;
+      animation: bouncePrompt 1.6s infinite ease-in-out;
     }
     @keyframes bouncePrompt {
       0%, 100% { transform: translate(-50%, 0); }
-      50% { transform: translate(-50%, -6px); }
+      50% { transform: translate(-50%, -5px); }
     }
 
-    /* INVITATION CONTAINER (MOBILE REEL STYLE) */
+    /* MAIN INVITATION CONTAINER (MATCHING EXACT REEL STYLE) */
     .wedding-container {
       width: 100%;
       max-width: 480px;
@@ -123,30 +134,29 @@
       position: relative;
     }
 
-    /* HERO CEREMONY SECTION */
+    /* HERO COUPLE CEREMONY */
     .hero-ceremony-section {
       position: relative;
       width: 100%;
-      background: radial-gradient(circle at center, #FFF8EE 0%, #F5E5D1 100%);
+      background: radial-gradient(circle at center, #FFF9F2 0%, #F5E7D3 100%);
       text-align: center;
       padding: 30px 20px 24px;
-      overflow: hidden;
       border-bottom: 2px solid #EFE0C9;
     }
     .hero-ceremony-img {
       width: 100%;
-      max-width: 380px;
-      height: 320px;
+      max-width: 360px;
+      height: 310px;
       object-fit: cover;
       border-radius: 18px;
       border: 3px solid #FFFFFF;
-      box-shadow: 0 10px 30px rgba(163, 124, 50, 0.18);
+      box-shadow: 0 10px 28px rgba(163, 124, 50, 0.16);
       margin: 0 auto 16px;
       display: block;
     }
     .hero-couple-names {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.6rem;
+      font-size: 3.5rem;
       color: var(--primary-red);
       line-height: 1.1;
       margin-bottom: 4px;
@@ -160,14 +170,14 @@
 
     /* BLESSINGS SECTION */
     .content-section {
-      padding: 32px 20px;
+      padding: 30px 18px;
       text-align: center;
     }
     .section-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.85rem;
       color: var(--primary-red);
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       position: relative;
       display: inline-block;
     }
@@ -185,12 +195,12 @@
       background: #FFFDF9;
       border: 1px solid #EFE3D0;
       border-radius: 18px;
-      padding: 22px 16px;
-      margin-bottom: 16px;
+      padding: 20px 16px;
+      margin-bottom: 15px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.04);
     }
     .parent-tag {
-      font-size: 0.74rem;
+      font-size: 0.72rem;
       letter-spacing: 2px;
       text-transform: uppercase;
       font-weight: 700;
@@ -211,23 +221,24 @@
       margin: 2px 0;
     }
 
-    /* MUHURTHAM SECTION */
+    /* MUHURTHAM BANNER */
     .muhurtham-banner {
       background: linear-gradient(180deg, #FFF9F2 0%, #FAEDE0 100%);
       border-radius: 20px;
       border: 1px solid #EADBCC;
-      padding: 24px 18px;
-      margin-bottom: 24px;
+      padding: 22px 16px;
+      margin-bottom: 22px;
     }
-    .kalyanam-decor-img {
+    .section-card-img {
       width: 100%;
-      max-width: 260px;
-      height: 180px;
+      max-width: 280px;
+      height: 190px;
       object-fit: cover;
       border-radius: 14px;
       margin: 0 auto 14px;
       display: block;
       box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+      background: #FFFFFF;
     }
     .muhurtham-title {
       font-family: 'Cinzel', serif;
@@ -241,12 +252,12 @@
       font-family: 'Playfair Display', serif;
       font-style: italic;
       color: #6C5D4B;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       margin-bottom: 12px;
     }
     .event-date {
       font-family: 'Playfair Display', serif;
-      font-size: 1.45rem;
+      font-size: 1.4rem;
       font-weight: 700;
       color: #1F1813;
       margin-bottom: 4px;
@@ -258,24 +269,14 @@
       letter-spacing: 1px;
     }
 
-    /* VENUE SECTION */
+    /* VENUE CARD */
     .venue-card {
       background: #FFFFFF;
       border-radius: 20px;
       border: 1px solid #EFE2CF;
-      padding: 24px 18px;
-      margin-bottom: 24px;
+      padding: 22px 16px;
+      margin-bottom: 22px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-    }
-    .temple-venue-img {
-      width: 100%;
-      max-width: 260px;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 14px;
-      margin: 0 auto 14px;
-      display: block;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
     }
     .venue-title {
       font-family: 'Cinzel', serif;
@@ -299,7 +300,7 @@
       border-radius: 16px;
       border: 1px solid #EFE2CB;
       padding: 16px 6px;
-      margin-bottom: 26px;
+      margin-bottom: 24px;
     }
     .count-val {
       font-size: 1.65rem;
@@ -349,7 +350,7 @@
       box-shadow: 0 4px 15px rgba(37, 211, 102, 0.28);
     }
 
-    /* FOOTER */
+    /* RED FOOTER BANNER */
     .footer-note {
       background: #961B22;
       color: #FFFFFF;
@@ -371,7 +372,6 @@
       letter-spacing: 1px;
     }
 
-    /* AUDIO BUTTON */
     .audio-btn {
       position: fixed;
       bottom: 20px;
@@ -393,15 +393,15 @@
 </head>
 <body>
 
-  <!-- Audio Element -->
+  <!-- Audio Element (supports both wedding music or your engagement audio file) -->
   <audio id="weddingAudio" src="Best Engagement invitation telugu.mp3" loop preload="auto"></audio>
 
   <!-- SCREEN 1: REACHING HANDS TOUCH OVERLAY -->
   <div class="hands-overlay-screen" id="handsScreen" onclick="handleHandConnect()">
-    <img src="hands-open.jpg" alt="Divine Reaching Hands" class="hands-bg-img" id="handsBgImg" onerror="handleHandsImgFallback(this)">
+    <img src="hands-open.jpg" alt="Divine Reaching Hands" class="hands-bg-img" id="handsBgImg" onerror="handleImgError(this, 'hands-open')">
     
-    <div class="center-touch-target" id="touchTarget">
-      <span style="font-size: 28px;">🤝</span>
+    <div class="center-touch-pulse" id="touchPulse">
+      <span>🤝</span>
     </div>
 
     <div class="tap-guide-prompt">Tap in the middle to unite hands 💛</div>
@@ -414,7 +414,7 @@
     
     <!-- Hero Couple Scene -->
     <div class="hero-ceremony-section">
-      <img src="couple-ceremony.jpg" alt="Sampath &amp; Harika Wedding" class="hero-ceremony-img" onerror="handleCoupleImgFallback(this)">
+      <img src="couple-ceremony.jpg" alt="Sampath &amp; Harika Wedding" class="hero-ceremony-img" onerror="handleImgError(this, 'couple-ceremony')">
       <h1 class="hero-couple-names">Sampath &amp; Harika</h1>
       <p class="hero-sub-text">We invite you to celebrate our wedding</p>
     </div>
@@ -444,18 +444,18 @@
         </div>
       </div>
 
-      <!-- Muhurtham Section -->
+      <!-- Muhurtham Section (Matched directly to your kalyanam.jpeg) -->
       <div class="muhurtham-banner">
-        <img src="kalyanam.jpg" alt="Kalyanam" class="kalyanam-decor-img" onerror="handleKalyanamFallback(this)">
+        <img src="kalyanam.jpeg" alt="Kalyanam" class="section-card-img" onerror="handleImgError(this, 'kalyanam')">
         <div class="muhurtham-title">MUHURTHAM</div>
         <div class="divine-sub">With divine blessings, soliciting your gracious presence</div>
         <div class="event-date">Thursday, 26 November 2026</div>
         <div class="event-time">9:15 AM</div>
       </div>
 
-      <!-- Venue Section -->
+      <!-- Venue Section (Matched directly to your temple.jpeg) -->
       <div class="venue-card">
-        <img src="temple.jpg" alt="VIP Gardens" class="temple-venue-img" onerror="handleTempleFallback(this)">
+        <img src="temple.jpeg" alt="VIP Gardens" class="section-card-img" onerror="handleImgError(this, 'temple')">
         <div class="venue-title">VENUE</div>
         <div class="venue-address">
           <strong>VIP Gardens</strong><br>
@@ -505,32 +505,27 @@
   </div>
 
   <script>
-    // Extension fallbacks in case images are saved as .png or .jpeg
-    function handleHandsImgFallback(img) {
-      if (img.src.endsWith('.jpg')) img.src = 'hands-open.png';
-    }
-    function handleCoupleImgFallback(img) {
-      if (img.src.endsWith('.jpg')) img.src = 'couple-ceremony.png';
-    }
-    function handleKalyanamFallback(img) {
-      if (img.src.endsWith('.jpg')) img.src = 'kalyanam.png';
-    }
-    function handleTempleFallback(img) {
-      if (img.src.endsWith('.jpg')) img.src = 'temple.png';
+    // Universal extension fallback: tries .jpeg, .jpg, .png, .jfif
+    const extList = ['.jpeg', '.jpg', '.png', '.jfif'];
+    function handleImgError(img, baseName) {
+      let attempt = parseInt(img.getAttribute('data-att') || '0');
+      if (attempt < extList.length) {
+        img.setAttribute('data-att', attempt + 1);
+        img.src = baseName + extList[attempt];
+      }
     }
 
     const audio = document.getElementById('weddingAudio');
     let isPlaying = false;
 
     function handleHandConnect() {
-      const bgImg = document.getElementById('handsBgImg');
-      const touchTarget = document.getElementById('touchTarget');
+      const screen = document.getElementById('handsScreen');
 
-      touchTarget.classList.add('shakehand-anim');
-      bgImg.style.transform = 'scale(1.08)';
+      // Trigger shakehand uniting zoom
+      screen.classList.add('connecting');
 
       setTimeout(() => {
-        document.getElementById('handsScreen').classList.add('dismissed');
+        screen.classList.add('dismissed');
         if (typeof confetti === 'function') {
           confetti({
             particleCount: 110,
@@ -577,7 +572,7 @@
       }
       document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
       document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-      document.getElementById('mins').innerText = String(Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))).padStart(2, '0');
+      document.getElementById('mins').innerText = String(Math.floor((diff % (1000 * 60)) / (1000 * 60))).padStart(2, '0');
       document.getElementById('secs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
     }
     setInterval(updateCountdown, 1000);
