@@ -14,6 +14,7 @@
       --primary-red: #A31D24;
       --gold-deep: #A37C32;
       --gold-light: #F4E2B8;
+      --gold-border: #E8D7B8;
       --card-bg: #FFFFFF;
       --text-dark: #2B2623;
     }
@@ -27,6 +28,7 @@
       justify-content: center;
       align-items: center;
       overflow-x: hidden;
+      padding: 10px 0;
     }
 
     /* FULL-SCREEN REACHING HANDS TOUCH OVERLAY */
@@ -36,14 +38,10 @@
       width: 100vw;
       height: 100dvh;
       z-index: 1000;
-      background: radial-gradient(circle at 50% 50%, #FFE8C7 0%, #F5CF98 50%, #D8A562 100%);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-between;
+      background: #000000;
       overflow: hidden;
       cursor: pointer;
-      transition: opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.85s ease;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s ease;
     }
     .hands-overlay-screen.dismissed {
       opacity: 0;
@@ -51,18 +49,43 @@
       pointer-events: none;
     }
 
-    /* Background Reaching Image */
-    .hands-bg-img {
+    /* LAYER 1: SEPARATE REACHING HANDS (handlong.jpeg) */
+    .hands-layer-initial {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
       object-position: center;
-      transition: transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.7s ease;
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      z-index: 1;
     }
 
-    /* Radiant Center Touch Indicator */
+    /* LAYER 2: UNITED HOLDING HANDS (hands-open.jpg) */
+    .hands-layer-united {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+      z-index: 2;
+    }
+
+    /* ON CLICK TRANSITION */
+    .hands-overlay-screen.connecting .hands-layer-initial {
+      opacity: 0;
+      transform: scale(1.08);
+    }
+    .hands-overlay-screen.connecting .hands-layer-united {
+      opacity: 1;
+      transform: scale(1.04);
+    }
+
+    /* CENTER TOUCH PULSE */
     .center-touch-pulse {
       position: absolute;
       top: 50%;
@@ -87,18 +110,12 @@
     .center-touch-pulse span {
       font-size: 28px;
     }
-
-    /* Shakehand zoom transition */
-    .hands-overlay-screen.connecting .hands-bg-img {
-      transform: scale(1.12) rotate(1.5deg);
-      filter: brightness(1.1);
-    }
     .hands-overlay-screen.connecting .center-touch-pulse {
       transform: translate(-50%, -50%) scale(1.6);
       opacity: 0;
     }
 
-    /* Tap prompt pill */
+    /* TAP GUIDE PROMPT */
     .tap-guide-prompt {
       position: absolute;
       bottom: clamp(26px, 5vh, 40px);
@@ -108,12 +125,12 @@
       font-style: italic;
       font-size: clamp(0.95rem, 2.4vh, 1.15rem);
       color: #5C3A10;
-      background: rgba(255, 255, 255, 0.85);
+      background: rgba(255, 255, 255, 0.88);
       backdrop-filter: blur(4px);
-      padding: 9px 22px;
+      padding: 9px 24px;
       border-radius: 25px;
       border: 1px solid rgba(220, 175, 110, 0.6);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
       z-index: 10;
       white-space: nowrap;
       animation: bouncePrompt 1.6s infinite ease-in-out;
@@ -123,35 +140,40 @@
       50% { transform: translate(-50%, -5px); }
     }
 
-    /* MAIN INVITATION CONTAINER (MATCHING EXACT REEL STYLE) */
+    /* MAIN INVITATION CONTAINER */
     .wedding-container {
       width: 100%;
       max-width: 480px;
-      min-height: 100vh;
       background: #FFFFFF;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.12);
-      overflow-x: hidden;
+      box-shadow: 0 12px 45px rgba(70, 46, 12, 0.16);
+      border-radius: 24px;
+      overflow: hidden;
       position: relative;
+      border: 1px solid var(--gold-border);
     }
 
-    /* HERO COUPLE CEREMONY */
+    /* HERO COUPLE CEREMONY SECTION */
     .hero-ceremony-section {
       position: relative;
-      width: 100%;
       background: radial-gradient(circle at center, #FFF9F2 0%, #F5E7D3 100%);
       text-align: center;
-      padding: 30px 20px 24px;
+      padding: 24px 20px 20px;
       border-bottom: 2px solid #EFE0C9;
     }
-    .hero-ceremony-img {
+    .hero-img-box {
       width: 100%;
-      max-width: 360px;
-      height: 310px;
-      object-fit: cover;
       border-radius: 18px;
+      overflow: hidden;
       border: 3px solid #FFFFFF;
-      box-shadow: 0 10px 28px rgba(163, 124, 50, 0.16);
-      margin: 0 auto 16px;
+      box-shadow: 0 8px 24px rgba(163, 124, 50, 0.18);
+      margin-bottom: 14px;
+      background: #FFF;
+    }
+    .hero-img-box img {
+      width: 100%;
+      height: auto;
+      max-height: 380px;
+      object-fit: contain;
       display: block;
     }
     .hero-couple-names {
@@ -168,16 +190,16 @@
       color: #615243;
     }
 
-    /* BLESSINGS SECTION */
+    /* CONTENT BODY */
     .content-section {
-      padding: 30px 18px;
+      padding: 26px 20px;
       text-align: center;
     }
     .section-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.85rem;
       color: var(--primary-red);
-      margin-bottom: 22px;
+      margin-bottom: 20px;
       position: relative;
       display: inline-block;
     }
@@ -195,9 +217,9 @@
       background: #FFFDF9;
       border: 1px solid #EFE3D0;
       border-radius: 18px;
-      padding: 20px 16px;
-      margin-bottom: 15px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+      padding: 18px 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
     }
     .parent-tag {
       font-size: 0.72rem;
@@ -205,7 +227,7 @@
       text-transform: uppercase;
       font-weight: 700;
       color: var(--gold-deep);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     .parent-names {
       font-family: 'Playfair Display', serif;
@@ -226,38 +248,46 @@
       background: linear-gradient(180deg, #FFF9F2 0%, #FAEDE0 100%);
       border-radius: 20px;
       border: 1px solid #EADBCC;
-      padding: 22px 16px;
+      padding: 20px 16px;
       margin-bottom: 22px;
     }
-    .section-card-img {
+
+    /* FIXED IMAGE CONTAINER TO PREVENT OVERFLOW */
+    .card-photo-wrapper {
       width: 100%;
-      max-width: 280px;
-      height: 190px;
-      object-fit: cover;
       border-radius: 14px;
+      overflow: hidden;
       margin: 0 auto 14px;
-      display: block;
       box-shadow: 0 4px 14px rgba(0,0,0,0.08);
       background: #FFFFFF;
+      border: 2px solid #FFFFFF;
     }
+    .card-photo-wrapper img {
+      width: 100%;
+      height: auto;
+      max-height: 260px;
+      object-fit: contain;
+      display: block;
+    }
+
     .muhurtham-title {
       font-family: 'Cinzel', serif;
       font-size: 1.6rem;
       letter-spacing: 3px;
       color: var(--primary-red);
       font-weight: 800;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
     }
     .divine-sub {
       font-family: 'Playfair Display', serif;
       font-style: italic;
       color: #6C5D4B;
       font-size: 0.92rem;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
     .event-date {
       font-family: 'Playfair Display', serif;
-      font-size: 1.4rem;
+      font-size: 1.38rem;
       font-weight: 700;
       color: #1F1813;
       margin-bottom: 4px;
@@ -274,7 +304,7 @@
       background: #FFFFFF;
       border-radius: 20px;
       border: 1px solid #EFE2CF;
-      padding: 22px 16px;
+      padding: 20px 16px;
       margin-bottom: 22px;
       box-shadow: 0 6px 20px rgba(0,0,0,0.05);
     }
@@ -283,7 +313,7 @@
       font-size: 1.4rem;
       color: var(--primary-red);
       font-weight: 700;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .venue-address {
       font-size: 0.96rem;
@@ -300,7 +330,7 @@
       border-radius: 16px;
       border: 1px solid #EFE2CB;
       padding: 16px 6px;
-      margin-bottom: 24px;
+      margin-bottom: 22px;
     }
     .count-val {
       font-size: 1.65rem;
@@ -354,7 +384,7 @@
     .footer-note {
       background: #961B22;
       color: #FFFFFF;
-      padding: 30px 20px;
+      padding: 28px 20px;
       text-align: center;
     }
     .footer-note p {
@@ -393,13 +423,17 @@
 </head>
 <body>
 
-  <!-- Audio Element (supports both wedding music or your engagement audio file) -->
+  <!-- Audio Element -->
   <audio id="weddingAudio" src="Best Engagement invitation telugu.mp3" loop preload="auto"></audio>
 
-  <!-- SCREEN 1: REACHING HANDS TOUCH OVERLAY -->
+  <!-- SCREEN 1: REACHING HANDS -> UNITED HANDS TOUCH SEQUENCE -->
   <div class="hands-overlay-screen" id="handsScreen" onclick="handleHandConnect()">
-    <img src="hands-open.jpg" alt="Divine Reaching Hands" class="hands-bg-img" id="handsBgImg" onerror="handleImgError(this, 'hands-open')">
-    
+    <!-- Stage 1 Image: Separate Hands (handlong.jpeg) -->
+    <img src="handlong.jpeg" alt="Reaching Hands" class="hands-layer-initial" id="handsInitial" onerror="handleImgError(this, 'handlong')">
+
+    <!-- Stage 2 Image: United Holding Hands (hands-open.jpg) -->
+    <img src="hands-open.jpg" alt="Holding Hands" class="hands-layer-united" id="handsUnited" onerror="handleImgError(this, 'hands-open')">
+
     <div class="center-touch-pulse" id="touchPulse">
       <span>🤝</span>
     </div>
@@ -414,7 +448,9 @@
     
     <!-- Hero Couple Scene -->
     <div class="hero-ceremony-section">
-      <img src="couple-ceremony.jpg" alt="Sampath &amp; Harika Wedding" class="hero-ceremony-img" onerror="handleImgError(this, 'couple-ceremony')">
+      <div class="hero-img-box">
+        <img src="couple-ceremony.jpg" alt="Sampath &amp; Harika Wedding" onerror="handleImgError(this, 'couple-ceremony')">
+      </div>
       <h1 class="hero-couple-names">Sampath &amp; Harika</h1>
       <p class="hero-sub-text">We invite you to celebrate our wedding</p>
     </div>
@@ -444,18 +480,22 @@
         </div>
       </div>
 
-      <!-- Muhurtham Section (Matched directly to your kalyanam.jpeg) -->
+      <!-- Muhurtham Section -->
       <div class="muhurtham-banner">
-        <img src="kalyanam.jpeg" alt="Kalyanam" class="section-card-img" onerror="handleImgError(this, 'kalyanam')">
+        <div class="card-photo-wrapper">
+          <img src="kalyanam.jpeg" alt="Kalyanam" onerror="handleImgError(this, 'kalyanam')">
+        </div>
         <div class="muhurtham-title">MUHURTHAM</div>
         <div class="divine-sub">With divine blessings, soliciting your gracious presence</div>
         <div class="event-date">Thursday, 26 November 2026</div>
         <div class="event-time">9:15 AM</div>
       </div>
 
-      <!-- Venue Section (Matched directly to your temple.jpeg) -->
+      <!-- Venue Section -->
       <div class="venue-card">
-        <img src="temple.jpeg" alt="VIP Gardens" class="section-card-img" onerror="handleImgError(this, 'temple')">
+        <div class="card-photo-wrapper">
+          <img src="temple.jpeg" alt="VIP Gardens" onerror="handleImgError(this, 'temple')">
+        </div>
         <div class="venue-title">VENUE</div>
         <div class="venue-address">
           <strong>VIP Gardens</strong><br>
@@ -505,7 +545,7 @@
   </div>
 
   <script>
-    // Universal extension fallback: tries .jpeg, .jpg, .png, .jfif
+    // Universal extension fallback
     const extList = ['.jpeg', '.jpg', '.png', '.jfif'];
     function handleImgError(img, baseName) {
       let attempt = parseInt(img.getAttribute('data-att') || '0');
@@ -517,31 +557,37 @@
 
     const audio = document.getElementById('weddingAudio');
     let isPlaying = false;
+    let isTransitioning = false;
 
     function handleHandConnect() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+
       const screen = document.getElementById('handsScreen');
 
-      // Trigger shakehand uniting zoom
+      // Trigger the uniting animation: reveals hands-open.jpg over handlong.jpeg
       screen.classList.add('connecting');
 
-      setTimeout(() => {
-        screen.classList.add('dismissed');
-        if (typeof confetti === 'function') {
-          confetti({
-            particleCount: 110,
-            spread: 90,
-            origin: { y: 0.5 },
-            colors: ['#A31D24', '#F4E2B8', '#FFA800', '#FFFFFF']
-          });
-        }
-      }, 700);
-
+      // Play audio
       if (audio) {
         audio.play().then(() => {
           isPlaying = true;
           document.getElementById('audioToggle').innerText = '🔊';
         }).catch(e => console.log('Autoplay handled'));
       }
+
+      // After hands unite, smoothly dismiss screen to reveal wedding invite
+      setTimeout(() => {
+        screen.classList.add('dismissed');
+        if (typeof confetti === 'function') {
+          confetti({
+            particleCount: 120,
+            spread: 90,
+            origin: { y: 0.5 },
+            colors: ['#A31D24', '#F4E2B8', '#FFA800', '#FFFFFF']
+          });
+        }
+      }, 1000);
     }
 
     function toggleAudio() {
