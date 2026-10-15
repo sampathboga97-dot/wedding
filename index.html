@@ -3,24 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Wedding Invitation | Sampath &amp; Sarika</title>
-  <meta name="description" content="Wedding Ceremony of Sampath &amp; Sarika on Thursday, November 26, 2026.">
+  <title>Wedding Invitation | Sampath &amp; Harika</title>
+  <meta name="description" content="Wedding Ceremony of Sampath &amp; Harika on Thursday, November 26, 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     :root {
-      --primary-red: #A31D24;
-      --gold-deep: #A37C32;
-      --gold-light: #F4E2B8;
+      --maroon-primary: #851329;
+      --maroon-dark: #560616;
+      --gold-deep: #8E6A26;
+      --gold-foil: #C59A3F;
       --gold-border: #E8D7B8;
-      --card-bg: #FFFFFF;
-      --text-dark: #2B2623;
+      --text-dark: #2F2620;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      background-color: #F8F4EE;
+      background: radial-gradient(circle at top, #F7EFE4 0%, #E8DCCB 100%);
       font-family: 'Plus Jakarta Sans', sans-serif;
       color: var(--text-dark);
       min-height: 100vh;
@@ -28,7 +28,7 @@
       justify-content: center;
       align-items: center;
       overflow-x: hidden;
-      padding: 10px 0;
+      padding: 12px 6px;
     }
 
     /* FULL-SCREEN REACHING HANDS OVERLAY */
@@ -48,8 +48,6 @@
       visibility: hidden;
       pointer-events: none;
     }
-
-    /* LAYER 1: SEPARATE REACHING HANDS */
     .hands-layer-initial {
       position: absolute;
       inset: 0;
@@ -60,8 +58,6 @@
       transition: opacity 0.6s ease, transform 0.6s ease;
       z-index: 1;
     }
-
-    /* LAYER 2: UNITED HOLDING HANDS */
     .hands-layer-united {
       position: absolute;
       inset: 0;
@@ -74,7 +70,6 @@
       transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
       z-index: 2;
     }
-
     .hands-overlay-screen.connecting .hands-layer-initial {
       opacity: 0;
       transform: scale(1.08);
@@ -83,8 +78,6 @@
       opacity: 1;
       transform: scale(1.03);
     }
-
-    /* CENTER TOUCH PULSE */
     .center-touch-pulse {
       position: absolute;
       top: 50%;
@@ -106,18 +99,13 @@
       0%, 100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.85; }
       50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
     }
-    .center-touch-pulse span {
-      font-size: 42px;
-      line-height: 1;
-      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3));
-    }
+    .center-touch-pulse span { font-size: 42px; line-height: 1; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); }
     .hands-overlay-screen.connecting .center-touch-pulse {
       opacity: 0 !important;
       visibility: hidden !important;
       pointer-events: none !important;
       display: none !important;
     }
-
     .tap-guide-prompt {
       position: absolute;
       bottom: clamp(26px, 5vh, 40px);
@@ -149,390 +137,454 @@
       display: none !important;
     }
 
-    /* MAIN INVITATION CONTAINER */
-    .wedding-container {
+    /* MAIN INVITATION FRAME CONTAINER */
+    .invitation-container {
       width: 100%;
-      max-width: 480px;
-      background: #FFFFFF;
-      box-shadow: 0 12px 45px rgba(70, 46, 12, 0.16);
-      border-radius: 24px;
-      overflow: hidden;
+      max-width: 490px;
       position: relative;
-      border: 1px solid var(--gold-border);
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 22px 65px rgba(78, 48, 14, 0.28);
+      background: #FFFFFF;
+      border: 1.5px solid var(--gold-border);
+    }
+    .card-inner {
+      position: relative;
+      background: #FFFDF9;
+      padding: 38px 18px 30px;
+      overflow: hidden;
+    }
+    .card-inner::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1.5px dashed #DFC394;
+      border-radius: 20px;
+      pointer-events: none;
+      z-index: 1;
     }
 
-    /* HERO COUPLE CEREMONY SECTION */
-    .hero-ceremony-section {
+    /* TRADITIONAL MANGO LEAF & MARIGOLD TORANAM */
+    .top-toranam {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 42px;
+      z-index: 10;
+      pointer-events: none;
+      background-repeat: repeat-x;
+      background-size: 54px 40px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 40'%3E%3Cpath d='M0 0 Q27 26 54 0' fill='none' stroke='%232E7D32' stroke-width='2.5'/%3E%3Cpath d='M15 6 Q19 22 15 28 Q11 22 15 6 Z' fill='%23388E3C'/%3E%3Cpath d='M39 6 Q43 22 39 28 Q35 22 39 6 Z' fill='%23388E3C'/%3E%3Ccircle cx='27' cy='18' r='8' fill='%23FF8F00'/%3E%3Ccircle cx='27' cy='18' r='5' fill='%23FFD54F'/%3E%3Ccircle cx='27' cy='18' r='2' fill='%23E65100'/%3E%3C/svg%3E");
+    }
+
+    /* MARIGOLD SIDE GARLAND STRANDS */
+    .garland-side {
+      position: absolute;
+      top: 40px;
+      bottom: 15px;
+      width: 20px;
+      z-index: 5;
+      pointer-events: none;
+      background-repeat: repeat-y;
+      background-size: 20px 48px;
+    }
+    .garland-left {
+      left: 2px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 48'%3E%3Cline x1='10' y1='0' x2='10' y2='48' stroke='%23BDBDBD' stroke-width='1' stroke-dasharray='2 2'/%3E%3Ccircle cx='10' cy='10' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='10' r='3.5' fill='%23FFD54F'/%3E%3Ccircle cx='10' cy='24' r='6' fill='%23E65100'/%3E%3Ccircle cx='10' cy='24' r='3' fill='%23FFB74D'/%3E%3Ccircle cx='10' cy='38' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='38' r='3.5' fill='%23FFD54F'/%3E%3C/svg%3E");
+    }
+    .garland-right {
+      right: 2px;
+      transform: scaleX(-1);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 48'%3E%3Cline x1='10' y1='0' x2='10' y2='48' stroke='%23BDBDBD' stroke-width='1' stroke-dasharray='2 2'/%3E%3Ccircle cx='10' cy='10' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='10' r='3.5' fill='%23FFD54F'/%3E%3Ccircle cx='10' cy='24' r='6' fill='%23E65100'/%3E%3Ccircle cx='10' cy='24' r='3' fill='%23FFB74D'/%3E%3Ccircle cx='10' cy='38' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='38' r='3.5' fill='%23FFD54F'/%3E%3C/svg%3E");
+    }
+
+    .main-body {
       position: relative;
-      background: radial-gradient(circle at center, #FFF9F2 0%, #F5E7D3 100%);
+      z-index: 6;
       text-align: center;
-      padding: 24px 20px 20px;
-      border-bottom: 2px solid #EFE0C9;
+      padding: 0 4px;
     }
-    .hero-img-box {
+
+    /* DEITY CEREMONY PHOTO */
+    .deity-frame {
       width: 100%;
-      border-radius: 18px;
+      max-width: 320px;
+      height: 380px;
+      margin: 10px auto 12px;
+      border-radius: 20px;
       overflow: hidden;
-      border: 3px solid #FFFFFF;
-      box-shadow: 0 8px 24px rgba(163, 124, 50, 0.18);
-      margin-bottom: 14px;
-      background: #FFF;
+      border: 3px double #DFC394;
+      box-shadow: 0 10px 24px rgba(142, 106, 38, 0.18);
+      background: #FFFFFF;
     }
-    .hero-img-box img {
+    .deity-frame img {
       width: 100%;
-      height: auto;
-      max-height: 380px;
+      height: 100%;
       object-fit: contain;
       display: block;
     }
 
-    /* TRADITIONAL TELUGU MANGALA ASHTAKAM SHLOKA */
-    .sacred-wedding-shloka {
+    /* SACRED SHLOKA */
+    .sacred-shloka {
       font-family: 'Noto Sans Telugu', sans-serif;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--primary-red);
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--maroon-primary);
       line-height: 1.6;
-      margin: 4px auto 8px;
-      padding: 6px 12px;
-      background: rgba(255, 255, 255, 0.65);
+      margin: 8px auto 10px;
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, 0.7);
       border-radius: 12px;
       border: 1px dashed rgba(163, 124, 50, 0.35);
-      letter-spacing: 0.3px;
     }
 
-    .hero-couple-names {
+    .couple-title {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.5rem;
-      color: var(--primary-red);
+      font-size: 3.8rem;
+      color: var(--maroon-primary);
       line-height: 1.1;
-      margin-bottom: 4px;
+      margin-bottom: 2px;
+      text-shadow: 0 2px 8px rgba(133, 19, 41, 0.12);
     }
-    .hero-sub-text {
+    .hashtag-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gold-deep);
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+    .invite-lead {
       font-family: 'Playfair Display', serif;
       font-style: italic;
       font-size: 1.05rem;
       color: #615243;
+      margin-bottom: 16px;
     }
 
-    /* LOTUS FLORAL DIVIDERS */
-    .lotus-divider {
+    /* ORNATE LOTUS & KALASH DIVIDERS */
+    .ornate-divider {
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 12px;
-      margin: 22px auto;
-      width: 80%;
-      color: var(--gold-deep);
-      font-size: 1.1rem;
+      margin: 20px auto;
+      max-width: 84%;
     }
-    .lotus-divider::before,
-    .lotus-divider::after {
-      content: "";
+    .divider-line {
       flex: 1;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(163, 124, 50, 0.5), transparent);
-    }
-
-    /* CONTENT BODY */
-    .content-section {
-      padding: 24px 18px;
-      text-align: center;
-    }
-    .section-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.85rem;
-      color: var(--primary-red);
-      margin-bottom: 18px;
-      position: relative;
-      display: inline-block;
-    }
-    .section-title::after {
-      content: "";
-      position: absolute;
-      left: 15%;
-      right: 15%;
-      bottom: -6px;
       height: 1.5px;
-      background: linear-gradient(90deg, transparent, var(--gold-deep), transparent);
+      background: linear-gradient(90deg, transparent, #DFC394, #B8860B, #DFC394, transparent);
+    }
+    .divider-icon {
+      font-size: 1.3rem;
+      filter: drop-shadow(0 2px 4px rgba(184, 134, 11, 0.3));
     }
 
-    .parents-card {
-      background: #FFFDF9;
-      border: 1px solid #EFE3D0;
-      border-radius: 18px;
-      padding: 16px 14px;
-      margin-bottom: 12px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-    }
-    .parent-tag {
-      font-size: 0.72rem;
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
       letter-spacing: 2px;
       text-transform: uppercase;
-      font-weight: 700;
-      color: var(--gold-deep);
-      margin-bottom: 6px;
+      margin-bottom: 18px;
     }
-    .parent-names {
+
+    /* EXACT CARVED ORNAMENTAL PARENT CARDS FROM REFERENCE */
+    .parents-section {
+      display: flex;
+      flex-direction: column;
+      gap: 22px;
+      margin: 10px auto 22px;
+      max-width: 410px;
+    }
+    
+    /* Bride Frame: Rose-Gold Antique Embossed Border */
+    .ornamental-frame {
+      position: relative;
+      border-radius: 26px;
+      padding: 14px;
+      background: #FFFFFF;
+      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    }
+    .bride-frame {
+      border: 8px solid #F5D3CA;
+      outline: 2px solid #D88E7D;
+      outline-offset: -5px;
+      background: radial-gradient(circle at center, #FFFDFB 0%, #FFEFEA 100%);
+      box-shadow: inset 0 0 18px rgba(216, 142, 125, 0.25), 0 10px 28px rgba(158, 31, 59, 0.12);
+    }
+    /* Groom Frame: Sacred Royal Gold Carved Border */
+    .groom-frame {
+      border: 8px solid #FBE39A;
+      outline: 2px solid #C4982E;
+      outline-offset: -5px;
+      background: radial-gradient(circle at center, #FFFDF6 0%, #FFF3D1 100%);
+      box-shadow: inset 0 0 18px rgba(196, 152, 46, 0.3), 0 10px 28px rgba(179, 131, 26, 0.16);
+    }
+
+    .frame-content {
+      position: relative;
+      border: 1.5px dashed #DFC394;
+      border-radius: 16px;
+      padding: 22px 14px;
+    }
+    .card-badge {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .bride-badge {
+      color: #8E1F35;
+      background: #FFDED8;
+      border: 1px solid #E8A598;
+    }
+    .groom-badge {
+      color: #7A570D;
+      background: #FFEAA8;
+      border: 1px solid #E5BA58;
+    }
+    .parent-name {
       font-family: 'Playfair Display', serif;
       font-size: 1.25rem;
-      font-weight: 600;
-      color: #241D18;
-      line-height: 1.45;
+      font-weight: 700;
+      color: #241C16;
+      line-height: 1.4;
     }
-    .parent-names span {
+    .parent-connector {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.55rem;
+      color: #B8860B;
       display: block;
-      color: var(--gold-deep);
-      font-size: 0.95rem;
       margin: 2px 0;
     }
 
-    /* MUHURTHAM BANNER */
-    .muhurtham-banner {
-      background: linear-gradient(180deg, #FFF9F2 0%, #FAEDE0 100%);
+    /* MUHURTHAM EVENT CARD */
+    .event-card {
+      background: #FAF5EB;
+      border: 1px solid #EFE2CB;
       border-radius: 20px;
-      border: 1px solid #EADBCC;
-      padding: 20px 16px;
-      margin-bottom: 14px;
+      padding: 20px 14px;
+      margin-bottom: 18px;
+      box-shadow: 0 6px 18px rgba(142, 106, 38, 0.08);
     }
-
-    .card-photo-wrapper {
+    .event-img-wrap {
       width: 100%;
-      border-radius: 14px;
+      max-width: 290px;
+      height: 240px;
+      margin: 0 auto 12px;
+      border-radius: 16px;
       overflow: hidden;
-      margin: 0 auto 14px;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.08);
-      background: #FFFFFF;
-      border: 2px solid #FFFFFF;
+      border: 2px solid #E5CCA2;
+      background: #FFF;
     }
-    .card-photo-wrapper img {
+    .event-img-wrap img {
       width: 100%;
-      height: auto;
-      max-height: 260px;
+      height: 100%;
       object-fit: contain;
       display: block;
     }
-
-    .muhurtham-title {
+    .event-tag {
       font-family: 'Cinzel', serif;
-      font-size: 1.6rem;
-      letter-spacing: 3px;
-      color: var(--primary-red);
+      font-size: 1.35rem;
       font-weight: 800;
+      color: var(--maroon-primary);
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
       margin-bottom: 4px;
     }
-    .divine-sub {
+    .event-subtitle {
       font-family: 'Playfair Display', serif;
       font-style: italic;
+      font-size: 0.9rem;
       color: #6C5D4B;
-      font-size: 0.92rem;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
-    .event-date {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.38rem;
-      font-weight: 700;
-      color: #1F1813;
-      margin-bottom: 4px;
-    }
-    .event-time {
-      font-size: 2.1rem;
+    .event-time-highlight {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
       font-weight: 800;
-      color: var(--primary-red);
-      letter-spacing: 1px;
+      color: var(--maroon-primary);
+      margin-top: 4px;
     }
 
-    /* COUNTDOWN SECTION */
-    .countdown-wrap {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      background: #FAF5EB;
-      border-radius: 16px;
-      border: 1px solid #EFE2CB;
-      padding: 16px 6px;
-      margin-bottom: 18px;
+    /* CIRCULAR GOLDEN MEDAL COUNTDOWN BADGES (EXACT FROM REFERENCE IMAGE) */
+    .countdown-medals {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 18px 0 10px;
     }
-    .count-val {
-      font-size: 1.65rem;
+    .medal-item {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #FFF6DB 0%, #E3BC6A 60%, #9C7227 100%);
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 6px 15px rgba(156, 114, 39, 0.4), inset 0 0 6px rgba(255, 255, 255, 0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .medal-val {
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
       font-weight: 800;
-      color: var(--primary-red);
+      color: #4D3205;
       line-height: 1;
     }
-    .count-lbl {
-      font-size: 0.68rem;
+    .medal-lbl {
+      font-size: 0.52rem;
+      font-weight: 800;
       letter-spacing: 1px;
+      color: #4D3205;
       text-transform: uppercase;
-      font-weight: 700;
-      color: #7A6953;
-      margin-top: 6px;
+      margin-top: 3px;
     }
 
     /* VENUE CARD */
-    .venue-card {
-      background: #FFFFFF;
-      border-radius: 20px;
-      border: 1px solid #EFE2CF;
-      padding: 20px 16px;
-      margin-bottom: 16px;
-      box-shadow: 0 6px 20px rgba(0,0,0,0.05);
-    }
     .venue-title {
       font-family: 'Cinzel', serif;
-      font-size: 1.4rem;
-      color: var(--primary-red);
-      font-weight: 700;
-      margin-bottom: 8px;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      margin-bottom: 4px;
     }
-    .venue-address {
-      font-size: 0.96rem;
-      color: #4C4238;
-      line-height: 1.6;
-      margin-bottom: 18px;
+    .event-address {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #2F2620;
+      line-height: 1.5;
+      margin: 8px 0 14px;
     }
 
-    /* ACTION BUTTONS */
-    .action-btn-list {
+    /* BUTTONS */
+    .btn-group {
       display: flex;
       flex-direction: column;
-      gap: 12px;
-      margin-bottom: 8px;
+      gap: 10px;
+      margin: 14px 0 6px;
     }
-    .btn-item {
+    .cta-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
-      padding: 14px 20px;
+      padding: 13px 20px;
       border-radius: 30px;
-      font-size: 0.96rem;
-      font-weight: 600;
+      font-size: 0.94rem;
+      font-weight: 700;
       text-decoration: none;
       transition: transform 0.15s ease;
-      border: none;
       cursor: pointer;
+      border: none;
     }
-    .btn-item:active { transform: scale(0.98); }
-    .btn-maps {
-      background: var(--primary-red);
-      color: #FFFFFF;
-      box-shadow: 0 4px 15px rgba(163, 29, 36, 0.3);
-    }
-    .btn-whatsapp {
-      background: #25D366;
-      color: #FFFFFF;
-      box-shadow: 0 4px 15px rgba(37, 211, 102, 0.28);
-    }
+    .cta-btn:active { transform: scale(0.97); }
+    .btn-maps { background: #9E1F3B; color: #FFF; box-shadow: 0 4px 14px rgba(158, 31, 59, 0.3); }
+    .btn-whatsapp { background: #139B50; color: #FFF; box-shadow: 0 4px 14px rgba(19, 155, 80, 0.3); }
 
-    /* INTERACTIVE AKSHINTALU / FLOWER SHOWER SECTION */
-    .blessing-shower-card {
-      background: radial-gradient(circle at center, #FFFDF8 0%, #FBF3E4 100%);
-      border: 1.5px solid #E8D2A6;
-      border-radius: 20px;
-      padding: 20px 16px;
-      margin-bottom: 22px;
-      box-shadow: 0 6px 18px rgba(163, 124, 50, 0.08);
-      position: relative;
+    /* INTERACTIVE AKSHINTALU SHOWER */
+    .akshintalu-btn-wrap {
+      margin: 20px 0 12px;
+      text-align: center;
     }
-    .shower-btn {
+    .akshintalu-btn {
       background: linear-gradient(135deg, #DE3163 0%, #9E1F3B 100%);
       color: #FFFFFF;
-      border: none;
-      border-radius: 30px;
-      padding: 14px 24px;
-      font-size: 1rem;
+      border: 2px solid #FFD700;
+      padding: 14px 26px;
+      font-size: 0.98rem;
       font-weight: 700;
+      border-radius: 50px;
       cursor: pointer;
       box-shadow: 0 6px 20px rgba(158, 31, 59, 0.35);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      transition: transform 0.15s ease;
     }
-    .shower-btn:hover {
-      transform: scale(1.03);
-      box-shadow: 0 8px 25px rgba(158, 31, 59, 0.45);
-    }
-    .shower-btn:active {
-      transform: scale(0.96);
-    }
-    .blessing-counter-text {
+    .akshintalu-btn:active { transform: scale(0.96); }
+    .blessing-ticker {
+      margin-top: 8px;
       font-size: 0.88rem;
-      color: #6C5230;
       font-weight: 600;
-      margin-top: 10px;
-    }
-    .blessing-counter-text strong {
-      color: var(--primary-red);
-      font-size: 1.1rem;
+      color: var(--gold-deep);
     }
 
-    /* DIGITAL GUESTBOOK / WISH WALL (FIREBASE CLOUD DATABASE) */
-    .guestbook-card {
+    /* DIGITAL GUESTBOOK / WISH WALL */
+    .wishes-wall {
       background: #FFFDF9;
-      border: 1px solid #EFE2CF;
-      border-radius: 20px;
-      padding: 22px 18px;
-      margin-bottom: 20px;
+      border: 1.5px solid #DFC394;
+      border-radius: 18px;
+      padding: 20px 16px;
+      margin: 20px 0;
       box-shadow: 0 6px 18px rgba(0,0,0,0.04);
       text-align: left;
     }
     .guestbook-title {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.45rem;
-      color: var(--primary-red);
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
       text-align: center;
-      margin-bottom: 4px;
-      font-weight: 700;
+      margin-bottom: 2px;
     }
     .guestbook-sub {
       text-align: center;
-      font-size: 0.85rem;
-      color: #6D5C4C;
-      margin-bottom: 16px;
+      font-size: 0.82rem;
+      color: #6C5D4B;
+      margin-bottom: 14px;
     }
     .wish-input-group {
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin-bottom: 16px;
+      gap: 8px;
+      margin-bottom: 14px;
     }
     .wish-input-group input {
       width: 100%;
-      padding: 12px 14px;
-      border-radius: 12px;
+      padding: 11px 14px;
+      border-radius: 10px;
       border: 1px solid #DFC394;
-      background: #FFFFFF;
-      font-family: inherit;
-      font-size: 0.92rem;
-      color: var(--text-dark);
+      font-size: 0.9rem;
       outline: none;
+      background: #FFF;
     }
     .wish-input-group input:focus {
-      border-color: var(--primary-red);
-      box-shadow: 0 0 0 2px rgba(163, 29, 36, 0.12);
+      border-color: var(--maroon-primary);
+      box-shadow: 0 0 0 2px rgba(133, 19, 41, 0.12);
     }
-    .btn-post-wish {
-      background: var(--gold-deep);
-      color: #FFFFFF;
-      border: none;
-      padding: 12px;
-      border-radius: 12px;
-      font-size: 0.95rem;
+    .send-wish-btn {
+      width: 100%;
+      padding: 11px;
+      background: linear-gradient(135deg, #C59A3F, #9A7220);
+      color: #FFF;
       font-weight: 700;
+      border: none;
+      border-radius: 10px;
       cursor: pointer;
-      transition: background 0.2s ease;
-    }
-    .btn-post-wish:hover {
-      background: #876223;
+      font-size: 0.92rem;
     }
 
-    /* GUEST WISHES SCROLLING TICKER */
     .wishes-ticker-box {
-      max-height: 240px;
+      max-height: 220px;
       overflow-y: auto;
       border: 1px dashed #E3D1B4;
-      border-radius: 14px;
-      padding: 10px 12px;
+      border-radius: 12px;
+      padding: 10px;
       background: #FAF7F0;
       display: flex;
       flex-direction: column;
@@ -540,62 +592,54 @@
     }
     .wish-item {
       background: #FFFFFF;
-      border-radius: 10px;
-      padding: 10px 12px;
+      border-radius: 8px;
+      padding: 8px 12px;
       border: 1px solid #F0E3D0;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
     }
-    .wish-text {
-      color: #382E26;
-      font-style: italic;
-      margin-bottom: 3px;
-      line-height: 1.4;
-    }
-    .wish-author {
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: var(--gold-deep);
-      text-align: right;
-    }
+    .wish-text { color: #382E26; font-style: italic; margin-bottom: 2px; }
+    .wish-author { font-size: 0.76rem; font-weight: 700; color: var(--gold-deep); text-align: right; }
 
-    /* RED FOOTER BANNER */
-    .footer-note {
-      background: #961B22;
-      color: #FFFFFF;
-      padding: 28px 20px;
+    /* FOOTER BAR */
+    .footer-bar {
+      margin-top: 20px;
+      background: radial-gradient(circle at center, #6A0D20 0%, #440411 100%);
+      color: #FFF;
+      padding: 22px 14px;
+      border-radius: 18px;
       text-align: center;
     }
-    .footer-note p {
+    .footer-bar em {
       font-family: 'Playfair Display', serif;
+      font-size: 0.92rem;
       font-style: italic;
-      font-size: 1rem;
-      color: #F8E2B2;
-      margin-bottom: 8px;
+      color: #F8DFAD;
     }
-    .footer-couple-sig {
-      font-family: 'Cinzel Decorative', cursive, serif;
-      font-size: 1.6rem;
-      font-weight: 700;
-      color: #FFFFFF;
-      letter-spacing: 1px;
+    .footer-couple {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #FFF;
+      margin-top: 6px;
     }
 
-    .audio-btn {
+    /* FLOATING MUSIC TOGGLE */
+    .audio-toggle-btn {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      width: 44px;
-      height: 44px;
+      width: 46px;
+      height: 46px;
       background: #FFFFFF;
-      border: 1px solid #DFC394;
+      border: 1.5px solid #DFC394;
       border-radius: 50%;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 19px;
+      font-size: 20px;
       z-index: 100;
     }
   </style>
@@ -604,6 +648,7 @@
 
   <!-- Audio Element with exact filename -->
   <audio id="weddingAudio" src="Divine Nadaswaram.mp3" loop preload="auto"></audio>
+  <button class="audio-toggle-btn" id="audioBtn" onclick="toggleAudio()" title="Play Festive Melodies">🎵</button>
 
   <!-- SCREEN 1: REACHING HANDS -> UNITED HANDS TOUCH SEQUENCE -->
   <div class="hands-overlay-screen" id="handsScreen" onclick="handleHandConnect()">
@@ -617,154 +662,176 @@
     <div class="tap-guide-prompt" id="tapPrompt">Tap in the middle to unite hands 💛</div>
   </div>
 
-  <button class="audio-btn" id="audioToggle" onclick="toggleAudio()" title="Festive Music">🎵</button>
-
-  <!-- MAIN INVITATION VIEW -->
-  <div class="wedding-container">
-    
-    <!-- Hero Couple Scene -->
-    <div class="hero-ceremony-section">
-      <div class="hero-img-box">
-        <img src="couple-ceremony.jpg" alt="Sampath &amp; Sarika Wedding" onerror="handleImgError(this, 'couple-ceremony')">
-      </div>
-
-      <!-- Traditional Telugu Mangala Ashtakam Header -->
-      <div class="sacred-wedding-shloka">
-        || మంగళం భగవాన్ విష్ణుః మంగళం గరుడధ్వజః | మంగళం పుండరీకాక్షో మంగళాయ తనో హరిః ||
-      </div>
-
-      <h1 class="hero-couple-names">Sampath &amp; Sarika</h1>
-      <p class="hero-sub-text">We invite you to celebrate our wedding</p>
-    </div>
-
-    <div class="content-section">
+  <!-- MAIN INVITATION FRAME CONTAINER -->
+  <div class="invitation-container">
+    <div class="card-inner">
       
-      <!-- With the Blessings Of Section -->
-      <h2 class="section-title">With the Blessings Of</h2>
+      <!-- Festive Toranam & Side Marigold Garlands -->
+      <div class="top-toranam"></div>
+      <div class="garland-side garland-left"></div>
+      <div class="garland-side garland-right"></div>
 
-      <!-- Bride's Parents -->
-      <div class="parents-card">
-        <div class="parent-tag">Bride's Parents</div>
-        <div class="parent-names">
-          Deshaboina Venkateshwara Prabhu
-          <span>&amp;</span>
-          Mrs. Sharadamba
-        </div>
-      </div>
+      <div class="main-body">
 
-      <!-- Groom's Parents -->
-      <div class="parents-card">
-        <div class="parent-tag">Groom's Parents</div>
-        <div class="parent-names">
-          Boga Ashok
-          <span>&amp;</span>
-          Mrs. Geetha
-        </div>
-      </div>
-
-      <!-- Lotus Floral Separator Divider -->
-      <div class="lotus-divider">🪷</div>
-
-      <!-- Muhurtham Section -->
-      <div class="muhurtham-banner">
-        <div class="card-photo-wrapper">
-          <img src="kalyanam.jpeg" alt="Kalyanam" onerror="handleImgError(this, 'kalyanam')">
-        </div>
-        <div class="muhurtham-title">MUHURTHAM</div>
-        <div class="divine-sub">With divine blessings, soliciting your gracious presence</div>
-        <div class="event-date">Thursday, 26 November 2026</div>
-        <div class="event-time">9:15 AM</div>
-      </div>
-
-      <!-- Countdown Clock -->
-      <div class="countdown-wrap">
-        <div>
-          <div class="count-val" id="days">--</div>
-          <div class="count-lbl">Days</div>
-        </div>
-        <div>
-          <div class="count-val" id="hours">--</div>
-          <div class="count-lbl">Hours</div>
-        </div>
-        <div>
-          <div class="count-val" id="mins">--</div>
-          <div class="count-lbl">Mins</div>
-        </div>
-        <div>
-          <div class="count-val" id="secs">--</div>
-          <div class="count-lbl">Secs</div>
-        </div>
-      </div>
-
-      <!-- Lotus Floral Separator Divider -->
-      <div class="lotus-divider">🪷</div>
-
-      <!-- Venue Section -->
-      <div class="venue-card">
-        <div class="card-photo-wrapper">
-          <img src="temple.jpeg" alt="VIP Gardens" onerror="handleImgError(this, 'temple')">
-        </div>
-        <div class="venue-title">VENUE</div>
-        <div class="venue-address">
-          <strong>VIP Gardens</strong><br>
-          GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony,<br>
-          Suraram Village, Suraram, Hyderabad, Telangana 500055
+        <!-- Deity Image Header -->
+        <div class="deity-frame">
+          <img src="couple-ceremony.jpg" alt="Godha Kalyanam" onerror="handleImgError(this, 'couple-ceremony')">
         </div>
 
-        <div class="action-btn-list">
-          <a class="btn-item btn-maps" href="https://www.google.com/maps/search/?api=1&amp;query=VIP+Gardens+Suraram+Hyderabad" target="_blank">
-            📍 View on Google Maps
-          </a>
-          <a class="btn-item btn-whatsapp" href="https://wa.me/917675975990?text=Congratulations%20Sampath%20%26%20Sarika!%20%F0%9F%92%90" target="_blank">
-            💐 Send Wishes on WhatsApp
-          </a>
-        </div>
-      </div>
-
-      <!-- Lotus Floral Separator Divider -->
-      <div class="lotus-divider">🪷</div>
-
-      <!-- Interactive "Shower Akshintalu & Flower Petals" Section -->
-      <div class="blessing-shower-card" id="showerSection">
-        <button class="shower-btn" id="showerBtn" onclick="showerAkshintalu()">
-          🌸 Tap to Shower Akshintalu &amp; Blessings
-        </button>
-        <div class="blessing-counter-text">
-          <span id="blessingCount">...</span> blessings showered so far! 💛
-        </div>
-      </div>
-
-      <!-- Interactive Digital Guestbook / Wish Wall -->
-      <div class="guestbook-card">
-        <h3 class="guestbook-title">Guest Wishes Wall</h3>
-        <p class="guestbook-sub">Leave your warm blessings for Sampath &amp; Sarika</p>
-        
-        <div class="wish-input-group">
-          <input type="text" id="guestName" placeholder="Your Name (e.g. Ramesh Uncle)" maxlength="40">
-          <input type="text" id="guestWish" placeholder="Your blessing / wish..." maxlength="120">
-          <button class="btn-post-wish" id="postWishBtn" onclick="postGuestWish()">✨ Send Blessing</button>
+        <!-- Sacred Shloka -->
+        <div class="sacred-shloka">
+          || మంగళం భగవాన్ విష్ణుః మంగళం గరుడధ్వజః | మంగళం పుండరీకాక్షో మంగళాయ తనో హరిః || 🙏
         </div>
 
-        <!-- Scrolling Ticker Container -->
-        <div class="wishes-ticker-box" id="wishesBox">
-          <div style="text-align:center; padding:12px; color:#8C7355; font-size:0.85rem;">
-            Loading blessings... 🪷
+        <!-- Couple Script Names & Hashtag -->
+        <div class="couple-title">Sampath &amp; Harika</div>
+        <div class="hashtag-tag">#SamRika</div>
+        <div class="invite-lead">We invite you to celebrate our wedding</div>
+
+        <!-- Divider with Sacred Kalash -->
+        <div class="ornate-divider">
+          <span class="divider-line"></span>
+          <span class="divider-icon">🏺</span>
+          <span class="divider-line"></span>
+        </div>
+
+        <div class="section-title">With the Blessings Of</div>
+
+        <!-- CARVED ORNAMENTAL PARENTS SECTION -->
+        <div class="parents-section">
+          
+          <!-- Bride's Parents: Rose-Gold Antique Embossed Frame -->
+          <div class="ornamental-frame bride-frame">
+            <div class="frame-content">
+              <div class="card-badge bride-badge">🌸 BRIDE'S PARENTS</div>
+              <div class="parent-name">
+                Deshaboina Venkateshwara Prabhu
+                <span class="parent-connector">&amp;</span>
+                Mrs. Sharadamba
+              </div>
+            </div>
+          </div>
+
+          <!-- Groom's Parents: Sacred Royal Gold Frame -->
+          <div class="ornamental-frame groom-frame">
+            <div class="frame-content">
+              <div class="card-badge groom-badge">🪷 GROOM'S PARENTS</div>
+              <div class="parent-name">
+                Boga Ashok
+                <span class="parent-connector">&amp;</span>
+                Mrs. Geetha
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Divider with Lotus -->
+        <div class="ornate-divider">
+          <span class="divider-line"></span>
+          <span class="divider-icon">🪷</span>
+          <span class="divider-line"></span>
+        </div>
+
+        <!-- Muhurtham Section -->
+        <div class="event-card">
+          <div class="event-img-wrap">
+            <img src="kalyanam.jpeg" alt="Sita Rama Kalyanam" onerror="handleImgError(this, 'kalyanam')">
+          </div>
+          <div class="event-tag">MUHURTHAM</div>
+          <div class="event-subtitle">With divine blessings, soliciting your gracious presence</div>
+          <div style="font-size: 1.05rem; font-weight:700;">Thursday, 26 November 2026</div>
+          <div class="event-time-highlight">9:15 AM</div>
+
+          <!-- CIRCULAR GOLDEN MEDAL COUNTDOWN BADGES -->
+          <div class="countdown-medals">
+            <div class="medal-item">
+              <div class="medal-val" id="days">--</div>
+              <div class="medal-lbl">Days</div>
+            </div>
+            <div class="medal-item">
+              <div class="medal-val" id="hours">--</div>
+              <div class="medal-lbl">Hours</div>
+            </div>
+            <div class="medal-item">
+              <div class="medal-val" id="mins">--</div>
+              <div class="medal-lbl">Mins</div>
+            </div>
+            <div class="medal-item">
+              <div class="medal-val" id="secs">--</div>
+              <div class="medal-lbl">Secs</div>
+            </div>
           </div>
         </div>
+
+        <!-- Divider with Kalash -->
+        <div class="ornate-divider">
+          <span class="divider-line"></span>
+          <span class="divider-icon">🏺</span>
+          <span class="divider-line"></span>
+        </div>
+
+        <!-- Venue Section -->
+        <div class="event-card">
+          <div class="event-img-wrap" style="height: 220px;">
+            <img src="temple.jpeg" alt="VIP Gardens" onerror="handleImgError(this, 'temple')">
+          </div>
+          <div class="event-tag">VENUE</div>
+          <div class="venue-title">VIP Gardens</div>
+          <div class="event-address">
+            GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony,<br>
+            Suraram Village, Suraram, Hyderabad, Telangana 500055
+          </div>
+
+          <div class="btn-group">
+            <a class="cta-btn btn-maps" href="https://maps.google.com/?q=VIP+Gardens+Suraram+Hyderabad" target="_blank">
+              📍 View on Google Maps
+            </a>
+            <a class="cta-btn btn-whatsapp" href="https://wa.me/917675975990?text=Congratulations%20Sampath%20%26%20Harika!%20Sending%20our%20warmest%20wishes%20for%20your%20wedding." target="_blank">
+              💬 Send Wishes on WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Shower Akshintalu & Petals Button -->
+        <div class="akshintalu-btn-wrap">
+          <button class="akshintalu-btn" onclick="showerAkshintalu()">
+            🌸 Tap to Shower Akshintalu &amp; Blessings
+          </button>
+          <div class="blessing-ticker">💖 <span id="blessingCount">...</span> blessings showered so far!</div>
+        </div>
+
+        <!-- Guest Wishes Wall -->
+        <div class="wishes-wall">
+          <div class="guestbook-title">Guest Wishes Wall</div>
+          <div class="guestbook-sub">Leave your warm blessings for Sampath &amp; Harika</div>
+          
+          <div class="wish-input-group">
+            <input type="text" id="guestName" placeholder="Your Name (e.g., Ramesh Uncle)" maxlength="40">
+            <input type="text" id="guestMessage" placeholder="Your blessing / wish..." maxlength="120">
+            <button class="send-wish-btn" id="postWishBtn" onclick="submitWish()">✨ Send Blessing</button>
+          </div>
+
+          <div class="wishes-ticker-box" id="wishesBox">
+            <div style="text-align:center; padding:12px; color:#8C7355; font-size:0.85rem;">
+              Loading blessings... 🪷
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-bar">
+          <em>We can't wait to celebrate this auspicious day with you ❤️</em>
+          <div style="font-size:0.85rem; margin-top:4px; color:#F8DFAD;">With Love,</div>
+          <div class="footer-couple">SAMPATH &amp; HARIKA</div>
+        </div>
+
       </div>
-
     </div>
-
-    <!-- Red Banner Footer -->
-    <div class="footer-note">
-      <p>We can't wait to celebrate this auspicious day with you ❤️</p>
-      <div style="font-size:0.85rem; letter-spacing:1px; margin-bottom:4px; opacity:0.85;">With Love,</div>
-      <div class="footer-couple-sig">Sampath &amp; Sarika</div>
-    </div>
-
   </div>
 
   <script>
+    // Universal image error resolver
     const extList = ['.jpeg', '.jpg', '.png', '.jfif'];
     function handleImgError(img, baseName) {
       let attempt = parseInt(img.getAttribute('data-att') || '0');
@@ -774,7 +841,9 @@
       }
     }
 
+    // Audio Player Toggle
     const audio = document.getElementById('weddingAudio');
+    const audioBtn = document.getElementById('audioBtn');
     let isPlaying = false;
     let isTransitioning = false;
 
@@ -794,8 +863,8 @@
       if (audio) {
         audio.play().then(() => {
           isPlaying = true;
-          document.getElementById('audioToggle').innerText = '🔊';
-        }).catch(e => console.log('Audio autoplay policy:', e));
+          audioBtn.innerText = '🔊';
+        }).catch(err => console.log('Autoplay handled:', err));
       }
 
       setTimeout(() => {
@@ -805,26 +874,25 @@
     }
 
     function toggleAudio() {
-      const btn = document.getElementById('audioToggle');
       if (!audio) return;
       if (isPlaying) {
         audio.pause();
         isPlaying = false;
-        btn.innerText = '🔇';
+        audioBtn.innerText = '🔇';
       } else {
-        audio.play();
-        isPlaying = true;
-        btn.innerText = '🔊';
+        audio.play().then(() => {
+          isPlaying = true;
+          audioBtn.innerText = '🔊';
+        }).catch(err => console.log('Audio playback error:', err));
       }
     }
 
-    /* FIREBASE ENDPOINTS FOR WISHES & BLESSINGS COUNTER */
+    /* FIREBASE ENDPOINTS */
     const FIREBASE_ENDPOINT = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/wishes.json";
     const FIREBASE_COUNTER_URL = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/counter.json";
 
-    let totalBlessings = 343;
+    let totalBlessings = 356;
 
-    // 1. Fetch live global count from Firebase
     async function loadCloudCounter() {
       try {
         const res = await fetch(FIREBASE_COUNTER_URL);
@@ -832,13 +900,12 @@
         if (data && typeof data.count === 'number') {
           totalBlessings = data.count;
         } else {
-          // Initialize in Firebase if not yet created
           await fetch(FIREBASE_COUNTER_URL, {
             method: 'PUT',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ count: 343 })
+            body: JSON.stringify({ count: 356 })
           });
-          totalBlessings = 343;
+          totalBlessings = 356;
         }
       } catch (err) {
         console.log("Counter fetch fallback:", err);
@@ -848,18 +915,16 @@
       }
     }
 
-    // 2. Cascade Shower: Falling from top down through the entire screen past the button
+    // Interactive Akshintalu & Rose Petals Cascade
     async function showerAkshintalu() {
       totalBlessings++;
       const counterEl = document.getElementById('blessingCount');
       if (counterEl) counterEl.innerText = totalBlessings;
 
-      // Calculate origin near the viewport top with long falling ticks
       if (typeof confetti === 'function') {
         const count = 75;
-        const showerColors = ['#FFD700', '#FFA000', '#C41E3A', '#FF4081', '#FFFDD0', '#E5B80B'];
+        const showerColors = ['#FFD700', '#FFA000', '#D2143A', '#FFB7B2', '#FFFFFF', '#E5B80B'];
 
-        // Batch 1: Left-to-Center cascade
         confetti({
           particleCount: count,
           angle: 60,
@@ -872,7 +937,6 @@
           drift: 0.1
         });
 
-        // Batch 2: Right-to-Center cascade
         confetti({
           particleCount: count,
           angle: 120,
@@ -885,7 +949,6 @@
           drift: -0.1
         });
 
-        // Batch 3: Center direct gentle fall
         setTimeout(() => {
           confetti({
             particleCount: 50,
@@ -900,7 +963,6 @@
         }, 180);
       }
 
-      // Persist permanently to Firebase
       try {
         await fetch(FIREBASE_COUNTER_URL, {
           method: 'PUT',
@@ -908,14 +970,14 @@
           body: JSON.stringify({ count: totalBlessings })
         });
       } catch (err) {
-        console.log("Could not sync counter to Firebase:", err);
+        console.log("Counter sync error:", err);
       }
     }
 
     /* GUESTBOOK CLOUD INTEGRATION */
     const defaultStarterWishes = [
       { name: "Ramesh & Family", wish: "Wishing you both a lifetime of happiness, divine harmony, and endless love! 💐" },
-      { name: "Suresh Sharma", wish: "Hearty congratulations Sampath & Sarika! May God bless you both abundantly. 🪷" },
+      { name: "Suresh Sharma", wish: "Hearty congratulations Sampath & Harika! May God bless you both abundantly. 🪷" },
       { name: "Priya & Anand", wish: "May Lord Rama & Sita bless your sacred union forever! 💛" }
     ];
 
@@ -955,12 +1017,12 @@
       }
     }
 
-    async function postGuestWish() {
+    async function submitWish() {
       const nameInput = document.getElementById('guestName');
-      const wishInput = document.getElementById('guestWish');
+      const msgInput = document.getElementById('guestMessage');
       const postBtn = document.getElementById('postWishBtn');
       const name = nameInput.value.trim();
-      const wish = wishInput.value.trim();
+      const wish = msgInput.value.trim();
 
       if (!name || !wish) {
         alert("Please enter both your name and your blessing message! 💛");
@@ -982,7 +1044,7 @@
         });
 
         nameInput.value = '';
-        wishInput.value = '';
+        msgInput.value = '';
 
         await loadCloudWishes();
         showerAkshintalu();
@@ -1003,7 +1065,7 @@
 
     // Countdown to 26 Nov 2026, 9:15 AM IST
     const weddingDate = new Date('2026-11-26T09:15:00+05:30').getTime();
-    function updateCountdown() {
+    function updateWeddingCountdown() {
       const now = new Date().getTime();
       const diff = weddingDate - now;
       if (diff <= 0) {
@@ -1022,8 +1084,8 @@
     window.addEventListener('DOMContentLoaded', () => {
       loadCloudWishes();
       loadCloudCounter();
-      setInterval(updateCountdown, 1000);
-      updateCountdown();
+      setInterval(updateWeddingCountdown, 1000);
+      updateWeddingCountdown();
     });
   </script>
 </body>
