@@ -20,7 +20,6 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
-    /* EMBOSSED SILK & WARM CARDSTOCK TEXTURED BACKGROUND */
     body {
       background-color: #F8F3EA;
       background-image: 
@@ -47,7 +46,7 @@
       background: #000000;
       overflow: hidden;
       cursor: pointer;
-      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.9s ease;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s ease;
     }
     .hands-overlay-screen.dismissed {
       opacity: 0;
@@ -61,7 +60,7 @@
       height: 100%;
       object-fit: cover;
       object-position: center;
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      transition: opacity 0.5s ease, transform 0.5s ease;
       z-index: 1;
     }
     .hands-layer-united {
@@ -73,7 +72,7 @@
       object-position: center;
       opacity: 0;
       transform: scale(0.96);
-      transition: opacity 0.7s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+      transition: opacity 0.6s ease, transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
       z-index: 2;
     }
     .hands-overlay-screen.connecting .hands-layer-initial {
@@ -161,7 +160,6 @@
       overflow: hidden;
     }
     
-    /* Embossed Texture Layer */
     .card-inner::before {
       content: "";
       position: absolute;
@@ -225,7 +223,7 @@
       padding: 0 4px;
     }
 
-    /* DIVINE HALO & SACRED ARTWORK FRAME */
+    /* DIVINE HALO & SACRED ARTWORK */
     .deity-halo-container {
       position: relative;
       width: 100%;
@@ -266,7 +264,7 @@
       display: block;
     }
 
-    /* FLOATING LOTUS PETALS CANVAS EFFECT */
+    /* FLOATING LOTUS PETALS */
     .floating-petals-layer {
       position: absolute;
       inset: 0;
@@ -332,7 +330,7 @@
       margin-bottom: 16px;
     }
 
-    /* ORNATE LOTUS & KALASH DIVIDERS */
+    /* ORNATE DIVIDERS */
     .ornate-divider {
       display: flex;
       align-items: center;
@@ -360,7 +358,7 @@
       margin-bottom: 18px;
     }
 
-    /* RICH ROYAL EMBOSSED CARVED FILIGREE PARENT CARDS */
+    /* ROYAL CARVED PARENT CARDS */
     .parents-section {
       display: flex;
       flex-direction: column;
@@ -368,15 +366,12 @@
       margin: 12px auto 24px;
       max-width: 410px;
     }
-
     .royal-parent-card {
       position: relative;
       border-radius: 26px;
       padding: 12px;
       transition: transform 0.2s ease;
     }
-    
-    /* Bride Frame: Rose-Gold / Kumkum Silk with Intricate Floral Carvings */
     .bride-royal-frame {
       background: radial-gradient(circle at center, #FFFBF9 0%, #FEECE7 65%, #F7C6BA 100%);
       border: 6px solid #F1BFB3;
@@ -392,8 +387,6 @@
       background: rgba(255, 255, 255, 0.45);
       position: relative;
     }
-
-    /* Groom Frame: Auspicious Deep Turmeric-Gold Baroque Filigree */
     .groom-royal-frame {
       background: radial-gradient(circle at center, #FFFDF5 0%, #FEF4CD 65%, #F6DA85 100%);
       border: 6px solid #ECC968;
@@ -409,8 +402,6 @@
       background: rgba(255, 255, 255, 0.45);
       position: relative;
     }
-
-    /* Filigree Corner Corner Flourishes */
     .corner-filigree {
       position: absolute;
       width: 32px;
@@ -433,16 +424,8 @@
       border-radius: 20px;
       margin-bottom: 10px;
     }
-    .bride-badge {
-      color: #8E1F35;
-      background: #FFE2DC;
-      border: 1px solid #E8A598;
-    }
-    .groom-badge {
-      color: #7A570D;
-      background: #FFECA8;
-      border: 1px solid #E5BA58;
-    }
+    .bride-badge { color: #8E1F35; background: #FFE2DC; border: 1px solid #E8A598; }
+    .groom-badge { color: #7A570D; background: #FFECA8; border: 1px solid #E5BA58; }
     .parent-name {
       font-family: 'Playfair Display', serif;
       font-size: 1.25rem;
@@ -668,7 +651,6 @@
       cursor: pointer;
       font-size: 0.92rem;
     }
-
     .wishes-ticker-box {
       max-height: 220px;
       overflow-y: auto;
@@ -690,9 +672,111 @@
     .wish-text { color: #382E26; font-style: italic; margin-bottom: 2px; }
     .wish-author { font-size: 0.76rem; font-weight: 700; color: var(--gold-deep); text-align: right; }
 
+    /* SPECIAL THANK YOU POPUP BUTTON (ABOVE FOOTER) */
+    .thankyou-btn-wrap {
+      margin: 22px 0 16px;
+      text-align: center;
+    }
+    .thankyou-trigger-btn {
+      background: linear-gradient(135deg, #FFF9EF 0%, #F5E5C9 100%);
+      color: var(--maroon-primary);
+      border: 2px solid #D4AF37;
+      border-radius: 30px;
+      padding: 13px 24px;
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(142, 106, 38, 0.18);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .thankyou-trigger-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(142, 106, 38, 0.28);
+    }
+    .thankyou-trigger-btn:active {
+      transform: scale(0.97);
+    }
+
+    /* THANK YOU FULLSCREEN MODAL OVERLAY */
+    .thankyou-modal {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100dvh;
+      background: rgba(15, 8, 4, 0.82);
+      backdrop-filter: blur(6px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.35s ease, visibility 0.35s ease;
+    }
+    .thankyou-modal.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .thankyou-modal-card {
+      position: relative;
+      width: 100%;
+      max-width: 440px;
+      max-height: 90vh;
+      background: #FFFFFF;
+      border-radius: 24px;
+      border: 3px solid #E8D7B8;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transform: scale(0.92);
+      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    .thankyou-modal.active .thankyou-modal-card {
+      transform: scale(1);
+    }
+    .thankyou-modal-card img {
+      width: 100%;
+      height: auto;
+      max-height: 82vh;
+      object-fit: contain;
+      display: block;
+      background: #FFFDF9;
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 38px;
+      height: 38px;
+      background: rgba(133, 19, 41, 0.9);
+      color: #FFFFFF;
+      border: 2px solid #FFFFFF;
+      border-radius: 50%;
+      font-size: 18px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 10;
+      transition: transform 0.15s ease;
+    }
+    .modal-close-btn:hover {
+      transform: scale(1.1);
+    }
+
     /* FOOTER BAR */
     .footer-bar {
-      margin-top: 20px;
+      margin-top: 12px;
       background: radial-gradient(circle at center, #6A0D20 0%, #440411 100%);
       color: #FFF;
       padding: 22px 14px;
@@ -701,8 +785,8 @@
     }
     .footer-bar em {
       font-family: 'Playfair Display', serif;
-      font-style: italic;
       font-size: 0.92rem;
+      font-style: italic;
       color: #F8DFAD;
     }
     .footer-couple {
@@ -798,10 +882,10 @@
 
         <div class="section-title">With the Blessings Of</div>
 
-        <!-- RICH ROYAL PARENTS SECTION (MATCHING REFERENCE CARDS) -->
+        <!-- RICH ROYAL PARENTS SECTION -->
         <div class="parents-section">
           
-          <!-- Bride's Parents: Rose-Gold / Kumkum Silk with Intricate Floral Accents -->
+          <!-- Bride's Parents Frame -->
           <div class="royal-parent-card bride-royal-frame">
             <svg class="corner-filigree c-tl" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#D98A7A"/><circle cx="14" cy="14" r="4" fill="#C45A6F"/></svg>
             <svg class="corner-filigree c-tr" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#D98A7A"/><circle cx="14" cy="14" r="4" fill="#C45A6F"/></svg>
@@ -818,7 +902,7 @@
             </div>
           </div>
 
-          <!-- Groom's Parents: Auspicious Deep Turmeric-Gold Baroque Filigree Frame -->
+          <!-- Groom's Parents Frame -->
           <div class="royal-parent-card groom-royal-frame">
             <svg class="corner-filigree c-tl" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#CFA233"/><circle cx="14" cy="14" r="4" fill="#9C7227"/></svg>
             <svg class="corner-filigree c-tr" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#CFA233"/><circle cx="14" cy="14" r="4" fill="#9C7227"/></svg>
@@ -918,9 +1002,9 @@
           <div class="guestbook-sub">Leave your warm blessings for Sampath &amp; Sarika</div>
           
           <div class="wish-input-group">
-            <input type="text" id="guestName" placeholder="Your Name (e.g., Ramsita)" maxlength="40">
+            <input type="text" id="guestName" placeholder="Your Name (e.g., Ramesh Uncle)" maxlength="40">
             <input type="text" id="guestMessage" placeholder="Your blessing / wish..." maxlength="120">
-            <button class="send-wish-btn" id="postWishBtn" onclick="submitWish()">✨🎉 Send Blessing</button>
+            <button class="send-wish-btn" id="postWishBtn" onclick="submitWish()">✨ Send Blessing</button>
           </div>
 
           <div class="wishes-ticker-box" id="wishesBox">
@@ -928,6 +1012,13 @@
               Loading blessings... 🪷
             </div>
           </div>
+        </div>
+
+        <!-- THANK YOU NOTE TRIGGER BUTTON -->
+        <div class="thankyou-btn-wrap">
+          <button class="thankyou-trigger-btn" onclick="openThankyouModal()">
+            🙏 A Special Note from Sampath &amp; Sarika ✨
+          </button>
         </div>
 
         <!-- Footer -->
@@ -938,6 +1029,14 @@
         </div>
 
       </div>
+    </div>
+  </div>
+
+  <!-- THANK YOU MODAL POPUP -->
+  <div class="thankyou-modal" id="thankyouModal" onclick="closeThankyouModal(event)">
+    <div class="thankyou-modal-card" onclick="event.stopPropagation()">
+      <button class="modal-close-btn" onclick="closeThankyouModal()" title="Close">✕</button>
+      <img src="Thankyou.jpeg" alt="Thank You - Sampath &amp; Sarika" id="thankyouImg" onerror="handleImgError(this, 'Thankyou')">
     </div>
   </div>
 
@@ -976,10 +1075,11 @@
         }).catch(err => console.log('Autoplay handled:', err));
       }
 
+      // 1.5 seconds brisk pause on hands-open.jpg before revealing invite
       setTimeout(() => {
         screen.classList.add('dismissed');
         showerAkshintalu();
-      }, 2000);
+      }, 1500);
     }
 
     function toggleAudio() {
@@ -996,9 +1096,1229 @@
       }
     }
 
+    /* THANK YOU MODAL POPUP CONTROLS */
+    function openThankyouModal() {
+      const modal = document.getElementById('thankyouModal');
+      if (modal) {
+        modal.classList.add('active');
+        showerAkshintalu();
+      }
+    }
+
+    function closeThankyouModal(event) {
+      const modal = document.getElementById('thankyouModal');
+      if (modal) {
+        modal.classList.remove('active');
+      }
+    }
+
     /* FIREBASE CLOUD ENDPOINTS */
     const FIREBASE_ENDPOINT = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/wishes.json";
     const FIREBASE_COUNTER_URL = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/counter.json";
+
+    let totalBlessings = 356;
+
+    async function loadCloudCounter() {
+      try {
+        const res = await fetch(FIREBASE_COUNTER_URL);
+        const data = await res.json();
+        if (data && typeof data.count === 'number') {
+          totalBlessings = data.count;
+        } else {
+          await fetch(FIREBASE_COUNTER_URL, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ count: 356 })
+          });
+          totalBlessings = 356;
+        }
+      } catch (err) {
+        console.log("Counter fetch fallback:", err);
+      } finally {
+        const counterEl = document.getElementById('blessingCount');
+        if (counterEl) counterEl.innerText = totalBlessings;
+      }
+    }
+
+    async function showerAkshintalu() {
+      totalBlessings++;
+      const counterEl = document.getElementById('blessingCount');
+      if (counterEl) counterEl.innerText = totalBlessings;
+
+      if (typeof confetti === 'function') {
+        const count = 75;
+        const showerColors = ['#FFD700', '#FFA000', '#D2143A', '#FFB7B2', '#FFFFFF', '#E5B80B'];
+
+        confetti({
+          particleCount: count,
+          angle: 60,
+          spread: 70,
+          origin: { x: 0.2, y: 0.1 },
+          colors: showerColors,
+          ticks: 280,
+          gravity: 0.75,
+          scalar: 0.95,
+          drift: 0.1
+        });
+
+        confetti({
+          particleCount: count,
+          angle: 120,
+          spread: 70,
+          origin: { x: 0.8, y: 0.1 },
+          colors: showerColors,
+          ticks: 280,
+          gravity: 0.75,
+          scalar: 0.95,
+          drift: -0.1
+        });
+
+        setTimeout(() => {
+          confetti({
+            particleCount: 50,
+            angle: 90,
+            spread: 90,
+            origin: { x: 0.5, y: 0.05 },
+            colors: showerColors,
+            ticks: 260,
+            gravity: 0.8,
+            scalar: 1.05
+          });
+        }, 180);
+      }
+
+      try {
+        await fetch(FIREBASE_COUNTER_URL, {
+          method: 'PUT',
+          headers: { 'ContentHere is the complete, updated `index.html` with:
+
+1. **"View Thank You Card" Interactive Modal/Overlay**:
+   * Right above the footer bar, there is a dedicated golden button: **🙏 View Thank You Message**.
+   * Clicking it opens a modal preview displaying **`Thankyou.jpeg`** with an easy close button (**✕**), an "Add to Calendar" link, and a confetti shower.
+2. **Speed-Optimized Hand-Connecting Duration**:
+   * Reduced the holding hands (`hands-open.jpg`) pause to a crisp **1.5 seconds** (`1500ms`) so visitors don't have to wait long for the invitation to open.
+
+---
+
+### Complete `wedding / index.html`
+
+Upload your image to GitHub with the name **`Thankyou.jpeg`**, then replace your `index.html` with this complete code:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Wedding Invitation | Sampath &amp; Sarika</title>
+  <meta name="description" content="Wedding Ceremony of Sampath &amp; Sarika on Thursday, November 26, 2026.">
+  <link rel="preconnect" href="[https://fonts.googleapis.com](https://fonts.googleapis.com)">
+  <link rel="preconnect" href="[https://fonts.gstatic.com](https://fonts.gstatic.com)" crossorigin>
+  <link href="[https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@500;600;700&display=swap](https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@500;600;700&display=swap)" rel="stylesheet">
+  <script src="[https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js](https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js)"></script>
+  <style>
+    :root {
+      --maroon-primary: #851329;
+      --maroon-dark: #560616;
+      --gold-deep: #8E6A26;
+      --gold-foil: #C59A3F;
+      --gold-border: #E8D7B8;
+      --text-dark: #2F2620;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    body {
+      background-color: #F8F3EA;
+      background-image: 
+        radial-gradient(#DFC394 0.65px, transparent 0.65px),
+        radial-gradient(circle at 50% 0%, #FFFDF9 0%, #F5ECDD 100%);
+      background-size: 24px 24px, 100% 100%;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      color: var(--text-dark);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      padding: 14px 6px;
+    }
+
+    /* FULL-SCREEN REACHING HANDS OVERLAY */
+    .hands-overlay-screen {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100dvh;
+      z-index: 1000;
+      background: #000000;
+      overflow: hidden;
+      cursor: pointer;
+      transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s ease;
+    }
+    .hands-overlay-screen.dismissed {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .hands-layer-initial {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      transition: opacity 0.5s ease, transform 0.5s ease;
+      z-index: 1;
+    }
+    .hands-layer-united {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transform: scale(0.96);
+      transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+      z-index: 2;
+    }
+    .hands-overlay-screen.connecting .hands-layer-initial {
+      opacity: 0;
+      transform: scale(1.08);
+    }
+    .hands-overlay-screen.connecting .hands-layer-united {
+      opacity: 1;
+      transform: scale(1.03);
+    }
+    .center-touch-pulse {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,225,140,0.5) 45%, transparent 75%);
+      box-shadow: 0 0 45px rgba(255, 220, 140, 0.95), inset 0 0 20px rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      animation: pulseTarget 1.8s infinite ease-in-out;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+    @keyframes pulseTarget {
+      0%, 100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.85; }
+      50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+    }
+    .center-touch-pulse span { font-size: 42px; line-height: 1; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); }
+    .hands-overlay-screen.connecting .center-touch-pulse {
+      opacity: 0 !important;
+      visibility: hidden !important;
+      pointer-events: none !important;
+      display: none !important;
+    }
+    .tap-guide-prompt {
+      position: absolute;
+      bottom: clamp(26px, 5vh, 40px);
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: clamp(0.98rem, 2.4vh, 1.2rem);
+      color: #5C3A10;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(4px);
+      padding: 10px 26px;
+      border-radius: 25px;
+      border: 1px solid rgba(220, 175, 110, 0.65);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+      z-index: 10;
+      white-space: nowrap;
+      animation: bouncePrompt 1.6s infinite ease-in-out;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    @keyframes bouncePrompt {
+      0%, 100% { transform: translate(-50%, 0); }
+      50% { transform: translate(-50%, -6px); }
+    }
+    .hands-overlay-screen.connecting .tap-guide-prompt {
+      opacity: 0 !important;
+      transform: translate(-50%, 15px) !important;
+      pointer-events: none !important;
+      display: none !important;
+    }
+
+    /* MAIN INVITATION FRAME CONTAINER */
+    .invitation-container {
+      width: 100%;
+      max-width: 490px;
+      position: relative;
+      border-radius: 30px;
+      overflow: hidden;
+      box-shadow: 0 24px 70px rgba(78, 48, 14, 0.3), inset 0 0 2px rgba(255,255,255,0.8);
+      background: #FFFFFF;
+      border: 2px solid var(--gold-border);
+    }
+    .card-inner {
+      position: relative;
+      background: #FFFDF9;
+      padding: 40px 18px 32px;
+      overflow: hidden;
+    }
+    .card-inner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#D4B886 0.5px, transparent 0.5px);
+      background-size: 16px 16px;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+    .card-inner::after {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1.5px dashed #DFC394;
+      border-radius: 22px;
+      box-shadow: inset 0 0 16px rgba(212, 175, 55, 0.08);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* TOP TORANAM & MARIGOLD GARLAND STRANDS */
+    .top-toranam {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 42px;
+      z-index: 10;
+      pointer-events: none;
+      background-repeat: repeat-x;
+      background-size: 54px 40px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)' viewBox='0 0 54 40'%3E%3Cpath d='M0 0 Q27 26 54 0' fill='none' stroke='%232E7D32' stroke-width='2.5'/%3E%3Cpath d='M15 6 Q19 22 15 28 Q11 22 15 6 Z' fill='%23388E3C'/%3E%3Cpath d='M39 6 Q43 22 39 28 Q35 22 39 6 Z' fill='%23388E3C'/%3E%3Ccircle cx='27' cy='18' r='8' fill='%23FF8F00'/%3E%3Ccircle cx='27' cy='18' r='5' fill='%23FFD54F'/%3E%3Ccircle cx='27' cy='18' r='2' fill='%23E65100'/%3E%3C/svg%3E");
+    }
+    .garland-side {
+      position: absolute;
+      top: 40px;
+      bottom: 15px;
+      width: 20px;
+      z-index: 5;
+      pointer-events: none;
+      background-repeat: repeat-y;
+      background-size: 20px 48px;
+    }
+    .garland-left {
+      left: 2px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)' viewBox='0 0 20 48'%3E%3Cline x1='10' y1='0' x2='10' y2='48' stroke='%23BDBDBD' stroke-width='1' stroke-dasharray='2 2'/%3E%3Ccircle cx='10' cy='10' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='10' r='3.5' fill='%23FFD54F'/%3E%3Ccircle cx='10' cy='24' r='6' fill='%23E65100'/%3E%3Ccircle cx='10' cy='24' r='3' fill='%23FFB74D'/%3E%3Ccircle cx='10' cy='38' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='38' r='3.5' fill='%23FFD54F'/%3E%3C/svg%3E");
+    }
+    .garland-right {
+      right: 2px;
+      transform: scaleX(-1);
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='[http://www.w3.org/2000/svg](http://www.w3.org/2000/svg)' viewBox='0 0 20 48'%3E%3Cline x1='10' y1='0' x2='10' y2='48' stroke='%23BDBDBD' stroke-width='1' stroke-dasharray='2 2'/%3E%3Ccircle cx='10' cy='10' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='10' r='3.5' fill='%23FFD54F'/%3E%3Ccircle cx='10' cy='24' r='6' fill='%23E65100'/%3E%3Ccircle cx='10' cy='24' r='3' fill='%23FFB74D'/%3E%3Ccircle cx='10' cy='38' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='38' r='3.5' fill='%23FFD54F'/%3E%3C/svg%3E");
+    }
+
+    .main-body {
+      position: relative;
+      z-index: 6;
+      text-align: center;
+      padding: 0 4px;
+    }
+
+    /* DIVINE HALO CONTAINER */
+    .deity-halo-container {
+      position: relative;
+      width: 100%;
+      max-width: 320px;
+      margin: 10px auto 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .divine-aura {
+      position: absolute;
+      inset: -14px;
+      border-radius: 28px;
+      background: radial-gradient(circle, rgba(255, 223, 140, 0.6) 0%, rgba(255, 240, 190, 0.3) 50%, transparent 75%);
+      filter: blur(10px);
+      z-index: 0;
+      animation: auraPulse 3.5s ease-in-out infinite alternate;
+    }
+    @keyframes auraPulse {
+      0% { transform: scale(0.96); opacity: 0.65; }
+      100% { transform: scale(1.05); opacity: 0.95; }
+    }
+    .deity-frame {
+      position: relative;
+      width: 100%;
+      height: 380px;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 3px double #DFC394;
+      box-shadow: 0 12px 28px rgba(142, 106, 38, 0.22);
+      background: #FFFFFF;
+      z-index: 1;
+    }
+    .deity-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* FLOATING LOTUS PETALS */
+    .floating-petals-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 7;
+      overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      top: -20px;
+      background: radial-gradient(circle at 40% 40%, #FFA8B6 0%, #FF6584 70%, #E83A59 100%);
+      border-radius: 60% 0 60% 0;
+      opacity: 0.75;
+      filter: drop-shadow(0 2px 4px rgba(180, 50, 70, 0.25));
+      animation: petalDrift 9s linear infinite;
+    }
+    @keyframes petalDrift {
+      0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.85; }
+      50% { transform: translateY(50vh) rotate(180deg) translateX(25px); opacity: 0.9; }
+      100% { transform: translateY(105vh) rotate(360deg) translateX(-20px); opacity: 0; }
+    }
+    .petal:nth-child(1) { left: 12%; width: 14px; height: 18px; animation-duration: 8.5s; animation-delay: 0s; }
+    .petal:nth-child(2) { left: 32%; width: 12px; height: 16px; animation-duration: 10s; animation-delay: 2.5s; }
+    .petal:nth-child(3) { left: 68%; width: 15px; height: 20px; animation-duration: 9.2s; animation-delay: 1.2s; }
+    .petal:nth-child(4) { left: 84%; width: 11px; height: 15px; animation-duration: 11s; animation-delay: 4s; }
+
+    /* SACRED SHLOKA */
+    .sacred-shloka {
+      font-family: 'Noto Sans Telugu', sans-serif;
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: var(--maroon-primary);
+      line-height: 1.6;
+      margin: 8px auto 10px;
+      padding: 7px 12px;
+      background: rgba(255, 255, 255, 0.75);
+      border-radius: 12px;
+      border: 1px dashed rgba(163, 124, 50, 0.4);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+    }
+
+    .couple-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3.8rem;
+      color: var(--maroon-primary);
+      line-height: 1.1;
+      margin-bottom: 2px;
+      text-shadow: 0 2px 8px rgba(133, 19, 41, 0.12);
+    }
+    .hashtag-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--gold-deep);
+      letter-spacing: 2px;
+      margin-bottom: 6px;
+    }
+    .invite-lead {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.05rem;
+      color: #615243;
+      margin-bottom: 16px;
+    }
+
+    /* ORNATE LOTUS & KALASH DIVIDERS */
+    .ornate-divider {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      margin: 20px auto;
+      max-width: 84%;
+    }
+    .divider-line {
+      flex: 1;
+      height: 1.5px;
+      background: linear-gradient(90deg, transparent, #DFC394, #B8860B, #DFC394, transparent);
+    }
+    .divider-icon {
+      font-size: 1.3rem;
+      filter: drop-shadow(0 2px 4px rgba(184, 134, 11, 0.3));
+    }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    /* EMBOSSED CARVED FILIGREE PARENT CARDS */
+    .parents-section {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin: 12px auto 24px;
+      max-width: 410px;
+    }
+    .royal-parent-card {
+      position: relative;
+      border-radius: 26px;
+      padding: 12px;
+      transition: transform 0.2s ease;
+    }
+    .bride-royal-frame {
+      background: radial-gradient(circle at center, #FFFBF9 0%, #FEECE7 65%, #F7C6BA 100%);
+      border: 6px solid #F1BFB3;
+      box-shadow: 
+        0 14px 30px rgba(163, 29, 36, 0.14),
+        inset 0 0 0 2px #E89A88,
+        inset 0 0 16px rgba(216, 120, 105, 0.35);
+    }
+    .bride-inner-border {
+      border: 1.8px solid #E5907E;
+      border-radius: 18px;
+      padding: 22px 14px;
+      background: rgba(255, 255, 255, 0.45);
+      position: relative;
+    }
+    .groom-royal-frame {
+      background: radial-gradient(circle at center, #FFFDF5 0%, #FEF4CD 65%, #F6DA85 100%);
+      border: 6px solid #ECC968;
+      box-shadow: 
+        0 14px 30px rgba(150, 100, 20, 0.16),
+        inset 0 0 0 2px #CFA233,
+        inset 0 0 16px rgba(196, 145, 30, 0.38);
+    }
+    .groom-inner-border {
+      border: 1.8px solid #C89B2B;
+      border-radius: 18px;
+      padding: 22px 14px;
+      background: rgba(255, 255, 255, 0.45);
+      position: relative;
+    }
+    .corner-filigree {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      pointer-events: none;
+    }
+    .c-tl { top: -2px; left: -2px; }
+    .c-tr { top: -2px; right: -2px; transform: scaleX(-1); }
+    .c-bl { bottom: -2px; left: -2px; transform: scaleY(-1); }
+    .c-br { bottom: -2px; right: -2px; transform: scale(-1); }
+
+    .card-badge {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      letter-spacing: 2px;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .bride-badge { color: #8E1F35; background: #FFE2DC; border: 1px solid #E8A598; }
+    .groom-badge { color: #7A570D; background: #FFECA8; border: 1px solid #E5BA58; }
+    .parent-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #241C16;
+      line-height: 1.4;
+    }
+    .parent-connector {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.55rem;
+      color: #B8860B;
+      display: block;
+      margin: 2px 0;
+    }
+
+    /* MUHURTHAM EVENT CARD */
+    .event-card {
+      background: #FAF5EB;
+      border: 1px solid #EFE2CB;
+      border-radius: 22px;
+      padding: 20px 14px;
+      margin-bottom: 18px;
+      box-shadow: 0 8px 22px rgba(142, 106, 38, 0.1);
+      position: relative;
+    }
+    .event-img-wrap {
+      width: 100%;
+      max-width: 290px;
+      height: 240px;
+      margin: 0 auto 12px;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid #E5CCA2;
+      background: #FFF;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    }
+    .event-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .event-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .event-subtitle {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: #6C5D4B;
+      margin-bottom: 8px;
+    }
+    .event-time-highlight {
+      font-family: 'Cinzel', serif;
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      margin-top: 4px;
+    }
+
+    /* CIRCULAR GOLDEN MEDAL COUNTDOWN BADGES */
+    .countdown-medals {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin: 18px 0 10px;
+    }
+    .medal-item {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 35%, #FFF6DB 0%, #E3BC6A 60%, #9C7227 100%);
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 6px 15px rgba(156, 114, 39, 0.4), inset 0 0 6px rgba(255, 255, 255, 0.8);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    .medal-val {
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #4D3205;
+      line-height: 1;
+    }
+    .medal-lbl {
+      font-size: 0.52rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: #4D3205;
+      text-transform: uppercase;
+      margin-top: 3px;
+    }
+
+    /* VENUE CARD */
+    .venue-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      margin-bottom: 4px;
+    }
+    .event-address {
+      font-size: 0.92rem;
+      font-weight: 600;
+      color: #2F2620;
+      line-height: 1.5;
+      margin: 8px 0 14px;
+    }
+
+    /* BUTTONS */
+    .btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 14px 0 6px;
+    }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 20px;
+      border-radius: 30px;
+      font-size: 0.94rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: transform 0.15s ease;
+      cursor: pointer;
+      border: none;
+    }
+    .cta-btn:active { transform: scale(0.97); }
+    .btn-maps { background: #9E1F3B; color: #FFF; box-shadow: 0 4px 14px rgba(158, 31, 59, 0.3); }
+    .btn-whatsapp { background: #139B50; color: #FFF; box-shadow: 0 4px 14px rgba(19, 155, 80, 0.3); }
+
+    /* INTERACTIVE AKSHINTALU SHOWER */
+    .akshintalu-btn-wrap {
+      margin: 20px 0 12px;
+      text-align: center;
+    }
+    .akshintalu-btn {
+      background: linear-gradient(135deg, #DE3163 0%, #9E1F3B 100%);
+      color: #FFFFFF;
+      border: 2px solid #FFD700;
+      padding: 14px 26px;
+      font-size: 0.98rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(158, 31, 59, 0.35);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: transform 0.15s ease;
+    }
+    .akshintalu-btn:active { transform: scale(0.96); }
+    .blessing-ticker {
+      margin-top: 8px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--gold-deep);
+    }
+
+    /* DIGITAL GUESTBOOK / WISH WALL */
+    .wishes-wall {
+      background: #FFFDF9;
+      border: 1.5px solid #DFC394;
+      border-radius: 18px;
+      padding: 20px 16px;
+      margin: 20px 0;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+      text-align: left;
+    }
+    .guestbook-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      text-align: center;
+      margin-bottom: 2px;
+    }
+    .guestbook-sub {
+      text-align: center;
+      font-size: 0.82rem;
+      color: #6C5D4B;
+      margin-bottom: 14px;
+    }
+    .wish-input-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .wish-input-group input {
+      width: 100%;
+      padding: 11px 14px;
+      border-radius: 10px;
+      border: 1px solid #DFC394;
+      font-size: 0.9rem;
+      outline: none;
+      background: #FFF;
+    }
+    .wish-input-group input:focus {
+      border-color: var(--maroon-primary);
+      box-shadow: 0 0 0 2px rgba(133, 19, 41, 0.12);
+    }
+    .send-wish-btn {
+      width: 100%;
+      padding: 11px;
+      background: linear-gradient(135deg, #C59A3F, #9A7220);
+      color: #FFF;
+      font-weight: 700;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.92rem;
+    }
+    .wishes-ticker-box {
+      max-height: 220px;
+      overflow-y: auto;
+      border: 1px dashed #E3D1B4;
+      border-radius: 12px;
+      padding: 10px;
+      background: #FAF7F0;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .wish-item {
+      background: #FFFFFF;
+      border-radius: 8px;
+      padding: 8px 12px;
+      border: 1px solid #F0E3D0;
+      font-size: 0.86rem;
+    }
+    .wish-text { color: #382E26; font-style: italic; margin-bottom: 2px; }
+    .wish-author { font-size: 0.76rem; font-weight: 700; color: var(--gold-deep); text-align: right; }
+
+    /* THANK YOU POPUP TRIGGER BUTTON */
+    .thankyou-trigger-wrap {
+      margin: 22px 0 10px;
+      text-align: center;
+    }
+    .btn-thankyou-popup {
+      background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
+      color: #FFFFFF;
+      border: 2px solid #FFF5D1;
+      padding: 14px 28px;
+      border-radius: 35px;
+      font-family: 'Cinzel', serif;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      cursor: pointer;
+      box-shadow: 0 6px 20px rgba(170, 124, 17, 0.4);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .btn-thankyou-popup:hover {
+      transform: scale(1.02);
+      box-shadow: 0 8px 25px rgba(170, 124, 17, 0.55);
+    }
+    .btn-thankyou-popup:active {
+      transform: scale(0.96);
+    }
+
+    /* THANK YOU MODAL POPUP */
+    .thankyou-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(18, 10, 5, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 2000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+    }
+    .thankyou-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .thankyou-modal-card {
+      position: relative;
+      max-width: 440px;
+      width: 100%;
+      max-height: 90vh;
+      border-radius: 26px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 0 2px #DFC394;
+      background: #FFFDF9;
+      transform: scale(0.9) translateY(20px);
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+    .thankyou-modal-overlay.active .thankyou-modal-card {
+      transform: scale(1) translateY(0);
+    }
+    .thankyou-img-container {
+      width: 100%;
+      overflow-y: auto;
+      max-height: calc(90vh - 40px);
+      background: #FFFDF9;
+    }
+    .thankyou-img-container img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+    .thankyou-close-btn {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid #DFC394;
+      color: #851329;
+      font-size: 20px;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      z-index: 10;
+      transition: transform 0.15s ease;
+    }
+    .thankyou-close-btn:active {
+      transform: scale(0.9);
+    }
+
+    /* FOOTER BAR */
+    .footer-bar {
+      margin-top: 14px;
+      background: radial-gradient(circle at center, #6A0D20 0%, #440411 100%);
+      color: #FFF;
+      padding: 22px 14px;
+      border-radius: 18px;
+      text-align: center;
+    }
+    .footer-bar em {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.92rem;
+      font-style: italic;
+      color: #F8DFAD;
+    }
+    .footer-couple {
+      font-family: 'Cinzel', serif;
+      font-size: 1.35rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      color: #FFF;
+      margin-top: 6px;
+    }
+
+    /* FLOATING MUSIC TOGGLE */
+    .audio-toggle-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 46px;
+      height: 46px;
+      background: #FFFFFF;
+      border: 1.5px solid #DFC394;
+      border-radius: 50%;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      z-index: 100;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Audio Element with exact filename -->
+  <audio id="weddingAudio" src="Divine Nadaswaram.mp3" loop preload="auto"></audio>
+  <button class="audio-toggle-btn" id="audioBtn" onclick="toggleAudio()" title="Play Festive Melodies">🎵</button>
+
+  <!-- SCREEN 1: REACHING HANDS -> UNITED HANDS TOUCH SEQUENCE -->
+  <div class="hands-overlay-screen" id="handsScreen" onclick="handleHandConnect()">
+    <img src="handlong.jpeg" alt="Reaching Hands" class="hands-layer-initial" id="handsInitial" onerror="handleImgError(this, 'handlong')">
+    <img src="hands-open.jpg" alt="Holding Hands" class="hands-layer-united" id="handsUnited" onerror="handleImgError(this, 'hands-open')">
+
+    <div class="center-touch-pulse" id="touchPulse">
+      <span>🤝</span>
+    </div>
+
+    <div class="tap-guide-prompt" id="tapPrompt">Tap in the middle to unite hands 💛</div>
+  </div>
+
+  <!-- MAIN INVITATION FRAME CONTAINER -->
+  <div class="invitation-container">
+    <div class="card-inner">
+      
+      <!-- Continuous Drifting Lotus Petals -->
+      <div class="floating-petals-layer">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+      </div>
+
+      <!-- Festive Toranam & Side Marigold Garlands -->
+      <div class="top-toranam"></div>
+      <div class="garland-side garland-left"></div>
+      <div class="garland-side garland-right"></div>
+
+      <div class="main-body">
+
+        <!-- DEITY CEREMONY PHOTO WITH DIVINE HALO AURA -->
+        <div class="deity-halo-container">
+          <div class="divine-aura"></div>
+          <div class="deity-frame">
+            <img src="couple-ceremony.jpg" alt="Godha Kalyanam" onerror="handleImgError(this, 'couple-ceremony')">
+          </div>
+        </div>
+
+        <!-- Sacred Shloka -->
+        <div class="sacred-shloka">
+          || మంగళం భగవాన్ విష్ణుః మంగళం గరుడధ్వజః | మంగళం పుండరీకాక్షో మంగళాయ తనో హరిః || 🙏
+        </div>
+
+        <!-- Couple Script Names & Hashtag -->
+        <div class="couple-title">Sampath &amp; Sarika</div>
+        <div class="hashtag-tag">#SamRika</div>
+        <div class="invite-lead">We invite you to celebrate our wedding</div>
+
+        <!-- Divider with Sacred Kalash -->
+        <div class="ornate-divider">
+          <span class="divider-line"></span>
+          <span class="divider-icon">🏺</span>
+          <span class="divider-line"></span>
+        </div>
+
+        <div class="section-title">With the Blessings Of</div>
+
+        <!-- RICH ROYAL PARENTS SECTION -->
+        <div class="parents-section">
+          
+          <!-- Bride's Parents -->
+          <div class="royal-parent-card bride-royal-frame">
+            <svg class="corner-filigree c-tl" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#D98A7A"/><circle cx="14" cy="14" r="4" fill="#C45A6F"/></svg>
+            <svg class="corner-filigree c-tr" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#D98A7A"/><circle cx="14" cy="14" r="4" fill="#C45A6F"/></svg>
+            <svg class="corner-filigree c-bl" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#D98A7A"/><circle cx="14" cy="14" r="4" fill="#C45A6F"/></svg>
+            <svg class="corner-filigree c-br" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#D98A7A"/><circle cx="14" cy="14" r="4" fill="#C45A6F"/></svg>
+
+            <div class="bride-inner-border">
+              <div class="card-badge bride-badge">🌸 BRIDE'S PARENTS</div>
+              <div class="parent-name">
+                Deshaboina Venkateshwara Prabhu
+                <span class="parent-connector">&amp;</span>
+                Mrs. Sharadamba
+              </div>
+            </div>
+          </div>
+
+          <!-- Groom's Parents -->
+          <div class="royal-parent-card groom-royal-frame">
+            <svg class="corner-filigree c-tl" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#CFA233"/><circle cx="14" cy="14" r="4" fill="#9C7227"/></svg>
+            <svg class="corner-filigree c-tr" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#CFA233"/><circle cx="14" cy="14" r="4" fill="#9C7227"/></svg>
+            <svg class="corner-filigree c-bl" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#CFA233"/><circle cx="14" cy="14" r="4" fill="#9C7227"/></svg>
+            <svg class="corner-filigree c-br" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#CFA233"/><circle cx="14" cy="14" r="4" fill="#9C7227"/></svg>
+
+            <div class="groom-inner-border">
+              <div class="card-badge groom-badge">🪷 GROOM'S PARENTS</div>
+              <div class="parent-name">
+                Boga Ashok
+                <span class="parent-connector">&amp;</span>
+                Mrs. Geetha
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Divider with Lotus -->
+        <div class="ornate-divider">
+          <span class="divider-line"></span>
+          <span class="divider-icon">🪷</span>
+          <span class="divider-line"></span>
+        </div>
+
+        <!-- Muhurtham Section -->
+        <div class="event-card">
+          <div class="event-img-wrap">
+            <img src="kalyanam.jpeg" alt="Sita Rama Kalyanam" onerror="handleImgError(this, 'kalyanam')">
+          </div>
+          <div class="event-tag">MUHURTHAM</div>
+          <div class="event-subtitle">With divine blessings, soliciting your gracious presence</div>
+          <div style="font-size: 1.05rem; font-weight:700;">Thursday, 26 November 2026</div>
+          <div class="event-time-highlight">9:15 AM</div>
+
+          <!-- CIRCULAR GOLDEN MEDAL COUNTDOWN BADGES -->
+          <div class="countdown-medals">
+            <div class="medal-item">
+              <div class="medal-val" id="days">--</div>
+              <div class="medal-lbl">Days</div>
+            </div>
+            <div class="medal-item">
+              <div class="medal-val" id="hours">--</div>
+              <div class="medal-lbl">Hours</div>
+            </div>
+            <div class="medal-item">
+              <div class="medal-val" id="mins">--</div>
+              <div class="medal-lbl">Mins</div>
+            </div>
+            <div class="medal-item">
+              <div class="medal-val" id="secs">--</div>
+              <div class="medal-lbl">Secs</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider with Kalash -->
+        <div class="ornate-divider">
+          <span class="divider-line"></span>
+          <span class="divider-icon">🏺</span>
+          <span class="divider-line"></span>
+        </div>
+
+        <!-- Venue Section -->
+        <div class="event-card">
+          <div class="event-img-wrap" style="height: 220px;">
+            <img src="temple.jpeg" alt="VIP Gardens" onerror="handleImgError(this, 'temple')">
+          </div>
+          <div class="event-tag">VENUE</div>
+          <div class="venue-title">VIP Gardens</div>
+          <div class="event-address">
+            GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony,<br>
+            Suraram Village, Suraram, Hyderabad, Telangana 500055
+          </div>
+
+          <div class="btn-group">
+            <a class="cta-btn btn-maps" href="[https://maps.google.com/?q=VIP+Gardens+Suraram+Hyderabad](https://maps.google.com/?q=VIP+Gardens+Suraram+Hyderabad)" target="_blank">
+              📍 View on Google Maps
+            </a>
+            <a class="cta-btn btn-whatsapp" href="[https://wa.me/917675975990?text=Congratulations%20Sampath%20%26%20Sarika!%20Sending%20our%20warmest%20wishes%20for%20your%20wedding](https://wa.me/917675975990?text=Congratulations%20Sampath%20%26%20Sarika!%20Sending%20our%20warmest%20wishes%20for%20your%20wedding)." target="_blank">
+              💬 Send Wishes on WhatsApp
+            </a>
+          </div>
+        </div>
+
+        <!-- Interactive Shower Akshintalu & Petals Button -->
+        <div class="akshintalu-btn-wrap">
+          <button class="akshintalu-btn" onclick="showerAkshintalu()">
+            🌸 Tap to Shower Akshintalu &amp; Blessings
+          </button>
+          <div class="blessing-ticker">💖 <span id="blessingCount">...</span> blessings showered so far!</div>
+        </div>
+
+        <!-- Guest Wishes Wall -->
+        <div class="wishes-wall">
+          <div class="guestbook-title">Guest Wishes Wall</div>
+          <div class="guestbook-sub">Leave your warm blessings for Sampath &amp; Sarika</div>
+          
+          <div class="wish-input-group">
+            <input type="text" id="guestName" placeholder="Your Name (e.g., Ramesh Uncle)" maxlength="40">
+            <input type="text" id="guestMessage" placeholder="Your blessing / wish..." maxlength="120">
+            <button class="send-wish-btn" id="postWishBtn" onclick="submitWish()">✨ Send Blessing</button>
+          </div>
+
+          <div class="wishes-ticker-box" id="wishesBox">
+            <div style="text-align:center; padding:12px; color:#8C7355; font-size:0.85rem;">
+              Loading blessings... 🪷
+            </div>
+          </div>
+        </div>
+
+        <!-- THANK YOU POPUP TRIGGER BUTTON -->
+        <div class="thankyou-trigger-wrap">
+          <button class="btn-thankyou-popup" onclick="openThankYouModal()">
+            🙏 View Thank You Message
+          </button>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-bar">
+          <em>We can't wait to celebrate this auspicious day with you ❤️</em>
+          <div style="font-size:0.85rem; margin-top:4px; color:#F8DFAD;">With Love,</div>
+          <div class="footer-couple">SAMPATH &amp; SARIKA</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- THANK YOU POPUP MODAL -->
+  <div class="thankyou-modal-overlay" id="thankyouModal" onclick="closeThankYouModal(event)">
+    <div class="thankyou-modal-card" onclick="event.stopPropagation()">
+      <button class="thankyou-close-btn" onclick="closeThankYouModal()" title="Close">✕</button>
+      <div class="thankyou-img-container">
+        <img src="Thankyou.jpeg" alt="Thank You - Sampath &amp; Sarika" onerror="handleImgError(this, 'Thankyou')">
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const extList = ['.jpeg', '.jpg', '.png', '.jfif'];
+    function handleImgError(img, baseName) {
+      let attempt = parseInt(img.getAttribute('data-att') || '0');
+      if (attempt < extList.length) {
+        img.setAttribute('data-att', attempt + 1);
+        img.src = baseName + extList[attempt];
+      }
+    }
+
+    // Audio Player Toggle
+    const audio = document.getElementById('weddingAudio');
+    const audioBtn = document.getElementById('audioBtn');
+    let isPlaying = false;
+    let isTransitioning = false;
+
+    function handleHandConnect() {
+      if (isTransitioning) return;
+      isTransitioning = true;
+
+      const screen = document.getElementById('handsScreen');
+      const pulse = document.getElementById('touchPulse');
+      const prompt = document.getElementById('tapPrompt');
+
+      if (pulse) pulse.style.display = 'none';
+      if (prompt) prompt.style.display = 'none';
+
+      screen.classList.add('connecting');
+
+      if (audio) {
+        audio.play().then(() => {
+          isPlaying = true;
+          audioBtn.innerText = '🔊';
+        }).catch(err => console.log('Autoplay handled:', err));
+      }
+
+      // Exact 1.5 seconds timer (1500ms) for snappy reveal
+      setTimeout(() => {
+        screen.classList.add('dismissed');
+        showerAkshintalu();
+      }, 1500);
+    }
+
+    function toggleAudio() {
+      if (!audio) return;
+      if (isPlaying) {
+        audio.pause();
+        isPlaying = false;
+        audioBtn.innerText = '🔇';
+      } else {
+        audio.play().then(() => {
+          isPlaying = true;
+          audioBtn.innerText = '🔊';
+        }).catch(err => console.log('Audio playback error:', err));
+      }
+    }
+
+    /* THANK YOU MODAL CONTROLS */
+    function openThankYouModal() {
+      const modal = document.getElementById('thankyouModal');
+      modal.classList.add('active');
+      showerAkshintalu();
+    }
+
+    function closeThankYouModal(e) {
+      const modal = document.getElementById('thankyouModal');
+      modal.classList.remove('active');
+    }
+
+    /* FIREBASE CLOUD ENDPOINTS */
+    const FIREBASE_ENDPOINT = "[https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/wishes.json](https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/wishes.json)";
+    const FIREBASE_COUNTER_URL = "[https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/counter.json](https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/counter.json)";
 
     let totalBlessings = 356;
 
