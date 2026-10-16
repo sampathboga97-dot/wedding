@@ -19,8 +19,14 @@
       --text-dark: #2F2620;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    /* EMBOSSED SILK & WARM CARDSTOCK TEXTURED BACKGROUND */
     body {
-      background: radial-gradient(circle at top, #F7EFE4 0%, #E8DCCB 100%);
+      background-color: #F8F3EA;
+      background-image: 
+        radial-gradient(#DFC394 0.65px, transparent 0.65px),
+        radial-gradient(circle at 50% 0%, #FFFDF9 0%, #F5ECDD 100%);
+      background-size: 24px 24px, 100% 100%;
       font-family: 'Plus Jakarta Sans', sans-serif;
       color: var(--text-dark);
       min-height: 100vh;
@@ -28,7 +34,7 @@
       justify-content: center;
       align-items: center;
       overflow-x: hidden;
-      padding: 12px 6px;
+      padding: 14px 6px;
     }
 
     /* FULL-SCREEN REACHING HANDS OVERLAY */
@@ -142,17 +148,28 @@
       width: 100%;
       max-width: 490px;
       position: relative;
-      border-radius: 28px;
+      border-radius: 30px;
       overflow: hidden;
-      box-shadow: 0 22px 65px rgba(78, 48, 14, 0.28);
+      box-shadow: 0 24px 70px rgba(78, 48, 14, 0.3), inset 0 0 2px rgba(255,255,255,0.8);
       background: #FFFFFF;
-      border: 1.5px solid var(--gold-border);
+      border: 2px solid var(--gold-border);
     }
     .card-inner {
       position: relative;
       background: #FFFDF9;
-      padding: 38px 18px 30px;
+      padding: 40px 18px 32px;
       overflow: hidden;
+    }
+    
+    /* Embossed Texture Layer */
+    .card-inner::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(#D4B886 0.5px, transparent 0.5px);
+      background-size: 16px 16px;
+      opacity: 0.18;
+      pointer-events: none;
     }
     .card-inner::after {
       content: "";
@@ -162,12 +179,13 @@
       right: 10px;
       bottom: 10px;
       border: 1.5px dashed #DFC394;
-      border-radius: 20px;
+      border-radius: 22px;
+      box-shadow: inset 0 0 16px rgba(212, 175, 55, 0.08);
       pointer-events: none;
       z-index: 1;
     }
 
-    /* TRADITIONAL MANGO LEAF & MARIGOLD TORANAM */
+    /* TOP TORANAM & MARIGOLD GARLAND STRANDS */
     .top-toranam {
       position: absolute;
       top: 0;
@@ -180,8 +198,6 @@
       background-size: 54px 40px;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 40'%3E%3Cpath d='M0 0 Q27 26 54 0' fill='none' stroke='%232E7D32' stroke-width='2.5'/%3E%3Cpath d='M15 6 Q19 22 15 28 Q11 22 15 6 Z' fill='%23388E3C'/%3E%3Cpath d='M39 6 Q43 22 39 28 Q35 22 39 6 Z' fill='%23388E3C'/%3E%3Ccircle cx='27' cy='18' r='8' fill='%23FF8F00'/%3E%3Ccircle cx='27' cy='18' r='5' fill='%23FFD54F'/%3E%3Ccircle cx='27' cy='18' r='2' fill='%23E65100'/%3E%3C/svg%3E");
     }
-
-    /* MARIGOLD SIDE GARLAND STRANDS */
     .garland-side {
       position: absolute;
       top: 40px;
@@ -209,17 +225,39 @@
       padding: 0 4px;
     }
 
-    /* DEITY CEREMONY PHOTO */
-    .deity-frame {
+    /* DIVINE HALO & SACRED ARTWORK FRAME */
+    .deity-halo-container {
+      position: relative;
       width: 100%;
       max-width: 320px;
+      margin: 10px auto 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .divine-aura {
+      position: absolute;
+      inset: -14px;
+      border-radius: 28px;
+      background: radial-gradient(circle, rgba(255, 223, 140, 0.6) 0%, rgba(255, 240, 190, 0.3) 50%, transparent 75%);
+      filter: blur(10px);
+      z-index: 0;
+      animation: auraPulse 3.5s ease-in-out infinite alternate;
+    }
+    @keyframes auraPulse {
+      0% { transform: scale(0.96); opacity: 0.65; }
+      100% { transform: scale(1.05); opacity: 0.95; }
+    }
+    .deity-frame {
+      position: relative;
+      width: 100%;
       height: 380px;
-      margin: 10px auto 12px;
-      border-radius: 20px;
+      border-radius: 22px;
       overflow: hidden;
       border: 3px double #DFC394;
-      box-shadow: 0 10px 24px rgba(142, 106, 38, 0.18);
+      box-shadow: 0 12px 28px rgba(142, 106, 38, 0.22);
       background: #FFFFFF;
+      z-index: 1;
     }
     .deity-frame img {
       width: 100%;
@@ -227,6 +265,33 @@
       object-fit: contain;
       display: block;
     }
+
+    /* FLOATING LOTUS PETALS CANVAS EFFECT */
+    .floating-petals-layer {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 7;
+      overflow: hidden;
+    }
+    .petal {
+      position: absolute;
+      top: -20px;
+      background: radial-gradient(circle at 40% 40%, #FFA8B6 0%, #FF6584 70%, #E83A59 100%);
+      border-radius: 60% 0 60% 0;
+      opacity: 0.75;
+      filter: drop-shadow(0 2px 4px rgba(180, 50, 70, 0.25));
+      animation: petalDrift 9s linear infinite;
+    }
+    @keyframes petalDrift {
+      0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.85; }
+      50% { transform: translateY(50vh) rotate(180deg) translateX(25px); opacity: 0.9; }
+      100% { transform: translateY(105vh) rotate(360deg) translateX(-20px); opacity: 0; }
+    }
+    .petal:nth-child(1) { left: 12%; width: 14px; height: 18px; animation-duration: 8.5s; animation-delay: 0s; }
+    .petal:nth-child(2) { left: 32%; width: 12px; height: 16px; animation-duration: 10s; animation-delay: 2.5s; }
+    .petal:nth-child(3) { left: 68%; width: 15px; height: 20px; animation-duration: 9.2s; animation-delay: 1.2s; }
+    .petal:nth-child(4) { left: 84%; width: 11px; height: 15px; animation-duration: 11s; animation-delay: 4s; }
 
     /* SACRED SHLOKA */
     .sacred-shloka {
@@ -236,10 +301,11 @@
       color: var(--maroon-primary);
       line-height: 1.6;
       margin: 8px auto 10px;
-      padding: 6px 10px;
-      background: rgba(255, 255, 255, 0.7);
+      padding: 7px 12px;
+      background: rgba(255, 255, 255, 0.75);
       border-radius: 12px;
-      border: 1px dashed rgba(163, 124, 50, 0.35);
+      border: 1px dashed rgba(163, 124, 50, 0.4);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
 
     .couple-title {
@@ -284,7 +350,6 @@
       font-size: 1.3rem;
       filter: drop-shadow(0 2px 4px rgba(184, 134, 11, 0.3));
     }
-
     .section-title {
       font-family: 'Cinzel', serif;
       font-size: 1.45rem;
@@ -295,45 +360,68 @@
       margin-bottom: 18px;
     }
 
-    /* EXACT CARVED ORNAMENTAL PARENT CARDS FROM REFERENCE */
+    /* RICH ROYAL EMBOSSED CARVED FILIGREE PARENT CARDS */
     .parents-section {
       display: flex;
       flex-direction: column;
-      gap: 22px;
-      margin: 10px auto 22px;
+      gap: 24px;
+      margin: 12px auto 24px;
       max-width: 410px;
     }
-    
-    /* Bride Frame: Rose-Gold Antique Embossed Border */
-    .ornamental-frame {
+
+    .royal-parent-card {
       position: relative;
       border-radius: 26px;
-      padding: 14px;
-      background: #FFFFFF;
-      box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+      padding: 12px;
+      transition: transform 0.2s ease;
     }
-    .bride-frame {
-      border: 8px solid #F5D3CA;
-      outline: 2px solid #D88E7D;
-      outline-offset: -5px;
-      background: radial-gradient(circle at center, #FFFDFB 0%, #FFEFEA 100%);
-      box-shadow: inset 0 0 18px rgba(216, 142, 125, 0.25), 0 10px 28px rgba(158, 31, 59, 0.12);
+    
+    /* Bride Frame: Rose-Gold / Kumkum Silk with Intricate Floral Carvings */
+    .bride-royal-frame {
+      background: radial-gradient(circle at center, #FFFBF9 0%, #FEECE7 65%, #F7C6BA 100%);
+      border: 6px solid #F1BFB3;
+      box-shadow: 
+        0 14px 30px rgba(163, 29, 36, 0.14),
+        inset 0 0 0 2px #E89A88,
+        inset 0 0 16px rgba(216, 120, 105, 0.35);
     }
-    /* Groom Frame: Sacred Royal Gold Carved Border */
-    .groom-frame {
-      border: 8px solid #FBE39A;
-      outline: 2px solid #C4982E;
-      outline-offset: -5px;
-      background: radial-gradient(circle at center, #FFFDF6 0%, #FFF3D1 100%);
-      box-shadow: inset 0 0 18px rgba(196, 152, 46, 0.3), 0 10px 28px rgba(179, 131, 26, 0.16);
+    .bride-inner-border {
+      border: 1.8px solid #E5907E;
+      border-radius: 18px;
+      padding: 22px 14px;
+      background: rgba(255, 255, 255, 0.45);
+      position: relative;
     }
 
-    .frame-content {
-      position: relative;
-      border: 1.5px dashed #DFC394;
-      border-radius: 16px;
-      padding: 22px 14px;
+    /* Groom Frame: Auspicious Deep Turmeric-Gold Baroque Filigree */
+    .groom-royal-frame {
+      background: radial-gradient(circle at center, #FFFDF5 0%, #FEF4CD 65%, #F6DA85 100%);
+      border: 6px solid #ECC968;
+      box-shadow: 
+        0 14px 30px rgba(150, 100, 20, 0.16),
+        inset 0 0 0 2px #CFA233,
+        inset 0 0 16px rgba(196, 145, 30, 0.38);
     }
+    .groom-inner-border {
+      border: 1.8px solid #C89B2B;
+      border-radius: 18px;
+      padding: 22px 14px;
+      background: rgba(255, 255, 255, 0.45);
+      position: relative;
+    }
+
+    /* Filigree Corner Corner Flourishes */
+    .corner-filigree {
+      position: absolute;
+      width: 32px;
+      height: 32px;
+      pointer-events: none;
+    }
+    .c-tl { top: -2px; left: -2px; }
+    .c-tr { top: -2px; right: -2px; transform: scaleX(-1); }
+    .c-bl { bottom: -2px; left: -2px; transform: scaleY(-1); }
+    .c-br { bottom: -2px; right: -2px; transform: scale(-1); }
+
     .card-badge {
       display: inline-block;
       font-family: 'Cinzel', serif;
@@ -347,12 +435,12 @@
     }
     .bride-badge {
       color: #8E1F35;
-      background: #FFDED8;
+      background: #FFE2DC;
       border: 1px solid #E8A598;
     }
     .groom-badge {
       color: #7A570D;
-      background: #FFEAA8;
+      background: #FFECA8;
       border: 1px solid #E5BA58;
     }
     .parent-name {
@@ -374,10 +462,11 @@
     .event-card {
       background: #FAF5EB;
       border: 1px solid #EFE2CB;
-      border-radius: 20px;
+      border-radius: 22px;
       padding: 20px 14px;
       margin-bottom: 18px;
-      box-shadow: 0 6px 18px rgba(142, 106, 38, 0.08);
+      box-shadow: 0 8px 22px rgba(142, 106, 38, 0.1);
+      position: relative;
     }
     .event-img-wrap {
       width: 100%;
@@ -388,6 +477,7 @@
       overflow: hidden;
       border: 2px solid #E5CCA2;
       background: #FFF;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
     }
     .event-img-wrap img {
       width: 100%;
@@ -666,6 +756,14 @@
   <div class="invitation-container">
     <div class="card-inner">
       
+      <!-- Continuous Drifting Lotus Petals -->
+      <div class="floating-petals-layer">
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+        <div class="petal"></div>
+      </div>
+
       <!-- Festive Toranam & Side Marigold Garlands -->
       <div class="top-toranam"></div>
       <div class="garland-side garland-left"></div>
@@ -673,9 +771,12 @@
 
       <div class="main-body">
 
-        <!-- Deity Image Header -->
-        <div class="deity-frame">
-          <img src="couple-ceremony.jpg" alt="Godha Kalyanam" onerror="handleImgError(this, 'couple-ceremony')">
+        <!-- DEITY CEREMONY PHOTO WITH DIVINE HALO AURA -->
+        <div class="deity-halo-container">
+          <div class="divine-aura"></div>
+          <div class="deity-frame">
+            <img src="couple-ceremony.jpg" alt="Godha Kalyanam" onerror="handleImgError(this, 'couple-ceremony')">
+          </div>
         </div>
 
         <!-- Sacred Shloka -->
@@ -697,12 +798,17 @@
 
         <div class="section-title">With the Blessings Of</div>
 
-        <!-- CARVED ORNAMENTAL PARENTS SECTION -->
+        <!-- RICH ROYAL PARENTS SECTION (MATCHING REFERENCE CARDS) -->
         <div class="parents-section">
           
-          <!-- Bride's Parents: Rose-Gold Antique Embossed Frame -->
-          <div class="ornamental-frame bride-frame">
-            <div class="frame-content">
+          <!-- Bride's Parents: Rose-Gold / Kumkum Silk with Intricate Floral Accents -->
+          <div class="royal-parent-card bride-royal-frame">
+            <svg class="corner-filigree c-tl" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#D98A7A"/><circle cx="14" cy="14" r="4" fill="#C45A6F"/></svg>
+            <svg class="corner-filigree c-tr" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#D98A7A"/><circle cx="14" cy="14" r="4" fill="#C45A6F"/></svg>
+            <svg class="corner-filigree c-bl" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#D98A7A"/><circle cx="14" cy="14" r="4" fill="#C45A6F"/></svg>
+            <svg class="corner-filigree c-br" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#D98A7A"/><circle cx="14" cy="14" r="4" fill="#C45A6F"/></svg>
+
+            <div class="bride-inner-border">
               <div class="card-badge bride-badge">🌸 BRIDE'S PARENTS</div>
               <div class="parent-name">
                 Deshaboina Venkateshwara Prabhu
@@ -712,9 +818,14 @@
             </div>
           </div>
 
-          <!-- Groom's Parents: Sacred Royal Gold Frame -->
-          <div class="ornamental-frame groom-frame">
-            <div class="frame-content">
+          <!-- Groom's Parents: Auspicious Deep Turmeric-Gold Baroque Filigree Frame -->
+          <div class="royal-parent-card groom-royal-frame">
+            <svg class="corner-filigree c-tl" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#CFA233"/><circle cx="14" cy="14" r="4" fill="#9C7227"/></svg>
+            <svg class="corner-filigree c-tr" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#CFA233"/><circle cx="14" cy="14" r="4" fill="#9C7227"/></svg>
+            <svg class="corner-filigree c-bl" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#CFA233"/><circle cx="14" cy="14" r="4" fill="#9C7227"/></svg>
+            <svg class="corner-filigree c-br" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#CFA233"/><circle cx="14" cy="14" r="4" fill="#9C7227"/></svg>
+
+            <div class="groom-inner-border">
               <div class="card-badge groom-badge">🪷 GROOM'S PARENTS</div>
               <div class="parent-name">
                 Boga Ashok
@@ -831,7 +942,6 @@
   </div>
 
   <script>
-    // Universal image error resolver
     const extList = ['.jpeg', '.jpg', '.png', '.jfif'];
     function handleImgError(img, baseName) {
       let attempt = parseInt(img.getAttribute('data-att') || '0');
@@ -841,7 +951,6 @@
       }
     }
 
-    // Audio Player Toggle
     const audio = document.getElementById('weddingAudio');
     const audioBtn = document.getElementById('audioBtn');
     let isPlaying = false;
@@ -870,7 +979,7 @@
       setTimeout(() => {
         screen.classList.add('dismissed');
         showerAkshintalu();
-      }, 3000);
+      }, 2000);
     }
 
     function toggleAudio() {
@@ -887,7 +996,7 @@
       }
     }
 
-    /* FIREBASE ENDPOINTS */
+    /* FIREBASE CLOUD ENDPOINTS */
     const FIREBASE_ENDPOINT = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/wishes.json";
     const FIREBASE_COUNTER_URL = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/counter.json";
 
@@ -915,7 +1024,6 @@
       }
     }
 
-    // Interactive Akshintalu & Rose Petals Cascade
     async function showerAkshintalu() {
       totalBlessings++;
       const counterEl = document.getElementById('blessingCount');
