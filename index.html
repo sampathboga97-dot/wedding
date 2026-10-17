@@ -306,20 +306,24 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.03);
     }
 
+    /* HIGHLIGHTED COUPLE TITLE */
     .couple-title {
       font-family: 'Great Vibes', cursive;
-      font-size: 3.8rem;
+      font-size: 4.1rem;
       color: var(--maroon-primary);
       line-height: 1.1;
-      margin-bottom: 2px;
-      text-shadow: 0 2px 8px rgba(133, 19, 41, 0.12);
+      margin: 8px 0 2px;
+      text-shadow: 
+        0 2px 4px rgba(133, 19, 41, 0.22),
+        0 0 20px rgba(245, 204, 114, 0.55);
+      letter-spacing: 0.5px;
     }
     .hashtag-tag {
       font-family: 'Cinzel', serif;
-      font-size: 1.15rem;
-      font-weight: 700;
+      font-size: 1.2rem;
+      font-weight: 800;
       color: var(--gold-deep);
-      letter-spacing: 2px;
+      letter-spacing: 3px;
       margin-bottom: 6px;
     }
     .invite-lead {
@@ -350,98 +354,97 @@
     }
     .section-title {
       font-family: 'Cinzel', serif;
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       font-weight: 800;
       color: var(--maroon-primary);
       letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
-    /* EMBOSSED CARVED FILIGREE PARENT CARDS */
+    /* COMPACT REFINED PARENT CARDS */
     .parents-section {
       display: flex;
       flex-direction: column;
-      gap: 24px;
-      margin: 12px auto 24px;
-      max-width: 410px;
+      gap: 14px;
+      margin: 8px auto 18px;
+      max-width: 360px;
     }
     .royal-parent-card {
       position: relative;
-      border-radius: 26px;
-      padding: 12px;
+      border-radius: 20px;
+      padding: 6px;
       transition: transform 0.2s ease;
     }
     .bride-royal-frame {
-      background: radial-gradient(circle at center, #FFFBF9 0%, #FEECE7 65%, #F7C6BA 100%);
-      border: 6px solid #F1BFB3;
+      background: radial-gradient(circle at center, #FFFBF9 0%, #FEECE7 70%, #F9D0C6 100%);
+      border: 3.5px solid #F1BFB3;
       box-shadow: 
-        0 14px 30px rgba(163, 29, 36, 0.14),
-        inset 0 0 0 2px #E89A88,
-        inset 0 0 16px rgba(216, 120, 105, 0.35);
+        0 8px 18px rgba(163, 29, 36, 0.08),
+        inset 0 0 10px rgba(216, 120, 105, 0.25);
     }
     .bride-inner-border {
-      border: 1.8px solid #E5907E;
-      border-radius: 18px;
-      padding: 22px 14px;
-      background: rgba(255, 255, 255, 0.45);
+      border: 1.2px solid #E5907E;
+      border-radius: 14px;
+      padding: 12px 10px;
+      background: rgba(255, 255, 255, 0.55);
       position: relative;
     }
     .groom-royal-frame {
-      background: radial-gradient(circle at center, #FFFDF5 0%, #FEF4CD 65%, #F6DA85 100%);
-      border: 6px solid #ECC968;
+      background: radial-gradient(circle at center, #FFFDF5 0%, #FEF4CD 70%, #F7DC8E 100%);
+      border: 3.5px solid #ECC968;
       box-shadow: 
-        0 14px 30px rgba(150, 100, 20, 0.16),
-        inset 0 0 0 2px #CFA233,
-        inset 0 0 16px rgba(196, 145, 30, 0.38);
+        0 8px 18px rgba(150, 100, 20, 0.1),
+        inset 0 0 10px rgba(196, 145, 30, 0.25);
     }
     .groom-inner-border {
-      border: 1.8px solid #C89B2B;
-      border-radius: 18px;
-      padding: 22px 14px;
-      background: rgba(255, 255, 255, 0.45);
+      border: 1.2px solid #C89B2B;
+      border-radius: 14px;
+      padding: 12px 10px;
+      background: rgba(255, 255, 255, 0.55);
       position: relative;
     }
     .corner-filigree {
       position: absolute;
-      width: 32px;
-      height: 32px;
+      width: 24px;
+      height: 24px;
       pointer-events: none;
     }
-    .c-tl { top: -2px; left: -2px; }
-    .c-tr { top: -2px; right: -2px; transform: scaleX(-1); }
-    .c-bl { bottom: -2px; left: -2px; transform: scaleY(-1); }
-    .c-br { bottom: -2px; right: -2px; transform: scale(-1); }
+    .c-tl { top: -1px; left: -1px; }
+    .c-tr { top: -1px; right: -1px; transform: scaleX(-1); }
+    .c-bl { bottom: -1px; left: -1px; transform: scaleY(-1); }
+    .c-br { bottom: -1px; right: -1px; transform: scale(-1); }
 
     .card-badge {
       display: inline-block;
       font-family: 'Cinzel', serif;
-      font-size: 0.72rem;
-      letter-spacing: 2px;
+      font-size: 0.65rem;
+      letter-spacing: 1.5px;
       font-weight: 800;
       text-transform: uppercase;
-      padding: 5px 16px;
-      border-radius: 20px;
-      margin-bottom: 10px;
+      padding: 3px 12px;
+      border-radius: 16px;
+      margin-bottom: 6px;
     }
     .bride-badge { color: #8E1F35; background: #FFE2DC; border: 1px solid #E8A598; }
     .groom-badge { color: #7A570D; background: #FFECA8; border: 1px solid #E5BA58; }
+    
     .parent-name {
       font-family: 'Playfair Display', serif;
-      font-size: 1.25rem;
+      font-size: 1.05rem;
       font-weight: 700;
       color: #241C16;
-      line-height: 1.4;
+      line-height: 1.35;
     }
     .parent-connector {
       font-family: 'Great Vibes', cursive;
-      font-size: 1.55rem;
+      font-size: 1.35rem;
       color: #B8860B;
       display: block;
-      margin: 2px 0;
+      margin: 1px 0;
     }
 
-    /* FEATURE 3: POLAROID FLIP STORY CARDS */
+    /* POLAROID FLIP STORY CARDS */
     .story-section {
       margin: 18px auto 26px;
       max-width: 420px;
@@ -518,7 +521,7 @@
       font-style: italic;
     }
 
-    /* FEATURE 1: INTERACTIVE SACRED DIYA LIGHTING */
+    /* SACRED DIYA LIGHTING */
     .diya-section {
       background: radial-gradient(circle at center, #FFFDF6 0%, #FAF1DF 100%);
       border: 1.5px solid #E8D7B8;
@@ -679,7 +682,7 @@
       margin-top: 3px;
     }
 
-    /* FEATURE 2: TALAMBRALU CEREMONIAL BOWL INTERACTIVE SHOWER */
+    /* TALAMBRALU CEREMONIAL BOWL INTERACTIVE SHOWER */
     .talambralu-box {
       background: #FFFDF9;
       border: 1.5px solid #E8D7B8;
@@ -845,7 +848,7 @@
       font-size: 0.92rem;
     }
 
-    /* FEATURE 5: DOWNLOAD WHATSAPP BLESSING CARD BUTTON */
+    /* DOWNLOAD WHATSAPP BLESSING CARD BUTTON */
     .download-card-btn {
       display: none;
       width: 100%;
@@ -859,6 +862,7 @@
       font-size: 0.92rem;
       cursor: pointer;
       box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
+      animation: pulseTarget 2s infinite ease-in-out;
     }
 
     .wishes-ticker-box {
@@ -1001,54 +1005,45 @@
       margin-top: 6px;
     }
 
-    /* FEATURE 4: FLOATING MUSIC JUKEBOX PILL */
-    .jukebox-pill {
+    /* FLOATING NADASWARAM AUDIO PILL */
+    .audio-pill {
       position: fixed;
       bottom: 20px;
       right: 20px;
       background: rgba(255, 255, 255, 0.96);
       border: 1.5px solid #DFC394;
       border-radius: 30px;
-      padding: 6px 12px;
+      padding: 6px 14px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.18);
       display: flex;
       align-items: center;
       gap: 8px;
       z-index: 100;
       backdrop-filter: blur(8px);
+      cursor: pointer;
     }
-    .jukebox-track-btn {
-      background: #FAF3E3;
-      border: 1px solid #DFC394;
-      border-radius: 16px;
-      padding: 4px 10px;
+    .audio-title-lbl {
       font-size: 0.76rem;
       font-weight: 700;
       color: var(--maroon-primary);
-      cursor: pointer;
+      letter-spacing: 0.5px;
     }
-    .jukebox-track-btn.active {
+    .audio-icon-bubble {
       background: var(--maroon-primary);
-      color: #FFFFFF;
-      border-color: var(--maroon-primary);
-    }
-    .jukebox-play-toggle {
-      background: #FFF;
-      border: 1px solid #DFC394;
+      color: #FFF;
       border-radius: 50%;
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      font-size: 14px;
+      font-size: 13px;
     }
   </style>
 </head>
 <body>
 
-  <!-- Audio Element configured with exact filename -->
+  <!-- Audio Element (Divine Nadaswaram Only) -->
   <audio id="weddingAudio" src="Divine Nadaswaram.mp3" loop preload="auto"></audio>
 
   <!-- SCREEN 1: REACHING HANDS -> UNITED HANDS TOUCH SEQUENCE -->
@@ -1063,11 +1058,10 @@
     <div class="tap-guide-prompt" id="tapPrompt">Tap in the middle to unite hands 💛</div>
   </div>
 
-  <!-- FLOATING MUSIC JUKEBOX PILL -->
-  <div class="jukebox-pill">
-    <button class="jukebox-track-btn active" id="trackNadaswaramBtn" onclick="switchMusicTrack('Divine Nadaswaram.mp3', this)">🪈 Nadaswaram</button>
-    <button class="jukebox-track-btn" id="trackMelodyBtn" onclick="switchMusicTrack('Melody.mp3', this)">🎶 Melody</button>
-    <button class="jukebox-play-toggle" id="jukeboxPlayBtn" onclick="toggleAudio()" title="Play / Mute">🔊</button>
+  <!-- FLOATING NADASWARAM MUSIC CONTROL -->
+  <div class="audio-pill" onclick="toggleAudio()" title="Play / Pause Divine Nadaswaram">
+    <span class="audio-title-lbl">🪈 Divine Nadaswaram</span>
+    <span class="audio-icon-bubble" id="audioPillIcon">🔊</span>
   </div>
 
   <!-- MAIN INVITATION FRAME CONTAINER -->
@@ -1102,7 +1096,7 @@
           || మంగళం భగవాన్ విష్ణుః మంగళం గరుడధ్వజః | మంగళం పుండరీకాక్షో మంగళాయ తనో హరిః || 🙏
         </div>
 
-        <!-- Couple Script Names & Hashtag -->
+        <!-- HIGHLIGHTED COUPLE NAMES -->
         <div class="couple-title">Sampath &amp; Sarika</div>
         <div class="hashtag-tag">#SamRika</div>
         <div class="invite-lead">We invite you to celebrate our wedding</div>
@@ -1116,7 +1110,7 @@
 
         <div class="section-title">With the Blessings Of</div>
 
-        <!-- RICH ROYAL PARENTS SECTION -->
+        <!-- REFINED COMPACT PARENT CARDS -->
         <div class="parents-section">
           
           <!-- Bride's Parents -->
@@ -1155,7 +1149,7 @@
 
         </div>
 
-        <!-- FEATURE 3: POLAROID FLIP STORY CARDS ("OUR STORY") -->
+        <!-- POLAROID FLIP STORY CARDS -->
         <div class="story-section">
           <div style="font-family:'Cinzel', serif; font-size:1.2rem; font-weight:800; color:var(--maroon-primary);">Our Story</div>
           <div style="font-size:0.8rem; color:#7A6953; font-style:italic;">Tap a memory to flip 💫</div>
@@ -1165,7 +1159,7 @@
             <div class="polaroid-card" onclick="flipStoryCard(this)">
               <div class="polaroid-inner">
                 <div class="polaroid-front">
-                  <img src="story.jpg" alt="When Worlds Met" onerror="handleImgError(this, 'story')">
+                  <img src="story.jpg" alt="The Beginning" onerror="handleImgError(this, 'story')">
                   <div class="p-caption">The Beginning 💛</div>
                 </div>
                 <div class="polaroid-back">
@@ -1179,7 +1173,7 @@
             <div class="polaroid-card" onclick="flipStoryCard(this)">
               <div class="polaroid-inner">
                 <div class="polaroid-front">
-                  <img src="story2.jpg" alt="Conversations to Forever" onerror="handleImgError(this, 'story2')">
+                  <img src="story2.jpg" alt="Courtship" onerror="handleImgError(this, 'story2')">
                   <div class="p-caption">Courtship 🌸</div>
                 </div>
                 <div class="polaroid-back">
@@ -1193,7 +1187,7 @@
             <div class="polaroid-card" onclick="flipStoryCard(this)">
               <div class="polaroid-inner">
                 <div class="polaroid-front">
-                  <img src="story3.jpg" alt="Seven Vows Ahead" onerror="handleImgError(this, 'story3')">
+                  <img src="story3.jpg" alt="Forever" onerror="handleImgError(this, 'story3')">
                   <div class="p-caption">Forever 💍</div>
                 </div>
                 <div class="polaroid-back">
@@ -1212,19 +1206,16 @@
           <span class="divider-line"></span>
         </div>
 
-        <!-- FEATURE 1: INTERACTIVE SACRED DIYA LIGHTING -->
+        <!-- SACRED DIYA LIGHTING -->
         <div class="diya-section">
           <div class="diya-heading">Light the Sacred Diya</div>
           <div class="diya-sub">Touch the lamp to ignite divine blessings for Sampath &amp; Sarika 🪔</div>
           
           <div class="diya-lamp-box" id="diyaBox" onclick="lightTheDiya()">
             <div class="diya-aura"></div>
-            <!-- Traditional Brass Panchamukha Diya SVG -->
             <svg viewBox="0 0 100 100" width="80" height="80">
-              <!-- Flame -->
               <path class="diya-flame" d="M50 12 C44 26 40 38 50 48 C60 38 56 26 50 12 Z" fill="url(#flameGradient)"/>
               <ellipse class="diya-flame" cx="50" cy="38" rx="4" ry="7" fill="#FFFFFF" opacity="0.8"/>
-              <!-- Brass Lamp Base -->
               <path d="M24 55 Q50 68 76 55 Q78 68 62 76 L66 88 L34 88 L38 76 Q22 68 24 55 Z" fill="#D4AF37" stroke="#A67C1E" stroke-width="2"/>
               <ellipse cx="50" cy="55" rx="26" ry="6" fill="#F3D778"/>
               <ellipse cx="50" cy="55" rx="16" ry="3" fill="#A67C1E"/>
@@ -1271,7 +1262,7 @@
           </div>
         </div>
 
-        <!-- FEATURE 2: TALAMBRALU CEREMONIAL BOWL INTERACTIVE SHOWER -->
+        <!-- TALAMBRALU CEREMONIAL BOWL INTERACTIVE SHOWER -->
         <div class="talambralu-box">
           <div class="talambralu-title">Talambralu Blessings 🌾</div>
           <div style="font-size:0.8rem; color:#7A6953;">Tap the sacred bowls to shower blessings upon the couple</div>
@@ -1333,8 +1324,7 @@
             <input type="text" id="guestName" placeholder="Your Name (e.g., Ramesh Uncle)" maxlength="40">
             <input type="text" id="guestMessage" placeholder="Your blessing / wish..." maxlength="120">
             <button class="send-wish-btn" id="postWishBtn" onclick="submitWish()">✨ Send Blessing</button>
-            <!-- FEATURE 5: WHATSAPP CARD DOWNLOAD BUTTON (APPEARS AFTER POSTING) -->
-            <button class="download-card-btn" id="downloadCardBtn" onclick="generateAndDownloadBlessingCard()">💌 Download My Blessing Card for WhatsApp</button>
+            <button class="download-card-btn" id="downloadCardBtn" onclick="generateAndDownloadBlessingCard()">💌 Download My Blessing Card</button>
           </div>
 
           <div class="wishes-ticker-box" id="wishesBox">
@@ -1373,7 +1363,7 @@
   </div>
 
   <!-- HIDDEN CANVAS FOR WHATSAPP CARD GENERATION -->
-  <canvas id="blessingCanvas" width="800" height="1000" style="display:none;"></canvas>
+  <canvas id="blessingCanvas" width="900" height="1200" style="display:none;"></canvas>
 
   <script>
     const extList = ['.jpeg', '.jpg', '.png', '.jfif'];
@@ -1386,7 +1376,7 @@
     }
 
     const audio = document.getElementById('weddingAudio');
-    const playToggleBtn = document.getElementById('jukeboxPlayBtn');
+    const audioIcon = document.getElementById('audioPillIcon');
     let isPlaying = false;
     let isTransitioning = false;
 
@@ -1406,11 +1396,10 @@
       if (audio) {
         audio.play().then(() => {
           isPlaying = true;
-          playToggleBtn.innerText = '🔊';
+          audioIcon.innerText = '🔊';
         }).catch(err => console.log('Autoplay handled:', err));
       }
 
-      // 1.5 seconds timer with instant display:none fallback
       setTimeout(() => {
         screen.classList.add('dismissed');
         screen.style.display = 'none';
@@ -1418,36 +1407,21 @@
       }, 1500);
     }
 
-    /* FEATURE 4: JUKEBOX TRACK TOGGLE */
-    function switchMusicTrack(trackSrc, btnElement) {
-      document.querySelectorAll('.jukebox-track-btn').forEach(btn => btn.classList.remove('active'));
-      btnElement.classList.add('active');
-      
-      const wasPlaying = isPlaying;
-      audio.src = trackSrc;
-      if (wasPlaying) {
-        audio.play().then(() => {
-          isPlaying = true;
-          playToggleBtn.innerText = '🔊';
-        }).catch(err => console.log('Playback error:', err));
-      }
-    }
-
     function toggleAudio() {
       if (!audio) return;
       if (isPlaying) {
         audio.pause();
         isPlaying = false;
-        playToggleBtn.innerText = '🔇';
+        audioIcon.innerText = '🔇';
       } else {
         audio.play().then(() => {
           isPlaying = true;
-          playToggleBtn.innerText = '🔊';
+          audioIcon.innerText = '🔊';
         }).catch(err => console.log('Audio playback error:', err));
       }
     }
 
-    /* FEATURE 1: SYNTHESIZED TEMPLE BELL SOUND + DIYA LIGHTING */
+    /* SYNTHESIZED TEMPLE BELL + DIYA */
     let audioCtx = null;
     function playTempleBellChime() {
       try {
@@ -1457,7 +1431,6 @@
         if (audioCtx.state === 'suspended') audioCtx.resume();
 
         const now = audioCtx.currentTime;
-        // Rich brass bell harmonic frequencies
         const freqs = [587.33, 880, 1174.66, 1760];
         freqs.forEach((freq, i) => {
           const osc = audioCtx.createOscillator();
@@ -1490,12 +1463,9 @@
       status.innerText = "✨ The Sacred Diya is Lit! Divine Blessings Showered 🙏";
       status.style.color = "#A37C32";
 
-      // Haptic touch vibration on phones
       if (navigator.vibrate) navigator.vibrate([40, 30, 40]);
-
       playTempleBellChime();
 
-      // Confetti burst on lighting
       if (typeof confetti === 'function') {
         confetti({
           particleCount: 45,
@@ -1506,12 +1476,10 @@
       }
     }
 
-    /* FEATURE 3: FLIP STORY CARDS */
     function flipStoryCard(card) {
       card.classList.toggle('flipped');
     }
 
-    /* FEATURE 2: TALAMBRALU INTERACTIVE BOWL SHOWER */
     function showerTalambralu(type) {
       if (navigator.vibrate) navigator.vibrate(30);
 
@@ -1540,75 +1508,131 @@
       }
     }
 
-    /* FEATURE 5: WHATSAPP BLESSING CARD GENERATOR VIA CANVAS */
+    /* REDESIGNED DOWNLOADABLE BLESSING CARD */
     let lastPostedName = "";
     let lastPostedWish = "";
 
     function generateAndDownloadBlessingCard() {
       const canvas = document.getElementById('blessingCanvas');
       const ctx = canvas.getContext('2d');
+      const W = canvas.width;
+      const H = canvas.height;
 
-      // Card Background
-      const bgGrad = ctx.createRadialGradient(400, 500, 50, 400, 500, 550);
-      bgGrad.addColorStop(0, '#FFFDF9');
-      bgGrad.addColorStop(1, '#F3E5D0');
+      // 1. Rich Parchment Background
+      const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 80, W / 2, H / 2, 700);
+      bgGrad.addColorStop(0, '#FFFDF7');
+      bgGrad.addColorStop(0.7, '#FBF3E3');
+      bgGrad.addColorStop(1, '#F2E0C2');
       ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, 800, 1000);
+      ctx.fillRect(0, 0, W, H);
 
-      // Outer & Inner Gold Borders
+      // Micro Texture Flecks
+      ctx.fillStyle = 'rgba(180, 140, 60, 0.05)';
+      for (let i = 0; i < 400; i++) {
+        const rx = Math.random() * W;
+        const ry = Math.random() * H;
+        ctx.fillRect(rx, ry, 2, 2);
+      }
+
+      // 2. Multi-tier Regal Borders
       ctx.lineWidth = 14;
       ctx.strokeStyle = '#851329';
-      ctx.strokeRect(20, 20, 760, 960);
+      ctx.strokeRect(26, 26, W - 52, H - 52);
 
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = '#D4AF37';
-      ctx.strokeRect(36, 36, 728, 928);
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#C59A3F';
+      ctx.strokeRect(44, 44, W - 88, H - 88);
 
-      // Header Shloka & Symbols
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = '#DFC394';
+      ctx.setLineDash([8, 6]);
+      ctx.strokeRect(54, 54, W - 108, H - 108);
+      ctx.setLineDash([]);
+
+      // 3. Sacred Kalash Crest & Shloka
       ctx.textAlign = 'center';
-      ctx.font = '32px sans-serif';
+      ctx.font = '48px sans-serif';
+      ctx.fillText('🏺', W / 2, 130);
+
+      ctx.font = 'bold 24px "Noto Sans Telugu", sans-serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText('🪷  శ్రీరస్తు - శుభమస్తు  🪷', 400, 130);
+      ctx.fillText('|| శ్రీరస్తు - శుభమస్తు - అవిఘ్నమస్తు ||', W / 2, 180);
 
-      ctx.font = 'bold 36px serif';
+      ctx.font = 'bold 28px "Cinzel", serif';
       ctx.fillStyle = '#8E6A26';
-      ctx.fillText('WEDDING BLESSINGS', 400, 200);
+      ctx.letterSpacing = '4px';
+      ctx.fillText('WEDDING BLESSINGS', W / 2, 235);
 
-      // Couple Names
-      ctx.font = 'bold 64px "Great Vibes", cursive, serif';
+      // 4. Highlighted Couple Names
+      ctx.font = 'bold 78px "Great Vibes", cursive, serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText('Sampath & Sarika', 400, 290);
+      ctx.shadowColor = 'rgba(197, 154, 63, 0.45)';
+      ctx.shadowBlur = 12;
+      ctx.fillText('Sampath & Sarika', W / 2, 330);
+      ctx.shadowBlur = 0;
 
-      ctx.font = 'bold 24px serif';
+      ctx.font = 'bold 24px "Cinzel", serif';
       ctx.fillStyle = '#8E6A26';
-      ctx.fillText('#SamRika  •  26 November 2026', 400, 350);
+      ctx.fillText('#SamRika  •  26 November 2026', W / 2, 385);
 
-      // Decorative Line
+      // Decorative Lotus Divider
       ctx.beginPath();
-      ctx.moveTo(150, 400);
-      ctx.lineTo(650, 400);
+      ctx.moveTo(W / 2 - 200, 425);
+      ctx.lineTo(W / 2 + 200, 425);
       ctx.lineWidth = 2;
       ctx.strokeStyle = '#DFC394';
       ctx.stroke();
 
-      // Guest Message Box
+      ctx.font = '26px sans-serif';
+      ctx.fillText('🪷', W / 2, 434);
+
+      // 5. Framed Guest Blessing Message Box
+      const boxX = 90;
+      const boxY = 480;
+      const boxW = W - 180;
+      const boxH = 360;
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.shadowColor = 'rgba(0,0,0,0.06)';
+      ctx.shadowBlur = 15;
+      ctx.beginPath();
+      ctx.roundRect(boxX, boxY, boxW, boxH, 20);
+      ctx.fill();
+      ctx.shadowBlur = 0;
+
+      ctx.lineWidth = 1.5;
+      ctx.strokeStyle = '#E8D5B5';
+      ctx.stroke();
+
+      // Quotation Marks
+      ctx.font = 'bold 70px "Playfair Display", serif';
+      ctx.fillStyle = 'rgba(197, 154, 63, 0.35)';
+      ctx.fillText('“', boxX + 50, boxY + 70);
+
+      // Text Wrapping for Guest Wish
+      const messageText = lastPostedWish || "Wishing you both a lifetime of happiness, divine harmony, and endless love!";
       ctx.font = 'italic 34px "Playfair Display", serif';
       ctx.fillStyle = '#2F2620';
-      wrapText(ctx, `"${lastPostedWish || "Wishing you both endless love, harmony & divine joy!"}"`, 400, 520, 620, 52);
+      wrapText(ctx, `"${messageText}"`, W / 2, boxY + 120, boxW - 80, 48);
 
-      // Guest Author Name
-      ctx.font = 'bold 32px serif';
+      // 6. Guest Author
+      const guestAuthor = lastPostedName || "Well Wisher";
+      ctx.font = 'bold 32px "Playfair Display", serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText(`— With Love, ${lastPostedName || "Well Wisher"}`, 400, 740);
+      ctx.fillText(`— With Warm Blessings, ${guestAuthor}`, W / 2, boxY + boxH - 45);
 
-      // Venue Footer
-      ctx.font = '22px sans-serif';
+      // 7. Venue & Date Footer
+      ctx.font = '600 24px "Plus Jakarta Sans", sans-serif';
       ctx.fillStyle = '#7A6953';
-      ctx.fillText('VIP Gardens, Suraram, Hyderabad', 400, 880);
+      ctx.fillText('VIP Gardens, Suraram, Hyderabad', W / 2, 940);
+      ctx.font = 'italic 20px "Playfair Display", serif';
+      ctx.fillStyle = '#8E6A26';
+      ctx.fillText('May Lord Venkateshwara shower your union with eternal prosperity 🌸', W / 2, 980);
 
-      // Download Trigger
+      // 8. Download PNG Trigger
+      const cleanName = (lastPostedName || 'Guest').replace(/[^a-zA-Z0-9]/g, '_');
       const link = document.createElement('a');
-      link.download = `Sampath_Sarika_Blessing_${(lastPostedName || 'Guest').replace(/\s+/g, '_')}.png`;
+      link.download = `Wedding_Blessing_Sampath_Sarika_${cleanName}.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
     }
@@ -1806,7 +1830,6 @@
         await loadCloudWishes();
         showerAkshintalu();
 
-        // Reveal the download button for WhatsApp blessing card
         if (downloadBtn) {
           downloadBtn.style.display = 'block';
         }
