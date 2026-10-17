@@ -848,7 +848,7 @@
       font-size: 0.92rem;
     }
 
-    /* DOWNLOAD WHATSAPP BLESSING CARD BUTTON */
+    /* DOWNLOAD WHATSAPP BLESSING CARD BUTTON (FIXED CENTERING & GLOW) */
     .download-card-btn {
       display: none;
       width: 100%;
@@ -862,7 +862,12 @@
       font-size: 0.92rem;
       cursor: pointer;
       box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
-      animation: pulseTarget 2s infinite ease-in-out;
+      animation: subtleGlow 2s infinite ease-in-out;
+      transform-origin: center;
+    }
+    @keyframes subtleGlow {
+      0%, 100% { box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3); }
+      50% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.65); }
     }
 
     .wishes-ticker-box {
@@ -1155,7 +1160,6 @@
           <div style="font-size:0.8rem; color:#7A6953; font-style:italic;">Tap a memory to flip 💫</div>
           
           <div class="story-grid">
-            <!-- Card 1 -->
             <div class="polaroid-card" onclick="flipStoryCard(this)">
               <div class="polaroid-inner">
                 <div class="polaroid-front">
@@ -1169,7 +1173,6 @@
               </div>
             </div>
 
-            <!-- Card 2 -->
             <div class="polaroid-card" onclick="flipStoryCard(this)">
               <div class="polaroid-inner">
                 <div class="polaroid-front">
@@ -1183,7 +1186,6 @@
               </div>
             </div>
 
-            <!-- Card 3 -->
             <div class="polaroid-card" onclick="flipStoryCard(this)">
               <div class="polaroid-inner">
                 <div class="polaroid-front">
@@ -1362,7 +1364,7 @@
     </div>
   </div>
 
-  <!-- HIDDEN CANVAS FOR WHATSAPP CARD GENERATION -->
+  <!-- HIDDEN CANVAS FOR CARD GENERATION -->
   <canvas id="blessingCanvas" width="900" height="1200" style="display:none;"></canvas>
 
   <script>
@@ -1508,7 +1510,27 @@
       }
     }
 
-    /* REDESIGNED DOWNLOADABLE BLESSING CARD */
+    /* AUTO-WRAPPING CANVAS HELPER */
+    function renderWrappedLines(ctx, text, x, startY, maxWidth, lineHeight) {
+      const words = text.split(' ');
+      let line = '';
+      let currentY = startY;
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && n > 0) {
+          ctx.fillText(line.trim(), x, currentY);
+          line = words[n] + ' ';
+          currentY += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      ctx.fillText(line.trim(), x, currentY);
+      return currentY;
+    }
+
+    /* REDESIGNED DOWNLOADABLE BLESSING CARD (STRICTLY CONTAINED) */
     let lastPostedName = "";
     let lastPostedWish = "";
 
@@ -1518,7 +1540,7 @@
       const W = canvas.width;
       const H = canvas.height;
 
-      // 1. Rich Parchment Background
+      // 1. Parchment Background
       const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 80, W / 2, H / 2, 700);
       bgGrad.addColorStop(0, '#FFFDF7');
       bgGrad.addColorStop(0.7, '#FBF3E3');
@@ -1526,15 +1548,13 @@
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, W, H);
 
-      // Micro Texture Flecks
+      // Texture Specks
       ctx.fillStyle = 'rgba(180, 140, 60, 0.05)';
       for (let i = 0; i < 400; i++) {
-        const rx = Math.random() * W;
-        const ry = Math.random() * H;
-        ctx.fillRect(rx, ry, 2, 2);
+        ctx.fillRect(Math.random() * W, Math.random() * H, 2, 2);
       }
 
-      // 2. Multi-tier Regal Borders
+      // 2. Borders
       ctx.lineWidth = 14;
       ctx.strokeStyle = '#851329';
       ctx.strokeRect(26, 26, W - 52, H - 52);
@@ -1549,48 +1569,41 @@
       ctx.strokeRect(54, 54, W - 108, H - 108);
       ctx.setLineDash([]);
 
-      // 3. Sacred Kalash Crest & Shloka
+      // 3. Header Shloka & Title
       ctx.textAlign = 'center';
-      ctx.font = '48px sans-serif';
-      ctx.fillText('🏺', W / 2, 130);
-
-      ctx.font = 'bold 24px "Noto Sans Telugu", sans-serif';
+      ctx.font = 'bold 26px "Noto Sans Telugu", sans-serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText('|| శ్రీరస్తు - శుభమస్తు - అవిఘ్నమస్తు ||', W / 2, 180);
+      ctx.fillText('🪷  శ్రీరస్తు - శుభమస్తు  🪷', W / 2, 140);
 
-      ctx.font = 'bold 28px "Cinzel", serif';
+      ctx.font = 'bold 26px "Cinzel", serif';
       ctx.fillStyle = '#8E6A26';
-      ctx.letterSpacing = '4px';
-      ctx.fillText('WEDDING BLESSINGS', W / 2, 235);
+      ctx.fillText('WEDDING BLESSINGS', W / 2, 195);
 
       // 4. Highlighted Couple Names
-      ctx.font = 'bold 78px "Great Vibes", cursive, serif';
+      ctx.font = 'bold 76px "Great Vibes", cursive, serif';
       ctx.fillStyle = '#851329';
-      ctx.shadowColor = 'rgba(197, 154, 63, 0.45)';
-      ctx.shadowBlur = 12;
-      ctx.fillText('Sampath & Sarika', W / 2, 330);
+      ctx.shadowColor = 'rgba(197, 154, 63, 0.4)';
+      ctx.shadowBlur = 10;
+      ctx.fillText('Sampath & Sarika', W / 2, 290);
       ctx.shadowBlur = 0;
 
       ctx.font = 'bold 24px "Cinzel", serif';
       ctx.fillStyle = '#8E6A26';
-      ctx.fillText('#SamRika  •  26 November 2026', W / 2, 385);
+      ctx.fillText('#SamRika  •  26 November 2026', W / 2, 345);
 
-      // Decorative Lotus Divider
+      // Divider Line
       ctx.beginPath();
-      ctx.moveTo(W / 2 - 200, 425);
-      ctx.lineTo(W / 2 + 200, 425);
+      ctx.moveTo(W / 2 - 180, 385);
+      ctx.lineTo(W / 2 + 180, 385);
       ctx.lineWidth = 2;
       ctx.strokeStyle = '#DFC394';
       ctx.stroke();
 
-      ctx.font = '26px sans-serif';
-      ctx.fillText('🪷', W / 2, 434);
-
-      // 5. Framed Guest Blessing Message Box
-      const boxX = 90;
-      const boxY = 480;
-      const boxW = W - 180;
-      const boxH = 360;
+      // 5. Contained Message Box
+      const boxX = 80;
+      const boxY = 430;
+      const boxW = W - 160;
+      const boxH = 480;
 
       ctx.fillStyle = '#FFFFFF';
       ctx.shadowColor = 'rgba(0,0,0,0.06)';
@@ -1604,54 +1617,46 @@
       ctx.strokeStyle = '#E8D5B5';
       ctx.stroke();
 
-      // Quotation Marks
+      // Quotation Mark
       ctx.font = 'bold 70px "Playfair Display", serif';
-      ctx.fillStyle = 'rgba(197, 154, 63, 0.35)';
+      ctx.fillStyle = 'rgba(197, 154, 63, 0.3)';
       ctx.fillText('“', boxX + 50, boxY + 70);
 
-      // Text Wrapping for Guest Wish
+      // Wish Message Wrapped
       const messageText = lastPostedWish || "Wishing you both a lifetime of happiness, divine harmony, and endless love!";
       ctx.font = 'italic 34px "Playfair Display", serif';
       ctx.fillStyle = '#2F2620';
-      wrapText(ctx, `"${messageText}"`, W / 2, boxY + 120, boxW - 80, 48);
+      const lastMsgY = renderWrappedLines(ctx, `"${messageText}"`, W / 2, boxY + 120, boxW - 80, 48);
 
-      // 6. Guest Author
+      // Divider inside message box
+      const divY = Math.max(lastMsgY + 40, boxY + 280);
+      ctx.beginPath();
+      ctx.moveTo(W / 2 - 100, divY);
+      ctx.lineTo(W / 2 + 100, divY);
+      ctx.lineWidth = 1;
+      ctx.strokeStyle = '#E8D5B5';
+      ctx.stroke();
+
+      // Guest Author Name Wrapped (Never overflowing)
       const guestAuthor = lastPostedName || "Well Wisher";
-      ctx.font = 'bold 32px "Playfair Display", serif';
+      ctx.font = 'bold 28px "Playfair Display", serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText(`— With Warm Blessings, ${guestAuthor}`, W / 2, boxY + boxH - 45);
+      renderWrappedLines(ctx, `— With Love & Blessings, ${guestAuthor}`, W / 2, divY + 45, boxW - 60, 38);
 
-      // 7. Venue & Date Footer
+      // 6. Footer
       ctx.font = '600 24px "Plus Jakarta Sans", sans-serif';
       ctx.fillStyle = '#7A6953';
-      ctx.fillText('VIP Gardens, Suraram, Hyderabad', W / 2, 940);
+      ctx.fillText('VIP Gardens, Suraram, Hyderabad', W / 2, 1000);
       ctx.font = 'italic 20px "Playfair Display", serif';
       ctx.fillStyle = '#8E6A26';
-      ctx.fillText('May Lord Venkateshwara shower your union with eternal prosperity 🌸', W / 2, 980);
+      ctx.fillText('May Lord Venkateshwara shower your union with eternal prosperity 🌸', W / 2, 1040);
 
-      // 8. Download PNG Trigger
+      // Download PNG Trigger
       const cleanName = (lastPostedName || 'Guest').replace(/[^a-zA-Z0-9]/g, '_');
       const link = document.createElement('a');
       link.download = `Wedding_Blessing_Sampath_Sarika_${cleanName}.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
-    }
-
-    function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
-      const words = text.split(' ');
-      let line = '';
-      for (let n = 0; n < words.length; n++) {
-        const testLine = line + words[n] + ' ';
-        const metrics = ctx.measureText(testLine);
-        if (metrics.width > maxWidth && n > 0) {
-          ctx.fillText(line, x, y);
-          line = words[n] + ' ';
-          y += lineHeight;
-        } else {
-          line = testLine;
-        }
-      }
-      ctx.fillText(line, x, y);
     }
 
     /* THANK YOU MODAL CONTROLS */
