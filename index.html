@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Wedding Invitation | Sampath &amp; Sarika</title>
+  <title>Wedding Ceremony | Sampath &amp; Sarika</title>
   <meta name="description" content="Wedding Ceremony of Sampath &amp; Sarika on Thursday, November 26, 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,14 +17,16 @@
       --gold-foil: #C59A3F;
       --gold-border: #E8D7B8;
       --text-dark: #2F2620;
+      --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFFDF9 0%, #F5ECDD 100%);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
+    /* DYNAMIC TIME OF DAY THEMES */
     body {
       background-color: #F8F3EA;
       background-image: 
         radial-gradient(#DFC394 0.65px, transparent 0.65px),
-        radial-gradient(circle at 50% 0%, #FFFDF9 0%, #F5ECDD 100%);
+        var(--theme-bg-grad);
       background-size: 24px 24px, 100% 100%;
       font-family: 'Plus Jakarta Sans', sans-serif;
       color: var(--text-dark);
@@ -34,6 +36,43 @@
       align-items: center;
       overflow-x: hidden;
       padding: 14px 6px;
+      transition: background 1.2s ease;
+    }
+    body.theme-morning {
+      --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFF8EE 0%, #FBE5C8 100%);
+    }
+    body.theme-afternoon {
+      --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFFDF6 0%, #F3DFB6 100%);
+    }
+    body.theme-night {
+      --theme-bg-grad: radial-gradient(circle at 50% 0%, #2A1728 0%, #150914 100%);
+      background-color: #120712;
+      color: #E8D7B8;
+    }
+    body.theme-night .invitation-container {
+      background: #1B0F19;
+      border-color: #A37C32;
+    }
+    body.theme-night .card-inner {
+      background: #20111F;
+    }
+
+    /* LANGUAGE TOGGLE */
+    .lang-toggle-btn {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 101;
+      background: rgba(255, 255, 255, 0.92);
+      border: 1.5px solid #DFC394;
+      border-radius: 20px;
+      padding: 5px 12px;
+      font-size: 0.76rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      backdrop-filter: blur(6px);
     }
 
     /* FULL-SCREEN REACHING HANDS OVERLAY */
@@ -99,19 +138,13 @@
       justify-content: center;
       z-index: 10;
       animation: pulseTarget 1.8s infinite ease-in-out;
-      transition: opacity 0.2s ease, visibility 0.2s ease;
     }
     @keyframes pulseTarget {
       0%, 100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.85; }
       50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
     }
     .center-touch-pulse span { font-size: 42px; line-height: 1; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); }
-    .hands-overlay-screen.connecting .center-touch-pulse {
-      opacity: 0 !important;
-      visibility: hidden !important;
-      pointer-events: none !important;
-      display: none !important;
-    }
+    .hands-overlay-screen.connecting .center-touch-pulse { display: none !important; }
     .tap-guide-prompt {
       position: absolute;
       bottom: clamp(26px, 5vh, 40px);
@@ -130,27 +163,21 @@
       z-index: 10;
       white-space: nowrap;
       animation: bouncePrompt 1.6s infinite ease-in-out;
-      transition: opacity 0.3s ease, transform 0.3s ease;
     }
     @keyframes bouncePrompt {
       0%, 100% { transform: translate(-50%, 0); }
       50% { transform: translate(-50%, -6px); }
     }
-    .hands-overlay-screen.connecting .tap-guide-prompt {
-      opacity: 0 !important;
-      transform: translate(-50%, 15px) !important;
-      pointer-events: none !important;
-      display: none !important;
-    }
+    .hands-overlay-screen.connecting .tap-guide-prompt { display: none !important; }
 
-    /* MAIN INVITATION CONTAINER */
+    /* INVITATION CONTAINER */
     .invitation-container {
       width: 100%;
       max-width: 490px;
       position: relative;
       border-radius: 30px;
       overflow: hidden;
-      box-shadow: 0 24px 70px rgba(78, 48, 14, 0.3), inset 0 0 2px rgba(255,255,255,0.8);
+      box-shadow: 0 24px 70px rgba(78, 48, 14, 0.3);
       background: #FFFFFF;
       border: 2px solid var(--gold-border);
     }
@@ -159,15 +186,6 @@
       background: #FFFDF9;
       padding: 40px 18px 32px;
       overflow: hidden;
-    }
-    .card-inner::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(#D4B886 0.5px, transparent 0.5px);
-      background-size: 16px 16px;
-      opacity: 0.18;
-      pointer-events: none;
     }
     .card-inner::after {
       content: "";
@@ -178,1095 +196,243 @@
       bottom: 10px;
       border: 1.5px dashed #DFC394;
       border-radius: 22px;
-      box-shadow: inset 0 0 16px rgba(212, 175, 55, 0.08);
       pointer-events: none;
       z-index: 1;
     }
 
-    /* TOP TORANAM & MARIGOLD GARLAND STRANDS */
     .top-toranam {
       position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 42px;
-      z-index: 10;
-      pointer-events: none;
+      top: 0; left: 0; right: 0; height: 42px;
+      z-index: 10; pointer-events: none;
       background-repeat: repeat-x;
       background-size: 54px 40px;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 40'%3E%3Cpath d='M0 0 Q27 26 54 0' fill='none' stroke='%232E7D32' stroke-width='2.5'/%3E%3Cpath d='M15 6 Q19 22 15 28 Q11 22 15 6 Z' fill='%23388E3C'/%3E%3Cpath d='M39 6 Q43 22 39 28 Q35 22 39 6 Z' fill='%23388E3C'/%3E%3Ccircle cx='27' cy='18' r='8' fill='%23FF8F00'/%3E%3Ccircle cx='27' cy='18' r='5' fill='%23FFD54F'/%3E%3Ccircle cx='27' cy='18' r='2' fill='%23E65100'/%3E%3C/svg%3E");
     }
     .garland-side {
-      position: absolute;
-      top: 40px;
-      bottom: 15px;
-      width: 20px;
-      z-index: 5;
-      pointer-events: none;
-      background-repeat: repeat-y;
-      background-size: 20px 48px;
+      position: absolute; top: 40px; bottom: 15px; width: 20px; z-index: 5; pointer-events: none;
+      background-repeat: repeat-y; background-size: 20px 48px;
     }
-    .garland-left {
-      left: 2px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 48'%3E%3Cline x1='10' y1='0' x2='10' y2='48' stroke='%23BDBDBD' stroke-width='1' stroke-dasharray='2 2'/%3E%3Ccircle cx='10' cy='10' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='10' r='3.5' fill='%23FFD54F'/%3E%3Ccircle cx='10' cy='24' r='6' fill='%23E65100'/%3E%3Ccircle cx='10' cy='24' r='3' fill='%23FFB74D'/%3E%3Ccircle cx='10' cy='38' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='38' r='3.5' fill='%23FFD54F'/%3E%3C/svg%3E");
-    }
-    .garland-right {
-      right: 2px;
-      transform: scaleX(-1);
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 48'%3E%3Cline x1='10' y1='0' x2='10' y2='48' stroke='%23BDBDBD' stroke-width='1' stroke-dasharray='2 2'/%3E%3Ccircle cx='10' cy='10' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='10' r='3.5' fill='%23FFD54F'/%3E%3Ccircle cx='10' cy='24' r='6' fill='%23E65100'/%3E%3Ccircle cx='10' cy='24' r='3' fill='%23FFB74D'/%3E%3Ccircle cx='10' cy='38' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='38' r='3.5' fill='%23FFD54F'/%3E%3C/svg%3E");
-    }
+    .garland-left { left: 2px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 48'%3E%3Cline x1='10' y1='0' x2='10' y2='48' stroke='%23BDBDBD' stroke-width='1' stroke-dasharray='2 2'/%3E%3Ccircle cx='10' cy='10' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='10' r='3.5' fill='%23FFD54F'/%3E%3Ccircle cx='10' cy='24' r='6' fill='%23E65100'/%3E%3Ccircle cx='10' cy='24' r='3' fill='%23FFB74D'/%3E%3Ccircle cx='10' cy='38' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='38' r='3.5' fill='%23FFD54F'/%3E%3C/svg%3E"); }
+    .garland-right { right: 2px; transform: scaleX(-1); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 48'%3E%3Cline x1='10' y1='0' x2='10' y2='48' stroke='%23BDBDBD' stroke-width='1' stroke-dasharray='2 2'/%3E%3Ccircle cx='10' cy='10' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='10' r='3.5' fill='%23FFD54F'/%3E%3Ccircle cx='10' cy='24' r='6' fill='%23E65100'/%3E%3Ccircle cx='10' cy='24' r='3' fill='%23FFB74D'/%3E%3Ccircle cx='10' cy='38' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='38' r='3.5' fill='%23FFD54F'/%3E%3C/svg%3E"); }
 
-    .main-body {
-      position: relative;
-      z-index: 6;
-      text-align: center;
-      padding: 0 4px;
-    }
+    .main-body { position: relative; z-index: 6; text-align: center; padding: 0 4px; }
+    .deity-halo-container { position: relative; width: 100%; max-width: 320px; margin: 10px auto 14px; display: flex; justify-content: center; align-items: center; }
+    .divine-aura { position: absolute; inset: -14px; border-radius: 28px; background: radial-gradient(circle, rgba(255, 223, 140, 0.6) 0%, rgba(255, 240, 190, 0.3) 50%, transparent 75%); filter: blur(10px); z-index: 0; animation: auraPulse 3.5s ease-in-out infinite alternate; }
+    @keyframes auraPulse { 0% { transform: scale(0.96); opacity: 0.65; } 100% { transform: scale(1.05); opacity: 0.95; } }
+    .deity-frame { position: relative; width: 100%; height: 380px; border-radius: 22px; overflow: hidden; border: 3px double #DFC394; box-shadow: 0 12px 28px rgba(142, 106, 38, 0.22); background: #FFFFFF; z-index: 1; }
+    .deity-frame img { width: 100%; height: 100%; object-fit: contain; display: block; }
 
-    /* DEITY HALO CONTAINER */
-    .deity-halo-container {
-      position: relative;
-      width: 100%;
-      max-width: 320px;
-      margin: 10px auto 14px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .divine-aura {
-      position: absolute;
-      inset: -14px;
-      border-radius: 28px;
-      background: radial-gradient(circle, rgba(255, 223, 140, 0.6) 0%, rgba(255, 240, 190, 0.3) 50%, transparent 75%);
-      filter: blur(10px);
-      z-index: 0;
-      animation: auraPulse 3.5s ease-in-out infinite alternate;
-    }
-    @keyframes auraPulse {
-      0% { transform: scale(0.96); opacity: 0.65; }
-      100% { transform: scale(1.05); opacity: 0.95; }
-    }
-    .deity-frame {
-      position: relative;
-      width: 100%;
-      height: 380px;
-      border-radius: 22px;
-      overflow: hidden;
-      border: 3px double #DFC394;
-      box-shadow: 0 12px 28px rgba(142, 106, 38, 0.22);
-      background: #FFFFFF;
-      z-index: 1;
-    }
-    .deity-frame img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-
-    /* FLOATING LOTUS PETALS */
-    .floating-petals-layer {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 7;
-      overflow: hidden;
-    }
-    .petal {
-      position: absolute;
-      top: -20px;
-      background: radial-gradient(circle at 40% 40%, #FFA8B6 0%, #FF6584 70%, #E83A59 100%);
-      border-radius: 60% 0 60% 0;
-      opacity: 0.75;
-      filter: drop-shadow(0 2px 4px rgba(180, 50, 70, 0.25));
-      animation: petalDrift 9s linear infinite;
-    }
-    @keyframes petalDrift {
-      0% { transform: translateY(0) rotate(0deg) translateX(0); opacity: 0.85; }
-      50% { transform: translateY(50vh) rotate(180deg) translateX(25px); opacity: 0.9; }
-      100% { transform: translateY(105vh) rotate(360deg) translateX(-20px); opacity: 0; }
-    }
-    .petal:nth-child(1) { left: 12%; width: 14px; height: 18px; animation-duration: 8.5s; animation-delay: 0s; }
+    .floating-petals-layer { position: absolute; inset: 0; pointer-events: none; z-index: 7; overflow: hidden; }
+    .petal { position: absolute; top: -20px; background: radial-gradient(circle at 40% 40%, #FFA8B6 0%, #FF6584 70%, #E83A59 100%); border-radius: 60% 0 60% 0; opacity: 0.75; animation: petalDrift 9s linear infinite; }
+    @keyframes petalDrift { 0% { transform: translateY(0) rotate(0deg); opacity: 0.85; } 100% { transform: translateY(105vh) rotate(360deg); opacity: 0; } }
+    .petal:nth-child(1) { left: 12%; width: 14px; height: 18px; animation-duration: 8.5s; }
     .petal:nth-child(2) { left: 32%; width: 12px; height: 16px; animation-duration: 10s; animation-delay: 2.5s; }
     .petal:nth-child(3) { left: 68%; width: 15px; height: 20px; animation-duration: 9.2s; animation-delay: 1.2s; }
     .petal:nth-child(4) { left: 84%; width: 11px; height: 15px; animation-duration: 11s; animation-delay: 4s; }
 
-    /* SACRED SHLOKA */
-    .sacred-shloka {
-      font-family: 'Noto Sans Telugu', sans-serif;
-      font-size: 0.86rem;
-      font-weight: 700;
-      color: var(--maroon-primary);
-      line-height: 1.6;
-      margin: 8px auto 10px;
-      padding: 7px 12px;
-      background: rgba(255, 255, 255, 0.75);
-      border-radius: 12px;
-      border: 1px dashed rgba(163, 124, 50, 0.4);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.03);
-    }
+    .sacred-shloka { font-family: 'Noto Sans Telugu', sans-serif; font-size: 0.86rem; font-weight: 700; color: var(--maroon-primary); line-height: 1.6; margin: 8px auto 10px; padding: 7px 12px; background: rgba(255, 255, 255, 0.75); border-radius: 12px; border: 1px dashed rgba(163, 124, 50, 0.4); }
+    .couple-title { font-family: 'Great Vibes', cursive; font-size: 4.1rem; color: var(--maroon-primary); line-height: 1.1; margin: 8px 0 2px; text-shadow: 0 2px 4px rgba(133, 19, 41, 0.22), 0 0 20px rgba(245, 204, 114, 0.55); }
+    .hashtag-tag { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 800; color: var(--gold-deep); letter-spacing: 3px; margin-bottom: 6px; }
+    .invite-lead { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: #615243; margin-bottom: 16px; }
 
-    /* HIGHLIGHTED COUPLE TITLE */
-    .couple-title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 4.1rem;
-      color: var(--maroon-primary);
-      line-height: 1.1;
-      margin: 8px 0 2px;
-      text-shadow: 
-        0 2px 4px rgba(133, 19, 41, 0.22),
-        0 0 20px rgba(245, 204, 114, 0.55);
-      letter-spacing: 0.5px;
-    }
-    .hashtag-tag {
-      font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--gold-deep);
-      letter-spacing: 3px;
-      margin-bottom: 6px;
-    }
-    .invite-lead {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 1.05rem;
-      color: #615243;
-      margin-bottom: 16px;
-    }
+    .ornate-divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 20px auto; max-width: 84%; }
+    .divider-line { flex: 1; height: 1.5px; background: linear-gradient(90deg, transparent, #DFC394, #B8860B, #DFC394, transparent); }
+    .divider-icon { font-size: 1.3rem; }
+    .section-title { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
 
-    /* ORNATE LOTUS & KALASH DIVIDERS */
-    .ornate-divider {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      margin: 20px auto;
-      max-width: 84%;
-    }
-    .divider-line {
-      flex: 1;
-      height: 1.5px;
-      background: linear-gradient(90deg, transparent, #DFC394, #B8860B, #DFC394, transparent);
-    }
-    .divider-icon {
-      font-size: 1.3rem;
-      filter: drop-shadow(0 2px 4px rgba(184, 134, 11, 0.3));
-    }
-    .section-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--maroon-primary);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      margin-bottom: 14px;
-    }
-
-    /* COMPACT REFINED PARENT CARDS */
-    .parents-section {
-      display: flex;
-      flex-direction: column;
-      gap: 14px;
-      margin: 8px auto 18px;
-      max-width: 360px;
-    }
-    .royal-parent-card {
-      position: relative;
-      border-radius: 20px;
-      padding: 6px;
-      transition: transform 0.2s ease;
-    }
-    .bride-royal-frame {
-      background: radial-gradient(circle at center, #FFFBF9 0%, #FEECE7 70%, #F9D0C6 100%);
-      border: 3.5px solid #F1BFB3;
-      box-shadow: 
-        0 8px 18px rgba(163, 29, 36, 0.08),
-        inset 0 0 10px rgba(216, 120, 105, 0.25);
-    }
-    .bride-inner-border {
-      border: 1.2px solid #E5907E;
-      border-radius: 14px;
-      padding: 12px 10px;
-      background: rgba(255, 255, 255, 0.55);
-      position: relative;
-    }
-    .groom-royal-frame {
-      background: radial-gradient(circle at center, #FFFDF5 0%, #FEF4CD 70%, #F7DC8E 100%);
-      border: 3.5px solid #ECC968;
-      box-shadow: 
-        0 8px 18px rgba(150, 100, 20, 0.1),
-        inset 0 0 10px rgba(196, 145, 30, 0.25);
-    }
-    .groom-inner-border {
-      border: 1.2px solid #C89B2B;
-      border-radius: 14px;
-      padding: 12px 10px;
-      background: rgba(255, 255, 255, 0.55);
-      position: relative;
-    }
-    .corner-filigree {
-      position: absolute;
-      width: 24px;
-      height: 24px;
-      pointer-events: none;
-    }
-    .c-tl { top: -1px; left: -1px; }
-    .c-tr { top: -1px; right: -1px; transform: scaleX(-1); }
-    .c-bl { bottom: -1px; left: -1px; transform: scaleY(-1); }
-    .c-br { bottom: -1px; right: -1px; transform: scale(-1); }
-
-    .card-badge {
-      display: inline-block;
-      font-family: 'Cinzel', serif;
-      font-size: 0.65rem;
-      letter-spacing: 1.5px;
-      font-weight: 800;
-      text-transform: uppercase;
-      padding: 3px 12px;
-      border-radius: 16px;
-      margin-bottom: 6px;
-    }
+    .parents-section { display: flex; flex-direction: column; gap: 14px; margin: 8px auto 18px; max-width: 360px; }
+    .royal-parent-card { position: relative; border-radius: 20px; padding: 6px; }
+    .bride-royal-frame { background: radial-gradient(circle at center, #FFFBF9 0%, #FEECE7 70%, #F9D0C6 100%); border: 3.5px solid #F1BFB3; }
+    .bride-inner-border { border: 1.2px solid #E5907E; border-radius: 14px; padding: 12px 10px; background: rgba(255, 255, 255, 0.55); }
+    .groom-royal-frame { background: radial-gradient(circle at center, #FFFDF5 0%, #FEF4CD 70%, #F7DC8E 100%); border: 3.5px solid #ECC968; }
+    .groom-inner-border { border: 1.2px solid #C89B2B; border-radius: 14px; padding: 12px 10px; background: rgba(255, 255, 255, 0.55); }
+    .card-badge { display: inline-block; font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 1.5px; font-weight: 800; text-transform: uppercase; padding: 3px 12px; border-radius: 16px; margin-bottom: 6px; }
     .bride-badge { color: #8E1F35; background: #FFE2DC; border: 1px solid #E8A598; }
     .groom-badge { color: #7A570D; background: #FFECA8; border: 1px solid #E5BA58; }
-    
-    .parent-name {
-      font-family: 'Playfair Display', serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: #241C16;
-      line-height: 1.35;
-    }
-    .parent-connector {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.35rem;
-      color: #B8860B;
-      display: block;
-      margin: 1px 0;
-    }
+    .parent-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #241C16; line-height: 1.35; }
+    .parent-connector { font-family: 'Great Vibes', cursive; font-size: 1.35rem; color: #B8860B; display: block; margin: 1px 0; }
 
-    /* POLAROID FLIP STORY CARDS */
-    .story-section {
-      margin: 18px auto 26px;
-      max-width: 420px;
-    }
-    .story-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-      perspective: 1000px;
-      margin-top: 14px;
-    }
-    .polaroid-card {
-      background: transparent;
-      height: 180px;
-      cursor: pointer;
-    }
-    .polaroid-inner {
-      position: relative;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1);
-      transform-style: preserve-3d;
-      box-shadow: 0 8px 18px rgba(0,0,0,0.12);
-      border-radius: 12px;
-    }
-    .polaroid-card.flipped .polaroid-inner {
-      transform: rotateY(180deg);
-    }
-    .polaroid-front, .polaroid-back {
-      position: absolute;
-      width: 100%;
-      height: 100%;
-      -webkit-backface-visibility: hidden;
-      backface-visibility: hidden;
-      border-radius: 12px;
-      overflow: hidden;
-      background: #FFFFFF;
-      border: 1.5px solid #E5CCA2;
-      padding: 6px 6px 12px;
-      display: flex;
-      flex-direction: column;
-    }
-    .polaroid-front img {
-      width: 100%;
-      height: 128px;
-      object-fit: cover;
-      border-radius: 8px;
-    }
-    .polaroid-front .p-caption {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.72rem;
-      font-weight: 700;
-      color: #6C5D4B;
-      margin-top: 6px;
-    }
-    .polaroid-back {
-      background: radial-gradient(circle at center, #FFF9F2 0%, #FAEDE0 100%);
-      transform: rotateY(180deg);
-      justify-content: center;
-      align-items: center;
-      padding: 10px;
-    }
-    .polaroid-back h4 {
-      font-family: 'Cinzel', serif;
-      font-size: 0.78rem;
-      color: var(--maroon-primary);
-      margin-bottom: 4px;
-    }
-    .polaroid-back p {
-      font-size: 0.68rem;
-      color: #4C4238;
-      line-height: 1.35;
-      font-style: italic;
-    }
+    /* STORY CARDS */
+    .story-section { margin: 18px auto 26px; max-width: 420px; }
+    .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; perspective: 1000px; margin-top: 14px; }
+    .polaroid-card { background: transparent; height: 180px; cursor: pointer; }
+    .polaroid-inner { position: relative; width: 100%; height: 100%; text-align: center; transition: transform 0.6s cubic-bezier(0.4, 0.2, 0.2, 1); transform-style: preserve-3d; box-shadow: 0 8px 18px rgba(0,0,0,0.12); border-radius: 12px; }
+    .polaroid-card.flipped .polaroid-inner { transform: rotateY(180deg); }
+    .polaroid-front, .polaroid-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 12px; overflow: hidden; background: #FFFFFF; border: 1.5px solid #E5CCA2; padding: 6px 6px 12px; display: flex; flex-direction: column; }
+    .polaroid-front img { width: 100%; height: 128px; object-fit: cover; border-radius: 8px; }
+    .polaroid-front .p-caption { font-family: 'Playfair Display', serif; font-size: 0.72rem; font-weight: 700; color: #6C5D4B; margin-top: 6px; }
+    .polaroid-back { background: radial-gradient(circle at center, #FFF9F2 0%, #FAEDE0 100%); transform: rotateY(180deg); justify-content: center; align-items: center; padding: 10px; }
+    .polaroid-back h4 { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--maroon-primary); margin-bottom: 4px; }
+    .polaroid-back p { font-size: 0.68rem; color: #4C4238; line-height: 1.35; font-style: italic; }
 
-    /* SACRED DIYA LIGHTING */
-    .diya-section {
-      background: radial-gradient(circle at center, #FFFDF6 0%, #FAF1DF 100%);
-      border: 1.5px solid #E8D7B8;
-      border-radius: 22px;
-      padding: 18px 14px 14px;
-      margin: 18px auto 20px;
-      max-width: 420px;
-      box-shadow: 0 8px 24px rgba(184, 134, 11, 0.08);
-      position: relative;
-    }
-    .diya-heading {
-      font-family: 'Cinzel', serif;
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--maroon-primary);
-      letter-spacing: 1px;
-    }
-    .diya-sub {
-      font-size: 0.82rem;
-      color: #7A6953;
-      margin-top: 2px;
-      margin-bottom: 12px;
-    }
-    .diya-lamp-box {
-      width: 100px;
-      height: 100px;
-      margin: 0 auto;
-      cursor: pointer;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .diya-aura {
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      background: radial-gradient(circle, rgba(255, 200, 50, 0.65) 0%, rgba(255, 140, 0, 0.25) 50%, transparent 75%);
-      opacity: 0;
-      transform: scale(0.6);
-      transition: opacity 0.8s ease, transform 0.8s ease;
-      filter: blur(8px);
-    }
-    .diya-flame {
-      opacity: 0;
-      transform-origin: center bottom;
-      transition: opacity 0.4s ease;
-    }
-    .diya-lamp-box.lit .diya-aura {
-      opacity: 1;
-      transform: scale(1.15);
-      animation: flameFlicker 2s infinite alternate ease-in-out;
-    }
-    .diya-lamp-box.lit .diya-flame {
-      opacity: 1;
-      animation: flameWiggle 1.4s infinite ease-in-out alternate;
-    }
-    @keyframes flameFlicker {
-      0% { transform: scale(1.1); opacity: 0.85; }
-      100% { transform: scale(1.25); opacity: 1; }
-    }
-    @keyframes flameWiggle {
-      0% { transform: rotate(-2deg) scale(0.98); }
-      100% { transform: rotate(3deg) scale(1.05); }
-    }
-    .diya-status-tag {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--gold-deep);
-      margin-top: 8px;
-    }
+    /* DIYA LIGHTING */
+    .diya-section { background: radial-gradient(circle at center, #FFFDF6 0%, #FAF1DF 100%); border: 1.5px solid #E8D7B8; border-radius: 22px; padding: 18px 14px 14px; margin: 18px auto 20px; max-width: 420px; position: relative; }
+    .diya-heading { font-family: 'Cinzel', serif; font-size: 1.15rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 1px; }
+    .diya-sub { font-size: 0.82rem; color: #7A6953; margin-top: 2px; margin-bottom: 12px; }
+    .diya-lamp-box { width: 100px; height: 100px; margin: 0 auto; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; }
+    .diya-aura { position: absolute; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 200, 50, 0.65) 0%, rgba(255, 140, 0, 0.25) 50%, transparent 75%); opacity: 0; filter: blur(8px); transition: opacity 0.8s ease; }
+    .diya-flame { opacity: 0; transform-origin: center bottom; transition: opacity 0.4s ease; }
+    .diya-lamp-box.lit .diya-aura { opacity: 1; transform: scale(1.15); animation: flameFlicker 2s infinite alternate ease-in-out; }
+    .diya-lamp-box.lit .diya-flame { opacity: 1; animation: flameWiggle 1.4s infinite ease-in-out alternate; }
+    @keyframes flameFlicker { 0% { transform: scale(1.1); } 100% { transform: scale(1.25); } }
+    @keyframes flameWiggle { 0% { transform: rotate(-2deg); } 100% { transform: rotate(3deg); } }
+    .diya-status-tag { font-size: 0.82rem; font-weight: 700; color: var(--gold-deep); margin-top: 8px; }
 
     /* MUHURTHAM EVENT CARD */
-    .event-card {
-      background: #FAF5EB;
-      border: 1px solid #EFE2CB;
-      border-radius: 22px;
-      padding: 20px 14px;
-      margin-bottom: 18px;
-      box-shadow: 0 8px 22px rgba(142, 106, 38, 0.1);
-      position: relative;
-    }
-    .event-img-wrap {
-      width: 100%;
-      max-width: 290px;
-      height: 240px;
-      margin: 0 auto 12px;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 2px solid #E5CCA2;
-      background: #FFF;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-    }
-    .event-img-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      display: block;
-    }
-    .event-tag {
-      font-family: 'Cinzel', serif;
-      font-size: 1.35rem;
-      font-weight: 800;
-      color: var(--maroon-primary);
-      letter-spacing: 2.5px;
-      text-transform: uppercase;
-      margin-bottom: 4px;
-    }
-    .event-subtitle {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 0.9rem;
-      color: #6C5D4B;
-      margin-bottom: 8px;
-    }
-    .event-time-highlight {
-      font-family: 'Cinzel', serif;
-      font-size: 1.8rem;
-      font-weight: 800;
-      color: var(--maroon-primary);
-      margin-top: 4px;
-    }
+    .event-card { background: #FAF5EB; border: 1px solid #EFE2CB; border-radius: 22px; padding: 20px 14px; margin-bottom: 18px; box-shadow: 0 8px 22px rgba(142, 106, 38, 0.1); }
+    .event-img-wrap { width: 100%; max-width: 290px; height: 240px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; border: 2px solid #E5CCA2; background: #FFF; }
+    .event-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
+    .event-tag { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 4px; }
+    .event-subtitle { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: #6C5D4B; margin-bottom: 8px; }
+    .event-time-highlight { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 800; color: var(--maroon-primary); margin-top: 4px; }
 
-    /* CIRCULAR GOLDEN MEDAL COUNTDOWN BADGES */
-    .countdown-medals {
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-      margin: 18px 0 10px;
-    }
-    .medal-item {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      background: radial-gradient(circle at 35% 35%, #FFF6DB 0%, #E3BC6A 60%, #9C7227 100%);
-      border: 2px solid #FFFFFF;
-      box-shadow: 0 6px 15px rgba(156, 114, 39, 0.4), inset 0 0 6px rgba(255, 255, 255, 0.8);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .medal-val {
-      font-family: 'Cinzel', serif;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: #4D3205;
-      line-height: 1;
-    }
-    .medal-lbl {
-      font-size: 0.52rem;
-      font-weight: 800;
-      letter-spacing: 1px;
-      color: #4D3205;
-      text-transform: uppercase;
-      margin-top: 3px;
-    }
+    .countdown-medals { display: flex; justify-content: center; gap: 10px; margin: 18px 0 10px; }
+    .medal-item { width: 70px; height: 70px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF6DB 0%, #E3BC6A 60%, #9C7227 100%); border: 2px solid #FFFFFF; box-shadow: 0 6px 15px rgba(156, 114, 39, 0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .medal-val { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: #4D3205; line-height: 1; }
+    .medal-lbl { font-size: 0.52rem; font-weight: 800; letter-spacing: 1px; color: #4D3205; text-transform: uppercase; margin-top: 3px; }
 
-    /* TALAMBRALU CEREMONIAL BOWL INTERACTIVE SHOWER */
-    .talambralu-box {
-      background: #FFFDF9;
-      border: 1.5px solid #E8D7B8;
-      border-radius: 20px;
-      padding: 16px 12px;
-      margin: 18px auto;
-      max-width: 410px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-    }
-    .talambralu-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
-      font-weight: 800;
-      color: var(--maroon-primary);
-      margin-bottom: 2px;
-    }
-    .talambralu-bowls-wrap {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      margin: 12px 0 6px;
-    }
-    .ceremonial-kinnam-btn {
-      background: radial-gradient(circle, #FFF3D1 0%, #ECC968 100%);
-      border: 2px solid #CFA233;
-      border-radius: 18px;
-      padding: 10px 14px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      box-shadow: 0 4px 14px rgba(160, 115, 20, 0.25);
-      transition: transform 0.15s ease;
-      min-width: 140px;
-    }
-    .ceremonial-kinnam-btn:active {
-      transform: scale(0.95);
-    }
+    /* TALAMBRALU */
+    .talambralu-box { background: #FFFDF9; border: 1.5px solid #E8D7B8; border-radius: 20px; padding: 16px 12px; margin: 18px auto; max-width: 410px; }
+    .talambralu-title { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 2px; }
+    .talambralu-bowls-wrap { display: flex; justify-content: center; gap: 16px; margin: 12px 0 6px; }
+    .ceremonial-kinnam-btn { background: radial-gradient(circle, #FFF3D1 0%, #ECC968 100%); border: 2px solid #CFA233; border-radius: 18px; padding: 10px 14px; cursor: pointer; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 14px rgba(160, 115, 20, 0.25); min-width: 140px; }
     .kinnam-icon { font-size: 1.8rem; line-height: 1; margin-bottom: 4px; }
     .kinnam-lbl { font-size: 0.78rem; font-weight: 700; color: #5C3A10; }
 
-    /* LIVE STREAMING SECTION */
-    .livestream-card {
+    /* DIGITAL SCRATCH CARD */
+    .scratch-card-section {
       background: #FFFDF9;
       border: 1.5px solid #DFC394;
       border-radius: 22px;
-      padding: 20px 14px;
-      margin: 18px auto 20px;
-      max-width: 430px;
-      box-shadow: 0 8px 24px rgba(133, 19, 41, 0.08);
+      padding: 18px 14px;
+      margin: 20px auto;
+      max-width: 420px;
       text-align: center;
+      box-shadow: 0 8px 24px rgba(142, 106, 38, 0.08);
     }
-    .livestream-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #FFE8E8;
-      color: #D32F2F;
-      border: 1px solid #FFCDD2;
-      border-radius: 20px;
-      padding: 4px 14px;
-      font-family: 'Cinzel', serif;
-      font-size: 0.76rem;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      margin-bottom: 8px;
-    }
-    .live-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #D32F2F;
-      animation: livePulse 1.4s infinite;
-    }
-    @keyframes livePulse {
-      0% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.4; transform: scale(1.3); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-    .livestream-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--maroon-primary);
-      margin-bottom: 4px;
-    }
-    .livestream-sub {
-      font-size: 0.82rem;
-      color: #6C5D4B;
-      margin-bottom: 14px;
-    }
-    .livestream-player-box {
+    .scratch-container {
       position: relative;
-      width: 100%;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
+      width: 290px;
+      height: 130px;
+      margin: 12px auto 6px;
       border-radius: 16px;
-      border: 2px solid #E5CCA2;
+      overflow: hidden;
+      border: 2px solid #C59A3F;
       box-shadow: 0 6px 18px rgba(0,0,0,0.12);
-      background: #000;
-      margin-bottom: 12px;
+      user-select: none;
+      touch-action: none;
     }
-    .livestream-player-box iframe {
+    .scratch-secret-message {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-    .btn-watch-youtube {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      background: #FF0000;
-      color: #FFFFFF;
-      font-size: 0.92rem;
-      font-weight: 700;
-      padding: 11px 22px;
-      border-radius: 25px;
-      text-decoration: none;
-      box-shadow: 0 4px 14px rgba(255, 0, 0, 0.28);
-      transition: transform 0.15s ease;
-    }
-    .btn-watch-youtube:active { transform: scale(0.96); }
-
-    /* VENUE CARD */
-    .venue-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--maroon-primary);
-      margin-bottom: 4px;
-    }
-    .event-address {
-      font-size: 0.92rem;
-      font-weight: 600;
-      color: #2F2620;
-      line-height: 1.5;
-      margin: 8px 0 14px;
-    }
-
-    /* BUTTONS */
-    .btn-group {
+      inset: 0;
+      background: radial-gradient(circle at center, #FFF9F0 0%, #F8EAD6 100%);
       display: flex;
       flex-direction: column;
-      gap: 10px;
-      margin: 14px 0 6px;
-    }
-    .cta-btn {
-      display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 13px 20px;
-      border-radius: 30px;
-      font-size: 0.94rem;
-      font-weight: 700;
-      text-decoration: none;
-      transition: transform 0.15s ease;
-      cursor: pointer;
-      border: none;
+      padding: 12px;
+      z-index: 1;
     }
-    .cta-btn:active { transform: scale(0.97); }
+    .scratch-secret-message h4 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      color: var(--maroon-primary);
+      line-height: 1.1;
+    }
+    .scratch-secret-message p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.82rem;
+      color: #5C3A10;
+      margin-top: 4px;
+    }
+    #scratchCanvas {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      cursor: crosshair;
+    }
+
+    /* LIVE STREAMING */
+    .livestream-card { background: #FFFDF9; border: 1.5px solid #DFC394; border-radius: 22px; padding: 20px 14px; margin: 18px auto 20px; max-width: 430px; box-shadow: 0 8px 24px rgba(133, 19, 41, 0.08); text-align: center; }
+    .livestream-badge { display: inline-flex; align-items: center; gap: 6px; background: #FFE8E8; color: #D32F2F; border: 1px solid #FFCDD2; border-radius: 20px; padding: 4px 14px; font-family: 'Cinzel', serif; font-size: 0.76rem; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 8px; }
+    .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #D32F2F; animation: livePulse 1.4s infinite; }
+    @keyframes livePulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.3); } 100% { opacity: 1; transform: scale(1); } }
+    .livestream-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 4px; }
+    .livestream-sub { font-size: 0.82rem; color: #6C5D4B; margin-bottom: 14px; }
+    .livestream-player-box { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; border: 2px solid #E5CCA2; box-shadow: 0 6px 18px rgba(0,0,0,0.12); background: #000; margin-bottom: 12px; }
+    .livestream-player-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+    .btn-watch-youtube { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #FF0000; color: #FFFFFF; font-size: 0.92rem; font-weight: 700; padding: 11px 22px; border-radius: 25px; text-decoration: none; box-shadow: 0 4px 14px rgba(255, 0, 0, 0.28); }
+
+    /* VENUE */
+    .venue-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 4px; }
+    .event-address { font-size: 0.92rem; font-weight: 600; color: #2F2620; line-height: 1.5; margin: 8px 0 14px; }
+    .btn-group { display: flex; flex-direction: column; gap: 10px; margin: 14px 0 6px; }
+    .cta-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 20px; border-radius: 30px; font-size: 0.94rem; font-weight: 700; text-decoration: none; cursor: pointer; border: none; }
     .btn-maps { background: #9E1F3B; color: #FFF; box-shadow: 0 4px 14px rgba(158, 31, 59, 0.3); }
     .btn-whatsapp { background: #139B50; color: #FFF; box-shadow: 0 4px 14px rgba(19, 155, 80, 0.3); }
 
-    /* INTERACTIVE AKSHINTALU SHOWER */
-    .akshintalu-btn-wrap {
-      margin: 20px 0 12px;
-      text-align: center;
-    }
-    .akshintalu-btn {
-      background: linear-gradient(135deg, #DE3163 0%, #9E1F3B 100%);
-      color: #FFFFFF;
-      border: 2px solid #FFD700;
-      padding: 14px 26px;
-      font-size: 0.98rem;
-      font-weight: 700;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(158, 31, 59, 0.35);
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      transition: transform 0.15s ease;
-    }
-    .akshintalu-btn:active { transform: scale(0.96); }
-    .blessing-ticker {
-      margin-top: 8px;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--gold-deep);
-    }
+    /* BLESSINGS TICKER */
+    .akshintalu-btn-wrap { margin: 20px 0 12px; text-align: center; }
+    .akshintalu-btn { background: linear-gradient(135deg, #DE3163 0%, #9E1F3B 100%); color: #FFFFFF; border: 2px solid #FFD700; padding: 14px 26px; font-size: 0.98rem; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 6px 20px rgba(158, 31, 59, 0.35); display: inline-flex; align-items: center; gap: 8px; }
+    .blessing-ticker { margin-top: 8px; font-size: 0.88rem; font-weight: 600; color: var(--gold-deep); }
 
-    /* DIGITAL GUESTBOOK / WISH WALL */
-    .wishes-wall {
-      background: #FFFDF9;
-      border: 1.5px solid #DFC394;
-      border-radius: 18px;
-      padding: 20px 16px;
-      margin: 20px 0;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.04);
-      text-align: left;
-    }
-    .guestbook-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--maroon-primary);
-      text-align: center;
-      margin-bottom: 2px;
-    }
-    .guestbook-sub {
-      text-align: center;
-      font-size: 0.82rem;
-      color: #6C5D4B;
-      margin-bottom: 14px;
-    }
-    .wish-input-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      margin-bottom: 14px;
-    }
-    .wish-input-group input {
-      width: 100%;
-      padding: 11px 14px;
-      border-radius: 10px;
-      border: 1px solid #DFC394;
-      font-size: 0.9rem;
-      outline: none;
-      background: #FFF;
-    }
-    .wish-input-group input:focus {
-      border-color: var(--maroon-primary);
-      box-shadow: 0 0 0 2px rgba(133, 19, 41, 0.12);
-    }
+    /* WISHES WALL */
+    .wishes-wall { background: #FFFDF9; border: 1.5px solid #DFC394; border-radius: 18px; padding: 20px 16px; margin: 20px 0; box-shadow: 0 6px 18px rgba(0,0,0,0.04); text-align: left; }
+    .guestbook-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); text-align: center; margin-bottom: 2px; }
+    .guestbook-sub { text-align: center; font-size: 0.82rem; color: #6C5D4B; margin-bottom: 14px; }
+    .wish-input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
+    .wish-input-group input { width: 100%; padding: 11px 14px; border-radius: 10px; border: 1px solid #DFC394; font-size: 0.9rem; outline: none; background: #FFF; }
+    
+    .media-action-row { display: flex; gap: 8px; margin: 2px 0 4px; }
+    .media-action-btn { flex: 1; background: #FAF3E3; border: 1.5px solid #DFC394; border-radius: 12px; padding: 9px 8px; font-size: 0.82rem; font-weight: 700; color: #6C5230; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 5px; }
+    .booth-live-wrapper { display: none; position: relative; margin: 10px auto; max-width: 300px; text-align: center; background: #000; border-radius: 16px; overflow: hidden; border: 2px solid #D4AF37; }
+    .booth-live-wrapper video { width: 100%; height: auto; display: block; transform: scaleX(-1); }
+    .booth-ctrl-bar { padding: 8px; background: rgba(255, 253, 249, 0.96); display: flex; justify-content: center; gap: 10px; }
+    .booth-snap-btn { background: var(--maroon-primary); color: #FFF; border: none; border-radius: 20px; padding: 7px 16px; font-weight: 700; font-size: 0.82rem; cursor: pointer; }
+    .booth-cancel-btn { background: #E0E0E0; color: #333; border: none; border-radius: 20px; padding: 7px 14px; font-size: 0.82rem; cursor: pointer; }
+    .captured-selfie-box { display: none; align-items: center; gap: 10px; padding: 8px 12px; background: #FFFDF5; border: 1px dashed #DFC394; border-radius: 12px; margin: 4px 0; }
+    .selfie-thumb-img { width: 48px; height: 48px; border-radius: 50%; border: 2px solid #D4AF37; object-fit: cover; }
+    .voice-status-wrapper { display: none; text-align: center; padding: 8px 10px; background: #FFF8E7; border: 1px dashed #E5BA58; border-radius: 12px; margin: 4px 0; }
+    .voice-status-txt { font-size: 0.82rem; font-weight: 700; color: var(--maroon-primary); }
+    .voice-audio-preview { width: 100%; height: 32px; margin-top: 6px; display: none; }
 
-    /* MEDIA BUTTONS (PHOTO BOOTH & VOICE NOTE) */
-    .media-action-row {
-      display: flex;
-      gap: 8px;
-      margin: 2px 0 4px;
-    }
-    .media-action-btn {
-      flex: 1;
-      background: #FAF3E3;
-      border: 1.5px solid #DFC394;
-      border-radius: 12px;
-      padding: 9px 8px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: #6C5230;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      transition: background 0.15s ease, transform 0.1s ease;
-    }
-    .media-action-btn:active { transform: scale(0.97); }
+    .send-wish-btn { width: 100%; padding: 11px; background: linear-gradient(135deg, #C59A3F, #9A7220); color: #FFF; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; font-size: 0.92rem; }
+    .download-card-btn { display: none; width: 100%; margin-top: 10px; padding: 12px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: #FFFFFF; border: none; border-radius: 10px; font-weight: 700; font-size: 0.92rem; cursor: pointer; }
 
-    /* BOOTH CAMERA LIVE WRAPPER */
-    .booth-live-wrapper {
-      display: none;
-      position: relative;
-      margin: 10px auto;
-      max-width: 300px;
-      text-align: center;
-      background: #000;
-      border-radius: 16px;
-      overflow: hidden;
-      border: 2px solid #D4AF37;
-    }
-    .booth-live-wrapper video {
-      width: 100%;
-      height: auto;
-      display: block;
-      transform: scaleX(-1);
-    }
-    .booth-ctrl-bar {
-      padding: 8px;
-      background: rgba(255, 253, 249, 0.96);
-      display: flex;
-      justify-content: center;
-      gap: 10px;
-    }
-    .booth-snap-btn {
-      background: var(--maroon-primary);
-      color: #FFF;
-      border: none;
-      border-radius: 20px;
-      padding: 7px 16px;
-      font-weight: 700;
-      font-size: 0.82rem;
-      cursor: pointer;
-    }
-    .booth-cancel-btn {
-      background: #E0E0E0;
-      color: #333;
-      border: none;
-      border-radius: 20px;
-      padding: 7px 14px;
-      font-size: 0.82rem;
-      cursor: pointer;
-    }
-
-    /* CAPTURED SELFIE THUMBNAIL */
-    .captured-selfie-box {
-      display: none;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      background: #FFFDF5;
-      border: 1px dashed #DFC394;
-      border-radius: 12px;
-      margin: 4px 0;
-    }
-    .selfie-thumb-img {
-      width: 48px;
-      height: 48px;
-      border-radius: 50%;
-      border: 2px solid #D4AF37;
-      object-fit: cover;
-    }
-
-    /* VOICE RECORDER STATUS BOX */
-    .voice-status-wrapper {
-      display: none;
-      text-align: center;
-      padding: 8px 10px;
-      background: #FFF8E7;
-      border: 1px dashed #E5BA58;
-      border-radius: 12px;
-      margin: 4px 0;
-    }
-    .voice-status-txt {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--maroon-primary);
-    }
-    .voice-audio-preview {
-      width: 100%;
-      height: 32px;
-      margin-top: 6px;
-      display: none;
-    }
-
-    .send-wish-btn {
-      width: 100%;
-      padding: 11px;
-      background: linear-gradient(135deg, #C59A3F, #9A7220);
-      color: #FFF;
-      font-weight: 700;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 0.92rem;
-    }
-
-    /* DOWNLOAD WHATSAPP BLESSING CARD BUTTON */
-    .download-card-btn {
-      display: none;
-      width: 100%;
-      margin-top: 10px;
-      padding: 12px;
-      background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-      color: #FFFFFF;
-      border: none;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.92rem;
-      cursor: pointer;
-      box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3);
-      animation: subtleGlow 2s infinite ease-in-out;
-      transform-origin: center;
-    }
-    @keyframes subtleGlow {
-      0%, 100% { box-shadow: 0 4px 14px rgba(37, 211, 102, 0.3); }
-      50% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.65); }
-    }
-
-    /* WISHES TICKER CARDS WITH AVATAR & VOICE PLAYER */
-    .wishes-ticker-box {
-      max-height: 260px;
-      overflow-y: auto;
-      border: 1px dashed #E3D1B4;
-      border-radius: 12px;
-      padding: 10px;
-      background: #FAF7F0;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .wish-item {
-      background: #FFFFFF;
-      border-radius: 10px;
-      padding: 10px 12px;
-      border: 1px solid #F0E3D0;
-      font-size: 0.86rem;
-    }
-    .wish-flex-body {
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-    }
-    .wish-user-avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 50%;
-      border: 1.5px solid #DFC394;
-      object-fit: cover;
-      flex-shrink: 0;
-      background: #FAF5EB;
-    }
+    .wishes-ticker-box { max-height: 260px; overflow-y: auto; border: 1px dashed #E3D1B4; border-radius: 12px; padding: 10px; background: #FAF7F0; display: flex; flex-direction: column; gap: 10px; }
+    .wish-item { background: #FFFFFF; border-radius: 10px; padding: 10px 12px; border: 1px solid #F0E3D0; font-size: 0.86rem; }
+    .wish-flex-body { display: flex; gap: 10px; align-items: flex-start; }
+    .wish-user-avatar { width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid #DFC394; object-fit: cover; flex-shrink: 0; background: #FAF5EB; }
     .wish-text { color: #382E26; font-style: italic; margin-bottom: 2px; }
     .wish-author { font-size: 0.76rem; font-weight: 700; color: var(--gold-deep); text-align: right; }
-    .wish-audio-bar {
-      width: 100%;
-      height: 28px;
-      margin-top: 6px;
-    }
+    .wish-audio-bar { width: 100%; height: 28px; margin-top: 6px; }
 
-    /* THANK YOU POPUP TRIGGER BUTTON */
-    .thankyou-trigger-wrap {
-      margin: 22px 0 10px;
-      text-align: center;
-    }
-    .btn-thankyou-popup {
-      background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%);
-      color: #FFFFFF;
-      border: 2px solid #FFF5D1;
-      padding: 14px 28px;
-      border-radius: 35px;
-      font-family: 'Cinzel', serif;
-      font-size: 1rem;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-      cursor: pointer;
-      box-shadow: 0 6px 20px rgba(170, 124, 17, 0.4);
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-    .btn-thankyou-popup:hover {
-      transform: scale(1.02);
-      box-shadow: 0 8px 25px rgba(170, 124, 17, 0.55);
-    }
-    .btn-thankyou-popup:active { transform: scale(0.96); }
+    /* THANK YOU POPUP */
+    .thankyou-trigger-wrap { margin: 22px 0 10px; text-align: center; }
+    .btn-thankyou-popup { background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%); color: #FFFFFF; border: 2px solid #FFF5D1; padding: 14px 28px; border-radius: 35px; font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 800; cursor: pointer; box-shadow: 0 6px 20px rgba(170, 124, 17, 0.4); display: inline-flex; align-items: center; gap: 10px; }
+    .thankyou-modal-overlay { position: fixed; inset: 0; background: rgba(18, 10, 5, 0.85); backdrop-filter: blur(8px); z-index: 2000; display: flex; justify-content: center; align-items: center; padding: 16px; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
+    .thankyou-modal-overlay.active { opacity: 1; visibility: visible; }
+    .thankyou-modal-card { position: relative; max-width: 440px; width: 100%; max-height: 90vh; border-radius: 26px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.5); background: #FFFDF9; display: flex; flex-direction: column; }
+    .thankyou-img-container { width: 100%; overflow-y: auto; max-height: calc(90vh - 40px); background: #FFFDF9; }
+    .thankyou-img-container img { width: 100%; height: auto; display: block; }
+    .thankyou-close-btn { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; background: rgba(255, 255, 255, 0.9); border: 1px solid #DFC394; color: #851329; font-size: 20px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; }
 
-    /* THANK YOU MODAL POPUP */
-    .thankyou-modal-overlay {
-      position: fixed;
-      inset: 0;
-      background: rgba(18, 10, 5, 0.85);
-      backdrop-filter: blur(8px);
-      z-index: 2000;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 16px;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.4s ease, visibility 0.4s ease;
-    }
-    .thankyou-modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
-    }
-    .thankyou-modal-card {
-      position: relative;
-      max-width: 440px;
-      width: 100%;
-      max-height: 90vh;
-      border-radius: 26px;
-      overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.5), 0 0 0 2px #DFC394;
-      background: #FFFDF9;
-      transform: scale(0.9) translateY(20px);
-      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-      display: flex;
-      flex-direction: column;
-    }
-    .thankyou-modal-overlay.active .thankyou-modal-card {
-      transform: scale(1) translateY(0);
-    }
-    .thankyou-img-container {
-      width: 100%;
-      overflow-y: auto;
-      max-height: calc(90vh - 40px);
-      background: #FFFDF9;
-    }
-    .thankyou-img-container img {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-    .thankyou-close-btn {
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid #DFC394;
-      color: #851329;
-      font-size: 20px;
-      font-weight: 800;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-      z-index: 10;
-    }
+    .footer-bar { margin-top: 14px; background: radial-gradient(circle at center, #6A0D20 0%, #440411 100%); color: #FFF; padding: 22px 14px; border-radius: 18px; text-align: center; }
+    .footer-bar em { font-family: 'Playfair Display', serif; font-size: 0.92rem; font-style: italic; color: #F8DFAD; }
+    .footer-couple { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; letter-spacing: 2px; color: #FFF; margin-top: 6px; }
 
-    /* FOOTER BAR */
-    .footer-bar {
-      margin-top: 14px;
-      background: radial-gradient(circle at center, #6A0D20 0%, #440411 100%);
-      color: #FFF;
-      padding: 22px 14px;
-      border-radius: 18px;
-      text-align: center;
-    }
-    .footer-bar em {
-      font-family: 'Playfair Display', serif;
-      font-size: 0.92rem;
-      font-style: italic;
-      color: #F8DFAD;
-    }
-    .footer-couple {
-      font-family: 'Cinzel', serif;
-      font-size: 1.35rem;
-      font-weight: 800;
-      letter-spacing: 2px;
-      color: #FFF;
-      margin-top: 6px;
-    }
-
-    /* FLOATING NADASWARAM AUDIO PILL */
-    .audio-pill {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: rgba(255, 255, 255, 0.96);
-      border: 1.5px solid #DFC394;
-      border-radius: 30px;
-      padding: 6px 14px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.18);
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      z-index: 100;
-      backdrop-filter: blur(8px);
-      cursor: pointer;
-    }
-    .audio-title-lbl {
-      font-size: 0.76rem;
-      font-weight: 700;
-      color: var(--maroon-primary);
-      letter-spacing: 0.5px;
-    }
-    .audio-icon-bubble {
-      background: var(--maroon-primary);
-      color: #FFF;
-      border-radius: 50%;
-      width: 28px;
-      height: 28px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 13px;
-    }
+    .audio-pill { position: fixed; bottom: 20px; right: 20px; background: rgba(255, 255, 255, 0.96); border: 1.5px solid #DFC394; border-radius: 30px; padding: 6px 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.18); display: flex; align-items: center; gap: 8px; z-index: 100; backdrop-filter: blur(8px); cursor: pointer; }
+    .audio-title-lbl { font-size: 0.76rem; font-weight: 700; color: var(--maroon-primary); letter-spacing: 0.5px; }
+    .audio-icon-bubble { background: var(--maroon-primary); color: #FFF; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
   </style>
 </head>
 <body>
 
-  <!-- Audio Element (Divine Nadaswaram) -->
+  <!-- LANGUAGE TOGGLE BUTTON -->
+  <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLanguage()">తెలుగు / EN</button>
+
+  <!-- Audio Element -->
   <audio id="weddingAudio" src="Divine Nadaswaram.mp3" loop preload="auto"></audio>
 
   <!-- SCREEN 1: REACHING HANDS -> UNITED HANDS TOUCH SEQUENCE -->
@@ -1278,12 +444,12 @@
       <span>🤝</span>
     </div>
 
-    <div class="tap-guide-prompt" id="tapPrompt">Tap in the middle to unite hands 💛</div>
+    <div class="tap-guide-prompt" id="tapPrompt" data-en="Tap in the middle to unite hands 💛" data-te="చేతులు కలపడానికి మధ్యలో తాకండి 💛">Tap in the middle to unite hands 💛</div>
   </div>
 
   <!-- FLOATING NADASWARAM MUSIC CONTROL -->
   <div class="audio-pill" onclick="toggleAudio()" title="Play / Pause Divine Nadaswaram">
-    <span class="audio-title-lbl">🪈 Divine Nadaswaram</span>
+    <span class="audio-title-lbl" data-en="🪈 Divine Nadaswaram" data-te="🪈 నాదస్వరం">🪈 Divine Nadaswaram</span>
     <span class="audio-icon-bubble" id="audioPillIcon">🔊</span>
   </div>
 
@@ -1299,7 +465,7 @@
         <div class="petal"></div>
       </div>
 
-      <!-- Festive Toranam & Side Marigold Garlands -->
+      <!-- Festive Toranam & Side Garlands -->
       <div class="top-toranam"></div>
       <div class="garland-side garland-left"></div>
       <div class="garland-side garland-right"></div>
@@ -1322,7 +488,7 @@
         <!-- HIGHLIGHTED COUPLE NAMES -->
         <div class="couple-title">Sampath &amp; Sarika</div>
         <div class="hashtag-tag">#SamRika</div>
-        <div class="invite-lead">We invite you to celebrate our wedding</div>
+        <div class="invite-lead" data-en="We invite you to celebrate our wedding" data-te="మా వివాహ మహోత్సవానికి మిమ్మల్ని సాదరంగా ఆహ్వానిస్తున్నాము">We invite you to celebrate our wedding</div>
 
         <!-- Divider with Sacred Kalash -->
         <div class="ornate-divider">
@@ -1331,20 +497,14 @@
           <span class="divider-line"></span>
         </div>
 
-        <div class="section-title">With the Blessings Of</div>
+        <div class="section-title" data-en="With the Blessings Of" data-te="పెద్దల ఆశీస్సులతో">With the Blessings Of</div>
 
         <!-- REFINED COMPACT PARENT CARDS -->
         <div class="parents-section">
-          
           <!-- Bride's Parents -->
           <div class="royal-parent-card bride-royal-frame">
-            <svg class="corner-filigree c-tl" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#D98A7A"/><circle cx="14" cy="14" r="4" fill="#C45A6F"/></svg>
-            <svg class="corner-filigree c-tr" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#D98A7A"/><circle cx="14" cy="14" r="4" fill="#C45A6F"/></svg>
-            <svg class="corner-filigree c-bl" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#D98A7A"/><circle cx="14" cy="14" r="4" fill="#C45A6F"/></svg>
-            <svg class="corner-filigree c-br" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#D98A7A"/><circle cx="14" cy="14" r="4" fill="#C45A6F"/></svg>
-
             <div class="bride-inner-border">
-              <div class="card-badge bride-badge">🌸 BRIDE'S PARENTS</div>
+              <div class="card-badge bride-badge" data-en="🌸 BRIDE'S PARENTS" data-te="🌸 వధువు తల్లిదండ్రులు">🌸 BRIDE'S PARENTS</div>
               <div class="parent-name">
                 Deshaboina Venkateshwara Prabhu
                 <span class="parent-connector">&amp;</span>
@@ -1355,13 +515,8 @@
 
           <!-- Groom's Parents -->
           <div class="royal-parent-card groom-royal-frame">
-            <svg class="corner-filigree c-tl" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#CFA233"/><circle cx="14" cy="14" r="4" fill="#9C7227"/></svg>
-            <svg class="corner-filigree c-tr" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#CFA233"/><circle cx="14" cy="14" r="4" fill="#9C7227"/></svg>
-            <svg class="corner-filigree c-bl" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#CFA233"/><circle cx="14" cy="14" r="4" fill="#9C7227"/></svg>
-            <svg class="corner-filigree c-br" viewBox="0 0 40 40"><path d="M0 0 Q20 4 28 12 Q36 20 40 40 Q24 28 12 28 Q4 20 0 0 Z" fill="#CFA233"/><circle cx="14" cy="14" r="4" fill="#9C7227"/></svg>
-
             <div class="groom-inner-border">
-              <div class="card-badge groom-badge">🪷 GROOM'S PARENTS</div>
+              <div class="card-badge groom-badge" data-en="🪷 GROOM'S PARENTS" data-te="🪷 వరుని తల్లిదండ్రులు">🪷 GROOM'S PARENTS</div>
               <div class="parent-name">
                 Boga Ashok
                 <span class="parent-connector">&amp;</span>
@@ -1369,24 +524,23 @@
               </div>
             </div>
           </div>
-
         </div>
 
-        <!-- POLAROID FLIP STORY CARDS -->
-        <div class="story-section">
-          <div style="font-family:'Cinzel', serif; font-size:1.2rem; font-weight:800; color:var(--maroon-primary);">Our Story</div>
-          <div style="font-size:0.8rem; color:#7A6953; font-style:italic;">Tap a memory to flip 💫</div>
+        <!-- POLAROID FLIP STORY CARDS (WITH SCROLL MUSIC SWELL SENSOR) -->
+        <div class="story-section" id="storySection">
+          <div style="font-family:'Cinzel', serif; font-size:1.2rem; font-weight:800; color:var(--maroon-primary);" data-en="Our Story" data-te="మా ప్రేమ కథ">Our Story</div>
+          <div style="font-size:0.8rem; color:#7A6953; font-style:italic;" data-en="Tap a memory to flip 💫" data-te="జ్ఞాపకాన్ని చూడటానికి తాకండి 💫">Tap a memory to flip 💫</div>
           
           <div class="story-grid">
             <div class="polaroid-card" onclick="flipStoryCard(this)">
               <div class="polaroid-inner">
                 <div class="polaroid-front">
                   <img src="story.jpg" alt="The Beginning" onerror="handleImgError(this, 'story')">
-                  <div class="p-caption">The Beginning 💛</div>
+                  <div class="p-caption" data-en="The Beginning 💛" data-te="ప్రారంభం 💛">The Beginning 💛</div>
                 </div>
                 <div class="polaroid-back">
-                  <h4>Destiny</h4>
-                  <p>"Two hearts brought together by divine blessings and family love."</p>
+                  <h4 data-en="Destiny" data-te="విధి">Destiny</h4>
+                  <p data-en="&quot;Two hearts brought together by divine blessings.&quot;" data-te="&quot;దైవ ఆశీస్సులతో కలిసిన రెండు హృదయాలు.&quot;">"Two hearts brought together by divine blessings."</p>
                 </div>
               </div>
             </div>
@@ -1395,11 +549,11 @@
               <div class="polaroid-inner">
                 <div class="polaroid-front">
                   <img src="story2.jpg" alt="Courtship" onerror="handleImgError(this, 'story2')">
-                  <div class="p-caption">Courtship 🌸</div>
+                  <div class="p-caption" data-en="Courtship 🌸" data-te="అనుబంధం 🌸">Courtship 🌸</div>
                 </div>
                 <div class="polaroid-back">
-                  <h4>Together</h4>
-                  <p>"Every shared laughter turned into our lifelong promise."</p>
+                  <h4 data-en="Together" data-te="కలిసి">Together</h4>
+                  <p data-en="&quot;Every shared laugh turned into our lifelong promise.&quot;" data-te="&quot;ప్రతి నవ్వు జీవితాంతం నిలిచే ఒక వాగ్దానంగా మారింది.&quot;">"Every shared laugh turned into our lifelong promise."</p>
                 </div>
               </div>
             </div>
@@ -1408,14 +562,28 @@
               <div class="polaroid-inner">
                 <div class="polaroid-front">
                   <img src="story3.jpg" alt="Forever" onerror="handleImgError(this, 'story3')">
-                  <div class="p-caption">Forever 💍</div>
+                  <div class="p-caption" data-en="Forever 💍" data-te="శాశ్వతం 💍">Forever 💍</div>
                 </div>
                 <div class="polaroid-back">
-                  <h4>Sacred Union</h4>
-                  <p>"Stepping into the sacred Seven Vows on Nov 26, 2026."</p>
+                  <h4 data-en="Sacred Union" data-te="ఏడడుగులు">Sacred Union</h4>
+                  <p data-en="&quot;Stepping into the sacred Seven Vows on Nov 26, 2026.&quot;" data-te="&quot;నవంబర్ 26, 2026న ప్రారంభమయ్యే పవిత్ర వైవాహిక బంధం.&quot;">"Stepping into the sacred Seven Vows on Nov 26, 2026."</p>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- DIGITAL GOLD FOIL SCRATCH CARD -->
+        <div class="scratch-card-section">
+          <div style="font-family:'Cinzel', serif; font-size:1.1rem; font-weight:800; color:var(--maroon-primary);" data-en="✨ Surprise Scratch Card ✨" data-te="✨ గోల్డ్ స్క్రాచ్ కార్డ్ ✨">✨ Surprise Scratch Card ✨</div>
+          <div style="font-size:0.8rem; color:#7A6953; margin-top:2px;" data-en="Scratch with your finger to reveal our special note!" data-te="మా ప్రత్యేక సందేశాన్ని చూడటానికి స్క్రాచ్ చేయండి!">Scratch with your finger to reveal our special note!</div>
+          
+          <div class="scratch-container" id="scratchContainer">
+            <div class="scratch-secret-message">
+              <h4 data-en="With All Our Hearts" data-te="హృదయపూర్వక ధన్యవాదాలు">With All Our Hearts</h4>
+              <p data-en="&quot;Your presence &amp; blessings are the greatest gift as we begin our forever.&quot; ❤️" data-te="&quot;మా కొత్త ప్రయాణంలో మీ ఆశీస్సులే మాకు కొండంత బలం.&quot; ❤️">"Your presence &amp; blessings are the greatest gift as we begin our forever." ❤️</p>
+            </div>
+            <canvas id="scratchCanvas" width="290" height="130"></canvas>
           </div>
         </div>
 
@@ -1428,8 +596,8 @@
 
         <!-- SACRED DIYA LIGHTING -->
         <div class="diya-section">
-          <div class="diya-heading">Light the Sacred Diya</div>
-          <div class="diya-sub">Touch the lamp to ignite divine blessings for Sampath &amp; Sarika 🪔</div>
+          <div class="diya-heading" data-en="Light the Sacred Diya" data-te="మంగళ దీపం వెలిగించండి">Light the Sacred Diya</div>
+          <div class="diya-sub" data-en="Touch the lamp to ignite divine blessings for Sampath &amp; Sarika 🪔" data-te="సంపత్ &amp; సారికల కొరకు మంగళ దీపాన్ని తాకి వెలిగించండి 🪔">Touch the lamp to ignite divine blessings for Sampath &amp; Sarika 🪔</div>
           
           <div class="diya-lamp-box" id="diyaBox" onclick="lightTheDiya()">
             <div class="diya-aura"></div>
@@ -1448,7 +616,7 @@
               </defs>
             </svg>
           </div>
-          <div class="diya-status-tag" id="diyaStatus">Touch to light the Diya ✨</div>
+          <div class="diya-status-tag" id="diyaStatus" data-en="Touch to light the Diya ✨" data-te="దీపం వెలిగించడానికి తాకండి ✨">Touch to light the Diya ✨</div>
         </div>
 
         <!-- Muhurtham Section -->
@@ -1456,44 +624,44 @@
           <div class="event-img-wrap">
             <img src="kalyanam.jpeg" alt="Sita Rama Kalyanam" onerror="handleImgError(this, 'kalyanam')">
           </div>
-          <div class="event-tag">MUHURTHAM</div>
-          <div class="event-subtitle">With divine blessings, soliciting your gracious presence</div>
-          <div style="font-size: 1.05rem; font-weight:700;">Thursday, 26 November 2026</div>
-          <div class="event-time-highlight">9:15 AM</div>
+          <div class="event-tag" data-en="MUHURTHAM" data-te="సుముహూర్తం">MUHURTHAM</div>
+          <div class="event-subtitle" data-en="With divine blessings, soliciting your gracious presence" data-te="మీ పవిత్ర సమక్షాన్ని కోరుకుంటూ">With divine blessings, soliciting your gracious presence</div>
+          <div style="font-size: 1.05rem; font-weight:700;" data-en="Thursday, 26 November 2026" data-te="గురువారం, 26 నవంబర్ 2026">Thursday, 26 November 2026</div>
+          <div class="event-time-highlight" data-en="9:15 AM" data-te="ఉదయం 9:15 గంటలకు">9:15 AM</div>
 
-          <!-- CIRCULAR GOLDEN MEDAL COUNTDOWN BADGES -->
+          <!-- CIRCULAR MEDAL COUNTDOWN BADGES -->
           <div class="countdown-medals">
             <div class="medal-item">
               <div class="medal-val" id="days">--</div>
-              <div class="medal-lbl">Days</div>
+              <div class="medal-lbl" data-en="Days" data-te="రోజులు">Days</div>
             </div>
             <div class="medal-item">
               <div class="medal-val" id="hours">--</div>
-              <div class="medal-lbl">Hours</div>
+              <div class="medal-lbl" data-en="Hours" data-te="గంటలు">Hours</div>
             </div>
             <div class="medal-item">
               <div class="medal-val" id="mins">--</div>
-              <div class="medal-lbl">Mins</div>
+              <div class="medal-lbl" data-en="Mins" data-te="నిమిషాలు">Mins</div>
             </div>
             <div class="medal-item">
               <div class="medal-val" id="secs">--</div>
-              <div class="medal-lbl">Secs</div>
+              <div class="medal-lbl" data-en="Secs" data-te="సెకన్లు">Secs</div>
             </div>
           </div>
         </div>
 
-        <!-- TALAMBRALU CEREMONIAL BOWL INTERACTIVE SHOWER -->
+        <!-- TALAMBRALU CEREMONIAL BOWL SHOWER -->
         <div class="talambralu-box">
-          <div class="talambralu-title">Talambralu Blessings 🌾</div>
-          <div style="font-size:0.8rem; color:#7A6953;">Tap the sacred bowls to shower blessings upon the couple</div>
+          <div class="talambralu-title" data-en="Talambralu Blessings 🌾" data-te="తలంబ్రాల ఆశీస్సులు 🌾">Talambralu Blessings 🌾</div>
+          <div style="font-size:0.8rem; color:#7A6953;" data-en="Tap the sacred bowls to shower blessings upon the couple" data-te="వధూవరులపై తలంబ్రాలు కురిపించడానికి తాకండి">Tap the sacred bowls to shower blessings upon the couple</div>
           <div class="talambralu-bowls-wrap">
             <button class="ceremonial-kinnam-btn" onclick="showerTalambralu('rice')">
               <span class="kinnam-icon">🍚</span>
-              <span class="kinnam-lbl">Yellow Akshintalu</span>
+              <span class="kinnam-lbl" data-en="Yellow Akshintalu" data-te="పసుపు అక్షింతలు">Yellow Akshintalu</span>
             </button>
             <button class="ceremonial-kinnam-btn" onclick="showerTalambralu('petals')">
               <span class="kinnam-icon">🌹</span>
-              <span class="kinnam-lbl">Rose Petals</span>
+              <span class="kinnam-lbl" data-en="Rose Petals" data-te="గులాబీ రేకులు">Rose Petals</span>
             </button>
           </div>
         </div>
@@ -1508,10 +676,10 @@
         <!-- LIVE STREAMING SECTION -->
         <div class="livestream-card">
           <div class="livestream-badge">
-            <span class="live-dot"></span> LIVE BROADCAST
+            <span class="live-dot"></span> <span data-en="LIVE BROADCAST" data-te="ప్రత్యక్ష ప్రసారం">LIVE BROADCAST</span>
           </div>
-          <div class="livestream-title">Watch Live Kalyanam</div>
-          <div class="livestream-sub">Join our sacred ceremony virtually from anywhere in the world 🎥✨</div>
+          <div class="livestream-title" data-en="Watch Live Kalyanam" data-te="కల్యాణ మహోత్సవం లైవ్">Watch Live Kalyanam</div>
+          <div class="livestream-sub" data-en="Join our sacred ceremony virtually from anywhere in the world 🎥✨" data-te="ఎక్కడి నుంచైనా మా వివాహాన్ని ప్రత్యక్షంగా వీక్షించండి 🎥✨">Join our sacred ceremony virtually from anywhere in the world 🎥✨</div>
 
           <div class="livestream-player-box">
             <iframe 
@@ -1522,7 +690,7 @@
             </iframe>
           </div>
 
-          <a class="btn-watch-youtube" href="https://www.youtube.com/live/85FWdlUqBkw?si=OjerFT0wgh_VMp9-" target="_blank">
+          <a class="btn-watch-youtube" href="https://www.youtube.com/live/85FWdlUqBkw?si=OjerFT0wgh_VMp9-" target="_blank" data-en="▶️ Open in YouTube App" data-te="▶️ యూట్యూబ్‌లో చూడండి">
             ▶️ Open in YouTube App
           </a>
         </div>
@@ -1532,7 +700,7 @@
           <div class="event-img-wrap" style="height: 220px;">
             <img src="temple.jpeg" alt="VIP Gardens" onerror="handleImgError(this, 'temple')">
           </div>
-          <div class="event-tag">VENUE</div>
+          <div class="event-tag" data-en="VENUE" data-te="కళ్యాణ వేదిక">VENUE</div>
           <div class="venue-title">VIP Gardens</div>
           <div class="event-address">
             GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony,<br>
@@ -1540,10 +708,10 @@
           </div>
 
           <div class="btn-group">
-            <a class="cta-btn btn-maps" href="https://maps.google.com/?q=VIP+Gardens+Suraram+Hyderabad" target="_blank">
+            <a class="cta-btn btn-maps" href="https://maps.google.com/?q=VIP+Gardens+Suraram+Hyderabad" target="_blank" data-en="📍 View on Google Maps" data-te="📍 గూగుల్ మ్యాప్స్ లో చూడండి">
               📍 View on Google Maps
             </a>
-            <a class="cta-btn btn-whatsapp" href="https://wa.me/917675975990?text=Congratulations%20Sampath%20%26%20Sarika!%20Sending%20our%20warmest%20wishes%20for%20your%20wedding." target="_blank">
+            <a class="cta-btn btn-whatsapp" href="https://wa.me/917675975990?text=Congratulations%20Sampath%20%26%20Sarika!%20Sending%20our%20warmest%20wishes%20for%20your%20wedding." target="_blank" data-en="💬 Send Wishes on WhatsApp" data-te="💬 వాట్సాప్‌లో శుభాకాంక్షలు పంపండి">
               💬 Send Wishes on WhatsApp
             </a>
           </div>
@@ -1551,22 +719,22 @@
 
         <!-- Interactive Shower Akshintalu & Petals Button -->
         <div class="akshintalu-btn-wrap">
-          <button class="akshintalu-btn" onclick="showerAkshintalu()">
+          <button class="akshintalu-btn" onclick="showerAkshintalu()" data-en="🌸 Tap to Shower Akshintalu &amp; Blessings" data-te="🌸 అక్షింతలు &amp; ఆశీస్సులు కురిపించండి">
             🌸 Tap to Shower Akshintalu &amp; Blessings
           </button>
-          <div class="blessing-ticker">💖 <span id="blessingCount">...</span> blessings showered so far!</div>
+          <div class="blessing-ticker">💖 <span id="blessingCount">...</span> <span data-en="blessings showered so far!" data-te="ఆశీస్సులు అందాయి!">blessings showered so far!</span></div>
         </div>
 
-        <!-- GUEST WISHES WALL WITH PHOTO BOOTH & AUDIO GUESTBOOK -->
+        <!-- GUEST WISHES WALL -->
         <div class="wishes-wall">
-          <div class="guestbook-title">Guest Wishes Wall</div>
-          <div class="guestbook-sub">Leave your warm blessings, photo selfie, or voice note for Sampath &amp; Sarika</div>
+          <div class="guestbook-title" data-en="Guest Wishes Wall" data-te="అతిథుల ఆశీస్సుల వేదిక">Guest Wishes Wall</div>
+          <div class="guestbook-sub" data-en="Leave a blessing, snap a selfie, or record a voice note for Sampath &amp; Sarika" data-te="మీ ఆశీస్సులు, ఫోటో లేదా వాయిస్ సందేశాన్ని పంపండి">Leave a blessing, snap a selfie, or record a voice note for Sampath &amp; Sarika</div>
           
           <div class="wish-input-group">
             <input type="text" id="guestName" placeholder="Your Name (e.g., Ramesh Uncle)" maxlength="40">
             <input type="text" id="guestMessage" placeholder="Your blessing / wish..." maxlength="120">
 
-            <!-- Interactive Media Action Buttons -->
+            <!-- Media Options -->
             <div class="media-action-row">
               <button type="button" class="media-action-btn" onclick="togglePhotoBooth()">
                 📸 Snap Selfie Frame
@@ -1586,11 +754,11 @@
               </div>
             </div>
 
-            <!-- Captured Selfie Confirmation Thumbnail -->
+            <!-- Captured Selfie Confirmation -->
             <div class="captured-selfie-box" id="capturedPhotoPreview">
               <img id="selfieThumb" class="selfie-thumb-img" src="" alt="Captured Selfie">
               <div style="flex:1; text-align:left;">
-                <div style="font-size:0.78rem; font-weight:700; color:#2E7D32;">✨ Frame Ready!</div>
+                <div style="font-size:0.78rem; font-weight:700; color:#2E7D32;">✨ Frame Attached!</div>
                 <div style="font-size:0.72rem; color:#851329; cursor:pointer; text-decoration:underline;" onclick="clearSelfie()">Remove Photo ✕</div>
               </div>
             </div>
@@ -1602,8 +770,8 @@
               <div id="clearVoiceLink" style="display:none; font-size:0.74rem; color:#851329; cursor:pointer; margin-top:4px; text-decoration:underline;" onclick="clearVoiceNote()">Delete Voice Note ✕</div>
             </div>
 
-            <button class="send-wish-btn" id="postWishBtn" onclick="submitWish()">✨ Send Blessing</button>
-            <button class="download-card-btn" id="downloadCardBtn" onclick="generateAndDownloadBlessingCard()">💌 Download My Blessing Card</button>
+            <button class="send-wish-btn" id="postWishBtn" onclick="submitWish()" data-en="✨ Send Blessing" data-te="✨ ఆశీర్వదించండి">✨ Send Blessing</button>
+            <button class="download-card-btn" id="downloadCardBtn" onclick="generateAndDownloadBlessingCard()" data-en="💌 Download My Blessing Card" data-te="💌 నా ఆశీర్వాద కార్డు డౌన్‌లోడ్ చేసుకోండి">💌 Download My Blessing Card</button>
           </div>
 
           <div class="wishes-ticker-box" id="wishesBox">
@@ -1615,15 +783,15 @@
 
         <!-- THANK YOU POPUP TRIGGER BUTTON -->
         <div class="thankyou-trigger-wrap">
-          <button class="btn-thankyou-popup" onclick="openThankYouModal()">
+          <button class="btn-thankyou-popup" onclick="openThankYouModal()" data-en="🙏 View Thank You Message" data-te="🙏 ధన్యవాద సందేశం చూడండి">
             🙏 View Thank You Message
           </button>
         </div>
 
         <!-- Footer -->
         <div class="footer-bar">
-          <em>We can't wait to celebrate this auspicious day with you ❤️</em>
-          <div style="font-size:0.85rem; margin-top:4px; color:#F8DFAD;">With Love,</div>
+          <em data-en="We can't wait to celebrate this auspicious day with you ❤️" data-te="ఈ శుభదినాన మీతో కలిసి వేడుక చేసుకోవడానికి వేచిచూస్తున్నాము ❤️">We can't wait to celebrate this auspicious day with you ❤️</em>
+          <div style="font-size:0.85rem; margin-top:4px; color:#F8DFAD;" data-en="With Love," data-te="ప్రేమతో,">With Love,</div>
           <div class="footer-couple">SAMPATH &amp; SARIKA</div>
         </div>
 
@@ -1641,7 +809,7 @@
     </div>
   </div>
 
-  <!-- HIDDEN CANVAS FOR DOWNLOADABLE BLESSING CARD -->
+  <!-- HIDDEN CANVAS FOR CARD GENERATION -->
   <canvas id="blessingCanvas" width="900" height="1200" style="display:none;"></canvas>
 
   <script>
@@ -1654,10 +822,109 @@
       }
     }
 
+    /* DYNAMIC TIME OF DAY THEME DETECTION */
+    function applyTimeOfDayTheme() {
+      const hour = new Date().getHours();
+      if (hour >= 5 && hour < 12) {
+        document.body.classList.add('theme-morning');
+      } else if (hour >= 12 && hour < 17) {
+        document.body.classList.add('theme-afternoon');
+      } else {
+        document.body.classList.add('theme-night');
+      }
+    }
+    applyTimeOfDayTheme();
+
+    /* MULTI-LANGUAGE TOGGLE (ENGLISH / TELUGU) */
+    let currentLang = 'en';
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'te' : 'en';
+      document.querySelectorAll('[data-en]').forEach(el => {
+        el.innerText = el.getAttribute(`data-${currentLang}`);
+      });
+      document.getElementById('guestName').placeholder = currentLang === 'en' ? 'Your Name (e.g., Ramesh Uncle)' : 'మీ పేరు (ఉదా: రమేష్ బాబాయ్)';
+      document.getElementById('guestMessage').placeholder = currentLang === 'en' ? 'Your blessing / wish...' : 'మీ ఆశీస్సులు / శుభాకాంక్షలు...';
+    }
+
+    /* AUDIO & SCROLL MUSIC SWELL CONTROLLER */
     const audio = document.getElementById('weddingAudio');
     const audioIcon = document.getElementById('audioPillIcon');
     let isPlaying = false;
     let isTransitioning = false;
+    let audioCtx = null;
+    let musicSource = null;
+    let musicGain = null;
+
+    function setupWebAudioMusic() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!audioCtx) audioCtx = new AudioContext();
+        if (!musicSource) {
+          musicSource = audioCtx.createMediaElementSource(audio);
+          musicGain = audioCtx.createGain();
+          musicGain.gain.setValueAtTime(0.85, audioCtx.currentTime);
+          musicSource.connect(musicGain);
+          musicGain.connect(audioCtx.destination);
+        }
+      } catch (e) {
+        console.log("WebAudio routing fallback:", e);
+      }
+    }
+
+    // Scroll-based romantic music swell on Story section
+    window.addEventListener('scroll', () => {
+      if (!musicGain || !audioCtx) return;
+      const storyEl = document.getElementById('storySection');
+      if (!storyEl) return;
+      const rect = storyEl.getBoundingClientRect();
+      const inView = rect.top < window.innerHeight && rect.bottom > 0;
+      if (inView) {
+        musicGain.gain.setTargetAtTime(1.15, audioCtx.currentTime, 0.4);
+      } else {
+        musicGain.gain.setTargetAtTime(0.85, audioCtx.currentTime, 0.4);
+      }
+    });
+
+    /* HAPTIC HEARTBEAT PULSE + AUDIBLE LUB-DUB SOUND */
+    function triggerHeartbeatPulse() {
+      if (navigator.vibrate) {
+        navigator.vibrate([60, 40, 80]);
+      }
+    }
+
+    function playHeartbeatSound() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!audioCtx) audioCtx = new AudioContext();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const now = audioCtx.currentTime;
+
+        function makeThump(startTime, freq, duration, gainVal) {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, startTime);
+          osc.frequency.exponentialRampToValueAtTime(30, startTime + duration);
+
+          gain.gain.setValueAtTime(gainVal, startTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          osc.start(startTime);
+          osc.stop(startTime + duration);
+        }
+
+        // Lub-Dub double beat
+        makeThump(now, 65, 0.14, 0.9);
+        makeThump(now + 0.18, 85, 0.11, 0.7);
+      } catch (e) {
+        console.log("Heartbeat sound synthesis:", e);
+      }
+    }
 
     function handleHandConnect() {
       if (isTransitioning) return;
@@ -1670,9 +937,14 @@
       if (pulse) pulse.style.display = 'none';
       if (prompt) prompt.style.display = 'none';
 
+      // Physical vibration + speaker lub-dub sound
+      triggerHeartbeatPulse();
+      playHeartbeatSound();
+
       screen.classList.add('connecting');
 
       if (audio) {
+        setupWebAudioMusic();
         audio.play().then(() => {
           isPlaying = true;
           audioIcon.innerText = '🔊';
@@ -1693,19 +965,70 @@
         isPlaying = false;
         audioIcon.innerText = '🔇';
       } else {
+        setupWebAudioMusic();
         audio.play().then(() => {
           isPlaying = true;
           audioIcon.innerText = '🔊';
-        }).catch(err => console.log('Audio playback error:', err));
+        }).catch(err => console.log('Playback error:', err));
       }
     }
 
-    /* SYNTHESIZED TEMPLE BELL + DIYA */
-    let audioCtx = null;
+    /* DIGITAL GOLD FOIL SCRATCH CARD */
+    function initScratchCard() {
+      const canvas = document.getElementById('scratchCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width;
+      const H = canvas.height;
+
+      const goldGrad = ctx.createLinearGradient(0, 0, W, H);
+      goldGrad.addColorStop(0, '#E6CA65');
+      goldGrad.addColorStop(0.3, '#FFF3A8');
+      goldGrad.addColorStop(0.6, '#C4982E');
+      goldGrad.addColorStop(1, '#9C7227');
+      ctx.fillStyle = goldGrad;
+      ctx.fillRect(0, 0, W, H);
+
+      ctx.fillStyle = 'rgba(255,255,255,0.4)';
+      for (let i = 0; i < 150; i++) {
+        ctx.fillRect(Math.random() * W, Math.random() * H, 2, 2);
+      }
+
+      ctx.font = 'bold 15px "Cinzel", serif';
+      ctx.fillStyle = '#4D3205';
+      ctx.textAlign = 'center';
+      ctx.fillText('✨ SCRATCH HERE WITH FINGER ✨', W / 2, H / 2 + 5);
+
+      let isDrawing = false;
+      function scratch(e) {
+        if (!isDrawing) return;
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const x = (clientX - rect.left) * (canvas.width / rect.width);
+        const y = (clientY - rect.top) * (canvas.height / rect.height);
+
+        ctx.globalCompositeOperation = 'destination-out';
+        ctx.beginPath();
+        ctx.arc(x, y, 18, 0, Math.PI * 2);
+        ctx.fill();
+
+        if (navigator.vibrate) navigator.vibrate(15);
+      }
+
+      canvas.addEventListener('mousedown', () => isDrawing = true);
+      canvas.addEventListener('mouseup', () => isDrawing = false);
+      canvas.addEventListener('mousemove', scratch);
+
+      canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
+      canvas.addEventListener('touchend', () => isDrawing = false);
+      canvas.addEventListener('touchmove', scratch);
+    }
+
+    /* DIYA LIGHTING & TEMPLE BELL */
     function playTempleBellChime() {
       try {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContext) return;
         if (!audioCtx) audioCtx = new AudioContext();
         if (audioCtx.state === 'suspended') audioCtx.resume();
 
@@ -1716,17 +1039,15 @@
           const gain = audioCtx.createGain();
           osc.type = 'sine';
           osc.frequency.setValueAtTime(freq, now);
-
           gain.gain.setValueAtTime(0.25 / (i + 1), now);
           gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.2);
-
           osc.connect(gain);
           gain.connect(audioCtx.destination);
           osc.start(now);
           osc.stop(now + 2.2);
         });
       } catch (e) {
-        console.log("WebAudio bell note:", e);
+        console.log("Bell chime error:", e);
       }
     }
 
@@ -1739,10 +1060,10 @@
       const status = document.getElementById('diyaStatus');
 
       diya.classList.add('lit');
-      status.innerText = "✨ The Sacred Diya is Lit! Divine Blessings Showered 🙏";
+      status.innerText = currentLang === 'en' ? "✨ The Sacred Diya is Lit! Divine Blessings Showered 🙏" : "✨ మంగళ దీపం వెలిగించబడింది! దైవ ఆశీస్సులు 🙏";
       status.style.color = "#A37C32";
 
-      if (navigator.vibrate) navigator.vibrate([40, 30, 40]);
+      triggerHeartbeatPulse();
       playTempleBellChime();
 
       if (typeof confetti === 'function') {
@@ -1760,18 +1081,14 @@
     }
 
     function showerTalambralu(type) {
-      if (navigator.vibrate) navigator.vibrate(30);
-
+      triggerHeartbeatPulse();
       if (type === 'rice') {
         confetti({
           particleCount: 65,
           spread: 80,
           angle: 90,
           origin: { y: 0.65 },
-          colors: ['#FFD700', '#FFEA00', '#FFFDD0', '#E5B80B'],
-          shapes: ['circle', 'square'],
-          scalar: 0.85,
-          gravity: 0.95
+          colors: ['#FFD700', '#FFEA00', '#FFFDD0', '#E5B80B']
         });
       } else {
         confetti({
@@ -1779,15 +1096,12 @@
           spread: 75,
           angle: 90,
           origin: { y: 0.65 },
-          colors: ['#C41E3A', '#DE3163', '#FF4081', '#FFB7B2'],
-          shapes: ['circle'],
-          scalar: 1.1,
-          gravity: 0.8
+          colors: ['#C41E3A', '#DE3163', '#FF4081', '#FFB7B2']
         });
       }
     }
 
-    /* ==================== VIRTUAL PHOTO BOOTH LOGIC ==================== */
+    /* VIRTUAL PHOTO BOOTH */
     let streamObj = null;
     let capturedSelfieBase64 = null;
 
@@ -1806,8 +1120,7 @@
         video.srcObject = streamObj;
         boothArea.style.display = 'block';
       } catch (err) {
-        alert("Camera permission is needed to take a selfie! 📸");
-        console.error(err);
+        alert("Camera permission is required to snap a selfie frame! 📸");
       }
     }
 
@@ -1824,14 +1137,12 @@
       const canvas = document.getElementById('boothCanvas');
       const ctx = canvas.getContext('2d');
 
-      // Mirror selfie
       ctx.save();
       ctx.translate(400, 0);
       ctx.scale(-1, 1);
       ctx.drawImage(video, 0, 0, 400, 400);
       ctx.restore();
 
-      // Custom #SamRika Gold & Maroon Frame Overlay
       ctx.lineWidth = 14;
       ctx.strokeStyle = '#851329';
       ctx.strokeRect(7, 7, 386, 386);
@@ -1840,11 +1151,9 @@
       ctx.strokeStyle = '#D4AF37';
       ctx.strokeRect(16, 16, 368, 368);
 
-      // Frame Header & Hashtag
       ctx.fillStyle = '#FFFFFF';
       ctx.fillRect(80, 355, 240, 30);
       ctx.strokeStyle = '#D4AF37';
-      ctx.lineWidth = 1;
       ctx.strokeRect(80, 355, 240, 30);
 
       ctx.fillStyle = '#851329';
@@ -1852,9 +1161,7 @@
       ctx.textAlign = 'center';
       ctx.fillText('Sampath & Sarika #SamRika', 200, 376);
 
-      // Export light, compressed Base64 (~25 KB)
       capturedSelfieBase64 = canvas.toDataURL('image/jpeg', 0.6);
-
       document.getElementById('selfieThumb').src = capturedSelfieBase64;
       document.getElementById('capturedPhotoPreview').style.display = 'flex';
       closePhotoBooth();
@@ -1865,7 +1172,7 @@
       document.getElementById('capturedPhotoPreview').style.display = 'none';
     }
 
-    /* ==================== AUDIO GUESTBOOK (10-SEC VOICE NOTE) ==================== */
+    /* AUDIO GUESTBOOK (10-SEC VOICE NOTE) */
     let mediaRecorder = null;
     let audioChunks = [];
     let capturedAudioBase64 = null;
@@ -1934,7 +1241,6 @@
 
       } catch (err) {
         alert("Microphone permission is required to leave a voice blessing! 🎙️");
-        console.error(err);
       }
     }
 
@@ -1945,7 +1251,7 @@
       document.getElementById('recordVoiceBtn').innerText = "🎙️ Voice Note (10s)";
     }
 
-    /* AUTO-WRAPPING CANVAS HELPER */
+    /* DOWNLOADABLE BLESSING CARD */
     function renderWrappedLines(ctx, text, x, startY, maxWidth, lineHeight) {
       const words = text.split(' ');
       let line = '';
@@ -1965,7 +1271,6 @@
       return currentY;
     }
 
-    /* REDESIGNED DOWNLOADABLE BLESSING CARD */
     let lastPostedName = "";
     let lastPostedWish = "";
 
@@ -1975,7 +1280,6 @@
       const W = canvas.width;
       const H = canvas.height;
 
-      // 1. Parchment Background
       const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 80, W / 2, H / 2, 700);
       bgGrad.addColorStop(0, '#FFFDF7');
       bgGrad.addColorStop(0.7, '#FBF3E3');
@@ -1983,12 +1287,6 @@
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, W, H);
 
-      ctx.fillStyle = 'rgba(180, 140, 60, 0.05)';
-      for (let i = 0; i < 400; i++) {
-        ctx.fillRect(Math.random() * W, Math.random() * H, 2, 2);
-      }
-
-      // 2. Borders
       ctx.lineWidth = 14;
       ctx.strokeStyle = '#851329';
       ctx.strokeRect(26, 26, W - 52, H - 52);
@@ -1997,13 +1295,6 @@
       ctx.strokeStyle = '#C59A3F';
       ctx.strokeRect(44, 44, W - 88, H - 88);
 
-      ctx.lineWidth = 1.5;
-      ctx.strokeStyle = '#DFC394';
-      ctx.setLineDash([8, 6]);
-      ctx.strokeRect(54, 54, W - 108, H - 108);
-      ctx.setLineDash([]);
-
-      // 3. Header Shloka & Title
       ctx.textAlign = 'center';
       ctx.font = 'bold 26px "Noto Sans Telugu", sans-serif';
       ctx.fillStyle = '#851329';
@@ -2013,47 +1304,25 @@
       ctx.fillStyle = '#8E6A26';
       ctx.fillText('WEDDING BLESSINGS', W / 2, 195);
 
-      // 4. Highlighted Couple Names
       ctx.font = 'bold 76px "Great Vibes", cursive, serif';
       ctx.fillStyle = '#851329';
-      ctx.shadowColor = 'rgba(197, 154, 63, 0.4)';
-      ctx.shadowBlur = 10;
       ctx.fillText('Sampath & Sarika', W / 2, 290);
-      ctx.shadowBlur = 0;
 
       ctx.font = 'bold 24px "Cinzel", serif';
       ctx.fillStyle = '#8E6A26';
       ctx.fillText('#SamRika  •  26 November 2026', W / 2, 345);
 
-      // Divider Line
-      ctx.beginPath();
-      ctx.moveTo(W / 2 - 180, 385);
-      ctx.lineTo(W / 2 + 180, 385);
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = '#DFC394';
-      ctx.stroke();
-
-      // 5. Contained Message Box
       const boxX = 80;
       const boxY = 430;
       const boxW = W - 160;
       const boxH = 480;
 
       ctx.fillStyle = '#FFFFFF';
-      ctx.shadowColor = 'rgba(0,0,0,0.06)';
-      ctx.shadowBlur = 15;
       ctx.beginPath();
       ctx.roundRect(boxX, boxY, boxW, boxH, 20);
       ctx.fill();
-      ctx.shadowBlur = 0;
-
-      ctx.lineWidth = 1.5;
       ctx.strokeStyle = '#E8D5B5';
       ctx.stroke();
-
-      ctx.font = 'bold 70px "Playfair Display", serif';
-      ctx.fillStyle = 'rgba(197, 154, 63, 0.3)';
-      ctx.fillText('“', boxX + 50, boxY + 70);
 
       const messageText = lastPostedWish || "Wishing you both a lifetime of happiness, divine harmony, and endless love!";
       ctx.font = 'italic 34px "Playfair Display", serif';
@@ -2061,25 +1330,14 @@
       const lastMsgY = renderWrappedLines(ctx, `"${messageText}"`, W / 2, boxY + 120, boxW - 80, 48);
 
       const divY = Math.max(lastMsgY + 40, boxY + 280);
-      ctx.beginPath();
-      ctx.moveTo(W / 2 - 100, divY);
-      ctx.lineTo(W / 2 + 100, divY);
-      ctx.lineWidth = 1;
-      ctx.strokeStyle = '#E8D5B5';
-      ctx.stroke();
-
       const guestAuthor = lastPostedName || "Well Wisher";
       ctx.font = 'bold 28px "Playfair Display", serif';
       ctx.fillStyle = '#851329';
       renderWrappedLines(ctx, `— With Love & Blessings, ${guestAuthor}`, W / 2, divY + 45, boxW - 60, 38);
 
-      // 6. Footer
       ctx.font = '600 24px "Plus Jakarta Sans", sans-serif';
       ctx.fillStyle = '#7A6953';
       ctx.fillText('VIP Gardens, Suraram, Hyderabad', W / 2, 1000);
-      ctx.font = 'italic 20px "Playfair Display", serif';
-      ctx.fillStyle = '#8E6A26';
-      ctx.fillText('May Lord Venkateshwara shower your union with eternal prosperity 🌸', W / 2, 1040);
 
       const cleanName = (lastPostedName || 'Guest').replace(/[^a-zA-Z0-9]/g, '_');
       const link = document.createElement('a');
@@ -2088,44 +1346,28 @@
       link.click();
     }
 
-    /* THANK YOU MODAL CONTROLS */
+    /* THANK YOU MODAL */
     function openThankYouModal() {
-      const modal = document.getElementById('thankyouModal');
-      modal.classList.add('active');
+      document.getElementById('thankyouModal').classList.add('active');
       showerAkshintalu();
     }
-
-    function closeThankYouModal(e) {
-      const modal = document.getElementById('thankyouModal');
-      modal.classList.remove('active');
+    function closeThankYouModal() {
+      document.getElementById('thankyouModal').classList.remove('active');
     }
 
-    /* FIREBASE CLOUD INTEGRATION */
+    /* FIREBASE INTEGRATION & UNBLOCKED SUBMISSION */
     const FIREBASE_ENDPOINT = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/wishes.json";
     const FIREBASE_COUNTER_URL = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/counter.json";
-
     let totalBlessings = 356;
 
     async function loadCloudCounter() {
       try {
         const res = await fetch(FIREBASE_COUNTER_URL);
         const data = await res.json();
-        if (data && typeof data.count === 'number') {
-          totalBlessings = data.count;
-        } else {
-          await fetch(FIREBASE_COUNTER_URL, {
-            method: 'PUT',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ count: 356 })
-          });
-          totalBlessings = 356;
-        }
-      } catch (err) {
-        console.log("Counter fetch fallback:", err);
-      } finally {
-        const counterEl = document.getElementById('blessingCount');
-        if (counterEl) counterEl.innerText = totalBlessings;
-      }
+        if (data && typeof data.count === 'number') totalBlessings = data.count;
+      } catch (err) {}
+      const counterEl = document.getElementById('blessingCount');
+      if (counterEl) counterEl.innerText = totalBlessings;
     }
 
     async function showerAkshintalu() {
@@ -2134,102 +1376,33 @@
       if (counterEl) counterEl.innerText = totalBlessings;
 
       if (typeof confetti === 'function') {
-        const count = 75;
-        const showerColors = ['#FFD700', '#FFA000', '#D2143A', '#FFB7B2', '#FFFFFF', '#E5B80B'];
-
-        confetti({
-          particleCount: count,
-          angle: 60,
-          spread: 70,
-          origin: { x: 0.2, y: 0.1 },
-          colors: showerColors,
-          ticks: 280,
-          gravity: 0.75,
-          scalar: 0.95,
-          drift: 0.1
-        });
-
-        confetti({
-          particleCount: count,
-          angle: 120,
-          spread: 70,
-          origin: { x: 0.8, y: 0.1 },
-          colors: showerColors,
-          ticks: 280,
-          gravity: 0.75,
-          scalar: 0.95,
-          drift: -0.1
-        });
-
-        setTimeout(() => {
-          confetti({
-            particleCount: 50,
-            angle: 90,
-            spread: 90,
-            origin: { x: 0.5, y: 0.05 },
-            colors: showerColors,
-            ticks: 260,
-            gravity: 0.8,
-            scalar: 1.05
-          });
-        }, 180);
+        confetti({ particleCount: 70, spread: 70, origin: { x: 0.5, y: 0.2 }, colors: ['#FFD700', '#FFA000', '#D2143A', '#FFB7B2', '#FFFFFF'] });
       }
-
       try {
-        await fetch(FIREBASE_COUNTER_URL, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ count: totalBlessings })
-        });
-      } catch (err) {
-        console.log("Counter sync error:", err);
-      }
+        await fetch(FIREBASE_COUNTER_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ count: totalBlessings }) });
+      } catch (err) {}
     }
-
-    const defaultStarterWishes = [
-      { name: "Ramesh & Family", wish: "Wishing you both a lifetime of happiness, divine harmony, and endless love! 💐" },
-      { name: "Suresh Sharma", wish: "Hearty congratulations Sampath & Sarika! May God bless you both abundantly. 🪷" },
-      { name: "Priya & Anand", wish: "May Lord Rama & Sita bless your sacred union forever! 💛" }
-    ];
 
     async function loadCloudWishes() {
       const box = document.getElementById('wishesBox');
       try {
         const response = await fetch(FIREBASE_ENDPOINT);
         const data = await response.json();
-
         box.innerHTML = '';
-
         if (data) {
           const wishes = Object.values(data).reverse();
           wishes.forEach(item => {
             const card = document.createElement('div');
             card.className = 'wish-item';
-
             const photoHtml = item.photo ? `<img src="${item.photo}" class="wish-user-avatar" alt="Selfie">` : '';
             const audioHtml = item.audio ? `<audio controls src="${item.audio}" class="wish-audio-bar"></audio>` : '';
-
             card.innerHTML = `
               <div class="wish-flex-body">
                 ${photoHtml}
                 <div style="flex:1;">
-                  <div class="wish-text">"${escapeHtml(item.wish)}"</div>
-                  <div class="wish-author">— ${escapeHtml(item.name)}</div>
+                  <div class="wish-text">"${escapeHtml(item.wish || 'Heartfelt Wedding Blessings! 💐')}"</div>
+                  <div class="wish-author">— ${escapeHtml(item.name || 'Well Wisher')}</div>
                   ${audioHtml}
-                </div>
-              </div>
-            `;
-            box.appendChild(card);
-          });
-        } else {
-          defaultStarterWishes.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'wish-item';
-            card.innerHTML = `
-              <div class="wish-flex-body">
-                <div style="flex:1;">
-                  <div class="wish-text">"${escapeHtml(item.wish)}"</div>
-                  <div class="wish-author">— ${escapeHtml(item.name)}</div>
                 </div>
               </div>
             `;
@@ -2237,38 +1410,26 @@
           });
         }
       } catch (err) {
-        console.log("Could not load from Firebase:", err);
-        box.innerHTML = '';
-        defaultStarterWishes.forEach(item => {
-          const card = document.createElement('div');
-          card.className = 'wish-item';
-          card.innerHTML = `
-            <div class="wish-flex-body">
-              <div style="flex:1;">
-                <div class="wish-text">"${escapeHtml(item.wish)}"</div>
-                <div class="wish-author">— ${escapeHtml(item.name)}</div>
-              </div>
-            </div>
-          `;
-          box.appendChild(card);
-        });
+        box.innerHTML = '<div style="text-align:center; padding:12px; color:#8C7355;">Warm Blessings to the lovely couple! 💐</div>';
       }
     }
 
+    /* UNBLOCKED SUBMISSION */
     async function submitWish() {
       const nameInput = document.getElementById('guestName');
       const msgInput = document.getElementById('guestMessage');
       const postBtn = document.getElementById('postWishBtn');
       const downloadBtn = document.getElementById('downloadCardBtn');
-      const name = nameInput.value.trim();
+
+      const name = nameInput.value.trim() || "Well Wisher";
       const wish = msgInput.value.trim();
 
-      if (!name || !wish) {
-        alert("Please enter both your name and your blessing message! 💛");
+      if (!wish && !capturedSelfieBase64 && !capturedAudioBase64) {
+        alert(currentLang === 'en' ? "Please leave a blessing message, photo, or voice note! 💛" : "దయచేసి ఒక సందేశం, ఫోటో లేదా వాయిస్ నోట్ జతచేయండి! 💛");
         return;
       }
 
-      postBtn.innerText = "Saving to Cloud...";
+      postBtn.innerText = currentLang === 'en' ? "Saving Blessing..." : "సేవ్ అవుతోంది...";
       postBtn.disabled = true;
 
       try {
@@ -2277,7 +1438,7 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             name: name,
-            wish: wish,
+            wish: wish || (capturedAudioBase64 ? "🎵 Voice Blessing" : "📸 Wedding Photo Blessing"),
             photo: capturedSelfieBase64 || null,
             audio: capturedAudioBase64 || null,
             timestamp: Date.now()
@@ -2285,7 +1446,7 @@
         });
 
         lastPostedName = name;
-        lastPostedWish = wish;
+        lastPostedWish = wish || "Hearty Congratulations Sampath & Sarika!";
 
         nameInput.value = '';
         msgInput.value = '';
@@ -2295,14 +1456,11 @@
         await loadCloudWishes();
         showerAkshintalu();
 
-        if (downloadBtn) {
-          downloadBtn.style.display = 'block';
-        }
+        if (downloadBtn) downloadBtn.style.display = 'block';
       } catch (err) {
-        alert("Unable to save wish right now. Please check your internet connection.");
-        console.error(err);
+        alert("Could not connect. Please check your internet connection.");
       } finally {
-        postBtn.innerText = "✨ Send Blessing";
+        postBtn.innerText = currentLang === 'en' ? "✨ Send Blessing" : "✨ ఆశీర్వదించండి";
         postBtn.disabled = false;
       }
     }
@@ -2313,18 +1471,12 @@
       });
     }
 
-    // Countdown to 26 Nov 2026, 9:15 AM IST
+    // Countdown
     const weddingDate = new Date('2026-11-26T09:15:00+05:30').getTime();
     function updateWeddingCountdown() {
       const now = new Date().getTime();
       const diff = weddingDate - now;
-      if (diff <= 0) {
-        document.getElementById('days').innerText = '00';
-        document.getElementById('hours').innerText = '00';
-        document.getElementById('mins').innerText = '00';
-        document.getElementById('secs').innerText = '00';
-        return;
-      }
+      if (diff <= 0) return;
       document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
       document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
       document.getElementById('mins').innerText = String(Math.floor((diff % (1000 * 60)) / (1000 * 60))).padStart(2, '0');
@@ -2332,6 +1484,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      initScratchCard();
       loadCloudWishes();
       loadCloudCounter();
       setInterval(updateWeddingCountdown, 1000);
