@@ -143,7 +143,7 @@
       display: none !important;
     }
 
-    /* MAIN INVITATION FRAME CONTAINER */
+    /* MAIN INVITATION CONTAINER */
     .invitation-container {
       width: 100%;
       max-width: 490px;
@@ -777,7 +777,7 @@
     .livestream-player-box {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
       border-radius: 16px;
@@ -923,6 +923,117 @@
       border-color: var(--maroon-primary);
       box-shadow: 0 0 0 2px rgba(133, 19, 41, 0.12);
     }
+
+    /* MEDIA BUTTONS (PHOTO BOOTH & VOICE NOTE) */
+    .media-action-row {
+      display: flex;
+      gap: 8px;
+      margin: 2px 0 4px;
+    }
+    .media-action-btn {
+      flex: 1;
+      background: #FAF3E3;
+      border: 1.5px solid #DFC394;
+      border-radius: 12px;
+      padding: 9px 8px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: #6C5230;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      transition: background 0.15s ease, transform 0.1s ease;
+    }
+    .media-action-btn:active { transform: scale(0.97); }
+
+    /* BOOTH CAMERA LIVE WRAPPER */
+    .booth-live-wrapper {
+      display: none;
+      position: relative;
+      margin: 10px auto;
+      max-width: 300px;
+      text-align: center;
+      background: #000;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid #D4AF37;
+    }
+    .booth-live-wrapper video {
+      width: 100%;
+      height: auto;
+      display: block;
+      transform: scaleX(-1);
+    }
+    .booth-ctrl-bar {
+      padding: 8px;
+      background: rgba(255, 253, 249, 0.96);
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+    }
+    .booth-snap-btn {
+      background: var(--maroon-primary);
+      color: #FFF;
+      border: none;
+      border-radius: 20px;
+      padding: 7px 16px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+    .booth-cancel-btn {
+      background: #E0E0E0;
+      color: #333;
+      border: none;
+      border-radius: 20px;
+      padding: 7px 14px;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+
+    /* CAPTURED SELFIE THUMBNAIL */
+    .captured-selfie-box {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      background: #FFFDF5;
+      border: 1px dashed #DFC394;
+      border-radius: 12px;
+      margin: 4px 0;
+    }
+    .selfie-thumb-img {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid #D4AF37;
+      object-fit: cover;
+    }
+
+    /* VOICE RECORDER STATUS BOX */
+    .voice-status-wrapper {
+      display: none;
+      text-align: center;
+      padding: 8px 10px;
+      background: #FFF8E7;
+      border: 1px dashed #E5BA58;
+      border-radius: 12px;
+      margin: 4px 0;
+    }
+    .voice-status-txt {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--maroon-primary);
+    }
+    .voice-audio-preview {
+      width: 100%;
+      height: 32px;
+      margin-top: 6px;
+      display: none;
+    }
+
     .send-wish-btn {
       width: 100%;
       padding: 11px;
@@ -957,8 +1068,9 @@
       50% { box-shadow: 0 6px 20px rgba(37, 211, 102, 0.65); }
     }
 
+    /* WISHES TICKER CARDS WITH AVATAR & VOICE PLAYER */
     .wishes-ticker-box {
-      max-height: 220px;
+      max-height: 260px;
       overflow-y: auto;
       border: 1px dashed #E3D1B4;
       border-radius: 12px;
@@ -966,17 +1078,36 @@
       background: #FAF7F0;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 10px;
     }
     .wish-item {
       background: #FFFFFF;
-      border-radius: 8px;
-      padding: 8px 12px;
+      border-radius: 10px;
+      padding: 10px 12px;
       border: 1px solid #F0E3D0;
       font-size: 0.86rem;
     }
+    .wish-flex-body {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+    }
+    .wish-user-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid #DFC394;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #FAF5EB;
+    }
     .wish-text { color: #382E26; font-style: italic; margin-bottom: 2px; }
     .wish-author { font-size: 0.76rem; font-weight: 700; color: var(--gold-deep); text-align: right; }
+    .wish-audio-bar {
+      width: 100%;
+      height: 28px;
+      margin-top: 6px;
+    }
 
     /* THANK YOU POPUP TRIGGER BUTTON */
     .thankyou-trigger-wrap {
@@ -1382,7 +1513,6 @@
           <div class="livestream-title">Watch Live Kalyanam</div>
           <div class="livestream-sub">Join our sacred ceremony virtually from anywhere in the world 🎥✨</div>
 
-          <!-- Embedded YouTube Live Stream Player -->
           <div class="livestream-player-box">
             <iframe 
               src="https://www.youtube-nocookie.com/embed/85FWdlUqBkw" 
@@ -1427,14 +1557,51 @@
           <div class="blessing-ticker">💖 <span id="blessingCount">...</span> blessings showered so far!</div>
         </div>
 
-        <!-- Guest Wishes Wall -->
+        <!-- GUEST WISHES WALL WITH PHOTO BOOTH & AUDIO GUESTBOOK -->
         <div class="wishes-wall">
           <div class="guestbook-title">Guest Wishes Wall</div>
-          <div class="guestbook-sub">Leave your warm blessings for Sampath &amp; Sarika</div>
+          <div class="guestbook-sub">Leave your warm blessings, photo selfie, or voice note for Sampath &amp; Sarika</div>
           
           <div class="wish-input-group">
             <input type="text" id="guestName" placeholder="Your Name (e.g., Ramesh Uncle)" maxlength="40">
             <input type="text" id="guestMessage" placeholder="Your blessing / wish..." maxlength="120">
+
+            <!-- Interactive Media Action Buttons -->
+            <div class="media-action-row">
+              <button type="button" class="media-action-btn" onclick="togglePhotoBooth()">
+                📸 Snap Selfie Frame
+              </button>
+              <button type="button" class="media-action-btn" id="recordVoiceBtn" onclick="handleVoiceRecord()">
+                🎙️ Voice Note (10s)
+              </button>
+            </div>
+
+            <!-- Virtual Photo Booth Live Camera View -->
+            <div class="booth-live-wrapper" id="boothArea">
+              <video id="boothVideo" autoplay playsinline></video>
+              <canvas id="boothCanvas" width="400" height="400" style="display:none;"></canvas>
+              <div class="booth-ctrl-bar">
+                <button type="button" class="booth-snap-btn" onclick="snapSelfie()">⚡ Take Photo</button>
+                <button type="button" class="booth-cancel-btn" onclick="closePhotoBooth()">✕ Close</button>
+              </div>
+            </div>
+
+            <!-- Captured Selfie Confirmation Thumbnail -->
+            <div class="captured-selfie-box" id="capturedPhotoPreview">
+              <img id="selfieThumb" class="selfie-thumb-img" src="" alt="Captured Selfie">
+              <div style="flex:1; text-align:left;">
+                <div style="font-size:0.78rem; font-weight:700; color:#2E7D32;">✨ Frame Ready!</div>
+                <div style="font-size:0.72rem; color:#851329; cursor:pointer; text-decoration:underline;" onclick="clearSelfie()">Remove Photo ✕</div>
+              </div>
+            </div>
+
+            <!-- 10-Second Voice Recorder Status Box -->
+            <div class="voice-status-wrapper" id="voiceStatusArea">
+              <div class="voice-status-txt" id="recordingTimer">🔴 Recording... 10s</div>
+              <audio id="recordedAudioPreview" class="voice-audio-preview" controls></audio>
+              <div id="clearVoiceLink" style="display:none; font-size:0.74rem; color:#851329; cursor:pointer; margin-top:4px; text-decoration:underline;" onclick="clearVoiceNote()">Delete Voice Note ✕</div>
+            </div>
+
             <button class="send-wish-btn" id="postWishBtn" onclick="submitWish()">✨ Send Blessing</button>
             <button class="download-card-btn" id="downloadCardBtn" onclick="generateAndDownloadBlessingCard()">💌 Download My Blessing Card</button>
           </div>
@@ -1474,7 +1641,7 @@
     </div>
   </div>
 
-  <!-- HIDDEN CANVAS FOR CARD GENERATION -->
+  <!-- HIDDEN CANVAS FOR DOWNLOADABLE BLESSING CARD -->
   <canvas id="blessingCanvas" width="900" height="1200" style="display:none;"></canvas>
 
   <script>
@@ -1620,6 +1787,164 @@
       }
     }
 
+    /* ==================== VIRTUAL PHOTO BOOTH LOGIC ==================== */
+    let streamObj = null;
+    let capturedSelfieBase64 = null;
+
+    async function togglePhotoBooth() {
+      const boothArea = document.getElementById('boothArea');
+      if (boothArea.style.display === 'block') {
+        closePhotoBooth();
+        return;
+      }
+      try {
+        streamObj = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "user", width: { ideal: 400 }, height: { ideal: 400 } },
+          audio: false
+        });
+        const video = document.getElementById('boothVideo');
+        video.srcObject = streamObj;
+        boothArea.style.display = 'block';
+      } catch (err) {
+        alert("Camera permission is needed to take a selfie! 📸");
+        console.error(err);
+      }
+    }
+
+    function closePhotoBooth() {
+      if (streamObj) {
+        streamObj.getTracks().forEach(t => t.stop());
+        streamObj = null;
+      }
+      document.getElementById('boothArea').style.display = 'none';
+    }
+
+    function snapSelfie() {
+      const video = document.getElementById('boothVideo');
+      const canvas = document.getElementById('boothCanvas');
+      const ctx = canvas.getContext('2d');
+
+      // Mirror selfie
+      ctx.save();
+      ctx.translate(400, 0);
+      ctx.scale(-1, 1);
+      ctx.drawImage(video, 0, 0, 400, 400);
+      ctx.restore();
+
+      // Custom #SamRika Gold & Maroon Frame Overlay
+      ctx.lineWidth = 14;
+      ctx.strokeStyle = '#851329';
+      ctx.strokeRect(7, 7, 386, 386);
+
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#D4AF37';
+      ctx.strokeRect(16, 16, 368, 368);
+
+      // Frame Header & Hashtag
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(80, 355, 240, 30);
+      ctx.strokeStyle = '#D4AF37';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(80, 355, 240, 30);
+
+      ctx.fillStyle = '#851329';
+      ctx.font = 'bold 16px "Cinzel", serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Sampath & Sarika #SamRika', 200, 376);
+
+      // Export light, compressed Base64 (~25 KB)
+      capturedSelfieBase64 = canvas.toDataURL('image/jpeg', 0.6);
+
+      document.getElementById('selfieThumb').src = capturedSelfieBase64;
+      document.getElementById('capturedPhotoPreview').style.display = 'flex';
+      closePhotoBooth();
+    }
+
+    function clearSelfie() {
+      capturedSelfieBase64 = null;
+      document.getElementById('capturedPhotoPreview').style.display = 'none';
+    }
+
+    /* ==================== AUDIO GUESTBOOK (10-SEC VOICE NOTE) ==================== */
+    let mediaRecorder = null;
+    let audioChunks = [];
+    let capturedAudioBase64 = null;
+    let countdownInterval = null;
+
+    async function handleVoiceRecord() {
+      const statusArea = document.getElementById('voiceStatusArea');
+      const timerLbl = document.getElementById('recordingTimer');
+      const audioPreview = document.getElementById('recordedAudioPreview');
+      const clearLink = document.getElementById('clearVoiceLink');
+      const recBtn = document.getElementById('recordVoiceBtn');
+
+      if (mediaRecorder && mediaRecorder.state === "recording") {
+        mediaRecorder.stop();
+        return;
+      }
+
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        audioChunks = [];
+        mediaRecorder = new MediaRecorder(stream);
+
+        mediaRecorder.ondataavailable = e => {
+          if (e.data.size > 0) audioChunks.push(e.data);
+        };
+
+        mediaRecorder.onstop = () => {
+          clearInterval(countdownInterval);
+          stream.getTracks().forEach(t => t.stop());
+
+          const blob = new Blob(audioChunks, { type: 'audio/webm' });
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            capturedAudioBase64 = reader.result;
+            audioPreview.src = capturedAudioBase64;
+            audioPreview.style.display = 'block';
+            clearLink.style.display = 'block';
+            timerLbl.innerText = "✅ Voice Blessing Ready!";
+            timerLbl.style.color = "#2E7D32";
+            recBtn.innerText = "🎙️ Re-record (10s)";
+          };
+          reader.readAsDataURL(blob);
+        };
+
+        mediaRecorder.start();
+        statusArea.style.display = 'block';
+        audioPreview.style.display = 'none';
+        clearLink.style.display = 'none';
+        recBtn.innerText = "⏹️ Stop Recording";
+
+        let secLeft = 10;
+        timerLbl.innerText = `🔴 Recording... ${secLeft}s (Tap Stop when done)`;
+        timerLbl.style.color = "#851329";
+
+        countdownInterval = setInterval(() => {
+          secLeft--;
+          if (secLeft <= 0) {
+            clearInterval(countdownInterval);
+            if (mediaRecorder && mediaRecorder.state === "recording") {
+              mediaRecorder.stop();
+            }
+          } else {
+            timerLbl.innerText = `🔴 Recording... ${secLeft}s (Tap Stop when done)`;
+          }
+        }, 1000);
+
+      } catch (err) {
+        alert("Microphone permission is required to leave a voice blessing! 🎙️");
+        console.error(err);
+      }
+    }
+
+    function clearVoiceNote() {
+      capturedAudioBase64 = null;
+      document.getElementById('voiceStatusArea').style.display = 'none';
+      document.getElementById('recordedAudioPreview').src = '';
+      document.getElementById('recordVoiceBtn').innerText = "🎙️ Voice Note (10s)";
+    }
+
     /* AUTO-WRAPPING CANVAS HELPER */
     function renderWrappedLines(ctx, text, x, startY, maxWidth, lineHeight) {
       const words = text.split(' ');
@@ -1640,7 +1965,7 @@
       return currentY;
     }
 
-    /* REDESIGNED DOWNLOADABLE BLESSING CARD (STRICTLY CONTAINED) */
+    /* REDESIGNED DOWNLOADABLE BLESSING CARD */
     let lastPostedName = "";
     let lastPostedWish = "";
 
@@ -1658,7 +1983,6 @@
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, W, H);
 
-      // Texture Specks
       ctx.fillStyle = 'rgba(180, 140, 60, 0.05)';
       for (let i = 0; i < 400; i++) {
         ctx.fillRect(Math.random() * W, Math.random() * H, 2, 2);
@@ -1727,18 +2051,15 @@
       ctx.strokeStyle = '#E8D5B5';
       ctx.stroke();
 
-      // Quotation Mark
       ctx.font = 'bold 70px "Playfair Display", serif';
       ctx.fillStyle = 'rgba(197, 154, 63, 0.3)';
       ctx.fillText('“', boxX + 50, boxY + 70);
 
-      // Wish Message Wrapped
       const messageText = lastPostedWish || "Wishing you both a lifetime of happiness, divine harmony, and endless love!";
       ctx.font = 'italic 34px "Playfair Display", serif';
       ctx.fillStyle = '#2F2620';
       const lastMsgY = renderWrappedLines(ctx, `"${messageText}"`, W / 2, boxY + 120, boxW - 80, 48);
 
-      // Divider inside message box
       const divY = Math.max(lastMsgY + 40, boxY + 280);
       ctx.beginPath();
       ctx.moveTo(W / 2 - 100, divY);
@@ -1747,7 +2068,6 @@
       ctx.strokeStyle = '#E8D5B5';
       ctx.stroke();
 
-      // Guest Author Name Wrapped (Never overflowing)
       const guestAuthor = lastPostedName || "Well Wisher";
       ctx.font = 'bold 28px "Playfair Display", serif';
       ctx.fillStyle = '#851329';
@@ -1761,7 +2081,6 @@
       ctx.fillStyle = '#8E6A26';
       ctx.fillText('May Lord Venkateshwara shower your union with eternal prosperity 🌸', W / 2, 1040);
 
-      // Download PNG Trigger
       const cleanName = (lastPostedName || 'Guest').replace(/[^a-zA-Z0-9]/g, '_');
       const link = document.createElement('a');
       link.download = `Wedding_Blessing_Sampath_Sarika_${cleanName}.png`;
@@ -1886,14 +2205,34 @@
           wishes.forEach(item => {
             const card = document.createElement('div');
             card.className = 'wish-item';
-            card.innerHTML = `<div class="wish-text">"${escapeHtml(item.wish)}"</div><div class="wish-author">— ${escapeHtml(item.name)}</div>`;
+
+            const photoHtml = item.photo ? `<img src="${item.photo}" class="wish-user-avatar" alt="Selfie">` : '';
+            const audioHtml = item.audio ? `<audio controls src="${item.audio}" class="wish-audio-bar"></audio>` : '';
+
+            card.innerHTML = `
+              <div class="wish-flex-body">
+                ${photoHtml}
+                <div style="flex:1;">
+                  <div class="wish-text">"${escapeHtml(item.wish)}"</div>
+                  <div class="wish-author">— ${escapeHtml(item.name)}</div>
+                  ${audioHtml}
+                </div>
+              </div>
+            `;
             box.appendChild(card);
           });
         } else {
           defaultStarterWishes.forEach(item => {
             const card = document.createElement('div');
             card.className = 'wish-item';
-            card.innerHTML = `<div class="wish-text">"${escapeHtml(item.wish)}"</div><div class="wish-author">— ${escapeHtml(item.name)}</div>`;
+            card.innerHTML = `
+              <div class="wish-flex-body">
+                <div style="flex:1;">
+                  <div class="wish-text">"${escapeHtml(item.wish)}"</div>
+                  <div class="wish-author">— ${escapeHtml(item.name)}</div>
+                </div>
+              </div>
+            `;
             box.appendChild(card);
           });
         }
@@ -1903,7 +2242,14 @@
         defaultStarterWishes.forEach(item => {
           const card = document.createElement('div');
           card.className = 'wish-item';
-          card.innerHTML = `<div class="wish-text">"${escapeHtml(item.wish)}"</div><div class="wish-author">— ${escapeHtml(item.name)}</div>`;
+          card.innerHTML = `
+            <div class="wish-flex-body">
+              <div style="flex:1;">
+                <div class="wish-text">"${escapeHtml(item.wish)}"</div>
+                <div class="wish-author">— ${escapeHtml(item.name)}</div>
+              </div>
+            </div>
+          `;
           box.appendChild(card);
         });
       }
@@ -1932,6 +2278,8 @@
           body: JSON.stringify({
             name: name,
             wish: wish,
+            photo: capturedSelfieBase64 || null,
+            audio: capturedAudioBase64 || null,
             timestamp: Date.now()
           })
         });
@@ -1941,6 +2289,8 @@
 
         nameInput.value = '';
         msgInput.value = '';
+        clearSelfie();
+        clearVoiceNote();
 
         await loadCloudWishes();
         showerAkshintalu();
