@@ -1172,11 +1172,12 @@
       document.getElementById('capturedPhotoPreview').style.display = 'none';
     }
 
-    /* AUDIO GUESTBOOK (10-SEC VOICE NOTE) */
+    /* AUDIO GUESTBOOK (10-SEC VOICE NOTE WITH FAST AUTO-FINALIZE) */
     let mediaRecorder = null;
     let audioChunks = [];
     let capturedAudioBase64 = null;
     let countdownInterval = null;
+    let voiceResolvePromise = null;
 
     async function handleVoiceRecord() {
       const statusArea = document.getElementById('voiceStatusArea');
@@ -1213,6 +1214,11 @@
             timerLbl.innerText = "✅ Voice Blessing Ready!";
             timerLbl.style.color = "#2E7D32";
             recBtn.innerText = "🎙️ Re-record (10s)";
+
+            if (voiceResolvePromise) {
+              voiceResolvePromise(capturedAudioBase64);
+              voiceResolvePromise = null;
+            }
           };
           reader.readAsDataURL(blob);
         };
@@ -1224,7 +1230,7 @@
         recBtn.innerText = "⏹️ Stop Recording";
 
         let secLeft = 10;
-        timerLbl.innerText = `🔴 Recording... ${secLeft}s (Tap Stop when done)`;
+        timerLbl.innerText = `🔴 Recording... ${secLeft}s (Tap Stop or Send)`;
         timerLbl.style.color = "#851329";
 
         countdownInterval = setInterval(() => {
@@ -1235,7 +1241,7 @@
               mediaRecorder.stop();
             }
           } else {
-            timerLbl.innerText = `🔴 Recording... ${secLeft}s (Tap Stop when done)`;
+            timerLbl.innerText = `🔴 Recording... ${secLeft}s (Tap Stop or Send)`;
           }
         }, 1000);
 
@@ -1414,11 +1420,21 @@
       }
     }
 
-    /* UNBLOCKED SUBMISSION */
+    /* UNBLOCKED SUBMISSION (INSTANT RECORDING AUTO-FINALIZE) */
     async function submitWish() {
+      const postBtn = document.getElementById('postWishBtn');
+
+      // If active recording exists when clicking Send Blessing, stop and finalize immediately
+      if (mediaRecorder && mediaRecorder.state === "recording") {
+        postBtn.innerText = currentLang === 'en' ? "Finishing Voice Note..." : "వాయిస్ నోట్ సిద్ధమవుతోంది...";
+        await new Promise((resolve) => {
+          voiceResolvePromise = resolve;
+          mediaRecorder.stop();
+        });
+      }
+
       const nameInput = document.getElementById('guestName');
       const msgInput = document.getElementById('guestMessage');
-      const postBtn = document.getElementById('postWishBtn');
       const downloadBtn = document.getElementById('downloadCardBtn');
 
       const name = nameInput.value.trim() || "Well Wisher";
