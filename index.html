@@ -17,12 +17,13 @@
       --gold-foil: #C59A3F;
       --gold-border: #E8D7B8;
       --text-dark: #2F2620;
-      --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFFDF9 0%, #F5ECDD 100%);
+      /* Fixed bright warm morning color for morning, evening, and night */
+      --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFF8EE 0%, #FBE5C8 100%);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
     body {
-      background-color: #F8F3EA;
+      background-color: #FBF4E8;
       background-image: 
         radial-gradient(#DFC394 0.65px, transparent 0.65px),
         var(--theme-bg-grad);
@@ -35,25 +36,6 @@
       align-items: center;
       overflow-x: hidden;
       padding: 14px 6px;
-      transition: background 1.2s ease;
-    }
-    body.theme-morning {
-      --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFF8EE 0%, #FBE5C8 100%);
-    }
-    body.theme-afternoon {
-      --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFFDF6 0%, #F3DFB6 100%);
-    }
-    body.theme-night {
-      --theme-bg-grad: radial-gradient(circle at 50% 0%, #2A1728 0%, #150914 100%);
-      background-color: #120712;
-      color: #E8D7B8;
-    }
-    body.theme-night .invitation-container {
-      background: #1B0F19;
-      border-color: #A37C32;
-    }
-    body.theme-night .card-inner {
-      background: #20111F;
     }
 
     /* GUEST SELECTION MODAL */
@@ -148,15 +130,29 @@
       font-size: 1.4rem;
     }
 
-    /* WELCOME SURNAME FAMILY BANNER */
+    /* WELCOME SURNAME FAMILY BANNER WITH TIME GREETING */
     .family-welcome-banner {
-      background: linear-gradient(135deg, rgba(254, 244, 205, 0.9), rgba(255, 236, 220, 0.9));
+      background: linear-gradient(135deg, rgba(254, 244, 205, 0.95), rgba(255, 236, 220, 0.95));
       border: 1.5px solid #DFC394;
-      border-radius: 16px;
-      padding: 10px 16px;
+      border-radius: 18px;
+      padding: 12px 16px;
       margin: 10px auto 14px;
       max-width: 92%;
       box-shadow: 0 4px 14px rgba(142, 106, 38, 0.1);
+    }
+    .time-greeting-pill {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.76rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--maroon-primary);
+      background: rgba(255, 255, 255, 0.85);
+      border: 1px solid #DFC394;
+      padding: 3px 12px;
+      border-radius: 14px;
+      margin-bottom: 6px;
     }
     .welcome-family-text {
       font-family: 'Cinzel', serif;
@@ -322,14 +318,14 @@
     }
     .hands-overlay-screen.connecting .tap-guide-prompt { display: none !important; }
 
-    /* INVITATION CONTAINER */
+    /* INVITATION CONTAINER - Crisp White Card Frame */
     .invitation-container {
       width: 100%;
       max-width: 490px;
       position: relative;
       border-radius: 30px;
       overflow: hidden;
-      box-shadow: 0 24px 70px rgba(78, 48, 14, 0.3);
+      box-shadow: 0 24px 70px rgba(78, 48, 14, 0.22);
       background: #FFFFFF;
       border: 2px solid var(--gold-border);
     }
@@ -663,8 +659,9 @@
           </div>
         </div>
 
-        <!-- DYNAMIC SURNAME FAMILY WELCOME BANNER BASED ON SELECTION -->
+        <!-- DYNAMIC TIME-OF-DAY GREETING + SURNAME FAMILY WELCOME BANNER -->
         <div class="family-welcome-banner" id="familyBanner">
+          <div class="time-greeting-pill" id="timeGreetingPill">🌅 Good Morning</div>
           <div class="welcome-family-text" id="familyWelcomeEn">Boga Family Welcomes You</div>
           <div class="welcome-family-sub" id="familyWelcomeTe">బోగ వారి కుటుంబం తరపున సాదర సుస్వాగతం 🙏</div>
         </div>
@@ -1041,6 +1038,20 @@
       }
     };
 
+    /* TIME-BASED GREETING CALCULATOR */
+    function getTimeGreeting() {
+      const hour = new Date().getHours();
+      if (hour >= 5 && hour < 12) {
+        return { en: "🌅 Good Morning", te: "🌅 శుభోదయం" };
+      } else if (hour >= 12 && hour < 17) {
+        return { en: "☀️ Good Afternoon", te: "☀️ శుభ మధ్యాహ్నం" };
+      } else if (hour >= 17 && hour < 21) {
+        return { en: "🌇 Good Evening", te: "🌇 శుభ సాయంత్రం" };
+      } else {
+        return { en: "🌙 Good Night", te: "🌙 శుభరాత్రి" };
+      }
+    }
+
     /* GUEST SIDE SELECTION (GROOM VS BRIDE) */
     let selectedSide = 'groom';
     let currentLang = 'en';
@@ -1055,6 +1066,13 @@
       const brideParentsEl = document.getElementById('brideParentsText');
       const groomParentsEl = document.getElementById('groomParentsText');
       const coupleTitle = document.getElementById('coupleTitle');
+      const greetingPill = document.getElementById('timeGreetingPill');
+
+      // Update Dynamic Greeting above Surname
+      const greeting = getTimeGreeting();
+      if (greetingPill) {
+        greetingPill.innerText = currentLang === 'te' ? greeting.te : greeting.en;
+      }
 
       // Update Couple Name Font and Content
       if (coupleTitle) {
@@ -1116,19 +1134,6 @@
         img.src = baseName + extList[attempt];
       }
     }
-
-    /* DYNAMIC TIME OF DAY THEME DETECTION */
-    function applyTimeOfDayTheme() {
-      const hour = new Date().getHours();
-      if (hour >= 5 && hour < 12) {
-        document.body.classList.add('theme-morning');
-      } else if (hour >= 12 && hour < 17) {
-        document.body.classList.add('theme-afternoon');
-      } else {
-        document.body.classList.add('theme-night');
-      }
-    }
-    applyTimeOfDayTheme();
 
     /* AUDIO & SCROLL MUSIC SWELL CONTROLLER */
     const audio = document.getElementById('weddingAudio');
