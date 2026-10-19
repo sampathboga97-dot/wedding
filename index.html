@@ -21,7 +21,6 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
-    /* DYNAMIC TIME OF DAY THEMES */
     body {
       background-color: #F8F3EA;
       background-image: 
@@ -55,6 +54,159 @@
     }
     body.theme-night .card-inner {
       background: #20111F;
+    }
+
+    /* GUEST SELECTION MODAL */
+    .side-picker-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2100;
+      background: rgba(18, 10, 5, 0.88);
+      backdrop-filter: blur(10px);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .side-picker-modal.closed {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .side-picker-card {
+      width: 100%;
+      max-width: 420px;
+      background: #FFFDF9;
+      border: 2px solid #D4AF37;
+      border-radius: 26px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+      text-align: center;
+      padding: 30px 22px 24px;
+      position: relative;
+    }
+    .side-picker-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      margin-bottom: 6px;
+    }
+    .side-picker-sub {
+      font-size: 0.88rem;
+      color: #6C5D4B;
+      font-style: italic;
+      margin-bottom: 22px;
+    }
+    .side-btn-group {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .side-choice-btn {
+      padding: 16px 20px;
+      border-radius: 18px;
+      border: 2px solid #DFC394;
+      background: #FFFFFF;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 6px 16px rgba(142, 106, 38, 0.12);
+      transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+    }
+    .side-choice-btn:hover, .side-choice-btn:active {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(133, 19, 41, 0.2);
+    }
+    .btn-groom-choice {
+      border-color: #C89B2B;
+      background: radial-gradient(circle at center, #FFFDF5 0%, #FEF4CD 100%);
+    }
+    .btn-bride-choice {
+      border-color: #E5907E;
+      background: radial-gradient(circle at center, #FFFBF9 0%, #FEECE7 100%);
+    }
+    .choice-text-wrap {
+      text-align: left;
+    }
+    .choice-main-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+    }
+    .choice-sub-title {
+      font-size: 0.76rem;
+      color: #615243;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+    .choice-arrow-icon {
+      font-size: 1.4rem;
+    }
+
+    /* WELCOME SURNAME FAMILY BANNER */
+    .family-welcome-banner {
+      background: linear-gradient(135deg, rgba(254, 244, 205, 0.9), rgba(255, 236, 220, 0.9));
+      border: 1.5px solid #DFC394;
+      border-radius: 16px;
+      padding: 10px 16px;
+      margin: 10px auto 14px;
+      max-width: 92%;
+      box-shadow: 0 4px 14px rgba(142, 106, 38, 0.1);
+    }
+    .welcome-family-text {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      line-height: 1.3;
+    }
+    .welcome-family-sub {
+      font-family: 'Noto Sans Telugu', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--gold-deep);
+      margin-top: 3px;
+    }
+
+    /* LATE GRANDPARENTS SECTION (GROOM SIDE) */
+    .grandparents-memorial-card {
+      background: radial-gradient(circle at center, #FFFDF6 0%, #FAF0D8 100%);
+      border: 1.5px dashed #D4AF37;
+      border-radius: 18px;
+      padding: 12px 14px;
+      margin: 4px auto 16px;
+      max-width: 360px;
+      text-align: center;
+    }
+    .grandparents-tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--maroon-primary);
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .grandparents-names {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.96rem;
+      font-weight: 700;
+      color: #2F2620;
+      line-height: 1.45;
+    }
+    .grandparents-telugu {
+      font-family: 'Noto Sans Telugu', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #6C5D4B;
+      margin-top: 4px;
     }
 
     /* LANGUAGE TOGGLE */
@@ -429,6 +581,35 @@
 </head>
 <body>
 
+  <!-- SIDE SELECTION POPUP ON OPEN -->
+  <div class="side-picker-modal" id="sidePickerModal">
+    <div class="side-picker-card">
+      <div style="font-size: 38px; margin-bottom: 8px;">💐</div>
+      <div class="side-picker-title" data-en="Namaste &amp; Welcome" data-te="నమస్కారం &amp; సుస్వాగతం">Namaste &amp; Welcome</div>
+      <div class="side-picker-sub" data-en="Please choose your side to enter our wedding invitation" data-te="దయచేసి మీ వైపు ఎంచుకొని ఆహ్వానాన్ని చూడండి">Please choose your side to enter our wedding invitation</div>
+
+      <div class="side-btn-group">
+        <!-- Groom Side Option -->
+        <button type="button" class="side-choice-btn btn-groom-choice" onclick="selectGuestSide('groom')">
+          <div class="choice-text-wrap">
+            <div class="choice-main-title" data-en="👑 Groom's Side" data-te="👑 వరుని వైపు (బోగ కుటుంబం)">👑 Groom's Side</div>
+            <div class="choice-sub-title" data-en="Boga Family Welcome" data-te="బోగ వారి కుటుంబం తరపున">Boga Family Welcome</div>
+          </div>
+          <span class="choice-arrow-icon">➔</span>
+        </button>
+
+        <!-- Bride Side Option -->
+        <button type="button" class="side-choice-btn btn-bride-choice" onclick="selectGuestSide('bride')">
+          <div class="choice-text-wrap">
+            <div class="choice-main-title" data-en="🌸 Bride's Side" data-te="🌸 వధువు వైపు (దేశబోయిన కుటుంబం)">🌸 Bride's Side</div>
+            <div class="choice-sub-title" data-en="Deshaboina Family Welcome" data-te="దేశబోయిన వారి కుటుంబం తరపున">Deshaboina Family Welcome</div>
+          </div>
+          <span class="choice-arrow-icon">➔</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- LANGUAGE TOGGLE BUTTON -->
   <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLanguage()">తెలుగు / EN</button>
 
@@ -480,6 +661,12 @@
           </div>
         </div>
 
+        <!-- DYNAMIC SURNAME FAMILY WELCOME BANNER BASED ON SELECTION -->
+        <div class="family-welcome-banner" id="familyBanner">
+          <div class="welcome-family-text" id="familyWelcomeEn">Boga Family Welcomes You</div>
+          <div class="welcome-family-sub" id="familyWelcomeTe">బోగ వారి కుటుంబం తరపున సాదర సుస్వాగతం 🙏</div>
+        </div>
+
         <!-- Sacred Shloka -->
         <div class="sacred-shloka">
           || మంగళం భగవాన్ విష్ణుః మంగళం గరుడధ్వజః | మంగళం పుండరీకాక్షో మంగళాయ తనో హరిః || 🙏
@@ -495,6 +682,17 @@
           <span class="divider-line"></span>
           <span class="divider-icon">🏺</span>
           <span class="divider-line"></span>
+        </div>
+
+        <!-- GROOM'S LATE GRANDPARENTS (SHOWN ONLY FOR GROOM SIDE) -->
+        <div class="grandparents-memorial-card" id="groomGrandparentsSection">
+          <div class="grandparents-tag" data-en="🕊️ With the Eternal Blessings of Grandparents" data-te="🕊️ దివ్య ఆశీస్సులతో (నానమ్మ &amp; తాతయ్య)">🕊️ With the Eternal Blessings of Grandparents</div>
+          <div class="grandparents-names">
+            Late Smt. Boga Narsamma &amp; Late Sri Boga Shivalingam
+          </div>
+          <div class="grandparents-telugu">
+            (స్వర్గీయ శ్రీమతి బోగ నర్సమ్మ &amp; స్వర్గీయ శ్రీ బోగ శివలింగం గార్ల దివ్యాశీస్సులతో)
+          </div>
         </div>
 
         <div class="section-title" data-en="With the Blessings Of" data-te="పెద్దల ఆశీస్సులతో">With the Blessings Of</div>
@@ -526,7 +724,7 @@
           </div>
         </div>
 
-        <!-- POLAROID FLIP STORY CARDS (WITH SCROLL MUSIC SWELL SENSOR) -->
+        <!-- POLAROID FLIP STORY CARDS -->
         <div class="story-section" id="storySection">
           <div style="font-family:'Cinzel', serif; font-size:1.2rem; font-weight:800; color:var(--maroon-primary);" data-en="Our Story" data-te="మా ప్రేమ కథ">Our Story</div>
           <div style="font-size:0.8rem; color:#7A6953; font-style:italic;" data-en="Tap a memory to flip 💫" data-te="జ్ఞాపకాన్ని చూడటానికి తాకండి 💫">Tap a memory to flip 💫</div>
@@ -813,6 +1011,33 @@
   <canvas id="blessingCanvas" width="900" height="1200" style="display:none;"></canvas>
 
   <script>
+    /* GUEST SIDE SELECTION (GROOM VS BRIDE) */
+    let selectedSide = 'groom'; // Default to groom side
+
+    function applySelectedSide(side) {
+      selectedSide = side;
+      const welcomeEn = document.getElementById('familyWelcomeEn');
+      const welcomeTe = document.getElementById('familyWelcomeTe');
+      const gpSection = document.getElementById('groomGrandparentsSection');
+
+      if (side === 'bride') {
+        if (welcomeEn) welcomeEn.innerText = "Deshaboina Family Welcomes You";
+        if (welcomeTe) welcomeTe.innerText = "దేశబోయిన వారి కుటుంబం తరపున సాదర సుస్వాగతం 🙏";
+        if (gpSection) gpSection.style.display = 'none'; // Only groom side gets grandparents
+      } else {
+        if (welcomeEn) welcomeEn.innerText = "Boga Family Welcomes You";
+        if (welcomeTe) welcomeTe.innerText = "బోగ వారి కుటుంబం తరపున సాదర సుస్వాగతం 🙏";
+        if (gpSection) gpSection.style.display = 'block'; // Show Nanamma & Thathya
+      }
+    }
+
+    function selectGuestSide(side) {
+      applySelectedSide(side);
+      const modal = document.getElementById('sidePickerModal');
+      if (modal) modal.classList.add('closed');
+      triggerHeartbeatPulse();
+    }
+
     const extList = ['.jpeg', '.jpg', '.png', '.jfif'];
     function handleImgError(img, baseName) {
       let attempt = parseInt(img.getAttribute('data-att') || '0');
@@ -871,7 +1096,6 @@
       }
     }
 
-    // Scroll-based romantic music swell on Story section
     window.addEventListener('scroll', () => {
       if (!musicGain || !audioCtx) return;
       const storyEl = document.getElementById('storySection');
@@ -918,7 +1142,6 @@
           osc.stop(startTime + duration);
         }
 
-        // Lub-Dub double beat
         makeThump(now, 65, 0.14, 0.9);
         makeThump(now + 0.18, 85, 0.11, 0.7);
       } catch (e) {
@@ -937,7 +1160,6 @@
       if (pulse) pulse.style.display = 'none';
       if (prompt) prompt.style.display = 'none';
 
-      // Physical vibration + speaker lub-dub sound
       triggerHeartbeatPulse();
       playHeartbeatSound();
 
@@ -1172,7 +1394,7 @@
       document.getElementById('capturedPhotoPreview').style.display = 'none';
     }
 
-    /* AUDIO GUESTBOOK (10-SEC VOICE NOTE WITH FAST AUTO-FINALIZE) */
+    /* AUDIO GUESTBOOK */
     let mediaRecorder = null;
     let audioChunks = [];
     let capturedAudioBase64 = null;
@@ -1420,11 +1642,9 @@
       }
     }
 
-    /* UNBLOCKED SUBMISSION (INSTANT RECORDING AUTO-FINALIZE) */
     async function submitWish() {
       const postBtn = document.getElementById('postWishBtn');
 
-      // If active recording exists when clicking Send Blessing, stop and finalize immediately
       if (mediaRecorder && mediaRecorder.state === "recording") {
         postBtn.innerText = currentLang === 'en' ? "Finishing Voice Note..." : "వాయిస్ నోట్ సిద్ధమవుతోంది...";
         await new Promise((resolve) => {
@@ -1505,6 +1725,7 @@
       loadCloudCounter();
       setInterval(updateWeddingCountdown, 1000);
       updateWeddingCountdown();
+      applySelectedSide('groom');
     });
   </script>
 </body>
