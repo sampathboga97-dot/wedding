@@ -351,7 +351,6 @@
 
     .sacred-shloka { font-family: 'Noto Sans Telugu', sans-serif; font-size: 0.86rem; font-weight: 700; color: var(--maroon-primary); line-height: 1.6; margin: 8px auto 10px; padding: 7px 12px; background: rgba(255, 255, 255, 0.75); border-radius: 12px; border: 1px dashed rgba(163, 124, 50, 0.4); }
     
-    /* 1. TIME-GREETING BADGE ABOVE NAMES */
     .time-greeting-badge {
       font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
       font-style: italic;
@@ -412,19 +411,18 @@
     .polaroid-back h4 { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 0.78rem; color: var(--maroon-primary); margin-bottom: 4px; }
     .polaroid-back p { font-size: 0.68rem; color: #4C4238; line-height: 1.35; font-style: italic; }
 
-    /* COMPACT SACRED DIYA */
+    /* COMPACT SACRED DIYA (ONLY INSTRUCTION TEXT) */
     .diya-section {
       background: radial-gradient(circle at center, #FFFDF6 0%, #FAF1DF 100%);
       border: 1.5px solid #E8D7B8;
       border-radius: 18px;
       padding: 10px 10px 8px;
-      margin: 12px auto 16px;
+      margin: 14px auto 16px;
       max-width: 320px;
       position: relative;
       box-shadow: 0 4px 14px rgba(184, 134, 11, 0.08);
+      text-align: center;
     }
-    .diya-heading { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 0.96rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 0.5px; }
-    .diya-sub { font-size: 0.74rem; color: #7A6953; margin-top: 2px; margin-bottom: 6px; }
     .diya-lamp-box { width: 68px; height: 68px; margin: 0 auto; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; }
     .diya-aura { position: absolute; width: 85px; height: 85px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 200, 50, 0.65) 0%, rgba(255, 140, 0, 0.25) 50%, transparent 75%); opacity: 0; filter: blur(6px); transition: opacity 0.8s ease; }
     .diya-flame { opacity: 0; transform-origin: center bottom; transition: opacity 0.4s ease; }
@@ -432,7 +430,13 @@
     .diya-lamp-box.lit .diya-flame { opacity: 1; animation: flameWiggle 1.4s infinite ease-in-out alternate; }
     @keyframes flameFlicker { 0% { transform: scale(1.1); } 100% { transform: scale(1.25); } }
     @keyframes flameWiggle { 0% { transform: rotate(-2deg); } 100% { transform: rotate(3deg); } }
-    .diya-status-tag { font-size: 0.74rem; font-weight: 700; color: var(--gold-deep); margin-top: 4px; }
+    .diya-status-tag {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--gold-deep);
+      margin-top: 6px;
+      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
+    }
 
     /* MUHURTHAM SECTION */
     .event-card { background: #FAF5EB; border: 1px solid #EFE2CB; border-radius: 22px; padding: 20px 14px; margin-bottom: 18px; box-shadow: 0 8px 22px rgba(142, 106, 38, 0.1); }
@@ -629,30 +633,7 @@
     .audio-pill:active { transform: scale(0.92); }
     .audio-icon-bubble { font-size: 18px; line-height: 1; }
 
-    /* 2. NEED HELP FLOATING WHATSAPP LIFELINE */
-    .floating-help-btn {
-      position: fixed;
-      bottom: 74px;
-      right: 16px;
-      background: #25D366;
-      color: #FFFFFF;
-      border-radius: 30px;
-      padding: 7px 14px;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
-      text-decoration: none;
-      font-size: 0.76rem;
-      font-weight: 700;
-      z-index: 99;
-      border: 1.5px solid #FFFFFF;
-      transition: transform 0.2s ease;
-      font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif;
-    }
-    .floating-help-btn:active { transform: scale(0.94); }
-
-    /* 3. STICKY MUHURTHAM REMINDER BAR */
+    /* STICKY MUHURTHAM REMINDER BAR */
     .sticky-muhurtham-bar {
       position: fixed;
       bottom: 0; left: 0; right: 0;
@@ -679,12 +660,12 @@
 </head>
 <body>
 
-  <!-- TOP ACTION BAR: OFFLINE SNAPSHOT & LANGUAGE TOGGLE -->
+  <!-- TOP ACTION BAR: OFFLINE SNAPSHOT & TOGGLE (EN / తెలుగు) -->
   <div class="top-action-bar">
     <button class="btn-offline-snapshot" onclick="downloadOfflineSnapshotCard()">
       📥 <span data-en="Download Invitation Photo" data-te="ఆహ్వాన పత్రిక డౌన్‌లోడ్">Download Invitation Photo</span>
     </button>
-    <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLanguage()">తెలుగు / EN</button>
+    <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLanguage()">EN / తెలుగు</button>
   </div>
 
   <!-- Audio Element -->
@@ -733,13 +714,7 @@
     <span class="audio-icon-bubble" id="audioPillIcon">🔊</span>
   </div>
 
-  <!-- 2. NEED HELP FLOATING WHATSAPP LIFELINE -->
-  <a class="floating-help-btn" href="https://wa.me/917675975990?text=Namaste!%20Could%20you%20please%20help%20with%20directions%20to%20VIP%20Gardens,%20Suraram?" target="_blank">
-    <span style="font-size: 15px;">📍</span>
-    <span id="helpText" data-en="Need directions?" data-te="దారి కోసం సహాయం కావాలా?">Need directions?</span>
-  </a>
-
-  <!-- 3. STICKY MUHURTHAM REMINDER BAR -->
+  <!-- STICKY MUHURTHAM REMINDER BAR -->
   <div class="sticky-muhurtham-bar" id="stickyMuhurthamBar">
     ✨ <span id="stickyText" data-en="Nov 26 | 9:15 AM | VIP Gardens, Suraram" data-te="నవంబర్ 26 | ఉదయం 9:15 | వీఐపీ గార్డెన్స్, సూరారం">Nov 26 | 9:15 AM | VIP Gardens, Suraram</span>
   </div>
@@ -787,7 +762,7 @@
           || మంగళం భగవాన్ విష్ణుః మంగళం గరుడధ్వజః | మంగళం పుండరీకాక్షో మంగళాయ తనో హరిః || 🙏
         </div>
 
-        <!-- 1. TIME-OF-DAY GREETING BADGE -->
+        <!-- TIME-OF-DAY GREETING BADGE -->
         <div class="time-greeting-badge" id="timeGreetingBadge">🌸 Good Morning (Subhodayam) 🙏</div>
 
         <!-- HIGHLIGHTED COUPLE NAMES -->
@@ -899,14 +874,11 @@
           <span class="divider-line"></span>
         </div>
 
-        <!-- COMPACT REFINED SACRED DIYA -->
+        <!-- CLEAN SACRED DIYA SECTION (ONLY LAMP & SINGLE INSTRUCTION TEXT) -->
         <div class="diya-section">
-          <div class="diya-heading" data-en="Light the Sacred Diya" data-te="మంగళ దీపం వెలిగించండి">Light the Sacred Diya</div>
-          <div class="diya-sub" data-en="Touch lamp to ignite blessings 🪔" data-te="దీపాన్ని తాకి ఆశీర్వదించండి 🪔">Touch lamp to ignite blessings 🪔</div>
-          
           <div class="diya-lamp-box" id="diyaBox" onclick="lightTheDiya()">
             <div class="diya-aura"></div>
-            <svg viewBox="0 0 100 100" width="60" height="60">
+            <svg viewBox="0 0 100 100" width="62" height="62">
               <path class="diya-flame" d="M50 12 C44 26 40 38 50 48 C60 38 56 26 50 12 Z" fill="url(#flameGradient)"/>
               <ellipse class="diya-flame" cx="50" cy="38" rx="4" ry="7" fill="#FFFFFF" opacity="0.8"/>
               <path d="M24 55 Q50 68 76 55 Q78 68 62 76 L66 88 L34 88 L38 76 Q22 68 24 55 Z" fill="#D4AF37" stroke="#A67C1E" stroke-width="2"/>
@@ -921,7 +893,7 @@
               </defs>
             </svg>
           </div>
-          <div class="diya-status-tag" id="diyaStatus" data-en="Touch to light the Diya ✨" data-te="దీపం వెలిగించడానికి తాకండి ✨">Touch to light the Diya ✨</div>
+          <div class="diya-status-tag" id="diyaStatus" data-en="Touch the lamp to ignite divine blessings 🪔" data-te="మంగళ దీపాన్ని తాకి వెలిగించండి 🪔">Touch the lamp to ignite divine blessings 🪔</div>
         </div>
 
         <!-- MUHURTHAM SECTION WITH CONVERSATIONAL TRACKER -->
@@ -1342,7 +1314,7 @@
       ctx.restore();
     }
 
-    /* 7. VIBRANT FLORAL OFFLINE SNAPSHOT CARD (DUAL LANGUAGE) */
+    /* 7. VIBRANT FLORAL OFFLINE SNAPSHOT CARD */
     function downloadOfflineSnapshotCard() {
       const canvas = document.getElementById('offlineSnapshotCanvas');
       const ctx = canvas.getContext('2d');
