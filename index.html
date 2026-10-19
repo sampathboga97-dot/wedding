@@ -17,7 +17,6 @@
       --gold-foil: #C59A3F;
       --gold-border: #E8D7B8;
       --text-dark: #2F2620;
-      /* Fixed bright warm morning color for morning, evening, and night */
       --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFF8EE 0%, #FBE5C8 100%);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -36,6 +35,40 @@
       align-items: center;
       overflow-x: hidden;
       padding: 14px 6px;
+    }
+
+    /* TOP ACTION BUTTONS BAR */
+    .top-action-bar {
+      position: fixed;
+      top: 14px;
+      right: 14px;
+      z-index: 101;
+      display: flex;
+      gap: 8px;
+    }
+    .top-btn {
+      background: rgba(255, 255, 255, 0.95);
+      border: 1.5px solid #DFC394;
+      border-radius: 20px;
+      padding: 6px 13px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+      backdrop-filter: blur(6px);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .top-btn:active {
+      transform: scale(0.96);
+    }
+    .top-btn-download {
+      background: linear-gradient(135deg, #FFFDF6 0%, #FDF1D5 100%);
+      border-color: #D4AF37;
+      color: #7A570D;
     }
 
     /* GUEST SELECTION MODAL */
@@ -130,6 +163,54 @@
       font-size: 1.4rem;
     }
 
+    /* TOP INVITATION CARD DISPLAY & DOWNLOAD BANNER */
+    .invitation-card-preview-box {
+      margin: 10px auto 14px;
+      max-width: 380px;
+      background: radial-gradient(circle at center, #FFFDF9 0%, #FAF0DE 100%);
+      border: 1.5px solid #DFC394;
+      border-radius: 20px;
+      padding: 12px;
+      box-shadow: 0 8px 24px rgba(142, 106, 38, 0.12);
+      text-align: center;
+    }
+    .card-preview-img-wrap {
+      position: relative;
+      width: 100%;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2px solid #E5CCA2;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+      background: #FFFFFF;
+      cursor: pointer;
+    }
+    .card-preview-img-wrap img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .card-preview-img-wrap:hover img {
+      transform: scale(1.02);
+    }
+    .btn-download-invite-card {
+      margin-top: 10px;
+      width: 100%;
+      background: linear-gradient(135deg, #DE3163 0%, #851329 100%);
+      color: #FFFFFF;
+      border: 1.5px solid #FFD700;
+      border-radius: 25px;
+      padding: 10px 18px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      box-shadow: 0 4px 14px rgba(133, 19, 41, 0.25);
+    }
+
     /* WELCOME SURNAME FAMILY BANNER WITH TIME GREETING */
     .family-welcome-banner {
       background: linear-gradient(135deg, rgba(254, 244, 205, 0.95), rgba(255, 236, 220, 0.95));
@@ -203,24 +284,6 @@
       font-weight: 600;
       color: #6C5D4B;
       margin-top: 4px;
-    }
-
-    /* LANGUAGE TOGGLE */
-    .lang-toggle-btn {
-      position: fixed;
-      top: 14px;
-      right: 14px;
-      z-index: 101;
-      background: rgba(255, 255, 255, 0.92);
-      border: 1.5px solid #DFC394;
-      border-radius: 20px;
-      padding: 5px 12px;
-      font-size: 0.76rem;
-      font-weight: 800;
-      color: var(--maroon-primary);
-      cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-      backdrop-filter: blur(6px);
     }
 
     /* FULL-SCREEN REACHING HANDS OVERLAY */
@@ -318,7 +381,7 @@
     }
     .hands-overlay-screen.connecting .tap-guide-prompt { display: none !important; }
 
-    /* INVITATION CONTAINER - Crisp White Card Frame */
+    /* INVITATION CONTAINER */
     .invitation-container {
       width: 100%;
       max-width: 490px;
@@ -579,6 +642,14 @@
 </head>
 <body>
 
+  <!-- TOP ACTION BAR: LANGUAGE SWITCHER & DIRECT DOWNLOAD CARD BUTTON -->
+  <div class="top-action-bar">
+    <button class="top-btn top-btn-download" id="topDownloadBtn" onclick="downloadCurrentInvitationCard()" title="Download Wedding Invitation Card">
+      📥 <span id="topDownloadLbl">Download Card</span>
+    </button>
+    <button class="top-btn" id="langToggleBtn" onclick="toggleLanguage()">తెలుగు / EN</button>
+  </div>
+
   <!-- SIDE SELECTION POPUP ON OPEN -->
   <div class="side-picker-modal" id="sidePickerModal">
     <div class="side-picker-card">
@@ -607,9 +678,6 @@
       </div>
     </div>
   </div>
-
-  <!-- LANGUAGE TOGGLE BUTTON -->
-  <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLanguage()">తెలుగు / EN</button>
 
   <!-- Audio Element -->
   <audio id="weddingAudio" src="Divine Nadaswaram.mp3" loop preload="auto"></audio>
@@ -664,6 +732,19 @@
           <div class="time-greeting-pill" id="timeGreetingPill">🌅 Good Morning</div>
           <div class="welcome-family-text" id="familyWelcomeEn">Boga Family Welcomes You</div>
           <div class="welcome-family-sub" id="familyWelcomeTe">బోగ వారి కుటుంబం తరపున సాదర సుస్వాగతం 🙏</div>
+        </div>
+
+        <!-- INVITATION CARD ON TOP (TAP TO VIEW & DOWNLOAD RIGHT AWAY) -->
+        <div class="invitation-card-preview-box">
+          <div style="font-family:'Cinzel', serif; font-size:0.86rem; font-weight:800; color:var(--maroon-primary); margin-bottom:8px;" id="cardHeaderLbl">
+            💌 Official Invitation Card (Tap to Download)
+          </div>
+          <div class="card-preview-img-wrap" onclick="downloadCurrentInvitationCard()" title="Click to Download Card">
+            <img id="topInvitationCardImg" src="1000360058.jpg" alt="Wedding Invitation Card" onerror="handleImgError(this, '1000360058')">
+          </div>
+          <button type="button" class="btn-download-invite-card" onclick="downloadCurrentInvitationCard()">
+            📥 <span id="downloadBtnTxt">Download Invitation Card (PDF/PNG)</span>
+          </button>
         </div>
 
         <!-- Sacred Shloka -->
@@ -1056,6 +1137,23 @@
     let selectedSide = 'groom';
     let currentLang = 'en';
 
+    /* DOWNLOAD THE RELEVANT CARD (ENGLISH OR TELUGU) */
+    function downloadCurrentInvitationCard() {
+      const isTe = (currentLang === 'te');
+      const fileName = isTe ? '1000360060.jpg' : '1000360058.jpg';
+      const downloadName = isTe ? 'Sarika_Sampath_Wedding_Invitation_Telugu.jpg' : 'Sarika_Sampath_Wedding_Invitation_English.jpg';
+
+      const a = document.createElement('a');
+      a.href = fileName;
+      a.download = downloadName;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+
+      triggerHeartbeatPulse();
+      showerAkshintalu();
+    }
+
     function renderSideAndNames() {
       const bannerData = namesData.welcomeBanner[selectedSide];
       const welcomeEn = document.getElementById('familyWelcomeEn');
@@ -1067,11 +1165,29 @@
       const groomParentsEl = document.getElementById('groomParentsText');
       const coupleTitle = document.getElementById('coupleTitle');
       const greetingPill = document.getElementById('timeGreetingPill');
+      const topCardImg = document.getElementById('topInvitationCardImg');
+      const topDownloadLbl = document.getElementById('topDownloadLbl');
+      const cardHeaderLbl = document.getElementById('cardHeaderLbl');
+      const downloadBtnTxt = document.getElementById('downloadBtnTxt');
 
       // Update Dynamic Greeting above Surname
       const greeting = getTimeGreeting();
       if (greetingPill) {
         greetingPill.innerText = currentLang === 'te' ? greeting.te : greeting.en;
+      }
+
+      // Update Invitation Card Preview & labels
+      if (topCardImg) {
+        topCardImg.src = currentLang === 'te' ? '1000360060.jpg' : '1000360058.jpg';
+      }
+      if (topDownloadLbl) {
+        topDownloadLbl.innerText = currentLang === 'te' ? 'పత్రిక డౌన్‌లోడ్' : 'Download Card';
+      }
+      if (cardHeaderLbl) {
+        cardHeaderLbl.innerText = currentLang === 'te' ? '💌 వివాహ ఆహ్వాన పత్రిక (డౌన్‌లోడ్ చేయడానికి తాకండి)' : '💌 Official Invitation Card (Tap to Download)';
+      }
+      if (downloadBtnTxt) {
+        downloadBtnTxt.innerText = currentLang === 'te' ? 'ఆహ్వాన పత్రికను డౌన్‌లోడ్ చేసుకోండి' : 'Download Invitation Card (Image)';
       }
 
       // Update Couple Name Font and Content
