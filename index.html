@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Wedding Ceremony | Sampath &amp; Sarika</title>
-  <meta name="description" content="Wedding Ceremony of Sampath &amp; Sarika on Thursday, November 26, 2026.">
+  <title>Wedding Ceremony | Sarika &amp; Sampath</title>
+  <meta name="description" content="Wedding Ceremony of Sarika &amp; Sampath on Thursday, November 26, 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@500;600;700;800&family=Suranna&display=swap" rel="stylesheet">
@@ -136,13 +136,13 @@
       transform: translateY(-2px);
       box-shadow: 0 10px 24px rgba(133, 19, 41, 0.2);
     }
-    .btn-groom-choice {
-      border-color: #C89B2B;
-      background: radial-gradient(circle at center, #FFFDF5 0%, #FEF4CD 100%);
-    }
     .btn-bride-choice {
       border-color: #E5907E;
       background: radial-gradient(circle at center, #FFFBF9 0%, #FEECE7 100%);
+    }
+    .btn-groom-choice {
+      border-color: #C89B2B;
+      background: radial-gradient(circle at center, #FFFDF5 0%, #FEF4CD 100%);
     }
     .choice-text-wrap {
       text-align: left;
@@ -587,9 +587,40 @@
     .footer-bar em { font-family: 'Playfair Display', serif; font-size: 0.92rem; font-style: italic; color: #F8DFAD; }
     .footer-couple { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; letter-spacing: 2px; color: #FFF; margin-top: 6px; }
 
-    .audio-pill { position: fixed; bottom: 20px; right: 20px; background: rgba(255, 255, 255, 0.96); border: 1.5px solid #DFC394; border-radius: 30px; padding: 6px 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.18); display: flex; align-items: center; gap: 8px; z-index: 100; backdrop-filter: blur(8px); cursor: pointer; }
-    .audio-title-lbl { font-size: 0.76rem; font-weight: 700; color: var(--maroon-primary); letter-spacing: 0.5px; }
-    .audio-icon-bubble { background: var(--maroon-primary); color: #FFF; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+    /* FLOATING BOTTOM CONTROLS (MUSIC + BACK TO SIDE PICKER) */
+    .bottom-floating-controls {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      z-index: 100;
+    }
+    .floating-circle-btn {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1.5px solid #DFC394;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      transition: transform 0.2s ease, background 0.2s ease;
+      color: var(--maroon-primary);
+      font-size: 18px;
+    }
+    .floating-circle-btn:active {
+      transform: scale(0.92);
+    }
+    .floating-circle-btn.music-btn {
+      background: var(--maroon-primary);
+      color: #FFF;
+      border-color: #FFD700;
+    }
   </style>
 </head>
 <body>
@@ -610,20 +641,20 @@
       <div class="side-picker-sub" data-en="Please choose your side to enter our wedding invitation" data-te="దయచేసి మీ వైపు ఎంచుకొని ఆహ్వానాన్ని చూడండి">Please choose your side to enter our wedding invitation</div>
 
       <div class="side-btn-group">
-        <!-- Groom Side Option -->
-        <button type="button" class="side-choice-btn btn-groom-choice" onclick="selectGuestSide('groom')">
+        <!-- 1. Bride Side Option (Queen Emoji 👑/👸) -->
+        <button type="button" class="side-choice-btn btn-bride-choice" onclick="selectGuestSide('bride')">
           <div class="choice-text-wrap">
-            <div class="choice-main-title" data-en="👑 Groom's Side" data-te="👑 వరుని వైపు (బోగ వారి కుటుంబం)">👑 Groom's Side</div>
-            <div class="choice-sub-title" data-en="Boga Family Welcome" data-te="బోగ వారి కుటుంబం ఆహ్వానం">Boga Family Welcome</div>
+            <div class="choice-main-title" data-en="👸 Bride's Side" data-te="👸 వధువు వైపు (దేశబోయిన వారి కుటుంబం)">👸 Bride's Side</div>
+            <div class="choice-sub-title" data-en="Deshaboina Family Welcome" data-te="దేశబోయిన వారి కుటుంబం ఆహ్వానం">Deshaboina Family Welcome</div>
           </div>
           <span class="choice-arrow-icon">➔</span>
         </button>
 
-        <!-- Bride Side Option -->
-        <button type="button" class="side-choice-btn btn-bride-choice" onclick="selectGuestSide('bride')">
+        <!-- 2. Groom Side Option (King Crown Emoji 👑) -->
+        <button type="button" class="side-choice-btn btn-groom-choice" onclick="selectGuestSide('groom')">
           <div class="choice-text-wrap">
-            <div class="choice-main-title" data-en="🌸 Bride's Side" data-te="🌸 వధువు వైపు (దేశబోయిన వారి కుటుంబం)">🌸 Bride's Side</div>
-            <div class="choice-sub-title" data-en="Deshaboina Family Welcome" data-te="దేశబోయిన వారి కుటుంబం ఆహ్వానం">Deshaboina Family Welcome</div>
+            <div class="choice-main-title" data-en="👑 Groom's Side" data-te="👑 వరుని వైపు (బోగ వారి కుటుంబం)">👑 Groom's Side</div>
+            <div class="choice-sub-title" data-en="Boga Family Welcome" data-te="బోగ వారి కుటుంబం ఆహ్వానం">Boga Family Welcome</div>
           </div>
           <span class="choice-arrow-icon">➔</span>
         </button>
@@ -646,10 +677,14 @@
     <div class="tap-guide-prompt" id="tapPrompt" data-en="Tap in the middle to unite hands 💛" data-te="చేతులు కలపడానికి మధ్యలో తాకండి 💛">Tap in the middle to unite hands 💛</div>
   </div>
 
-  <!-- FLOATING NADASWARAM MUSIC CONTROL -->
-  <div class="audio-pill" onclick="toggleAudio()" title="Play / Pause Divine Nadaswaram">
-    <span class="audio-title-lbl" data-en="🪈 Divine Nadaswaram" data-te="🪈 నాదస్వరం">🪈 Divine Nadaswaram</span>
-    <span class="audio-icon-bubble" id="audioPillIcon">🔊</span>
+  <!-- FLOATING BOTTOM CONTROLS (BACK TO WELCOME & MUSIC TOGGLE WITHOUT TEXT) -->
+  <div class="bottom-floating-controls">
+    <button class="floating-circle-btn" onclick="reopenSidePicker()" title="Back to Namaste &amp; Welcome (Change Side)">
+      🔙
+    </button>
+    <button class="floating-circle-btn music-btn" onclick="toggleAudio()" title="Play / Pause Audio" id="audioPillIcon">
+      🔊
+    </button>
   </div>
 
   <!-- MAIN INVITATION FRAME CONTAINER -->
@@ -682,8 +717,8 @@
         <!-- DYNAMIC TIME-OF-DAY GREETING + SURNAME FAMILY WELCOME BANNER -->
         <div class="family-welcome-banner" id="familyBanner">
           <div class="time-greeting-pill" id="timeGreetingPill">🌅 Good Morning</div>
-          <div class="welcome-family-text" id="familyWelcomeEn">Boga Family Welcomes You</div>
-          <div class="welcome-family-sub" id="familyWelcomeTe">బోగ వారి కుటుంబం తరపున సాదర సుస్వాగతం 🙏</div>
+          <div class="welcome-family-text" id="familyWelcomeEn">Deshaboina Family Welcomes You</div>
+          <div class="welcome-family-sub" id="familyWelcomeTe">దేశబోయిన వారి కుటుంబం తరపున సాదర సుస్వాగతం 🙏</div>
         </div>
 
         <!-- Sacred Shloka -->
@@ -691,8 +726,8 @@
           || మంగళం భగవాన్ విష్ణుః మంగళం గరుడధ్వజః | మంగళం పుండరీకాక్షో మంగళాయ తనో హరిః || 🙏
         </div>
 
-        <!-- HIGHLIGHTED COUPLE NAMES (TELUGU / ENGLISH DYNAMIC) -->
-        <div class="couple-title" id="coupleTitle" data-en="Sampath &amp; Sarika" data-te="సంపత్ &amp; సారిక">Sampath &amp; Sarika</div>
+        <!-- HIGHLIGHTED COUPLE NAMES: SARIKA & SAMPATH (TELUGU / ENGLISH DYNAMIC) -->
+        <div class="couple-title" id="coupleTitle" data-en="Sarika &amp; Sampath" data-te="సారిక &amp; సంపత్">Sarika &amp; Sampath</div>
         <div class="hashtag-tag">#SamRika</div>
         <div class="invite-lead" data-en="We invite you to celebrate our wedding" data-te="మా వివాహ మహోత్సవానికి మిమ్మల్ని సాదరంగా ఆహ్వానిస్తున్నాము">We invite you to celebrate our wedding</div>
 
@@ -897,7 +932,7 @@
           <div class="livestream-player-box">
             <iframe 
               src="https://www.youtube-nocookie.com/embed/85FWdlUqBkw" 
-              title="Sampath &amp; Sarika Wedding Live Stream" 
+              title="Sarika &amp; Sampath Wedding Live Stream" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               allowfullscreen>
             </iframe>
@@ -924,7 +959,7 @@
             <a class="cta-btn btn-maps" href="https://maps.google.com/?q=VIP+Gardens+Suraram+Hyderabad" target="_blank" data-en="📍 View on Google Maps" data-te="📍 గూగుల్ మ్యాప్స్ లో చూడండి">
               📍 View on Google Maps
             </a>
-            <a class="cta-btn btn-whatsapp" href="https://wa.me/917675975990?text=Congratulations%20Sampath%20%26%20Sarika!%20Sending%20our%20warmest%20wishes%20for%20your%20wedding." target="_blank" data-en="💬 Send Wishes on WhatsApp" data-te="💬 వాట్సాప్‌లో శుభాకాంక్షలు పంపండి">
+            <a class="cta-btn btn-whatsapp" href="https://wa.me/917675975990?text=Congratulations%20Sarika%20%26%20Sampath!%20Sending%20our%20warmest%20wishes%20for%20your%20wedding." target="_blank" data-en="💬 Send Wishes on WhatsApp" data-te="💬 వాట్సాప్‌లో శుభాకాంక్షలు పంపండి">
               💬 Send Wishes on WhatsApp
             </a>
           </div>
@@ -941,7 +976,7 @@
         <!-- GUEST WISHES WALL -->
         <div class="wishes-wall">
           <div class="guestbook-title" data-en="Guest Wishes Wall" data-te="అతిథుల ఆశీస్సుల వేదిక">Guest Wishes Wall</div>
-          <div class="guestbook-sub" data-en="Leave a blessing, snap a selfie, or record a voice note for Sampath &amp; Sarika" data-te="మీ ఆశీస్సులు, ఫోటో లేదా వాయిస్ సందేశాన్ని పంపండి">Leave a blessing, snap a selfie, or record a voice note for Sampath &amp; Sarika</div>
+          <div class="guestbook-sub" data-en="Leave a blessing, snap a selfie, or record a voice note for Sarika &amp; Sampath" data-te="మీ ఆశీస్సులు, ఫోటో లేదా వాయిస్ సందేశాన్ని పంపండి">Leave a blessing, snap a selfie, or record a voice note for Sarika &amp; Sampath</div>
           
           <div class="wish-input-group">
             <input type="text" id="guestName" placeholder="Your Name (e.g., Ramesh Uncle)" maxlength="40">
@@ -1005,7 +1040,7 @@
         <div class="footer-bar">
           <em data-en="We can't wait to celebrate this auspicious day with you ❤️" data-te="ఈ శుభదినాన మీతో కలిసి వేడుక చేసుకోవడానికి వేచిచూస్తున్నాము ❤️">We can't wait to celebrate this auspicious day with you ❤️</em>
           <div style="font-size:0.85rem; margin-top:4px; color:#F8DFAD;" data-en="With Love," data-te="ప్రేమతో,">With Love,</div>
-          <div class="footer-couple" id="footerCoupleText" data-en="SAMPATH &amp; SARIKA" data-te="సంపత్ &amp; సారిక">SAMPATH &amp; SARIKA</div>
+          <div class="footer-couple" id="footerCoupleText" data-en="SARIKA &amp; SAMPATH" data-te="సారిక &amp; సంపత్">SARIKA &amp; SAMPATH</div>
         </div>
 
       </div>
@@ -1017,7 +1052,7 @@
     <div class="thankyou-modal-card" onclick="event.stopPropagation()">
       <button class="thankyou-close-btn" onclick="closeThankYouModal()" title="Close">✕</button>
       <div class="thankyou-img-container">
-        <img src="Thankyou.jpeg" alt="Thank You - Sampath &amp; Sarika" onerror="handleImgError(this, 'Thankyou')">
+        <img src="Thankyou.jpeg" alt="Thank You - Sarika &amp; Sampath" onerror="handleImgError(this, 'Thankyou')">
       </div>
     </div>
   </div>
@@ -1044,16 +1079,16 @@
         teSecondary: `(నానమ్మ &amp; తాతయ్య గార్ల దివ్యాశీస్సులతో)`
       },
       welcomeBanner: {
-        groom: {
-          enTitle: "Boga Family Welcomes You",
-          enSub: "With warm hearts and warm blessings 🙏",
-          teTitle: "బోగ వారి కుటుంబం తరపున సాదర సుస్వాగతం",
-          teSub: "వధూవరులను ఆశీర్వదించడానికి విచ్చేయండి 🙏"
-        },
         bride: {
           enTitle: "Deshaboina Family Welcomes You",
           enSub: "With warm hearts and warm blessings 🙏",
           teTitle: "దేశబోయిన వారి కుటుంబం తరపున సాదర సుస్వాగతం",
+          teSub: "వధూవరులను ఆశీర్వదించడానికి విచ్చేయండి 🙏"
+        },
+        groom: {
+          enTitle: "Boga Family Welcomes You",
+          enSub: "With warm hearts and warm blessings 🙏",
+          teTitle: "బోగ వారి కుటుంబం తరపున సాదర సుస్వాగతం",
           teSub: "వధూవరులను ఆశీర్వదించడానికి విచ్చేయండి 🙏"
         }
       }
@@ -1073,8 +1108,15 @@
       }
     }
 
-    let selectedSide = 'groom';
+    let selectedSide = 'bride';
     let currentLang = 'en';
+
+    /* REOPEN SIDE PICKER MODAL (BACK BUTTON) */
+    function reopenSidePicker() {
+      const modal = document.getElementById('sidePickerModal');
+      if (modal) modal.classList.remove('closed');
+      triggerHeartbeatPulse();
+    }
 
     /* DYNAMIC HIGH-RESOLUTION INVITATION CARD GENERATOR (CANVAS TO PNG) */
     function generateAndDownloadInvitationCard() {
@@ -1124,7 +1166,7 @@
       ctx.font = '36px sans-serif';
       ctx.fillText('🏺', W / 2, 235);
 
-      // Couple Names
+      // Couple Names: Sarika & Sampath
       if (isTe) {
         ctx.font = 'bold 78px "Suranna", "Noto Sans Telugu", serif';
         ctx.fillStyle = '#851329';
@@ -1147,7 +1189,6 @@
         : 'Soliciting your gracious presence and heartfelt blessings on our auspicious marriage';
       renderWrappedLines(ctx, solicitText, W / 2, 445, W - 220, 36);
 
-      // Function to render styled white inner cards
       function drawInnerCardBox(y, h) {
         ctx.fillStyle = '#FFFFFF';
         ctx.beginPath();
@@ -1187,7 +1228,7 @@
         : 'Boga Ashok & Mrs. Geetha';
       ctx.fillText(groomParentsStr, W / 2, startBoxY + 98);
 
-      // (If groom side selected, optionally mention late grandparents)
+      // Late grandparents (for groom side)
       if (selectedSide === 'groom') {
         startBoxY += 175;
         drawInnerCardBox(startBoxY, 130);
@@ -1247,11 +1288,10 @@
       ctx.fillStyle = '#851329';
       ctx.fillText(isTe ? 'సారిక & సంపత్' : 'SARIKA & SAMPATH', W / 2, H - 65);
 
-      // Trigger Instant Image Download
       const link = document.createElement('a');
       link.download = isTe 
-        ? 'Wedding_Invitation_Telugu_Sampath_Sarika.png' 
-        : 'Wedding_Invitation_English_Sampath_Sarika.png';
+        ? 'Wedding_Invitation_Telugu_Sarika_Sampath.png' 
+        : 'Wedding_Invitation_English_Sarika_Sampath.png';
       link.href = canvas.toDataURL('image/png');
       link.click();
 
@@ -1283,7 +1323,7 @@
         topDownloadLbl.innerText = currentLang === 'te' ? 'వివాహ ఆహ్వాన పత్రిక డౌన్‌లోడ్' : 'Wedding Invitation Download Card';
       }
 
-      // Update Couple Name Font and Content
+      // Update Couple Name Font and Content (Sarika & Sampath)
       if (coupleTitle) {
         if (currentLang === 'te') {
           coupleTitle.innerHTML = coupleTitle.getAttribute('data-te');
@@ -1644,7 +1684,7 @@
       ctx.fillStyle = '#851329';
       ctx.font = 'bold 16px "Cinzel", serif';
       ctx.textAlign = 'center';
-      ctx.fillText('Sampath & Sarika #SamRika', 200, 376);
+      ctx.fillText('Sarika & Sampath #SamRika', 200, 376);
 
       capturedSelfieBase64 = canvas.toDataURL('image/jpeg', 0.6);
       document.getElementById('selfieThumb').src = capturedSelfieBase64;
@@ -1797,7 +1837,7 @@
 
       ctx.font = 'bold 76px "Great Vibes", cursive, serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText('Sampath & Sarika', W / 2, 290);
+      ctx.fillText('Sarika & Sampath', W / 2, 290);
 
       ctx.font = 'bold 24px "Cinzel", serif';
       ctx.fillStyle = '#8E6A26';
@@ -1832,7 +1872,7 @@
 
       const cleanName = (lastPostedName || 'Guest').replace(/[^a-zA-Z0-9]/g, '_');
       const link = document.createElement('a');
-      link.download = `Wedding_Blessing_Sampath_Sarika_${cleanName}.png`;
+      link.download = `Wedding_Blessing_Sarika_Sampath_${cleanName}.png`;
       link.href = canvas.toDataURL('image/png');
       link.click();
     }
@@ -1945,7 +1985,7 @@
         });
 
         lastPostedName = name;
-        lastPostedWish = wish || "Hearty Congratulations Sampath & Sarika!";
+        lastPostedWish = wish || "Hearty Congratulations Sarika & Sampath!";
 
         nameInput.value = '';
         msgInput.value = '';
