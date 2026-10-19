@@ -7,7 +7,7 @@
   <meta name="description" content="Wedding Ceremony of Sarika &amp; Sampath on Thursday, November 26, 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@500;600;700;800&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     :root {
@@ -29,7 +29,7 @@
         radial-gradient(#DFC394 0.65px, transparent 0.65px),
         var(--theme-bg-grad);
       background-size: 24px 24px, 100% 100%;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif;
       color: var(--text-dark);
       min-height: 100vh;
       display: flex;
@@ -102,11 +102,12 @@
       background: #FFFFFF;
       border: 1.5px solid #DFC394;
       border-radius: 20px;
-      padding: 5px 12px;
-      font-size: 0.74rem;
+      padding: 5px 14px;
+      font-size: 0.78rem;
       font-weight: 800;
       color: var(--maroon-primary);
       cursor: pointer;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
     }
 
     /* BRIDE VS GROOM MODAL */
@@ -188,7 +189,7 @@
     }
     .side-groom-btn:hover { background: #FFF9F6; }
     .side-btn-icon { font-size: 1.8rem; line-height: 1; }
-    .side-btn-text h4 { font-family: 'Cinzel', serif; font-size: 0.98rem; font-weight: 800; color: #222; }
+    .side-btn-text h4 { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 0.98rem; font-weight: 800; color: #222; }
     .side-btn-text p { font-size: 0.74rem; color: #666; margin-top: 1px; }
 
     .family-welcome-banner {
@@ -199,7 +200,7 @@
       padding: 8px 16px;
       margin: 10px auto 14px;
       text-align: center;
-      font-family: 'Cinzel', serif;
+      font-family: 'Cinzel', 'Noto Sans Telugu', serif;
       font-size: 0.85rem;
       font-weight: 800;
       color: var(--side-accent-color);
@@ -214,7 +215,7 @@
       padding: 12px 14px;
       margin: 10px auto 16px;
       text-align: center;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
       font-size: 0.92rem;
       line-height: 1.45;
       box-shadow: 0 8px 24px rgba(216, 67, 21, 0.35);
@@ -276,7 +277,7 @@
       position: absolute;
       bottom: clamp(26px, 5vh, 40px);
       left: 50%; transform: translateX(-50%);
-      font-family: 'Playfair Display', serif;
+      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
       font-style: italic;
       font-size: clamp(0.98rem, 2.4vh, 1.2rem);
       color: #5C3A10;
@@ -350,21 +351,30 @@
 
     .sacred-shloka { font-family: 'Noto Sans Telugu', sans-serif; font-size: 0.86rem; font-weight: 700; color: var(--maroon-primary); line-height: 1.6; margin: 8px auto 10px; padding: 7px 12px; background: rgba(255, 255, 255, 0.75); border-radius: 12px; border: 1px dashed rgba(163, 124, 50, 0.4); }
     
+    /* COUPLE TITLE: DYNAMIC EN/TE TYPOGRAPHY */
     .couple-title {
-      font-family: 'Great Vibes', cursive;
-      font-size: 4.1rem;
+      font-size: 3.8rem;
       color: var(--maroon-primary);
-      line-height: 1.1;
+      line-height: 1.15;
       margin: 8px 0 2px;
       text-shadow: 0 2px 4px rgba(133, 19, 41, 0.22), 0 0 20px rgba(245, 204, 114, 0.55);
+      font-family: 'Great Vibes', cursive;
     }
+    body.lang-te .couple-title {
+      font-family: 'Noto Sans Telugu', sans-serif !important;
+      font-size: 2.2rem !important;
+      font-weight: 800 !important;
+      letter-spacing: 0.5px !important;
+      line-height: 1.3 !important;
+    }
+
     .hashtag-tag { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 800; color: var(--gold-deep); letter-spacing: 3px; margin-bottom: 6px; }
-    .invite-lead { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: #615243; margin-bottom: 16px; }
+    .invite-lead { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-style: italic; font-size: 1.05rem; color: #615243; margin-bottom: 16px; }
 
     .ornate-divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 20px auto; max-width: 84%; }
     .divider-line { flex: 1; height: 1.5px; background: linear-gradient(90deg, transparent, #DFC394, #B8860B, #DFC394, transparent); }
     .divider-icon { font-size: 1.3rem; }
-    .section-title { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+    .section-title { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.35rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
 
     .parents-section { display: flex; flex-direction: column; gap: 14px; margin: 8px auto 18px; max-width: 360px; }
     .royal-parent-card { position: relative; border-radius: 20px; padding: 6px; }
@@ -372,11 +382,11 @@
     .bride-inner-border { border: 1.2px solid #E5907E; border-radius: 14px; padding: 12px 10px; background: rgba(255, 255, 255, 0.55); }
     .groom-royal-frame { background: radial-gradient(circle at center, #FFFDF5 0%, #FEF4CD 70%, #F7DC8E 100%); border: 3.5px solid #ECC968; }
     .groom-inner-border { border: 1.2px solid #C89B2B; border-radius: 14px; padding: 12px 10px; background: rgba(255, 255, 255, 0.55); }
-    .card-badge { display: inline-block; font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 1.5px; font-weight: 800; text-transform: uppercase; padding: 3px 12px; border-radius: 16px; margin-bottom: 6px; }
+    .card-badge { display: inline-block; font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 0.65rem; letter-spacing: 1.5px; font-weight: 800; text-transform: uppercase; padding: 3px 12px; border-radius: 16px; margin-bottom: 6px; }
     .bride-badge { color: #8E1F35; background: #FFE2DC; border: 1px solid #E8A598; }
     .groom-badge { color: #7A570D; background: #FFECA8; border: 1px solid #E5BA58; }
-    .parent-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #241C16; line-height: 1.35; }
-    .parent-connector { font-family: 'Great Vibes', cursive; font-size: 1.35rem; color: #B8860B; display: block; margin: 1px 0; }
+    .parent-name { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: 1.05rem; font-weight: 700; color: #241C16; line-height: 1.35; }
+    .parent-connector { font-family: 'Great Vibes', 'Noto Sans Telugu', cursive; font-size: 1.35rem; color: #B8860B; display: block; margin: 1px 0; }
 
     /* STORY CARDS */
     .story-section { margin: 18px auto 26px; max-width: 420px; }
@@ -386,30 +396,39 @@
     .polaroid-card.flipped .polaroid-inner { transform: rotateY(180deg); }
     .polaroid-front, .polaroid-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 12px; overflow: hidden; background: #FFFFFF; border: 1.5px solid #E5CCA2; padding: 6px 6px 12px; display: flex; flex-direction: column; }
     .polaroid-front img { width: 100%; height: 128px; object-fit: cover; border-radius: 8px; }
-    .polaroid-front .p-caption { font-family: 'Playfair Display', serif; font-size: 0.72rem; font-weight: 700; color: #6C5D4B; margin-top: 6px; }
+    .polaroid-front .p-caption { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: 0.72rem; font-weight: 700; color: #6C5D4B; margin-top: 6px; }
     .polaroid-back { background: radial-gradient(circle at center, #FFF9F2 0%, #FAEDE0 100%); transform: rotateY(180deg); justify-content: center; align-items: center; padding: 10px; }
-    .polaroid-back h4 { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--maroon-primary); margin-bottom: 4px; }
+    .polaroid-back h4 { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 0.78rem; color: var(--maroon-primary); margin-bottom: 4px; }
     .polaroid-back p { font-size: 0.68rem; color: #4C4238; line-height: 1.35; font-style: italic; }
 
-    /* DIYA LIGHTING */
-    .diya-section { background: radial-gradient(circle at center, #FFFDF6 0%, #FAF1DF 100%); border: 1.5px solid #E8D7B8; border-radius: 22px; padding: 18px 14px 14px; margin: 18px auto 20px; max-width: 420px; position: relative; }
-    .diya-heading { font-family: 'Cinzel', serif; font-size: 1.15rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 1px; }
-    .diya-sub { font-size: 0.82rem; color: #7A6953; margin-top: 2px; margin-bottom: 12px; }
-    .diya-lamp-box { width: 100px; height: 100px; margin: 0 auto; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; }
-    .diya-aura { position: absolute; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 200, 50, 0.65) 0%, rgba(255, 140, 0, 0.25) 50%, transparent 75%); opacity: 0; filter: blur(8px); transition: opacity 0.8s ease; }
+    /* COMPACT REFINED SACRED DIYA SECTION */
+    .diya-section {
+      background: radial-gradient(circle at center, #FFFDF6 0%, #FAF1DF 100%);
+      border: 1.5px solid #E8D7B8;
+      border-radius: 18px;
+      padding: 10px 10px 8px;
+      margin: 12px auto 16px;
+      max-width: 320px;
+      position: relative;
+      box-shadow: 0 4px 14px rgba(184, 134, 11, 0.08);
+    }
+    .diya-heading { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 0.96rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 0.5px; }
+    .diya-sub { font-size: 0.74rem; color: #7A6953; margin-top: 2px; margin-bottom: 6px; }
+    .diya-lamp-box { width: 68px; height: 68px; margin: 0 auto; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; }
+    .diya-aura { position: absolute; width: 85px; height: 85px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 200, 50, 0.65) 0%, rgba(255, 140, 0, 0.25) 50%, transparent 75%); opacity: 0; filter: blur(6px); transition: opacity 0.8s ease; }
     .diya-flame { opacity: 0; transform-origin: center bottom; transition: opacity 0.4s ease; }
     .diya-lamp-box.lit .diya-aura { opacity: 1; transform: scale(1.15); animation: flameFlicker 2s infinite alternate ease-in-out; }
     .diya-lamp-box.lit .diya-flame { opacity: 1; animation: flameWiggle 1.4s infinite ease-in-out alternate; }
     @keyframes flameFlicker { 0% { transform: scale(1.1); } 100% { transform: scale(1.25); } }
     @keyframes flameWiggle { 0% { transform: rotate(-2deg); } 100% { transform: rotate(3deg); } }
-    .diya-status-tag { font-size: 0.82rem; font-weight: 700; color: var(--gold-deep); margin-top: 8px; }
+    .diya-status-tag { font-size: 0.74rem; font-weight: 700; color: var(--gold-deep); margin-top: 4px; }
 
     /* MUHURTHAM SECTION & TIME-LEFT TRACKER */
     .event-card { background: #FAF5EB; border: 1px solid #EFE2CB; border-radius: 22px; padding: 20px 14px; margin-bottom: 18px; box-shadow: 0 8px 22px rgba(142, 106, 38, 0.1); }
     .event-img-wrap { width: 100%; max-width: 290px; height: 240px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; border: 2px solid #E5CCA2; background: #FFF; }
     .event-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
-    .event-tag { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 4px; }
-    .event-subtitle { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: #6C5D4B; margin-bottom: 8px; }
+    .event-tag { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.35rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 4px; }
+    .event-subtitle { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-style: italic; font-size: 0.9rem; color: #6C5D4B; margin-bottom: 8px; }
     
     .muhurtham-glow-halo {
       position: relative;
@@ -420,7 +439,7 @@
       transition: box-shadow 0.5s ease;
     }
     .event-time-highlight {
-      font-family: 'Cinzel', serif;
+      font-family: 'Cinzel', 'Noto Sans Telugu', serif;
       font-size: 2rem;
       font-weight: 800;
       color: var(--maroon-primary);
@@ -436,7 +455,7 @@
       padding: 8px 14px;
       margin: 10px auto 4px;
       max-width: 360px;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
       font-style: italic;
       font-size: 0.95rem;
       font-weight: 600;
@@ -447,15 +466,28 @@
     .countdown-medals { display: flex; justify-content: center; gap: 10px; margin: 14px 0 10px; }
     .medal-item { width: 70px; height: 70px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF6DB 0%, #E3BC6A 60%, #9C7227 100%); border: 2px solid #FFFFFF; box-shadow: 0 6px 15px rgba(156, 114, 39, 0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; }
     .medal-val { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: #4D3205; line-height: 1; }
-    .medal-lbl { font-size: 0.52rem; font-weight: 800; letter-spacing: 1px; color: #4D3205; text-transform: uppercase; margin-top: 3px; }
+    .medal-lbl { font-size: 0.52rem; font-weight: 800; letter-spacing: 1px; color: #4D3205; text-transform: uppercase; margin-top: 3px; font-family: 'Cinzel', 'Noto Sans Telugu', serif; }
 
-    /* TALAMBRALU */
-    .talambralu-box { background: #FFFDF9; border: 1.5px solid #E8D7B8; border-radius: 20px; padding: 16px 12px; margin: 18px auto; max-width: 410px; }
-    .talambralu-title { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 2px; }
-    .talambralu-bowls-wrap { display: flex; justify-content: center; gap: 16px; margin: 12px 0 6px; }
-    .ceremonial-kinnam-btn { background: radial-gradient(circle, #FFF3D1 0%, #ECC968 100%); border: 2px solid #CFA233; border-radius: 18px; padding: 10px 14px; cursor: pointer; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 14px rgba(160, 115, 20, 0.25); min-width: 140px; }
-    .kinnam-icon { font-size: 1.8rem; line-height: 1; margin-bottom: 4px; }
-    .kinnam-lbl { font-size: 0.78rem; font-weight: 700; color: #5C3A10; }
+    /* TALAMBRALU (ONLY AKSHINTALU) */
+    .talambralu-box { background: #FFFDF9; border: 1.5px solid #E8D7B8; border-radius: 20px; padding: 16px 12px; margin: 18px auto; max-width: 380px; }
+    .talambralu-title { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.1rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 2px; }
+    .talambralu-bowls-wrap { display: flex; justify-content: center; margin: 12px 0 6px; }
+    .ceremonial-kinnam-btn {
+      background: radial-gradient(circle, #FFF3D1 0%, #ECC968 100%);
+      border: 2px solid #CFA233;
+      border-radius: 20px;
+      padding: 12px 28px;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 14px rgba(160, 115, 20, 0.25);
+      min-width: 180px;
+      transition: transform 0.15s ease;
+    }
+    .ceremonial-kinnam-btn:active { transform: scale(0.96); }
+    .kinnam-icon { font-size: 2.1rem; line-height: 1; margin-bottom: 4px; }
+    .kinnam-lbl { font-size: 0.86rem; font-weight: 700; color: #5C3A10; font-family: 'Cinzel', 'Noto Sans Telugu', serif; }
 
     /* DIGITAL SCRATCH CARD */
     .scratch-card-section {
@@ -491,43 +523,43 @@
       padding: 12px;
       z-index: 1;
     }
-    .scratch-secret-message h4 { font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: var(--maroon-primary); line-height: 1.1; }
-    .scratch-secret-message p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.82rem; color: #5C3A10; margin-top: 4px; }
+    .scratch-secret-message h4 { font-family: 'Great Vibes', 'Noto Sans Telugu', cursive; font-size: 1.8rem; color: var(--maroon-primary); line-height: 1.1; }
+    .scratch-secret-message p { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-style: italic; font-size: 0.82rem; color: #5C3A10; margin-top: 4px; }
     #scratchCanvas { position: absolute; inset: 0; z-index: 2; cursor: crosshair; }
 
     /* LIVE STREAMING */
     .livestream-card { background: #FFFDF9; border: 1.5px solid #DFC394; border-radius: 22px; padding: 20px 14px; margin: 18px auto 20px; max-width: 430px; box-shadow: 0 8px 24px rgba(133, 19, 41, 0.08); text-align: center; }
-    .livestream-badge { display: inline-flex; align-items: center; gap: 6px; background: #FFE8E8; color: #D32F2F; border: 1px solid #FFCDD2; border-radius: 20px; padding: 4px 14px; font-family: 'Cinzel', serif; font-size: 0.76rem; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 8px; }
+    .livestream-badge { display: inline-flex; align-items: center; gap: 6px; background: #FFE8E8; color: #D32F2F; border: 1px solid #FFCDD2; border-radius: 20px; padding: 4px 14px; font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 0.76rem; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 8px; }
     .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #D32F2F; animation: livePulse 1.4s infinite; }
     @keyframes livePulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.3); } 100% { opacity: 1; transform: scale(1); } }
-    .livestream-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 4px; }
-    .livestream-sub { font-size: 0.82rem; color: #6C5D4B; margin-bottom: 14px; }
+    .livestream-title { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 4px; }
+    .livestream-sub { font-size: 0.82rem; color: #6C5D4B; margin-bottom: 14px; font-family: 'Playfair Display', 'Noto Sans Telugu', serif; }
     .livestream-player-box { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; border: 2px solid #E5CCA2; box-shadow: 0 6px 18px rgba(0,0,0,0.12); background: #000; margin-bottom: 12px; }
     .livestream-player-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    .btn-watch-youtube { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #FF0000; color: #FFFFFF; font-size: 0.92rem; font-weight: 700; padding: 11px 22px; border-radius: 25px; text-decoration: none; box-shadow: 0 4px 14px rgba(255, 0, 0, 0.28); }
+    .btn-watch-youtube { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #FF0000; color: #FFFFFF; font-size: 0.92rem; font-weight: 700; padding: 11px 22px; border-radius: 25px; text-decoration: none; box-shadow: 0 4px 14px rgba(255, 0, 0, 0.28); font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif; }
 
     /* VENUE */
-    .venue-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 4px; }
+    .venue-title { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 4px; }
     .event-address { font-size: 0.92rem; font-weight: 600; color: #2F2620; line-height: 1.5; margin: 8px 0 14px; }
     .btn-group { display: flex; flex-direction: column; gap: 10px; margin: 14px 0 6px; }
-    .cta-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 20px; border-radius: 30px; font-size: 0.94rem; font-weight: 700; text-decoration: none; cursor: pointer; border: none; }
+    .cta-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 20px; border-radius: 30px; font-size: 0.94rem; font-weight: 700; text-decoration: none; cursor: pointer; border: none; font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif; }
     .btn-maps { background: #9E1F3B; color: #FFF; box-shadow: 0 4px 14px rgba(158, 31, 59, 0.3); }
     .btn-whatsapp { background: #139B50; color: #FFF; box-shadow: 0 4px 14px rgba(19, 155, 80, 0.3); }
 
     /* BLESSINGS TICKER */
     .akshintalu-btn-wrap { margin: 20px 0 12px; text-align: center; }
-    .akshintalu-btn { background: linear-gradient(135deg, #DE3163 0%, #9E1F3B 100%); color: #FFFFFF; border: 2px solid #FFD700; padding: 14px 26px; font-size: 0.98rem; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 6px 20px rgba(158, 31, 59, 0.35); display: inline-flex; align-items: center; gap: 8px; }
+    .akshintalu-btn { background: linear-gradient(135deg, #DE3163 0%, #9E1F3B 100%); color: #FFFFFF; border: 2px solid #FFD700; padding: 14px 26px; font-size: 0.98rem; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 6px 20px rgba(158, 31, 59, 0.35); display: inline-flex; align-items: center; gap: 8px; font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif; }
     .blessing-ticker { margin-top: 8px; font-size: 0.88rem; font-weight: 600; color: var(--gold-deep); }
 
     /* WISHES WALL */
     .wishes-wall { background: #FFFDF9; border: 1.5px solid #DFC394; border-radius: 18px; padding: 20px 16px; margin: 20px 0; box-shadow: 0 6px 18px rgba(0,0,0,0.04); text-align: left; }
-    .guestbook-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); text-align: center; margin-bottom: 2px; }
-    .guestbook-sub { text-align: center; font-size: 0.82rem; color: #6C5D4B; margin-bottom: 14px; }
+    .guestbook-title { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); text-align: center; margin-bottom: 2px; }
+    .guestbook-sub { text-align: center; font-size: 0.82rem; color: #6C5D4B; margin-bottom: 14px; font-family: 'Playfair Display', 'Noto Sans Telugu', serif; }
     .wish-input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
-    .wish-input-group input { width: 100%; padding: 11px 14px; border-radius: 10px; border: 1px solid #DFC394; font-size: 0.9rem; outline: none; background: #FFF; }
+    .wish-input-group input { width: 100%; padding: 11px 14px; border-radius: 10px; border: 1px solid #DFC394; font-size: 0.9rem; outline: none; background: #FFF; font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif; }
     
     .media-action-row { display: flex; gap: 8px; margin: 2px 0 4px; }
-    .media-action-btn { flex: 1; background: #FAF3E3; border: 1.5px solid #DFC394; border-radius: 12px; padding: 9px 8px; font-size: 0.82rem; font-weight: 700; color: #6C5230; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 5px; }
+    .media-action-btn { flex: 1; background: #FAF3E3; border: 1.5px solid #DFC394; border-radius: 12px; padding: 9px 8px; font-size: 0.82rem; font-weight: 700; color: #6C5230; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 5px; font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif; }
     .booth-live-wrapper { display: none; position: relative; margin: 10px auto; max-width: 300px; text-align: center; background: #000; border-radius: 16px; overflow: hidden; border: 2px solid #D4AF37; }
     .booth-live-wrapper video { width: 100%; height: auto; display: block; transform: scaleX(-1); }
     .booth-ctrl-bar { padding: 8px; background: rgba(255, 253, 249, 0.96); display: flex; justify-content: center; gap: 10px; }
@@ -539,8 +571,8 @@
     .voice-status-txt { font-size: 0.82rem; font-weight: 700; color: var(--maroon-primary); }
     .voice-audio-preview { width: 100%; height: 32px; margin-top: 6px; display: none; }
 
-    .send-wish-btn { width: 100%; padding: 11px; background: linear-gradient(135deg, #C59A3F, #9A7220); color: #FFF; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; font-size: 0.92rem; }
-    .download-card-btn { display: none; width: 100%; margin-top: 10px; padding: 12px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: #FFFFFF; border: none; border-radius: 10px; font-weight: 700; font-size: 0.92rem; cursor: pointer; }
+    .send-wish-btn { width: 100%; padding: 11px; background: linear-gradient(135deg, #C59A3F, #9A7220); color: #FFF; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; font-size: 0.92rem; font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif; }
+    .download-card-btn { display: none; width: 100%; margin-top: 10px; padding: 12px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: #FFFFFF; border: none; border-radius: 10px; font-weight: 700; font-size: 0.92rem; cursor: pointer; font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif; }
 
     .wishes-ticker-box { max-height: 260px; overflow-y: auto; border: 1px dashed #E3D1B4; border-radius: 12px; padding: 10px; background: #FAF7F0; display: flex; flex-direction: column; gap: 10px; }
     .wish-item { background: #FFFFFF; border-radius: 10px; padding: 10px 12px; border: 1px solid #F0E3D0; font-size: 0.86rem; }
@@ -552,7 +584,7 @@
 
     /* THANK YOU POPUP */
     .thankyou-trigger-wrap { margin: 22px 0 10px; text-align: center; }
-    .btn-thankyou-popup { background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%); color: #FFFFFF; border: 2px solid #FFF5D1; padding: 14px 28px; border-radius: 35px; font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 800; cursor: pointer; box-shadow: 0 6px 20px rgba(170, 124, 17, 0.4); display: inline-flex; align-items: center; gap: 10px; }
+    .btn-thankyou-popup { background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%); color: #FFFFFF; border: 2px solid #FFF5D1; padding: 14px 28px; border-radius: 35px; font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1rem; font-weight: 800; cursor: pointer; box-shadow: 0 6px 20px rgba(170, 124, 17, 0.4); display: inline-flex; align-items: center; gap: 10px; }
     .thankyou-modal-overlay { position: fixed; inset: 0; background: rgba(18, 10, 5, 0.85); backdrop-filter: blur(8px); z-index: 2000; display: flex; justify-content: center; align-items: center; padding: 16px; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
     .thankyou-modal-overlay.active { opacity: 1; visibility: visible; }
     .thankyou-modal-card { position: relative; max-width: 440px; width: 100%; max-height: 90vh; border-radius: 26px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.5); background: #FFFDF9; display: flex; flex-direction: column; }
@@ -561,12 +593,33 @@
     .thankyou-close-btn { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; background: rgba(255, 255, 255, 0.9); border: 1px solid #DFC394; color: #851329; font-size: 20px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; }
 
     .footer-bar { margin-top: 14px; background: radial-gradient(circle at center, #6A0D20 0%, #440411 100%); color: #FFF; padding: 22px 14px; border-radius: 18px; text-align: center; }
-    .footer-bar em { font-family: 'Playfair Display', serif; font-size: 0.92rem; font-style: italic; color: #F8DFAD; }
-    .footer-couple { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; letter-spacing: 2px; color: #FFF; margin-top: 6px; }
+    .footer-bar em { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: 0.92rem; font-style: italic; color: #F8DFAD; }
+    .footer-couple { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.35rem; font-weight: 800; letter-spacing: 2px; color: #FFF; margin-top: 6px; }
 
-    .audio-pill { position: fixed; bottom: 20px; right: 20px; background: rgba(255, 255, 255, 0.96); border: 1.5px solid #DFC394; border-radius: 30px; padding: 6px 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.18); display: flex; align-items: center; gap: 8px; z-index: 100; backdrop-filter: blur(8px); cursor: pointer; }
-    .audio-title-lbl { font-size: 0.76rem; font-weight: 700; color: var(--maroon-primary); letter-spacing: 0.5px; }
-    .audio-icon-bubble { background: var(--maroon-primary); color: #FFF; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
+    /* MINIMAL AUDIO TOGGLE BUTTON (CLEAN ICON ONLY) */
+    .audio-pill {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #FFFFFF;
+      border: 2px solid #DFC394;
+      border-radius: 50%;
+      width: 46px;
+      height: 46px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 100;
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      transition: transform 0.15s ease;
+    }
+    .audio-pill:active { transform: scale(0.92); }
+    .audio-icon-bubble {
+      font-size: 20px;
+      line-height: 1;
+    }
   </style>
 </head>
 <body>
@@ -574,7 +627,7 @@
   <!-- TOP ACTION BAR: OFFLINE SNAPSHOT & LANGUAGE TOGGLE -->
   <div class="top-action-bar">
     <button class="btn-offline-snapshot" onclick="downloadOfflineSnapshotCard()">
-      📥 <span data-en="Download Invitation Photo" data-te="ఆహ్వాన పత్రిక ఫోటో డౌన్‌లోడ్">Download Invitation Photo</span>
+      📥 <span data-en="Download Invitation Photo" data-te="ఆహ్వాన పత్రిక డౌన్‌లోడ్">Download Invitation Photo</span>
     </button>
     <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLanguage()">తెలుగు / EN</button>
   </div>
@@ -620,9 +673,8 @@
     <div class="tap-guide-prompt" id="tapPrompt" data-en="Tap in the middle to unite hands 💛" data-te="చేతులు కలపడానికి మధ్యలో తాకండి 💛">Tap in the middle to unite hands 💛</div>
   </div>
 
-  <!-- FLOATING NADASWARAM MUSIC CONTROL -->
-  <div class="audio-pill" onclick="toggleAudio()" title="Play / Pause Divine Nadaswaram">
-    <span class="audio-title-lbl" data-en="🪈 Divine Nadaswaram" data-te="🪈 నాదస్వరం">🪈 Divine Nadaswaram</span>
+  <!-- MINIMAL AUDIO CONTROL BUTTON (ICON ONLY) -->
+  <div class="audio-pill" onclick="toggleAudio()" title="Play / Pause Audio">
     <span class="audio-icon-bubble" id="audioPillIcon">🔊</span>
   </div>
 
@@ -641,8 +693,10 @@
       <!-- Side Welcome Banner from Side Choice -->
       <div class="family-welcome-banner" id="familyWelcomeBanner"></div>
 
-      <!-- NIGHT BEFORE CELEBRATION BANNER (AUTO-TRIGGERS NOV 25 6:00 PM) -->
-      <div class="night-before-banner" id="nightBeforeBanner">
+      <!-- NIGHT BEFORE CELEBRATION BANNER -->
+      <div class="night-before-banner" id="nightBeforeBanner" 
+           data-en="🎉 The celebrations have begun! Get a good night's rest, and we will see you tomorrow morning at VIP Gardens. ✨"
+           data-te="🎉 వివాహ సంబరాలు ప్రారంభమయ్యాయి! రేపు ఉదయం వీఐపీ గార్డెన్స్ వేదికగా మిమ్మల్ని కలుసుకోవడానికి వేచిచూస్తున్నాము. ✨">
         🎉 <strong>The celebrations have begun!</strong><br>
         Get a good night's rest, and we will see you tomorrow morning at VIP Gardens. ✨
       </div>
@@ -667,8 +721,8 @@
           || మంగళం భగవాన్ విష్ణుః మంగళం గరుడధ్వజః | మంగళం పుండరీకాక్షో మంగళాయ తనో హరిః || 🙏
         </div>
 
-        <!-- HIGHLIGHTED COUPLE NAMES: SARIKA & SAMPATH -->
-        <div class="couple-title">Sarika &amp; Sampath</div>
+        <!-- HIGHLIGHTED COUPLE NAMES: FULL EN & TE DUAL TRANSLATION -->
+        <div class="couple-title" id="coupleTitle" data-en="Sarika &amp; Sampath" data-te="సారిక &amp; సంపత్">Sarika &amp; Sampath</div>
         <div class="hashtag-tag">#SamRika</div>
         <div class="invite-lead" data-en="We invite you to celebrate our wedding" data-te="మా వివాహ మహోత్సవానికి మిమ్మల్ని సాదరంగా ఆహ్వానిస్తున్నాము">We invite you to celebrate our wedding</div>
 
@@ -688,9 +742,9 @@
             <div class="bride-inner-border">
               <div class="card-badge bride-badge" data-en="🌸 BRIDE'S PARENTS" data-te="🌸 వధువు తల్లిదండ్రులు">🌸 BRIDE'S PARENTS</div>
               <div class="parent-name">
-                Deshaboina Venkateshwara Prabhu
-                <span class="parent-connector">&amp;</span>
-                Mrs. Sharadamba
+                <span data-en="Deshaboina Venkateshwara Prabhu" data-te="దేశబోయిన వెంకటేశ్వర ప్రభు">Deshaboina Venkateshwara Prabhu</span>
+                <span class="parent-connector" data-en="&amp;" data-te="మరియు">&amp;</span>
+                <span data-en="Mrs. Sharadamba" data-te="శ్రీమతి శారదాంబ">Mrs. Sharadamba</span>
               </div>
             </div>
           </div>
@@ -700,17 +754,17 @@
             <div class="groom-inner-border">
               <div class="card-badge groom-badge" data-en="🪷 GROOM'S PARENTS" data-te="🪷 వరుని తల్లిదండ్రులు">🪷 GROOM'S PARENTS</div>
               <div class="parent-name">
-                Boga Ashok
-                <span class="parent-connector">&amp;</span>
-                Mrs. Geetha
+                <span data-en="Boga Ashok" data-te="బోగ అశోక్">Boga Ashok</span>
+                <span class="parent-connector" data-en="&amp;" data-te="మరియు">&amp;</span>
+                <span data-en="Mrs. Geetha" data-te="శ్రీమతి గీత">Mrs. Geetha</span>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- POLAROID FLIP STORY CARDS (WITH SCROLL MUSIC SWELL SENSOR) -->
+        <!-- POLAROID FLIP STORY CARDS -->
         <div class="story-section" id="storySection">
-          <div style="font-family:'Cinzel', serif; font-size:1.2rem; font-weight:800; color:var(--maroon-primary);" data-en="Our Story" data-te="మా ప్రేమ కథ">Our Story</div>
+          <div style="font-family:'Cinzel', 'Noto Sans Telugu', serif; font-size:1.2rem; font-weight:800; color:var(--maroon-primary);" data-en="Our Story" data-te="మా ప్రేమ కథ">Our Story</div>
           <div style="font-size:0.8rem; color:#7A6953; font-style:italic;" data-en="Tap a memory to flip 💫" data-te="జ్ఞాపకాన్ని చూడటానికి తాకండి 💫">Tap a memory to flip 💫</div>
           
           <div class="story-grid">
@@ -757,7 +811,7 @@
 
         <!-- DIGITAL GOLD FOIL SCRATCH CARD -->
         <div class="scratch-card-section">
-          <div style="font-family:'Cinzel', serif; font-size:1.1rem; font-weight:800; color:var(--maroon-primary);" data-en="✨ Surprise Scratch Card ✨" data-te="✨ గోల్డ్ స్క్రాచ్ కార్డ్ ✨">✨ Surprise Scratch Card ✨</div>
+          <div style="font-family:'Cinzel', 'Noto Sans Telugu', serif; font-size:1.1rem; font-weight:800; color:var(--maroon-primary);" data-en="✨ Surprise Scratch Card ✨" data-te="✨ గోల్డ్ స్క్రాచ్ కార్డ్ ✨">✨ Surprise Scratch Card ✨</div>
           <div style="font-size:0.8rem; color:#7A6953; margin-top:2px;" data-en="Scratch with your finger to reveal our special note!" data-te="మా ప్రత్యేక సందేశాన్ని చూడటానికి స్క్రాచ్ చేయండి!">Scratch with your finger to reveal our special note!</div>
           
           <div class="scratch-container" id="scratchContainer">
@@ -776,14 +830,14 @@
           <span class="divider-line"></span>
         </div>
 
-        <!-- SACRED DIYA LIGHTING -->
+        <!-- COMPACT REFINED SACRED DIYA SECTION -->
         <div class="diya-section">
           <div class="diya-heading" data-en="Light the Sacred Diya" data-te="మంగళ దీపం వెలిగించండి">Light the Sacred Diya</div>
-          <div class="diya-sub" data-en="Touch the lamp to ignite divine blessings for Sarika &amp; Sampath 🪔" data-te="సారిక &amp; సంపత్ ల కొరకు మంగళ దీపాన్ని తాకి వెలిగించండి 🪔">Touch the lamp to ignite divine blessings for Sarika &amp; Sampath 🪔</div>
+          <div class="diya-sub" data-en="Touch lamp to ignite blessings 🪔" data-te="దీపాన్ని తాకి ఆశీర్వదించండి 🪔">Touch lamp to ignite blessings 🪔</div>
           
           <div class="diya-lamp-box" id="diyaBox" onclick="lightTheDiya()">
             <div class="diya-aura"></div>
-            <svg viewBox="0 0 100 100" width="80" height="80">
+            <svg viewBox="0 0 100 100" width="60" height="60">
               <path class="diya-flame" d="M50 12 C44 26 40 38 50 48 C60 38 56 26 50 12 Z" fill="url(#flameGradient)"/>
               <ellipse class="diya-flame" cx="50" cy="38" rx="4" ry="7" fill="#FFFFFF" opacity="0.8"/>
               <path d="M24 55 Q50 68 76 55 Q78 68 62 76 L66 88 L34 88 L38 76 Q22 68 24 55 Z" fill="#D4AF37" stroke="#A67C1E" stroke-width="2"/>
@@ -801,7 +855,7 @@
           <div class="diya-status-tag" id="diyaStatus" data-en="Touch to light the Diya ✨" data-te="దీపం వెలిగించడానికి తాకండి ✨">Touch to light the Diya ✨</div>
         </div>
 
-        <!-- MUHURTHAM SECTION WITH CONVERSATIONAL TIME-LEFT TRACKER -->
+        <!-- MUHURTHAM SECTION WITH CONVERSATIONAL TRACKER -->
         <div class="event-card">
           <div class="event-img-wrap">
             <img src="kalyanam.jpeg" alt="Sita Rama Kalyanam" onerror="handleImgError(this, 'kalyanam')">
@@ -843,18 +897,14 @@
           </div>
         </div>
 
-        <!-- TALAMBRALU CEREMONIAL BOWL SHOWER -->
+        <!-- TALAMBRALU (ONLY AKSHINTALU BOWL) -->
         <div class="talambralu-box">
           <div class="talambralu-title" data-en="Talambralu Blessings 🌾" data-te="తలంబ్రాల ఆశీస్సులు 🌾">Talambralu Blessings 🌾</div>
-          <div style="font-size:0.8rem; color:#7A6953;" data-en="Tap the sacred bowls to shower blessings upon the couple" data-te="వధూవరులపై తలంబ్రాలు కురిపించడానికి తాకండి">Tap the sacred bowls to shower blessings upon the couple</div>
+          <div style="font-size:0.8rem; color:#7A6953;" data-en="Tap the bowl to shower sacred Akshintalu upon the couple" data-te="వధూవరులపై పవిత్ర అక్షింతలు కురిపించడానికి తాకండి">Tap the bowl to shower sacred Akshintalu upon the couple</div>
           <div class="talambralu-bowls-wrap">
             <button class="ceremonial-kinnam-btn" onclick="showerTalambralu('rice')">
               <span class="kinnam-icon">🍚</span>
               <span class="kinnam-lbl" data-en="Yellow Akshintalu" data-te="పసుపు అక్షింతలు">Yellow Akshintalu</span>
-            </button>
-            <button class="ceremonial-kinnam-btn" onclick="showerTalambralu('petals')">
-              <span class="kinnam-icon">🌹</span>
-              <span class="kinnam-lbl" data-en="Rose Petals" data-te="గులాబీ రేకులు">Rose Petals</span>
             </button>
           </div>
         </div>
@@ -895,7 +945,7 @@
           </div>
           <div class="event-tag" data-en="VENUE" data-te="కళ్యాణ వేదిక">VENUE</div>
           <div class="venue-title">VIP Gardens</div>
-          <div class="event-address">
+          <div class="event-address" data-en="GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony, Suraram Village, Suraram, Hyderabad, Telangana 500055" data-te="సూరారం విలేజ్ రోడ్, లక్ష్మీ నగర్ కాలనీ, సూరారం, హైదరాబాద్, తెలంగాణ 500055">
             GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony,<br>
             Suraram Village, Suraram, Hyderabad, Telangana 500055
           </div>
@@ -910,7 +960,7 @@
           </div>
         </div>
 
-        <!-- Interactive Shower Akshintalu & Petals Button -->
+        <!-- Interactive Shower Akshintalu Button -->
         <div class="akshintalu-btn-wrap">
           <button class="akshintalu-btn" onclick="showerAkshintalu()" data-en="🌸 Tap to Shower Akshintalu &amp; Blessings" data-te="🌸 అక్షింతలు &amp; ఆశీస్సులు కురిపించండి">
             🌸 Tap to Shower Akshintalu &amp; Blessings
@@ -921,7 +971,7 @@
         <!-- GUEST WISHES WALL -->
         <div class="wishes-wall">
           <div class="guestbook-title" data-en="Guest Wishes Wall" data-te="అతిథుల ఆశీస్సుల వేదిక">Guest Wishes Wall</div>
-          <div class="guestbook-sub" data-en="Leave a blessing, snap a selfie, or record a voice note for Sarika &amp; Sampath" data-te="మీ ఆశీస్సులు, ఫోటో లేదా వాయిస్ సందేశాన్ని పంపండి">Leave a blessing, snap a selfie, or record a voice note for Sarika &amp; Sampath</div>
+          <div class="guestbook-sub" data-en="Leave a blessing, snap a selfie, or record a voice note for Sarika &amp; Sampath" data-te="సారిక &amp; సంపత్ లకు మీ ఆశీస్సులు, ఫోటో లేదా వాయిస్ సందేశాన్ని పంపండి">Leave a blessing, snap a selfie, or record a voice note for Sarika &amp; Sampath</div>
           
           <div class="wish-input-group">
             <input type="text" id="guestName" placeholder="Your Name (e.g., Ramesh Uncle)" maxlength="40">
@@ -929,10 +979,10 @@
 
             <!-- Media Options -->
             <div class="media-action-row">
-              <button type="button" class="media-action-btn" onclick="togglePhotoBooth()">
+              <button type="button" class="media-action-btn" onclick="togglePhotoBooth()" data-en="📸 Snap Selfie Frame" data-te="📸 సెల్ఫీ ఫోటో తీసుకోండి">
                 📸 Snap Selfie Frame
               </button>
-              <button type="button" class="media-action-btn" id="recordVoiceBtn" onclick="handleVoiceRecord()">
+              <button type="button" class="media-action-btn" id="recordVoiceBtn" onclick="handleVoiceRecord()" data-en="🎙️ Voice Note (10s)" data-te="🎙️ వాయిస్ సందేశం (10s)">
                 🎙️ Voice Note (10s)
               </button>
             </div>
@@ -942,8 +992,8 @@
               <video id="boothVideo" autoplay playsinline></video>
               <canvas id="boothCanvas" width="400" height="400" style="display:none;"></canvas>
               <div class="booth-ctrl-bar">
-                <button type="button" class="booth-snap-btn" onclick="snapSelfie()">⚡ Take Photo</button>
-                <button type="button" class="booth-cancel-btn" onclick="closePhotoBooth()">✕ Close</button>
+                <button type="button" class="booth-snap-btn" onclick="snapSelfie()" data-en="⚡ Take Photo" data-te="⚡ ఫోటో తీయండి">⚡ Take Photo</button>
+                <button type="button" class="booth-cancel-btn" onclick="closePhotoBooth()" data-en="✕ Close" data-te="✕ మూసివేయండి">✕ Close</button>
               </div>
             </div>
 
@@ -951,8 +1001,8 @@
             <div class="captured-selfie-box" id="capturedPhotoPreview">
               <img id="selfieThumb" class="selfie-thumb-img" src="" alt="Captured Selfie">
               <div style="flex:1; text-align:left;">
-                <div style="font-size:0.78rem; font-weight:700; color:#2E7D32;">✨ Frame Attached!</div>
-                <div style="font-size:0.72rem; color:#851329; cursor:pointer; text-decoration:underline;" onclick="clearSelfie()">Remove Photo ✕</div>
+                <div style="font-size:0.78rem; font-weight:700; color:#2E7D32;" data-en="✨ Frame Attached!" data-te="✨ ఫోటో సిద్ధమైంది!">✨ Frame Attached!</div>
+                <div style="font-size:0.72rem; color:#851329; cursor:pointer; text-decoration:underline;" onclick="clearSelfie()" data-en="Remove Photo ✕" data-te="తొలగించండి ✕">Remove Photo ✕</div>
               </div>
             </div>
 
@@ -960,7 +1010,7 @@
             <div class="voice-status-wrapper" id="voiceStatusArea">
               <div class="voice-status-txt" id="recordingTimer">🔴 Recording... 10s</div>
               <audio id="recordedAudioPreview" class="voice-audio-preview" controls></audio>
-              <div id="clearVoiceLink" style="display:none; font-size:0.74rem; color:#851329; cursor:pointer; margin-top:4px; text-decoration:underline;" onclick="clearVoiceNote()">Delete Voice Note ✕</div>
+              <div id="clearVoiceLink" style="display:none; font-size:0.74rem; color:#851329; cursor:pointer; margin-top:4px; text-decoration:underline;" onclick="clearVoiceNote()" data-en="Delete Voice Note ✕" data-te="వాయిస్ తొలగించండి ✕">Delete Voice Note ✕</div>
             </div>
 
             <button class="send-wish-btn" id="postWishBtn" onclick="submitWish()" data-en="✨ Send Blessing" data-te="✨ ఆశీర్వదించండి">✨ Send Blessing</button>
@@ -968,7 +1018,7 @@
           </div>
 
           <div class="wishes-ticker-box" id="wishesBox">
-            <div style="text-align:center; padding:12px; color:#8C7355; font-size:0.85rem;">
+            <div style="text-align:center; padding:12px; color:#8C7355; font-size:0.85rem;" data-en="Loading blessings... 🪷" data-te="ఆశీస్సులు లోడ్ అవుతున్నాయి... 🪷">
               Loading blessings... 🪷
             </div>
           </div>
@@ -985,7 +1035,7 @@
         <div class="footer-bar">
           <em data-en="We can't wait to celebrate this auspicious day with you ❤️" data-te="ఈ శుభదినాన మీతో కలిసి వేడుక చేసుకోవడానికి వేచిచూస్తున్నాము ❤️">We can't wait to celebrate this auspicious day with you ❤️</em>
           <div style="font-size:0.85rem; margin-top:4px; color:#F8DFAD;" data-en="With Love," data-te="ప్రేమతో,">With Love,</div>
-          <div class="footer-couple">SARIKA &amp; SAMPATH</div>
+          <div class="footer-couple" data-en="SARIKA &amp; SAMPATH" data-te="సారిక &amp; సంపత్">SARIKA &amp; SAMPATH</div>
         </div>
 
       </div>
@@ -1072,7 +1122,7 @@
       if (now >= nightBeforeDateTime && now < weddingDateTime) {
         trackerEl.innerText = currentLang === 'en'
           ? "✨ Tonight is the night! Tomorrow morning Sarika & Sampath tie the knot! 💍"
-          : "✨ రేపు ఉదయమే సారిక & సంపత్ ల వివాహ మహోత్సవం! 💍";
+          : "✨ రేపు ఉదయమే సారిక & సంపత్ ల కల్యాణ మహోత్సవం! 💍";
       } else if (currentDayOfWeek === 4) {
         const thursdaysLeft = Math.ceil(totalDays / 7);
         if (thursdaysLeft <= 1) {
@@ -1127,7 +1177,7 @@
       }
     }
 
-    /* CANVAS TEXT-WRAPPING HELPER TO PREVENT ANY OVERFLOW */
+    /* CANVAS TEXT-WRAPPING HELPER */
     function renderCanvasWrapped(ctx, text, x, startY, maxWidth, lineHeight) {
       const words = String(text).split(' ');
       let line = '';
@@ -1147,10 +1197,8 @@
       return currentY;
     }
 
-    /* FLORAL ORNAMENTATION CANVAS DRAWING HELPERS */
     function drawCanvasFlower(ctx, cx, cy, radius, primaryColor, centerColor) {
       ctx.save();
-      // Draw 6 petals
       for (let i = 0; i < 6; i++) {
         const angle = (i * Math.PI) / 3;
         const px = cx + Math.cos(angle) * (radius * 0.7);
@@ -1160,7 +1208,6 @@
         ctx.fillStyle = primaryColor;
         ctx.fill();
       }
-      // Draw Flower Center Core
       ctx.beginPath();
       ctx.arc(cx, cy, radius * 0.45, 0, Math.PI * 2);
       ctx.fillStyle = centerColor;
@@ -1173,7 +1220,6 @@
       ctx.translate(cx, cy);
       ctx.scale(flipX ? -1 : 1, flipY ? -1 : 1);
       
-      // Side Petals
       ctx.fillStyle = '#FF6584';
       ctx.beginPath();
       ctx.ellipse(-size * 0.4, -size * 0.2, size * 0.28, size * 0.55, -0.4, 0, Math.PI * 2);
@@ -1182,13 +1228,11 @@
       ctx.ellipse(size * 0.4, -size * 0.2, size * 0.28, size * 0.55, 0.4, 0, Math.PI * 2);
       ctx.fill();
 
-      // Center Main Petal
       ctx.fillStyle = '#FFA8B6';
       ctx.beginPath();
       ctx.ellipse(0, -size * 0.35, size * 0.3, size * 0.65, 0, 0, Math.PI * 2);
       ctx.fill();
 
-      // Golden Base Calyx
       ctx.fillStyle = '#E5B80B';
       ctx.beginPath();
       ctx.arc(0, 0, size * 0.28, 0, Math.PI);
@@ -1196,14 +1240,13 @@
       ctx.restore();
     }
 
-    /* 5. VIBRANT FLORAL OFFLINE SNAPSHOT CARD GENERATOR */
+    /* 5. VIBRANT FLORAL OFFLINE SNAPSHOT CARD */
     function downloadOfflineSnapshotCard() {
       const canvas = document.getElementById('offlineSnapshotCanvas');
       const ctx = canvas.getContext('2d');
       const W = canvas.width;
       const H = canvas.height;
 
-      // 1. Warm Silk Parchment Base
       const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 100, W / 2, H / 2, 1150);
       bgGrad.addColorStop(0, '#FFFDF8');
       bgGrad.addColorStop(0.5, '#FFF8EC');
@@ -1211,13 +1254,12 @@
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, W, H);
 
-      // 2. Multi-tier Royal Silk & Gold Borders
       ctx.lineWidth = 22;
-      ctx.strokeStyle = '#851329'; // Royal Maroon
+      ctx.strokeStyle = '#851329';
       ctx.strokeRect(32, 32, W - 64, H - 64);
 
       ctx.lineWidth = 5;
-      ctx.strokeStyle = '#D4AF37'; // Pure Gold
+      ctx.strokeStyle = '#D4AF37';
       ctx.strokeRect(52, 52, W - 104, H - 104);
 
       ctx.lineWidth = 2;
@@ -1226,12 +1268,10 @@
       ctx.strokeRect(66, 66, W - 132, H - 132);
       ctx.setLineDash([]);
 
-      // 3. Mango Leaves & Marigold Garland Toranam across the Top
       ctx.save();
       const toranamY = 82;
       const step = 64;
       for (let x = 90; x <= W - 90; x += step) {
-        // Mango Leaf (Vibrant Green)
         ctx.fillStyle = '#2E7D32';
         ctx.beginPath();
         ctx.moveTo(x - 16, toranamY);
@@ -1240,31 +1280,25 @@
         ctx.closePath();
         ctx.fill();
 
-        // Marigold Blossom Studs (Alternating Saffron & Yellow)
         const isYellow = (x / step) % 2 === 0;
         drawCanvasFlower(ctx, x, toranamY + 12, 11, isYellow ? '#FFD54F' : '#FF8F00', isYellow ? '#E65100' : '#FFF9C4');
       }
       ctx.restore();
 
-      // 4. Side Hanging Marigold Blossom Strands (Left & Right Borders)
       const garlandTop = 160;
       const garlandBottom = H - 160;
       const garlandStep = 60;
       for (let y = garlandTop; y <= garlandBottom; y += garlandStep) {
         const isOrange = (y / garlandStep) % 2 === 0;
-        // Left Strand
         drawCanvasFlower(ctx, 42, y, 12, isOrange ? '#FF8F00' : '#FFD54F', isOrange ? '#FFF59D' : '#E65100');
-        // Right Strand
         drawCanvasFlower(ctx, W - 42, y, 12, isOrange ? '#FF8F00' : '#FFD54F', isOrange ? '#FFF59D' : '#E65100');
       }
 
-      // 5. Corner Lotus Blooms
       drawCanvasLotusCorner(ctx, 110, 110, 38, false, false);
       drawCanvasLotusCorner(ctx, W - 110, 110, 38, true, false);
       drawCanvasLotusCorner(ctx, 110, H - 110, 38, false, true);
       drawCanvasLotusCorner(ctx, W - 110, H - 110, 38, true, true);
 
-      // 6. Sacred Crest & Shloka
       ctx.textAlign = 'center';
       ctx.font = '54px sans-serif';
       ctx.fillText('🏺', W / 2, 195);
@@ -1278,7 +1312,6 @@
       ctx.letterSpacing = '3px';
       ctx.fillText('WEDDING INVITATION', W / 2, 320);
 
-      // 7. Couple Names: SARIKA & SAMPATH
       ctx.font = 'bold 106px "Great Vibes", cursive, serif';
       ctx.fillStyle = '#851329';
       ctx.shadowColor = 'rgba(212, 175, 55, 0.45)';
@@ -1290,7 +1323,6 @@
       ctx.fillStyle = '#8E6A26';
       ctx.fillText('#SamRika', W / 2, 515);
 
-      // Gold Filigree Divider
       ctx.beginPath();
       ctx.moveTo(W / 2 - 260, 555);
       ctx.lineTo(W / 2 + 260, 555);
@@ -1300,12 +1332,10 @@
 
       drawCanvasFlower(ctx, W / 2, 555, 12, '#DE3163', '#FFD54F');
 
-      // 8. Lead-in Text (Strictly Contained & Wrapped)
       ctx.font = 'italic 30px "Playfair Display", serif';
       ctx.fillStyle = '#4D3205';
       renderCanvasWrapped(ctx, "Soliciting your gracious presence and heartfelt blessings on our auspicious marriage", W / 2, 620, W - 280, 42);
 
-      // 9. Bride Parents Card Box (Strictly Contained)
       const cardBoxW = W - 240;
       const cardBoxX = 120;
 
@@ -1325,7 +1355,6 @@
       ctx.fillStyle = '#222222';
       renderCanvasWrapped(ctx, "Deshaboina Venkateshwara Prabhu & Mrs. Sharadamba", W / 2, 800, cardBoxW - 50, 40);
 
-      // 10. Groom Parents Card Box (Strictly Contained)
       ctx.fillStyle = '#FFFFFF';
       ctx.strokeStyle = '#ECC968';
       ctx.lineWidth = 2.5;
@@ -1342,7 +1371,6 @@
       ctx.fillStyle = '#222222';
       renderCanvasWrapped(ctx, "Boga Ashok & Mrs. Geetha", W / 2, 995, cardBoxW - 50, 40);
 
-      // 11. Sumuhurtham Card Box
       ctx.fillStyle = '#FFF8E6';
       ctx.strokeStyle = '#C59A3F';
       ctx.lineWidth = 3;
@@ -1363,7 +1391,6 @@
       ctx.fillStyle = '#851329';
       ctx.fillText('9:15 AM', W / 2, 1310);
 
-      // 12. Venue Box
       ctx.fillStyle = '#FFFFFF';
       ctx.strokeStyle = '#DFC394';
       ctx.lineWidth = 2.5;
@@ -1380,7 +1407,6 @@
       ctx.fillStyle = '#2F2620';
       renderCanvasWrapped(ctx, "GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony, Suraram, Hyderabad, Telangana 500055", W / 2, 1515, cardBoxW - 60, 42);
 
-      // 13. Blessing Note at Bottom (Strictly Contained)
       ctx.font = 'italic 28px "Playfair Display", serif';
       ctx.fillStyle = '#8E6A26';
       renderCanvasWrapped(ctx, "May Lord Venkateshwara bless our union with eternal love, harmony & prosperity 🙏", W / 2, 1720, W - 280, 38);
@@ -1389,7 +1415,6 @@
       ctx.fillStyle = '#851329';
       ctx.fillText('SARIKA & SAMPATH', W / 2, 1825);
 
-      // 14. Trigger Download
       const link = document.createElement('a');
       link.download = 'Sarika_Sampath_Wedding_Invitation_Card.jpg';
       link.href = canvas.toDataURL('image/jpeg', 0.95);
@@ -1409,13 +1434,22 @@
     }
     applyTimeOfDayTheme();
 
-    /* MULTI-LANGUAGE TOGGLE */
+    /* FULL MULTI-LANGUAGE TOGGLE (EN / TE) */
     let currentLang = 'en';
     function toggleLanguage() {
       currentLang = currentLang === 'en' ? 'te' : 'en';
+      
+      // Update typography class for font switching
+      if (currentLang === 'te') {
+        document.body.classList.add('lang-te');
+      } else {
+        document.body.classList.remove('lang-te');
+      }
+
       document.querySelectorAll('[data-en]').forEach(el => {
-        el.innerText = el.getAttribute(`data-${currentLang}`);
+        el.innerHTML = el.getAttribute(`data-${currentLang}`);
       });
+
       document.getElementById('guestName').placeholder = currentLang === 'en' ? 'Your Name (e.g., Ramesh Uncle)' : 'మీ పేరు (ఉదా: రమేష్ బాబాయ్)';
       document.getElementById('guestMessage').placeholder = currentLang === 'en' ? 'Your blessing / wish...' : 'మీ ఆశీస్సులు / శుభాకాంక్షలు...';
       updateConversationalTracker();
@@ -1442,7 +1476,7 @@
           musicGain.connect(audioCtx.destination);
         }
       } catch (e) {
-        console.log("WebAudio routing fallback:", e);
+        console.log("WebAudio fallback:", e);
       }
     }
 
@@ -1646,23 +1680,13 @@
 
     function showerTalambralu(type) {
       triggerHeartbeatPulse();
-      if (type === 'rice') {
-        confetti({
-          particleCount: 65,
-          spread: 80,
-          angle: 90,
-          origin: { y: 0.65 },
-          colors: ['#FFD700', '#FFEA00', '#FFFDD0', '#E5B80B']
-        });
-      } else {
-        confetti({
-          particleCount: 50,
-          spread: 75,
-          angle: 90,
-          origin: { y: 0.65 },
-          colors: ['#C41E3A', '#DE3163', '#FF4081', '#FFB7B2']
-        });
-      }
+      confetti({
+        particleCount: 65,
+        spread: 80,
+        angle: 90,
+        origin: { y: 0.65 },
+        colors: ['#FFD700', '#FFEA00', '#FFFDD0', '#E5B80B']
+      });
     }
 
     /* VIRTUAL PHOTO BOOTH */
@@ -1818,10 +1842,10 @@
       capturedAudioBase64 = null;
       document.getElementById('voiceStatusArea').style.display = 'none';
       document.getElementById('recordedAudioPreview').src = '';
-      document.getElementById('recordVoiceBtn').innerText = "🎙️ Voice Note (10s)";
+      document.getElementById('recordVoiceBtn').innerText = currentLang === 'en' ? "🎙️ Voice Note (10s)" : "🎙️ వాయిస్ సందేశం (10s)";
     }
 
-    /* DOWNLOADABLE WHATSAPP BLESSING CARD */
+    /* DOWNLOADABLE BLESSING CARD */
     let lastPostedName = "";
     let lastPostedWish = "";
 
@@ -1980,7 +2004,7 @@
       const msgInput = document.getElementById('guestMessage');
       const downloadBtn = document.getElementById('downloadCardBtn');
 
-      const name = nameInput.value.trim() || "Well Wisher";
+      const name = nameInput.value.trim() || (currentLang === 'en' ? "Well Wisher" : "హితైషి");
       const wish = msgInput.value.trim();
 
       if (!wish && !capturedSelfieBase64 && !capturedAudioBase64) {
@@ -2005,7 +2029,7 @@
         });
 
         lastPostedName = name;
-        lastPostedWish = wish || "Hearty Congratulations Sarika & Sampath!";
+        lastPostedWish = wish || (currentLang === 'en' ? "Hearty Congratulations Sarika & Sampath!" : "సారిక & సంపత్ లకు హృదయపూర్వక శుభాకాంక్షలు!");
 
         nameInput.value = '';
         msgInput.value = '';
