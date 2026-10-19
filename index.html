@@ -37,7 +37,7 @@
       justify-content: flex-start;
       align-items: center;
       overflow-x: hidden;
-      padding: 56px 6px 14px;
+      padding: 56px 6px 50px;
       transition: background 1.2s ease, color 0.6s ease;
     }
     body.theme-morning { --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFF8EE 0%, #FBE5C8 100%); }
@@ -351,12 +351,23 @@
 
     .sacred-shloka { font-family: 'Noto Sans Telugu', sans-serif; font-size: 0.86rem; font-weight: 700; color: var(--maroon-primary); line-height: 1.6; margin: 8px auto 10px; padding: 7px 12px; background: rgba(255, 255, 255, 0.75); border-radius: 12px; border: 1px dashed rgba(163, 124, 50, 0.4); }
     
-    /* COUPLE TITLE: DYNAMIC EN/TE TYPOGRAPHY */
+    /* 1. TIME-GREETING BADGE ABOVE NAMES */
+    .time-greeting-badge {
+      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
+      font-style: italic;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold-deep);
+      margin-bottom: 2px;
+      letter-spacing: 0.5px;
+    }
+
+    /* COUPLE TITLE */
     .couple-title {
       font-size: 3.8rem;
       color: var(--maroon-primary);
       line-height: 1.15;
-      margin: 8px 0 2px;
+      margin: 4px 0 2px;
       text-shadow: 0 2px 4px rgba(133, 19, 41, 0.22), 0 0 20px rgba(245, 204, 114, 0.55);
       font-family: 'Great Vibes', cursive;
     }
@@ -401,7 +412,7 @@
     .polaroid-back h4 { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 0.78rem; color: var(--maroon-primary); margin-bottom: 4px; }
     .polaroid-back p { font-size: 0.68rem; color: #4C4238; line-height: 1.35; font-style: italic; }
 
-    /* COMPACT REFINED SACRED DIYA SECTION */
+    /* COMPACT SACRED DIYA */
     .diya-section {
       background: radial-gradient(circle at center, #FFFDF6 0%, #FAF1DF 100%);
       border: 1.5px solid #E8D7B8;
@@ -423,7 +434,7 @@
     @keyframes flameWiggle { 0% { transform: rotate(-2deg); } 100% { transform: rotate(3deg); } }
     .diya-status-tag { font-size: 0.74rem; font-weight: 700; color: var(--gold-deep); margin-top: 4px; }
 
-    /* MUHURTHAM SECTION & TIME-LEFT TRACKER */
+    /* MUHURTHAM SECTION */
     .event-card { background: #FAF5EB; border: 1px solid #EFE2CB; border-radius: 22px; padding: 20px 14px; margin-bottom: 18px; box-shadow: 0 8px 22px rgba(142, 106, 38, 0.1); }
     .event-img-wrap { width: 100%; max-width: 290px; height: 240px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; border: 2px solid #E5CCA2; background: #FFF; }
     .event-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
@@ -468,7 +479,7 @@
     .medal-val { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: #4D3205; line-height: 1; }
     .medal-lbl { font-size: 0.52rem; font-weight: 800; letter-spacing: 1px; color: #4D3205; text-transform: uppercase; margin-top: 3px; font-family: 'Cinzel', 'Noto Sans Telugu', serif; }
 
-    /* TALAMBRALU (ONLY AKSHINTALU) */
+    /* TALAMBRALU */
     .talambralu-box { background: #FFFDF9; border: 1.5px solid #E8D7B8; border-radius: 20px; padding: 16px 12px; margin: 18px auto; max-width: 380px; }
     .talambralu-title { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.1rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 2px; }
     .talambralu-bowls-wrap { display: flex; justify-content: center; margin: 12px 0 6px; }
@@ -596,7 +607,7 @@
     .footer-bar em { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: 0.92rem; font-style: italic; color: #F8DFAD; }
     .footer-couple { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.35rem; font-weight: 800; letter-spacing: 2px; color: #FFF; margin-top: 6px; }
 
-    /* MINIMAL AUDIO TOGGLE BUTTON (CLEAN ICON ONLY) */
+    /* MINIMAL AUDIO TOGGLE */
     .audio-pill {
       position: fixed;
       bottom: 20px;
@@ -604,8 +615,8 @@
       background: #FFFFFF;
       border: 2px solid #DFC394;
       border-radius: 50%;
-      width: 46px;
-      height: 46px;
+      width: 44px;
+      height: 44px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.22);
       display: flex;
       align-items: center;
@@ -616,9 +627,53 @@
       transition: transform 0.15s ease;
     }
     .audio-pill:active { transform: scale(0.92); }
-    .audio-icon-bubble {
-      font-size: 20px;
-      line-height: 1;
+    .audio-icon-bubble { font-size: 18px; line-height: 1; }
+
+    /* 2. NEED HELP FLOATING WHATSAPP LIFELINE */
+    .floating-help-btn {
+      position: fixed;
+      bottom: 74px;
+      right: 16px;
+      background: #25D366;
+      color: #FFFFFF;
+      border-radius: 30px;
+      padding: 7px 14px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.22);
+      text-decoration: none;
+      font-size: 0.76rem;
+      font-weight: 700;
+      z-index: 99;
+      border: 1.5px solid #FFFFFF;
+      transition: transform 0.2s ease;
+      font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif;
+    }
+    .floating-help-btn:active { transform: scale(0.94); }
+
+    /* 3. STICKY MUHURTHAM REMINDER BAR */
+    .sticky-muhurtham-bar {
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      height: 38px;
+      background: radial-gradient(circle at center, #6A0D20 0%, #440411 100%);
+      color: #FFFDF9;
+      border-top: 1.5px solid #DFC394;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', 'Noto Sans Telugu', serif;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      z-index: 98;
+      box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.25);
+      transform: translateY(100%);
+      transition: transform 0.35s ease;
+    }
+    .sticky-muhurtham-bar.show {
+      transform: translateY(0);
     }
   </style>
 </head>
@@ -678,6 +733,17 @@
     <span class="audio-icon-bubble" id="audioPillIcon">🔊</span>
   </div>
 
+  <!-- 2. NEED HELP FLOATING WHATSAPP LIFELINE -->
+  <a class="floating-help-btn" href="https://wa.me/917675975990?text=Namaste!%20Could%20you%20please%20help%20with%20directions%20to%20VIP%20Gardens,%20Suraram?" target="_blank">
+    <span style="font-size: 15px;">📍</span>
+    <span id="helpText" data-en="Need directions?" data-te="దారి కోసం సహాయం కావాలా?">Need directions?</span>
+  </a>
+
+  <!-- 3. STICKY MUHURTHAM REMINDER BAR -->
+  <div class="sticky-muhurtham-bar" id="stickyMuhurthamBar">
+    ✨ <span id="stickyText" data-en="Nov 26 | 9:15 AM | VIP Gardens, Suraram" data-te="నవంబర్ 26 | ఉదయం 9:15 | వీఐపీ గార్డెన్స్, సూరారం">Nov 26 | 9:15 AM | VIP Gardens, Suraram</span>
+  </div>
+
   <!-- MAIN INVITATION FRAME CONTAINER -->
   <div class="invitation-container">
     <div class="card-inner">
@@ -721,7 +787,10 @@
           || మంగళం భగవాన్ విష్ణుః మంగళం గరుడధ్వజః | మంగళం పుండరీకాక్షో మంగళాయ తనో హరిః || 🙏
         </div>
 
-        <!-- HIGHLIGHTED COUPLE NAMES: FULL EN & TE DUAL TRANSLATION -->
+        <!-- 1. TIME-OF-DAY GREETING BADGE -->
+        <div class="time-greeting-badge" id="timeGreetingBadge">🌸 Good Morning (Subhodayam) 🙏</div>
+
+        <!-- HIGHLIGHTED COUPLE NAMES -->
         <div class="couple-title" id="coupleTitle" data-en="Sarika &amp; Sampath" data-te="సారిక &amp; సంపత్">Sarika &amp; Sampath</div>
         <div class="hashtag-tag">#SamRika</div>
         <div class="invite-lead" data-en="We invite you to celebrate our wedding" data-te="మా వివాహ మహోత్సవానికి మిమ్మల్ని సాదరంగా ఆహ్వానిస్తున్నాము">We invite you to celebrate our wedding</div>
@@ -830,7 +899,7 @@
           <span class="divider-line"></span>
         </div>
 
-        <!-- COMPACT REFINED SACRED DIYA SECTION -->
+        <!-- COMPACT REFINED SACRED DIYA -->
         <div class="diya-section">
           <div class="diya-heading" data-en="Light the Sacred Diya" data-te="మంగళ దీపం వెలిగించండి">Light the Sacred Diya</div>
           <div class="diya-sub" data-en="Touch lamp to ignite blessings 🪔" data-te="దీపాన్ని తాకి ఆశీర్వదించండి 🪔">Touch lamp to ignite blessings 🪔</div>
@@ -856,7 +925,7 @@
         </div>
 
         <!-- MUHURTHAM SECTION WITH CONVERSATIONAL TRACKER -->
-        <div class="event-card">
+        <div class="event-card" id="muhurthamCardSection">
           <div class="event-img-wrap">
             <img src="kalyanam.jpeg" alt="Sita Rama Kalyanam" onerror="handleImgError(this, 'kalyanam')">
           </div>
@@ -1102,7 +1171,26 @@
       }
     }
 
-    /* 3. CONVERSATIONAL TIME-LEFT TRACKER */
+    /* 3. DYNAMIC TIME-OF-DAY GREETING SCRIPT */
+    function updateTimeGreeting() {
+      const hour = new Date().getHours();
+      const badge = document.getElementById('timeGreetingBadge');
+      if (!badge) return;
+
+      const isTe = (currentLang === 'te');
+
+      if (hour >= 4 && hour < 12) {
+        badge.innerText = isTe ? "🌸 శుభోదయం (Good Morning) 🙏" : "🌸 Good Morning (Subhodayam) 🙏";
+      } else if (hour >= 12 && hour < 17) {
+        badge.innerText = isTe ? "☀️ శుభ మధ్యాహ్నం (Good Afternoon) 🙏" : "☀️ Good Afternoon (Subha Madhyahnam) 🙏";
+      } else if (hour >= 17 && hour < 21) {
+        badge.innerText = isTe ? "🪔 శుభ సాయంత్రం (Good Evening) 🙏" : "🪔 Good Evening (Subha Sayanathram) 🙏";
+      } else {
+        badge.innerText = isTe ? "🌙 శుభ రాత్రి (Subha Rathri) 🙏" : "🌙 Peaceful Night (Subha Rathri) 🙏";
+      }
+    }
+
+    /* 4. CONVERSATIONAL TIME-LEFT TRACKER */
     function updateConversationalTracker() {
       const now = new Date();
       const diffMs = weddingDateTime - now.getTime();
@@ -1152,7 +1240,21 @@
       }
     }
 
-    /* 4. LIVE AUSPICIOUS GLOW */
+    /* 5. STICKY MUHURTHAM BAR SCROLL LISTENER */
+    window.addEventListener('scroll', () => {
+      const stickyBar = document.getElementById('stickyMuhurthamBar');
+      const muhurthamCard = document.getElementById('muhurthamCardSection');
+      if (!stickyBar || !muhurthamCard) return;
+
+      const rect = muhurthamCard.getBoundingClientRect();
+      if (rect.bottom < 50) {
+        stickyBar.classList.add('show');
+      } else {
+        stickyBar.classList.remove('show');
+      }
+    });
+
+    /* 6. LIVE AUSPICIOUS GLOW */
     function updateAuspiciousGlow() {
       const now = new Date().getTime();
       const diffMs = weddingDateTime - now;
@@ -1240,8 +1342,7 @@
       ctx.restore();
     }
 
-    /* 5. VIBRANT FLORAL OFFLINE SNAPSHOT CARD */
-   /* 5. VIBRANT FLORAL OFFLINE SNAPSHOT CARD (DUAL LANGUAGE EN / TE) */
+    /* 7. VIBRANT FLORAL OFFLINE SNAPSHOT CARD (DUAL LANGUAGE) */
     function downloadOfflineSnapshotCard() {
       const canvas = document.getElementById('offlineSnapshotCanvas');
       const ctx = canvas.getContext('2d');
@@ -1249,7 +1350,6 @@
       const H = canvas.height;
       const isTe = (currentLang === 'te');
 
-      // 1. Warm Silk Parchment Base
       const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 100, W / 2, H / 2, 1150);
       bgGrad.addColorStop(0, '#FFFDF8');
       bgGrad.addColorStop(0.5, '#FFF8EC');
@@ -1257,7 +1357,6 @@
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, W, H);
 
-      // 2. Multi-tier Royal Silk & Gold Borders
       ctx.lineWidth = 22;
       ctx.strokeStyle = '#851329';
       ctx.strokeRect(32, 32, W - 64, H - 64);
@@ -1272,7 +1371,6 @@
       ctx.strokeRect(66, 66, W - 132, H - 132);
       ctx.setLineDash([]);
 
-      // 3. Mango Leaves & Marigold Garland Toranam across Top
       ctx.save();
       const toranamY = 82;
       const step = 64;
@@ -1290,7 +1388,6 @@
       }
       ctx.restore();
 
-      // 4. Side Hanging Marigold Blossom Strands
       const garlandTop = 160;
       const garlandBottom = H - 160;
       const garlandStep = 60;
@@ -1300,13 +1397,11 @@
         drawCanvasFlower(ctx, W - 42, y, 12, isOrange ? '#FF8F00' : '#FFD54F', isOrange ? '#FFF59D' : '#E65100');
       }
 
-      // 5. Corner Lotus Blooms
       drawCanvasLotusCorner(ctx, 110, 110, 38, false, false);
       drawCanvasLotusCorner(ctx, W - 110, 110, 38, true, false);
       drawCanvasLotusCorner(ctx, 110, H - 110, 38, false, true);
       drawCanvasLotusCorner(ctx, W - 110, H - 110, 38, true, true);
 
-      // 6. Sacred Crest & Shloka
       ctx.textAlign = 'center';
       ctx.font = '54px sans-serif';
       ctx.fillText('🏺', W / 2, 195);
@@ -1320,7 +1415,6 @@
       ctx.letterSpacing = isTe ? '1px' : '3px';
       ctx.fillText(isTe ? 'వివాహ మహోత్సవ ఆహ్వాన పత్రిక' : 'WEDDING INVITATION', W / 2, 320);
 
-      // 7. Couple Names: SARIKA & SAMPATH (EN / TE)
       if (isTe) {
         ctx.font = 'bold 88px "Noto Sans Telugu", sans-serif';
         ctx.fillStyle = '#851329';
@@ -1336,11 +1430,10 @@
       }
       ctx.shadowBlur = 0;
 
-      ctx.font = 'bold 30px "Cinzel", "Noto Sans Telugu", serif';
+      ctx.font = 'bold 32px "Cinzel", "Noto Sans Telugu", serif';
       ctx.fillStyle = '#8E6A26';
       ctx.fillText('#SamRika', W / 2, 515);
 
-      // Gold Filigree Divider
       ctx.beginPath();
       ctx.moveTo(W / 2 - 260, 555);
       ctx.lineTo(W / 2 + 260, 555);
@@ -1350,7 +1443,6 @@
 
       drawCanvasFlower(ctx, W / 2, 555, 12, '#DE3163', '#FFD54F');
 
-      // 8. Lead-in Text
       ctx.font = isTe ? 'bold 28px "Noto Sans Telugu", sans-serif' : 'italic 30px "Playfair Display", serif';
       ctx.fillStyle = '#4D3205';
       const leadText = isTe
@@ -1358,7 +1450,6 @@
         : 'Soliciting your gracious presence and heartfelt blessings on our auspicious marriage';
       renderCanvasWrapped(ctx, leadText, W / 2, 620, W - 280, 42);
 
-      // 9. Bride Parents Card Box
       const cardBoxW = W - 240;
       const cardBoxX = 120;
 
@@ -1381,7 +1472,6 @@
         : 'Deshaboina Venkateshwara Prabhu & Mrs. Sharadamba';
       renderCanvasWrapped(ctx, brideParents, W / 2, 800, cardBoxW - 50, 40);
 
-      // 10. Groom Parents Card Box
       ctx.fillStyle = '#FFFFFF';
       ctx.strokeStyle = '#ECC968';
       ctx.lineWidth = 2.5;
@@ -1401,7 +1491,6 @@
         : 'Boga Ashok & Mrs. Geetha';
       renderCanvasWrapped(ctx, groomParents, W / 2, 995, cardBoxW - 50, 40);
 
-      // 11. Sumuhurtham Card Box
       ctx.fillStyle = '#FFF8E6';
       ctx.strokeStyle = '#C59A3F';
       ctx.lineWidth = 3;
@@ -1422,7 +1511,6 @@
       ctx.fillStyle = '#851329';
       ctx.fillText(isTe ? 'ఉదయం 9:15 గంటలకు' : '9:15 AM', W / 2, 1310);
 
-      // 12. Venue Box
       ctx.fillStyle = '#FFFFFF';
       ctx.strokeStyle = '#DFC394';
       ctx.lineWidth = 2.5;
@@ -1442,7 +1530,6 @@
         : 'GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony, Suraram, Hyderabad, Telangana 500055';
       renderCanvasWrapped(ctx, venueAddress, W / 2, 1515, cardBoxW - 60, 42);
 
-      // 13. Blessing Note at Bottom
       ctx.font = isTe ? 'italic 26px "Noto Sans Telugu", sans-serif' : 'italic 28px "Playfair Display", serif';
       ctx.fillStyle = '#8E6A26';
       const bottomBlessing = isTe
@@ -1454,7 +1541,6 @@
       ctx.fillStyle = '#851329';
       ctx.fillText(isTe ? 'సారిక & సంపత్' : 'SARIKA & SAMPATH', W / 2, 1825);
 
-      // 14. Trigger File Download with proper localized filename
       const link = document.createElement('a');
       link.download = isTe ? 'సారిక_సంపత్_వివాహ_ఆహ్వాన_పత్రిక.jpg' : 'Sarika_Sampath_Wedding_Invitation_Card.jpg';
       link.href = canvas.toDataURL('image/jpeg', 0.95);
@@ -1479,7 +1565,6 @@
     function toggleLanguage() {
       currentLang = currentLang === 'en' ? 'te' : 'en';
       
-      // Update typography class for font switching
       if (currentLang === 'te') {
         document.body.classList.add('lang-te');
       } else {
@@ -1492,6 +1577,7 @@
 
       document.getElementById('guestName').placeholder = currentLang === 'en' ? 'Your Name (e.g., Ramesh Uncle)' : 'మీ పేరు (ఉదా: రమేష్ బాబాయ్)';
       document.getElementById('guestMessage').placeholder = currentLang === 'en' ? 'Your blessing / wish...' : 'మీ ఆశీస్సులు / శుభాకాంక్షలు...';
+      updateTimeGreeting();
       updateConversationalTracker();
     }
 
@@ -1885,7 +1971,7 @@
       document.getElementById('recordVoiceBtn').innerText = currentLang === 'en' ? "🎙️ Voice Note (10s)" : "🎙️ వాయిస్ సందేశం (10s)";
     }
 
-    /* DOWNLOADABLE BLESSING CARD */
+    /* DOWNLOADABLE WHATSAPP BLESSING CARD */
     let lastPostedName = "";
     let lastPostedWish = "";
 
@@ -1894,6 +1980,7 @@
       const ctx = canvas.getContext('2d');
       const W = canvas.width;
       const H = canvas.height;
+      const isTe = (currentLang === 'te');
 
       const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 80, W / 2, H / 2, 700);
       bgGrad.addColorStop(0, '#FFFDF7');
@@ -1915,15 +2002,21 @@
       ctx.fillStyle = '#851329';
       ctx.fillText('🪷  శ్రీరస్తు - శుభమస్తు  🪷', W / 2, 140);
 
-      ctx.font = 'bold 26px "Cinzel", serif';
+      ctx.font = isTe ? 'bold 26px "Noto Sans Telugu", sans-serif' : 'bold 26px "Cinzel", serif';
       ctx.fillStyle = '#8E6A26';
-      ctx.fillText('WEDDING BLESSINGS', W / 2, 195);
+      ctx.fillText(isTe ? 'వివాహ శుభాకాంక్షలు' : 'WEDDING BLESSINGS', W / 2, 195);
 
-      ctx.font = 'bold 76px "Great Vibes", cursive, serif';
-      ctx.fillStyle = '#851329';
-      ctx.fillText('Sarika & Sampath', W / 2, 290);
+      if (isTe) {
+        ctx.font = 'bold 54px "Noto Sans Telugu", sans-serif';
+        ctx.fillStyle = '#851329';
+        ctx.fillText('సారిక & సంపత్', W / 2, 285);
+      } else {
+        ctx.font = 'bold 76px "Great Vibes", cursive, serif';
+        ctx.fillStyle = '#851329';
+        ctx.fillText('Sarika & Sampath', W / 2, 290);
+      }
 
-      ctx.font = 'bold 24px "Cinzel", serif';
+      ctx.font = 'bold 24px "Cinzel", "Noto Sans Telugu", serif';
       ctx.fillStyle = '#8E6A26';
       ctx.fillText('#SamRika  •  26 November 2026', W / 2, 345);
 
@@ -1939,20 +2032,20 @@
       ctx.strokeStyle = '#E8D5B5';
       ctx.stroke();
 
-      const messageText = lastPostedWish || "Wishing you both a lifetime of happiness, divine harmony, and endless love!";
-      ctx.font = 'italic 34px "Playfair Display", serif';
+      const messageText = lastPostedWish || (isTe ? "నూతన వధూవరులకు హృదయపూర్వక వివాహ శుభాకాంక్షలు!" : "Wishing you both a lifetime of happiness, divine harmony, and endless love!");
+      ctx.font = isTe ? 'italic 30px "Noto Sans Telugu", serif' : 'italic 34px "Playfair Display", serif';
       ctx.fillStyle = '#2F2620';
       const lastMsgY = renderCanvasWrapped(ctx, `"${messageText}"`, W / 2, boxY + 120, boxW - 80, 48);
 
       const divY = Math.max(lastMsgY + 40, boxY + 280);
-      const guestAuthor = lastPostedName || "Well Wisher";
-      ctx.font = 'bold 28px "Playfair Display", serif';
+      const guestAuthor = lastPostedName || (isTe ? "హితైషి" : "Well Wisher");
+      ctx.font = isTe ? 'bold 26px "Noto Sans Telugu", serif' : 'bold 28px "Playfair Display", serif';
       ctx.fillStyle = '#851329';
-      renderCanvasWrapped(ctx, `— With Love & Blessings, ${guestAuthor}`, W / 2, divY + 45, boxW - 60, 38);
+      renderCanvasWrapped(ctx, isTe ? `— ఆశీస్సులతో, ${guestAuthor}` : `— With Love & Blessings, ${guestAuthor}`, W / 2, divY + 45, boxW - 60, 38);
 
-      ctx.font = '600 24px "Plus Jakarta Sans", sans-serif';
+      ctx.font = '600 24px "Plus Jakarta Sans", "Noto Sans Telugu", sans-serif';
       ctx.fillStyle = '#7A6953';
-      ctx.fillText('VIP Gardens, Suraram, Hyderabad', W / 2, 1000);
+      ctx.fillText(isTe ? 'వీఐపీ గార్డెన్స్, సూరారం, హైదరాబాద్' : 'VIP Gardens, Suraram, Hyderabad', W / 2, 1000);
 
       const cleanName = (lastPostedName || 'Guest').replace(/[^a-zA-Z0-9]/g, '_');
       const link = document.createElement('a');
@@ -2110,6 +2203,7 @@
       loadCloudCounter();
       checkNightBeforeStatus();
       updateAuspiciousGlow();
+      updateTimeGreeting();
       updateConversationalTracker();
       setInterval(updateWeddingCountdown, 1000);
       setInterval(updateConversationalTracker, 60000);
