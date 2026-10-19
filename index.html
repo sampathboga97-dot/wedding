@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Wedding Ceremony | Sarika &amp; Sampath</title>
-  <meta name="description" content="Wedding Ceremony of Sarika &amp; Sampath on Thursday, November 26, 2026.">
+  <title>Wedding Ceremony | Sampath &amp; Sarika</title>
+  <meta name="description" content="Wedding Ceremony of Sampath &amp; Sarika on Thursday, November 26, 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@500;600;700&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     :root {
@@ -18,215 +18,69 @@
       --gold-border: #E8D7B8;
       --text-dark: #2F2620;
       --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFFDF9 0%, #F5ECDD 100%);
-      --side-accent-color: #851329;
-      --side-glow: rgba(133, 19, 41, 0.2);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
+    /* DYNAMIC TIME OF DAY THEMES */
     body {
       background-color: #F8F3EA;
       background-image: 
         radial-gradient(#DFC394 0.65px, transparent 0.65px),
         var(--theme-bg-grad);
       background-size: 24px 24px, 100% 100%;
-      font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       color: var(--text-dark);
       min-height: 100vh;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
+      justify-content: center;
       align-items: center;
       overflow-x: hidden;
-      padding: 56px 6px 50px;
-      transition: background 1.2s ease, color 0.6s ease;
+      padding: 14px 6px;
+      transition: background 1.2s ease;
     }
-    body.theme-morning { --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFF8EE 0%, #FBE5C8 100%); }
-    body.theme-afternoon { --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFFDF6 0%, #F3DFB6 100%); }
+    body.theme-morning {
+      --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFF8EE 0%, #FBE5C8 100%);
+    }
+    body.theme-afternoon {
+      --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFFDF6 0%, #F3DFB6 100%);
+    }
     body.theme-night {
       --theme-bg-grad: radial-gradient(circle at 50% 0%, #2A1728 0%, #150914 100%);
       background-color: #120712;
       color: #E8D7B8;
     }
-    body.theme-night-before {
-      --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFF4D0 0%, #FCE082 50%, #EAA812 100%) !important;
-      background-color: #FCE082 !important;
-      color: #382405 !important;
+    body.theme-night .invitation-container {
+      background: #1B0F19;
+      border-color: #A37C32;
     }
-    body.theme-night-before .invitation-container {
-      border-color: #FFB300 !important;
-      box-shadow: 0 20px 70px rgba(230, 140, 10, 0.35) !important;
+    body.theme-night .card-inner {
+      background: #20111F;
     }
 
-    body.side-groom {
-      --side-accent-color: #851329;
-      --side-glow: rgba(133, 19, 41, 0.35);
-    }
-    body.side-bride {
-      --side-accent-color: #0E6B38;
-      --side-glow: rgba(14, 107, 56, 0.35);
-      --gold-deep: #946E12;
-    }
-
-    /* TOP ACTION BAR */
-    .top-action-bar {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      height: 48px;
-      background: rgba(255, 253, 249, 0.94);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid #DFC394;
-      z-index: 100;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 12px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
-    }
-    .btn-offline-snapshot {
-      background: linear-gradient(135deg, #DE3163 0%, #851329 100%);
-      color: #FFFFFF;
-      border: 1.5px solid #FFD700;
-      border-radius: 20px;
-      padding: 6px 14px;
-      font-size: 0.74rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      box-shadow: 0 3px 10px rgba(133, 19, 41, 0.28);
-      transition: transform 0.15s ease;
-    }
-    .btn-offline-snapshot:active { transform: scale(0.96); }
+    /* LANGUAGE TOGGLE */
     .lang-toggle-btn {
-      background: #FFFFFF;
-      border: 1.5px solid #DFC394;
-      border-radius: 20px;
-      padding: 5px 14px;
-      font-size: 0.78rem;
-      font-weight: 800;
-      color: var(--maroon-primary);
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
-    }
-
-    /* BRIDE VS GROOM MODAL */
-    .side-picker-overlay {
       position: fixed;
-      inset: 0;
-      width: 100vw; height: 100dvh;
-      z-index: 1100;
-      background: rgba(14, 8, 5, 0.94);
-      backdrop-filter: blur(10px);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-      transition: opacity 0.5s ease, visibility 0.5s ease;
-    }
-    .side-picker-overlay.hidden {
-      opacity: 0;
-      visibility: hidden;
-      pointer-events: none;
-      display: none !important;
-    }
-    .side-picker-card {
-      background: #FFFDF9;
-      border: 2px solid #DFC394;
-      border-radius: 26px;
-      padding: 28px 18px 22px;
-      max-width: 380px;
-      width: 100%;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
-    }
-    .side-picker-shloka {
-      font-family: 'Noto Sans Telugu', sans-serif;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--maroon-primary);
-      margin-bottom: 8px;
-    }
-    .side-picker-title {
-      font-family: 'Cinzel', serif;
-      font-size: 1.25rem;
-      font-weight: 800;
-      color: var(--maroon-primary);
-      letter-spacing: 1px;
-      margin-bottom: 4px;
-    }
-    .side-picker-sub {
-      font-size: 0.86rem;
-      color: #6C5D4B;
-      margin-bottom: 20px;
-    }
-    .side-options-grid {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-    .side-choice-btn {
-      padding: 14px;
-      border-radius: 16px;
-      cursor: pointer;
-      border: 2px solid transparent;
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-      background: #FFF;
-      text-align: left;
-    }
-    .side-choice-btn:active { transform: scale(0.97); }
-    .side-bride-btn {
-      border-color: #B2D8C1;
-      box-shadow: 0 4px 14px rgba(14, 107, 56, 0.12);
-    }
-    .side-bride-btn:hover { background: #F6FFF9; }
-    .side-groom-btn {
-      border-color: #E5CCA2;
-      box-shadow: 0 4px 14px rgba(133, 19, 41, 0.12);
-    }
-    .side-groom-btn:hover { background: #FFF9F6; }
-    .side-btn-icon { font-size: 1.8rem; line-height: 1; }
-    .side-btn-text h4 { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 0.98rem; font-weight: 800; color: #222; }
-    .side-btn-text p { font-size: 0.74rem; color: #666; margin-top: 1px; }
-
-    .family-welcome-banner {
-      display: none;
-      background: rgba(255, 255, 255, 0.95);
+      top: 14px;
+      right: 14px;
+      z-index: 101;
+      background: rgba(255, 255, 255, 0.92);
       border: 1.5px solid #DFC394;
       border-radius: 20px;
-      padding: 8px 16px;
-      margin: 10px auto 14px;
-      text-align: center;
-      font-family: 'Cinzel', 'Noto Sans Telugu', serif;
-      font-size: 0.85rem;
+      padding: 5px 12px;
+      font-size: 0.76rem;
       font-weight: 800;
-      color: var(--side-accent-color);
-      box-shadow: 0 4px 15px var(--side-glow);
-    }
-    .night-before-banner {
-      display: none;
-      background: linear-gradient(135deg, #FF6F00 0%, #D84315 100%);
-      color: #FFFFFF;
-      border: 2px solid #FFE082;
-      border-radius: 20px;
-      padding: 12px 14px;
-      margin: 10px auto 16px;
-      text-align: center;
-      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
-      font-size: 0.92rem;
-      line-height: 1.45;
-      box-shadow: 0 8px 24px rgba(216, 67, 21, 0.35);
-      animation: pulseTarget 2.5s infinite ease-in-out;
+      color: var(--maroon-primary);
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+      backdrop-filter: blur(6px);
     }
 
-    /* REACHING HANDS SCREEN */
+    /* FULL-SCREEN REACHING HANDS OVERLAY */
     .hands-overlay-screen {
       position: fixed;
       inset: 0;
-      width: 100vw; height: 100dvh;
+      width: 100vw;
+      height: 100dvh;
       z-index: 1000;
       background: #000000;
       overflow: hidden;
@@ -241,30 +95,47 @@
     }
     .hands-layer-initial {
       position: absolute;
-      inset: 0; width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
       transition: opacity 0.5s ease, transform 0.5s ease;
       z-index: 1;
     }
     .hands-layer-united {
       position: absolute;
-      inset: 0; width: 100%; height: 100%;
-      object-fit: cover; object-position: center;
-      opacity: 0; transform: scale(0.96);
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+      opacity: 0;
+      transform: scale(0.96);
       transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
       z-index: 2;
     }
-    .hands-overlay-screen.connecting .hands-layer-initial { opacity: 0; transform: scale(1.08); }
-    .hands-overlay-screen.connecting .hands-layer-united { opacity: 1; transform: scale(1.03); }
+    .hands-overlay-screen.connecting .hands-layer-initial {
+      opacity: 0;
+      transform: scale(1.08);
+    }
+    .hands-overlay-screen.connecting .hands-layer-united {
+      opacity: 1;
+      transform: scale(1.03);
+    }
     .center-touch-pulse {
       position: absolute;
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
-      width: 130px; height: 130px;
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,225,140,0.5) 45%, transparent 75%);
-      box-shadow: 0 0 45px rgba(255, 220, 140, 0.95);
-      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 0 45px rgba(255, 220, 140, 0.95), inset 0 0 20px rgba(255, 255, 255, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       z-index: 10;
       animation: pulseTarget 1.8s infinite ease-in-out;
     }
@@ -272,12 +143,14 @@
       0%, 100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.85; }
       50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
     }
-    .center-touch-pulse span { font-size: 42px; line-height: 1; }
+    .center-touch-pulse span { font-size: 42px; line-height: 1; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); }
+    .hands-overlay-screen.connecting .center-touch-pulse { display: none !important; }
     .tap-guide-prompt {
       position: absolute;
       bottom: clamp(26px, 5vh, 40px);
-      left: 50%; transform: translateX(-50%);
-      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: 'Playfair Display', serif;
       font-style: italic;
       font-size: clamp(0.98rem, 2.4vh, 1.2rem);
       color: #5C3A10;
@@ -295,18 +168,18 @@
       0%, 100% { transform: translate(-50%, 0); }
       50% { transform: translate(-50%, -6px); }
     }
+    .hands-overlay-screen.connecting .tap-guide-prompt { display: none !important; }
 
     /* INVITATION CONTAINER */
     .invitation-container {
       width: 100%;
       max-width: 490px;
       position: relative;
-      border-radius: 26px;
+      border-radius: 30px;
       overflow: hidden;
       box-shadow: 0 24px 70px rgba(78, 48, 14, 0.3);
       background: #FFFFFF;
       border: 2px solid var(--gold-border);
-      margin: 0 auto;
     }
     .card-inner {
       position: relative;
@@ -317,7 +190,10 @@
     .card-inner::after {
       content: "";
       position: absolute;
-      top: 10px; left: 10px; right: 10px; bottom: 10px;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
       border: 1.5px dashed #DFC394;
       border-radius: 22px;
       pointer-events: none;
@@ -325,12 +201,17 @@
     }
 
     .top-toranam {
-      position: absolute; top: 0; left: 0; right: 0; height: 42px;
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 42px;
       z-index: 10; pointer-events: none;
-      background-repeat: repeat-x; background-size: 54px 40px;
+      background-repeat: repeat-x;
+      background-size: 54px 40px;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 40'%3E%3Cpath d='M0 0 Q27 26 54 0' fill='none' stroke='%232E7D32' stroke-width='2.5'/%3E%3Cpath d='M15 6 Q19 22 15 28 Q11 22 15 6 Z' fill='%23388E3C'/%3E%3Cpath d='M39 6 Q43 22 39 28 Q35 22 39 6 Z' fill='%23388E3C'/%3E%3Ccircle cx='27' cy='18' r='8' fill='%23FF8F00'/%3E%3Ccircle cx='27' cy='18' r='5' fill='%23FFD54F'/%3E%3Ccircle cx='27' cy='18' r='2' fill='%23E65100'/%3E%3C/svg%3E");
     }
-    .garland-side { position: absolute; top: 40px; bottom: 15px; width: 20px; z-index: 5; pointer-events: none; background-repeat: repeat-y; background-size: 20px 48px; }
+    .garland-side {
+      position: absolute; top: 40px; bottom: 15px; width: 20px; z-index: 5; pointer-events: none;
+      background-repeat: repeat-y; background-size: 20px 48px;
+    }
     .garland-left { left: 2px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 48'%3E%3Cline x1='10' y1='0' x2='10' y2='48' stroke='%23BDBDBD' stroke-width='1' stroke-dasharray='2 2'/%3E%3Ccircle cx='10' cy='10' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='10' r='3.5' fill='%23FFD54F'/%3E%3Ccircle cx='10' cy='24' r='6' fill='%23E65100'/%3E%3Ccircle cx='10' cy='24' r='3' fill='%23FFB74D'/%3E%3Ccircle cx='10' cy='38' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='38' r='3.5' fill='%23FFD54F'/%3E%3C/svg%3E"); }
     .garland-right { right: 2px; transform: scaleX(-1); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 48'%3E%3Cline x1='10' y1='0' x2='10' y2='48' stroke='%23BDBDBD' stroke-width='1' stroke-dasharray='2 2'/%3E%3Ccircle cx='10' cy='10' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='10' r='3.5' fill='%23FFD54F'/%3E%3Ccircle cx='10' cy='24' r='6' fill='%23E65100'/%3E%3Ccircle cx='10' cy='24' r='3' fill='%23FFB74D'/%3E%3Ccircle cx='10' cy='38' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='38' r='3.5' fill='%23FFD54F'/%3E%3C/svg%3E"); }
 
@@ -350,101 +231,26 @@
     .petal:nth-child(4) { left: 84%; width: 11px; height: 15px; animation-duration: 11s; animation-delay: 4s; }
 
     .sacred-shloka { font-family: 'Noto Sans Telugu', sans-serif; font-size: 0.86rem; font-weight: 700; color: var(--maroon-primary); line-height: 1.6; margin: 8px auto 10px; padding: 7px 12px; background: rgba(255, 255, 255, 0.75); border-radius: 12px; border: 1px dashed rgba(163, 124, 50, 0.4); }
-    
-    .time-greeting-badge {
-      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
-      font-style: italic;
-      font-size: 1rem;
-      font-weight: 700;
-      color: var(--gold-deep);
-      margin-bottom: 2px;
-      letter-spacing: 0.5px;
-    }
-
-    /* COUPLE TITLE */
-    .couple-title {
-      font-size: 3.8rem;
-      color: var(--maroon-primary);
-      line-height: 1.15;
-      margin: 4px 0 2px;
-      text-shadow: 0 2px 4px rgba(133, 19, 41, 0.22), 0 0 20px rgba(245, 204, 114, 0.55);
-      font-family: 'Great Vibes', cursive;
-    }
-    body.lang-te .couple-title {
-      font-family: 'Noto Sans Telugu', sans-serif !important;
-      font-size: 2.2rem !important;
-      font-weight: 800 !important;
-      letter-spacing: 0.5px !important;
-      line-height: 1.3 !important;
-    }
-
+    .couple-title { font-family: 'Great Vibes', cursive; font-size: 4.1rem; color: var(--maroon-primary); line-height: 1.1; margin: 8px 0 2px; text-shadow: 0 2px 4px rgba(133, 19, 41, 0.22), 0 0 20px rgba(245, 204, 114, 0.55); }
     .hashtag-tag { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 800; color: var(--gold-deep); letter-spacing: 3px; margin-bottom: 6px; }
-    .invite-lead { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-style: italic; font-size: 1.05rem; color: #615243; margin-bottom: 16px; }
+    .invite-lead { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: #615243; margin-bottom: 16px; }
 
     .ornate-divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 20px auto; max-width: 84%; }
     .divider-line { flex: 1; height: 1.5px; background: linear-gradient(90deg, transparent, #DFC394, #B8860B, #DFC394, transparent); }
     .divider-icon { font-size: 1.3rem; }
-    .section-title { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.35rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
+    .section-title { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
 
-    .parents-section { display: flex; flex-direction: column; gap: 14px; margin: 8px auto 14px; max-width: 360px; }
+    .parents-section { display: flex; flex-direction: column; gap: 14px; margin: 8px auto 18px; max-width: 360px; }
     .royal-parent-card { position: relative; border-radius: 20px; padding: 6px; }
     .bride-royal-frame { background: radial-gradient(circle at center, #FFFBF9 0%, #FEECE7 70%, #F9D0C6 100%); border: 3.5px solid #F1BFB3; }
     .bride-inner-border { border: 1.2px solid #E5907E; border-radius: 14px; padding: 12px 10px; background: rgba(255, 255, 255, 0.55); }
     .groom-royal-frame { background: radial-gradient(circle at center, #FFFDF5 0%, #FEF4CD 70%, #F7DC8E 100%); border: 3.5px solid #ECC968; }
     .groom-inner-border { border: 1.2px solid #C89B2B; border-radius: 14px; padding: 12px 10px; background: rgba(255, 255, 255, 0.55); }
-    .card-badge { display: inline-block; font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 0.65rem; letter-spacing: 1.5px; font-weight: 800; text-transform: uppercase; padding: 3px 12px; border-radius: 16px; margin-bottom: 6px; }
+    .card-badge { display: inline-block; font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 1.5px; font-weight: 800; text-transform: uppercase; padding: 3px 12px; border-radius: 16px; margin-bottom: 6px; }
     .bride-badge { color: #8E1F35; background: #FFE2DC; border: 1px solid #E8A598; }
     .groom-badge { color: #7A570D; background: #FFECA8; border: 1px solid #E5BA58; }
-    .parent-name { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: 1.05rem; font-weight: 700; color: #241C16; line-height: 1.35; }
-    .parent-connector { font-family: 'Great Vibes', 'Noto Sans Telugu', cursive; font-size: 1.35rem; color: #B8860B; display: block; margin: 1px 0; }
-
-    /* IN LOVING MEMORY (SMRUTULALO) ANCESTRAL TRIBUTE CARD (GROOM ONLY) */
-    .smrutulalo-card {
-      display: none;
-      background: radial-gradient(circle at center, #FFFDF8 0%, #FAF2E3 100%);
-      border: 1.5px solid #DFC394;
-      border-radius: 18px;
-      padding: 12px 14px 10px;
-      margin: 4px auto 18px;
-      max-width: 360px;
-      text-align: center;
-      box-shadow: 0 4px 14px rgba(142, 106, 38, 0.08);
-      position: relative;
-    }
-    .smrutulalo-header {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      margin-bottom: 4px;
-    }
-    .smrutulalo-title {
-      font-family: 'Cinzel', 'Noto Sans Telugu', serif;
-      font-size: 0.82rem;
-      font-weight: 800;
-      color: var(--maroon-primary);
-      letter-spacing: 1px;
-    }
-    .smrutulalo-icon {
-      font-size: 0.9rem;
-    }
-    .smrutulalo-text {
-      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
-      font-style: italic;
-      font-size: 0.78rem;
-      color: #6C5D4B;
-      line-height: 1.45;
-      margin-bottom: 6px;
-    }
-    .smrutulalo-names {
-      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
-      font-size: 0.9rem;
-      font-weight: 700;
-      color: #7A570D;
-      border-top: 1px dashed rgba(223, 195, 148, 0.6);
-      padding-top: 6px;
-      letter-spacing: 0.5px;
-    }
+    .parent-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #241C16; line-height: 1.35; }
+    .parent-connector { font-family: 'Great Vibes', cursive; font-size: 1.35rem; color: #B8860B; display: block; margin: 1px 0; }
 
     /* STORY CARDS */
     .story-section { margin: 18px auto 26px; max-width: 420px; }
@@ -454,103 +260,44 @@
     .polaroid-card.flipped .polaroid-inner { transform: rotateY(180deg); }
     .polaroid-front, .polaroid-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 12px; overflow: hidden; background: #FFFFFF; border: 1.5px solid #E5CCA2; padding: 6px 6px 12px; display: flex; flex-direction: column; }
     .polaroid-front img { width: 100%; height: 128px; object-fit: cover; border-radius: 8px; }
-    .polaroid-front .p-caption { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: 0.72rem; font-weight: 700; color: #6C5D4B; margin-top: 6px; }
+    .polaroid-front .p-caption { font-family: 'Playfair Display', serif; font-size: 0.72rem; font-weight: 700; color: #6C5D4B; margin-top: 6px; }
     .polaroid-back { background: radial-gradient(circle at center, #FFF9F2 0%, #FAEDE0 100%); transform: rotateY(180deg); justify-content: center; align-items: center; padding: 10px; }
-    .polaroid-back h4 { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 0.78rem; color: var(--maroon-primary); margin-bottom: 4px; }
+    .polaroid-back h4 { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--maroon-primary); margin-bottom: 4px; }
     .polaroid-back p { font-size: 0.68rem; color: #4C4238; line-height: 1.35; font-style: italic; }
 
-    /* COMPACT SACRED DIYA */
-    .diya-section {
-      background: radial-gradient(circle at center, #FFFDF6 0%, #FAF1DF 100%);
-      border: 1.5px solid #E8D7B8;
-      border-radius: 18px;
-      padding: 10px 10px 8px;
-      margin: 14px auto 16px;
-      max-width: 320px;
-      position: relative;
-      box-shadow: 0 4px 14px rgba(184, 134, 11, 0.08);
-      text-align: center;
-    }
-    .diya-lamp-box { width: 68px; height: 68px; margin: 0 auto; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; }
-    .diya-aura { position: absolute; width: 85px; height: 85px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 200, 50, 0.65) 0%, rgba(255, 140, 0, 0.25) 50%, transparent 75%); opacity: 0; filter: blur(6px); transition: opacity 0.8s ease; }
+    /* DIYA LIGHTING */
+    .diya-section { background: radial-gradient(circle at center, #FFFDF6 0%, #FAF1DF 100%); border: 1.5px solid #E8D7B8; border-radius: 22px; padding: 18px 14px 14px; margin: 18px auto 20px; max-width: 420px; position: relative; }
+    .diya-heading { font-family: 'Cinzel', serif; font-size: 1.15rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 1px; }
+    .diya-sub { font-size: 0.82rem; color: #7A6953; margin-top: 2px; margin-bottom: 12px; }
+    .diya-lamp-box { width: 100px; height: 100px; margin: 0 auto; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; }
+    .diya-aura { position: absolute; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 200, 50, 0.65) 0%, rgba(255, 140, 0, 0.25) 50%, transparent 75%); opacity: 0; filter: blur(8px); transition: opacity 0.8s ease; }
     .diya-flame { opacity: 0; transform-origin: center bottom; transition: opacity 0.4s ease; }
     .diya-lamp-box.lit .diya-aura { opacity: 1; transform: scale(1.15); animation: flameFlicker 2s infinite alternate ease-in-out; }
     .diya-lamp-box.lit .diya-flame { opacity: 1; animation: flameWiggle 1.4s infinite ease-in-out alternate; }
     @keyframes flameFlicker { 0% { transform: scale(1.1); } 100% { transform: scale(1.25); } }
     @keyframes flameWiggle { 0% { transform: rotate(-2deg); } 100% { transform: rotate(3deg); } }
-    .diya-status-tag {
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--gold-deep);
-      margin-top: 6px;
-      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
-    }
+    .diya-status-tag { font-size: 0.82rem; font-weight: 700; color: var(--gold-deep); margin-top: 8px; }
 
-    /* MUHURTHAM SECTION */
+    /* MUHURTHAM EVENT CARD */
     .event-card { background: #FAF5EB; border: 1px solid #EFE2CB; border-radius: 22px; padding: 20px 14px; margin-bottom: 18px; box-shadow: 0 8px 22px rgba(142, 106, 38, 0.1); }
     .event-img-wrap { width: 100%; max-width: 290px; height: 240px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; border: 2px solid #E5CCA2; background: #FFF; }
     .event-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
-    .event-tag { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.35rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 4px; }
-    .event-subtitle { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-style: italic; font-size: 0.9rem; color: #6C5D4B; margin-bottom: 8px; }
-    
-    .muhurtham-glow-halo {
-      position: relative;
-      display: inline-block;
-      padding: 6px 20px;
-      margin: 8px auto 4px;
-      border-radius: 30px;
-      transition: box-shadow 0.5s ease;
-    }
-    .event-time-highlight {
-      font-family: 'Cinzel', 'Noto Sans Telugu', serif;
-      font-size: 2rem;
-      font-weight: 800;
-      color: var(--maroon-primary);
-      line-height: 1;
-      position: relative;
-      z-index: 2;
-    }
-    
-    .conversational-tracker-box {
-      background: radial-gradient(circle, #FFFBF0 0%, #FAEDD0 100%);
-      border: 1.5px solid #DFC394;
-      border-radius: 16px;
-      padding: 8px 14px;
-      margin: 10px auto 4px;
-      max-width: 360px;
-      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
-      font-style: italic;
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #5C3A10;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.04);
-    }
+    .event-tag { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 4px; }
+    .event-subtitle { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: #6C5D4B; margin-bottom: 8px; }
+    .event-time-highlight { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 800; color: var(--maroon-primary); margin-top: 4px; }
 
-    .countdown-medals { display: flex; justify-content: center; gap: 10px; margin: 14px 0 10px; }
+    .countdown-medals { display: flex; justify-content: center; gap: 10px; margin: 18px 0 10px; }
     .medal-item { width: 70px; height: 70px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF6DB 0%, #E3BC6A 60%, #9C7227 100%); border: 2px solid #FFFFFF; box-shadow: 0 6px 15px rgba(156, 114, 39, 0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; }
     .medal-val { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: #4D3205; line-height: 1; }
-    .medal-lbl { font-size: 0.52rem; font-weight: 800; letter-spacing: 1px; color: #4D3205; text-transform: uppercase; margin-top: 3px; font-family: 'Cinzel', 'Noto Sans Telugu', serif; }
+    .medal-lbl { font-size: 0.52rem; font-weight: 800; letter-spacing: 1px; color: #4D3205; text-transform: uppercase; margin-top: 3px; }
 
     /* TALAMBRALU */
-    .talambralu-box { background: #FFFDF9; border: 1.5px solid #E8D7B8; border-radius: 20px; padding: 16px 12px; margin: 18px auto; max-width: 380px; }
-    .talambralu-title { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.1rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 2px; }
-    .talambralu-bowls-wrap { display: flex; justify-content: center; margin: 12px 0 6px; }
-    .ceremonial-kinnam-btn {
-      background: radial-gradient(circle, #FFF3D1 0%, #ECC968 100%);
-      border: 2px solid #CFA233;
-      border-radius: 20px;
-      padding: 12px 28px;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      box-shadow: 0 4px 14px rgba(160, 115, 20, 0.25);
-      min-width: 180px;
-      transition: transform 0.15s ease;
-    }
-    .ceremonial-kinnam-btn:active { transform: scale(0.96); }
-    .kinnam-icon { font-size: 2.1rem; line-height: 1; margin-bottom: 4px; }
-    .kinnam-lbl { font-size: 0.86rem; font-weight: 700; color: #5C3A10; font-family: 'Cinzel', 'Noto Sans Telugu', serif; }
+    .talambralu-box { background: #FFFDF9; border: 1.5px solid #E8D7B8; border-radius: 20px; padding: 16px 12px; margin: 18px auto; max-width: 410px; }
+    .talambralu-title { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 2px; }
+    .talambralu-bowls-wrap { display: flex; justify-content: center; gap: 16px; margin: 12px 0 6px; }
+    .ceremonial-kinnam-btn { background: radial-gradient(circle, #FFF3D1 0%, #ECC968 100%); border: 2px solid #CFA233; border-radius: 18px; padding: 10px 14px; cursor: pointer; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 14px rgba(160, 115, 20, 0.25); min-width: 140px; }
+    .kinnam-icon { font-size: 1.8rem; line-height: 1; margin-bottom: 4px; }
+    .kinnam-lbl { font-size: 0.78rem; font-weight: 700; color: #5C3A10; }
 
     /* DIGITAL SCRATCH CARD */
     .scratch-card-section {
@@ -586,43 +333,59 @@
       padding: 12px;
       z-index: 1;
     }
-    .scratch-secret-message h4 { font-family: 'Great Vibes', 'Noto Sans Telugu', cursive; font-size: 1.8rem; color: var(--maroon-primary); line-height: 1.1; }
-    .scratch-secret-message p { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-style: italic; font-size: 0.82rem; color: #5C3A10; margin-top: 4px; }
-    #scratchCanvas { position: absolute; inset: 0; z-index: 2; cursor: crosshair; }
+    .scratch-secret-message h4 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.8rem;
+      color: var(--maroon-primary);
+      line-height: 1.1;
+    }
+    .scratch-secret-message p {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 0.82rem;
+      color: #5C3A10;
+      margin-top: 4px;
+    }
+    #scratchCanvas {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      cursor: crosshair;
+    }
 
     /* LIVE STREAMING */
     .livestream-card { background: #FFFDF9; border: 1.5px solid #DFC394; border-radius: 22px; padding: 20px 14px; margin: 18px auto 20px; max-width: 430px; box-shadow: 0 8px 24px rgba(133, 19, 41, 0.08); text-align: center; }
-    .livestream-badge { display: inline-flex; align-items: center; gap: 6px; background: #FFE8E8; color: #D32F2F; border: 1px solid #FFCDD2; border-radius: 20px; padding: 4px 14px; font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 0.76rem; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 8px; }
+    .livestream-badge { display: inline-flex; align-items: center; gap: 6px; background: #FFE8E8; color: #D32F2F; border: 1px solid #FFCDD2; border-radius: 20px; padding: 4px 14px; font-family: 'Cinzel', serif; font-size: 0.76rem; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 8px; }
     .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #D32F2F; animation: livePulse 1.4s infinite; }
     @keyframes livePulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.3); } 100% { opacity: 1; transform: scale(1); } }
-    .livestream-title { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 4px; }
-    .livestream-sub { font-size: 0.82rem; color: #6C5D4B; margin-bottom: 14px; font-family: 'Playfair Display', 'Noto Sans Telugu', serif; }
+    .livestream-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 4px; }
+    .livestream-sub { font-size: 0.82rem; color: #6C5D4B; margin-bottom: 14px; }
     .livestream-player-box { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; border: 2px solid #E5CCA2; box-shadow: 0 6px 18px rgba(0,0,0,0.12); background: #000; margin-bottom: 12px; }
     .livestream-player-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    .btn-watch-youtube { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #FF0000; color: #FFFFFF; font-size: 0.92rem; font-weight: 700; padding: 11px 22px; border-radius: 25px; text-decoration: none; box-shadow: 0 4px 14px rgba(255, 0, 0, 0.28); font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif; }
+    .btn-watch-youtube { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #FF0000; color: #FFFFFF; font-size: 0.92rem; font-weight: 700; padding: 11px 22px; border-radius: 25px; text-decoration: none; box-shadow: 0 4px 14px rgba(255, 0, 0, 0.28); }
 
     /* VENUE */
-    .venue-title { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 4px; }
+    .venue-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 4px; }
     .event-address { font-size: 0.92rem; font-weight: 600; color: #2F2620; line-height: 1.5; margin: 8px 0 14px; }
     .btn-group { display: flex; flex-direction: column; gap: 10px; margin: 14px 0 6px; }
-    .cta-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 20px; border-radius: 30px; font-size: 0.94rem; font-weight: 700; text-decoration: none; cursor: pointer; border: none; font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif; }
+    .cta-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 20px; border-radius: 30px; font-size: 0.94rem; font-weight: 700; text-decoration: none; cursor: pointer; border: none; }
     .btn-maps { background: #9E1F3B; color: #FFF; box-shadow: 0 4px 14px rgba(158, 31, 59, 0.3); }
     .btn-whatsapp { background: #139B50; color: #FFF; box-shadow: 0 4px 14px rgba(19, 155, 80, 0.3); }
 
     /* BLESSINGS TICKER */
     .akshintalu-btn-wrap { margin: 20px 0 12px; text-align: center; }
-    .akshintalu-btn { background: linear-gradient(135deg, #DE3163 0%, #9E1F3B 100%); color: #FFFFFF; border: 2px solid #FFD700; padding: 14px 26px; font-size: 0.98rem; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 6px 20px rgba(158, 31, 59, 0.35); display: inline-flex; align-items: center; gap: 8px; font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif; }
+    .akshintalu-btn { background: linear-gradient(135deg, #DE3163 0%, #9E1F3B 100%); color: #FFFFFF; border: 2px solid #FFD700; padding: 14px 26px; font-size: 0.98rem; font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 6px 20px rgba(158, 31, 59, 0.35); display: inline-flex; align-items: center; gap: 8px; }
     .blessing-ticker { margin-top: 8px; font-size: 0.88rem; font-weight: 600; color: var(--gold-deep); }
 
     /* WISHES WALL */
     .wishes-wall { background: #FFFDF9; border: 1.5px solid #DFC394; border-radius: 18px; padding: 20px 16px; margin: 20px 0; box-shadow: 0 6px 18px rgba(0,0,0,0.04); text-align: left; }
-    .guestbook-title { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); text-align: center; margin-bottom: 2px; }
-    .guestbook-sub { text-align: center; font-size: 0.82rem; color: #6C5D4B; margin-bottom: 14px; font-family: 'Playfair Display', 'Noto Sans Telugu', serif; }
+    .guestbook-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); text-align: center; margin-bottom: 2px; }
+    .guestbook-sub { text-align: center; font-size: 0.82rem; color: #6C5D4B; margin-bottom: 14px; }
     .wish-input-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 14px; }
-    .wish-input-group input { width: 100%; padding: 11px 14px; border-radius: 10px; border: 1px solid #DFC394; font-size: 0.9rem; outline: none; background: #FFF; font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif; }
+    .wish-input-group input { width: 100%; padding: 11px 14px; border-radius: 10px; border: 1px solid #DFC394; font-size: 0.9rem; outline: none; background: #FFF; }
     
     .media-action-row { display: flex; gap: 8px; margin: 2px 0 4px; }
-    .media-action-btn { flex: 1; background: #FAF3E3; border: 1.5px solid #DFC394; border-radius: 12px; padding: 9px 8px; font-size: 0.82rem; font-weight: 700; color: #6C5230; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 5px; font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif; }
+    .media-action-btn { flex: 1; background: #FAF3E3; border: 1.5px solid #DFC394; border-radius: 12px; padding: 9px 8px; font-size: 0.82rem; font-weight: 700; color: #6C5230; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 5px; }
     .booth-live-wrapper { display: none; position: relative; margin: 10px auto; max-width: 300px; text-align: center; background: #000; border-radius: 16px; overflow: hidden; border: 2px solid #D4AF37; }
     .booth-live-wrapper video { width: 100%; height: auto; display: block; transform: scaleX(-1); }
     .booth-ctrl-bar { padding: 8px; background: rgba(255, 253, 249, 0.96); display: flex; justify-content: center; gap: 10px; }
@@ -634,8 +397,8 @@
     .voice-status-txt { font-size: 0.82rem; font-weight: 700; color: var(--maroon-primary); }
     .voice-audio-preview { width: 100%; height: 32px; margin-top: 6px; display: none; }
 
-    .send-wish-btn { width: 100%; padding: 11px; background: linear-gradient(135deg, #C59A3F, #9A7220); color: #FFF; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; font-size: 0.92rem; font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif; }
-    .download-card-btn { display: none; width: 100%; margin-top: 10px; padding: 12px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: #FFFFFF; border: none; border-radius: 10px; font-weight: 700; font-size: 0.92rem; cursor: pointer; font-family: 'Plus Jakarta Sans', 'Noto Sans Telugu', sans-serif; }
+    .send-wish-btn { width: 100%; padding: 11px; background: linear-gradient(135deg, #C59A3F, #9A7220); color: #FFF; font-weight: 700; border: none; border-radius: 10px; cursor: pointer; font-size: 0.92rem; }
+    .download-card-btn { display: none; width: 100%; margin-top: 10px; padding: 12px; background: linear-gradient(135deg, #25D366 0%, #128C7E 100%); color: #FFFFFF; border: none; border-radius: 10px; font-weight: 700; font-size: 0.92rem; cursor: pointer; }
 
     .wishes-ticker-box { max-height: 260px; overflow-y: auto; border: 1px dashed #E3D1B4; border-radius: 12px; padding: 10px; background: #FAF7F0; display: flex; flex-direction: column; gap: 10px; }
     .wish-item { background: #FFFFFF; border-radius: 10px; padding: 10px 12px; border: 1px solid #F0E3D0; font-size: 0.86rem; }
@@ -647,7 +410,7 @@
 
     /* THANK YOU POPUP */
     .thankyou-trigger-wrap { margin: 22px 0 10px; text-align: center; }
-    .btn-thankyou-popup { background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%); color: #FFFFFF; border: 2px solid #FFF5D1; padding: 14px 28px; border-radius: 35px; font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1rem; font-weight: 800; cursor: pointer; box-shadow: 0 6px 20px rgba(170, 124, 17, 0.4); display: inline-flex; align-items: center; gap: 10px; }
+    .btn-thankyou-popup { background: linear-gradient(135deg, #D4AF37 0%, #AA7C11 100%); color: #FFFFFF; border: 2px solid #FFF5D1; padding: 14px 28px; border-radius: 35px; font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 800; cursor: pointer; box-shadow: 0 6px 20px rgba(170, 124, 17, 0.4); display: inline-flex; align-items: center; gap: 10px; }
     .thankyou-modal-overlay { position: fixed; inset: 0; background: rgba(18, 10, 5, 0.85); backdrop-filter: blur(8px); z-index: 2000; display: flex; justify-content: center; align-items: center; padding: 16px; opacity: 0; visibility: hidden; transition: opacity 0.4s ease, visibility 0.4s ease; }
     .thankyou-modal-overlay.active { opacity: 1; visibility: visible; }
     .thankyou-modal-card { position: relative; max-width: 440px; width: 100%; max-height: 90vh; border-radius: 26px; overflow: hidden; box-shadow: 0 25px 60px rgba(0,0,0,0.5); background: #FFFDF9; display: flex; flex-direction: column; }
@@ -656,94 +419,21 @@
     .thankyou-close-btn { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border-radius: 50%; background: rgba(255, 255, 255, 0.9); border: 1px solid #DFC394; color: #851329; font-size: 20px; font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10; }
 
     .footer-bar { margin-top: 14px; background: radial-gradient(circle at center, #6A0D20 0%, #440411 100%); color: #FFF; padding: 22px 14px; border-radius: 18px; text-align: center; }
-    .footer-bar em { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: 0.92rem; font-style: italic; color: #F8DFAD; }
-    .footer-couple { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.35rem; font-weight: 800; letter-spacing: 2px; color: #FFF; margin-top: 6px; }
+    .footer-bar em { font-family: 'Playfair Display', serif; font-size: 0.92rem; font-style: italic; color: #F8DFAD; }
+    .footer-couple { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; letter-spacing: 2px; color: #FFF; margin-top: 6px; }
 
-    /* MINIMAL AUDIO TOGGLE */
-    .audio-pill {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: #FFFFFF;
-      border: 2px solid #DFC394;
-      border-radius: 50%;
-      width: 44px;
-      height: 44px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.22);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 100;
-      backdrop-filter: blur(8px);
-      cursor: pointer;
-      transition: transform 0.15s ease;
-    }
-    .audio-pill:active { transform: scale(0.92); }
-    .audio-icon-bubble { font-size: 18px; line-height: 1; }
-
-    /* STICKY MUHURTHAM REMINDER BAR */
-    .sticky-muhurtham-bar {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      height: 38px;
-      background: radial-gradient(circle at center, #6A0D20 0%, #440411 100%);
-      color: #FFFDF9;
-      border-top: 1.5px solid #DFC394;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Cinzel', 'Noto Sans Telugu', serif;
-      font-size: 0.78rem;
-      font-weight: 700;
-      letter-spacing: 1px;
-      z-index: 98;
-      box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.25);
-      transform: translateY(100%);
-      transition: transform 0.35s ease;
-    }
-    .sticky-muhurtham-bar.show {
-      transform: translateY(0);
-    }
+    .audio-pill { position: fixed; bottom: 20px; right: 20px; background: rgba(255, 255, 255, 0.96); border: 1.5px solid #DFC394; border-radius: 30px; padding: 6px 14px; box-shadow: 0 8px 24px rgba(0,0,0,0.18); display: flex; align-items: center; gap: 8px; z-index: 100; backdrop-filter: blur(8px); cursor: pointer; }
+    .audio-title-lbl { font-size: 0.76rem; font-weight: 700; color: var(--maroon-primary); letter-spacing: 0.5px; }
+    .audio-icon-bubble { background: var(--maroon-primary); color: #FFF; border-radius: 50%; width: 28px; height: 28px; display: flex; align-items: center; justify-content: center; font-size: 13px; }
   </style>
 </head>
 <body>
 
-  <!-- TOP ACTION BAR: OFFLINE SNAPSHOT & TOGGLE (EN / తెలుగు) -->
-  <div class="top-action-bar">
-    <button class="btn-offline-snapshot" onclick="downloadOfflineSnapshotCard()">
-      📥 <span data-en="Download Invitation Photo" data-te="ఆహ్వాన పత్రిక డౌన్‌లోడ్">Download Invitation Photo</span>
-    </button>
-    <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLanguage()">EN / తెలుగు</button>
-  </div>
+  <!-- LANGUAGE TOGGLE BUTTON -->
+  <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLanguage()">తెలుగు / EN</button>
 
   <!-- Audio Element -->
   <audio id="weddingAudio" src="Divine Nadaswaram.mp3" loop preload="auto"></audio>
-
-  <!-- BRIDE VS GROOM SIDE INTERACTIVE GREETING MODAL -->
-  <div class="side-picker-overlay" id="sidePickerOverlay">
-    <div class="side-picker-card">
-      <div class="side-picker-shloka">|| శ్రీరస్తు - శుభమస్తు ||</div>
-      <div class="side-picker-title" data-en="Auspicious Welcome" data-te="శుభాగమనం">Auspicious Welcome</div>
-      <div class="side-picker-sub" data-en="Whose guests are you joining today?" data-te="మీరు ఎవరి తరపున విచ్చేసారు?">Whose guests are you joining today?</div>
-      
-      <div class="side-options-grid">
-        <button class="side-choice-btn side-bride-btn" onclick="selectWeddingSide('bride')">
-          <span class="side-btn-icon">👰‍♀️</span>
-          <div class="side-btn-text">
-            <h4 data-en="Sarika's Side (Bride)" data-te="సారిక తరపున (వధువు)">Sarika's Side (Bride)</h4>
-            <p data-en="Deshaboina Family Celebration" data-te="దేశబోయిన వారి కుటుంబ వేడుక">Deshaboina Family Celebration</p>
-          </div>
-        </button>
-        <button class="side-choice-btn side-groom-btn" onclick="selectWeddingSide('groom')">
-          <span class="side-btn-icon">🤵‍♂️</span>
-          <div class="side-btn-text">
-            <h4 data-en="Sampath's Side (Groom)" data-te="సంపత్ తరపున (వరుడు)">Sampath's Side (Groom)</h4>
-            <p data-en="Boga Family Celebration" data-te="బోగ వారి కుటుంబ వేడుక">Boga Family Celebration</p>
-          </div>
-        </button>
-      </div>
-    </div>
-  </div>
 
   <!-- SCREEN 1: REACHING HANDS -> UNITED HANDS TOUCH SEQUENCE -->
   <div class="hands-overlay-screen" id="handsScreen" onclick="handleHandConnect()">
@@ -757,14 +447,10 @@
     <div class="tap-guide-prompt" id="tapPrompt" data-en="Tap in the middle to unite hands 💛" data-te="చేతులు కలపడానికి మధ్యలో తాకండి 💛">Tap in the middle to unite hands 💛</div>
   </div>
 
-  <!-- MINIMAL AUDIO CONTROL BUTTON (ICON ONLY) -->
-  <div class="audio-pill" onclick="toggleAudio()" title="Play / Pause Audio">
+  <!-- FLOATING NADASWARAM MUSIC CONTROL -->
+  <div class="audio-pill" onclick="toggleAudio()" title="Play / Pause Divine Nadaswaram">
+    <span class="audio-title-lbl" data-en="🪈 Divine Nadaswaram" data-te="🪈 నాదస్వరం">🪈 Divine Nadaswaram</span>
     <span class="audio-icon-bubble" id="audioPillIcon">🔊</span>
-  </div>
-
-  <!-- STICKY MUHURTHAM REMINDER BAR -->
-  <div class="sticky-muhurtham-bar" id="stickyMuhurthamBar">
-    ✨ <span id="stickyText" data-en="Nov 26 | 9:15 AM | VIP Gardens, Suraram" data-te="నవంబర్ 26 | ఉదయం 9:15 | వీఐపీ గార్డెన్స్, సూరారం">Nov 26 | 9:15 AM | VIP Gardens, Suraram</span>
   </div>
 
   <!-- MAIN INVITATION FRAME CONTAINER -->
@@ -777,17 +463,6 @@
         <div class="petal"></div>
         <div class="petal"></div>
         <div class="petal"></div>
-      </div>
-
-      <!-- Side Welcome Banner from Side Choice -->
-      <div class="family-welcome-banner" id="familyWelcomeBanner"></div>
-
-      <!-- NIGHT BEFORE CELEBRATION BANNER -->
-      <div class="night-before-banner" id="nightBeforeBanner" 
-           data-en="🎉 The celebrations have begun! Get a good night's rest, and we will see you tomorrow morning at VIP Gardens. ✨"
-           data-te="🎉 వివాహ సంబరాలు ప్రారంభమయ్యాయి! రేపు ఉదయం వీఐపీ గార్డెన్స్ వేదికగా మిమ్మల్ని కలుసుకోవడానికి వేచిచూస్తున్నాము. ✨">
-        🎉 <strong>The celebrations have begun!</strong><br>
-        Get a good night's rest, and we will see you tomorrow morning at VIP Gardens. ✨
       </div>
 
       <!-- Festive Toranam & Side Garlands -->
@@ -810,11 +485,8 @@
           || మంగళం భగవాన్ విష్ణుః మంగళం గరుడధ్వజః | మంగళం పుండరీకాక్షో మంగళాయ తనో హరిః || 🙏
         </div>
 
-        <!-- TIME-OF-DAY GREETING BADGE -->
-        <div class="time-greeting-badge" id="timeGreetingBadge">🌸 Good Morning (Subhodayam) 🙏</div>
-
         <!-- HIGHLIGHTED COUPLE NAMES -->
-        <div class="couple-title" id="coupleTitle" data-en="Sarika &amp; Sampath" data-te="సారిక &amp; సంపత్">Sarika &amp; Sampath</div>
+        <div class="couple-title">Sampath &amp; Sarika</div>
         <div class="hashtag-tag">#SamRika</div>
         <div class="invite-lead" data-en="We invite you to celebrate our wedding" data-te="మా వివాహ మహోత్సవానికి మిమ్మల్ని సాదరంగా ఆహ్వానిస్తున్నాము">We invite you to celebrate our wedding</div>
 
@@ -834,9 +506,9 @@
             <div class="bride-inner-border">
               <div class="card-badge bride-badge" data-en="🌸 BRIDE'S PARENTS" data-te="🌸 వధువు తల్లిదండ్రులు">🌸 BRIDE'S PARENTS</div>
               <div class="parent-name">
-                <span data-en="Deshaboina Venkateshwara Prabhu" data-te="దేశబోయిన వెంకటేశ్వర ప్రభు">Deshaboina Venkateshwara Prabhu</span>
-                <span class="parent-connector" data-en="&amp;" data-te="మరియు">&amp;</span>
-                <span data-en="Mrs. Sharadamba" data-te="శ్రీమతి శారదాంబ">Mrs. Sharadamba</span>
+                Deshaboina Venkateshwara Prabhu
+                <span class="parent-connector">&amp;</span>
+                Mrs. Sharadamba
               </div>
             </div>
           </div>
@@ -846,34 +518,17 @@
             <div class="groom-inner-border">
               <div class="card-badge groom-badge" data-en="🪷 GROOM'S PARENTS" data-te="🪷 వరుని తల్లిదండ్రులు">🪷 GROOM'S PARENTS</div>
               <div class="parent-name">
-                <span data-en="Boga Ashok" data-te="బోగ అశోక్">Boga Ashok</span>
-                <span class="parent-connector" data-en="&amp;" data-te="మరియు">&amp;</span>
-                <span data-en="Mrs. Geetha" data-te="శ్రీమతి గీత">Mrs. Geetha</span>
+                Boga Ashok
+                <span class="parent-connector">&amp;</span>
+                Mrs. Geetha
               </div>
             </div>
           </div>
         </div>
 
-        <!-- IN LOVING MEMORY (SMRUTULALO) ANCESTRAL TRIBUTE CARD (GROOM ONLY) -->
-        <div class="smrutulalo-card" id="smrutulaloCard">
-          <div class="smrutulalo-header">
-            <span class="smrutulalo-icon">🕊️</span>
-            <span class="smrutulalo-title" data-en="In Loving Memory • Smrutulalo" data-te="దివ్య స్మృతులలో (ఆత్మశాంతి కోరుతూ)">In Loving Memory • Smrutulalo</span>
-            <span class="smrutulalo-icon">🪷</span>
-          </div>
-          <div class="smrutulalo-text" data-en="Forever remembered in our hearts and forever guiding our sacred union with their heavenly blessings from above." data-te="స్వర్గస్తులైన మా ప్రియతమ పెద్దల దివ్య ఆశీస్సులతో, వారి పవిత్ర స్మృతులను సదా మా హృదయాలలో నిలుపుకుంటూ...">
-            Forever remembered in our hearts and forever guiding our sacred union with their heavenly blessings from above.
-          </div>
-          <div class="smrutulalo-names" id="ancestorNames" 
-               data-en="Late Boga Shivalingam (Thathayya) &amp; Late Boga Narsamma (Nanamma)" 
-               data-te="దివంగతులు శ్రీ బోగ శివలింగం (తాతయ్య) &amp; శ్రీమతి బోగ నర్సమ్మ (నానమ్మ)">
-            Late Boga Shivalingam (Thathayya) &amp; Late Boga Narsamma (Nanamma)
-          </div>
-        </div>
-
-        <!-- POLAROID FLIP STORY CARDS -->
+        <!-- POLAROID FLIP STORY CARDS (WITH SCROLL MUSIC SWELL SENSOR) -->
         <div class="story-section" id="storySection">
-          <div style="font-family:'Cinzel', 'Noto Sans Telugu', serif; font-size:1.2rem; font-weight:800; color:var(--maroon-primary);" data-en="Our Story" data-te="మా ప్రేమ కథ">Our Story</div>
+          <div style="font-family:'Cinzel', serif; font-size:1.2rem; font-weight:800; color:var(--maroon-primary);" data-en="Our Story" data-te="మా ప్రేమ కథ">Our Story</div>
           <div style="font-size:0.8rem; color:#7A6953; font-style:italic;" data-en="Tap a memory to flip 💫" data-te="జ్ఞాపకాన్ని చూడటానికి తాకండి 💫">Tap a memory to flip 💫</div>
           
           <div class="story-grid">
@@ -920,7 +575,7 @@
 
         <!-- DIGITAL GOLD FOIL SCRATCH CARD -->
         <div class="scratch-card-section">
-          <div style="font-family:'Cinzel', 'Noto Sans Telugu', serif; font-size:1.1rem; font-weight:800; color:var(--maroon-primary);" data-en="✨ Surprise Scratch Card ✨" data-te="✨ గోల్డ్ స్క్రాచ్ కార్డ్ ✨">✨ Surprise Scratch Card ✨</div>
+          <div style="font-family:'Cinzel', serif; font-size:1.1rem; font-weight:800; color:var(--maroon-primary);" data-en="✨ Surprise Scratch Card ✨" data-te="✨ గోల్డ్ స్క్రాచ్ కార్డ్ ✨">✨ Surprise Scratch Card ✨</div>
           <div style="font-size:0.8rem; color:#7A6953; margin-top:2px;" data-en="Scratch with your finger to reveal our special note!" data-te="మా ప్రత్యేక సందేశాన్ని చూడటానికి స్క్రాచ్ చేయండి!">Scratch with your finger to reveal our special note!</div>
           
           <div class="scratch-container" id="scratchContainer">
@@ -939,11 +594,14 @@
           <span class="divider-line"></span>
         </div>
 
-        <!-- CLEAN SACRED DIYA SECTION -->
+        <!-- SACRED DIYA LIGHTING -->
         <div class="diya-section">
+          <div class="diya-heading" data-en="Light the Sacred Diya" data-te="మంగళ దీపం వెలిగించండి">Light the Sacred Diya</div>
+          <div class="diya-sub" data-en="Touch the lamp to ignite divine blessings for Sampath &amp; Sarika 🪔" data-te="సంపత్ &amp; సారికల కొరకు మంగళ దీపాన్ని తాకి వెలిగించండి 🪔">Touch the lamp to ignite divine blessings for Sampath &amp; Sarika 🪔</div>
+          
           <div class="diya-lamp-box" id="diyaBox" onclick="lightTheDiya()">
             <div class="diya-aura"></div>
-            <svg viewBox="0 0 100 100" width="62" height="62">
+            <svg viewBox="0 0 100 100" width="80" height="80">
               <path class="diya-flame" d="M50 12 C44 26 40 38 50 48 C60 38 56 26 50 12 Z" fill="url(#flameGradient)"/>
               <ellipse class="diya-flame" cx="50" cy="38" rx="4" ry="7" fill="#FFFFFF" opacity="0.8"/>
               <path d="M24 55 Q50 68 76 55 Q78 68 62 76 L66 88 L34 88 L38 76 Q22 68 24 55 Z" fill="#D4AF37" stroke="#A67C1E" stroke-width="2"/>
@@ -958,29 +616,18 @@
               </defs>
             </svg>
           </div>
-          <div class="diya-status-tag" id="diyaStatus" data-en="Touch the lamp to ignite divine blessings 🪔" data-te="మంగళ దీపాన్ని తాకి వెలిగించండి 🪔">Touch the lamp to ignite divine blessings 🪔</div>
+          <div class="diya-status-tag" id="diyaStatus" data-en="Touch to light the Diya ✨" data-te="దీపం వెలిగించడానికి తాకండి ✨">Touch to light the Diya ✨</div>
         </div>
 
-        <!-- MUHURTHAM SECTION WITH CONVERSATIONAL TRACKER -->
-        <div class="event-card" id="muhurthamCardSection">
+        <!-- Muhurtham Section -->
+        <div class="event-card">
           <div class="event-img-wrap">
             <img src="kalyanam.jpeg" alt="Sita Rama Kalyanam" onerror="handleImgError(this, 'kalyanam')">
           </div>
           <div class="event-tag" data-en="MUHURTHAM" data-te="సుముహూర్తం">MUHURTHAM</div>
           <div class="event-subtitle" data-en="With divine blessings, soliciting your gracious presence" data-te="మీ పవిత్ర సమక్షాన్ని కోరుకుంటూ">With divine blessings, soliciting your gracious presence</div>
           <div style="font-size: 1.05rem; font-weight:700;" data-en="Thursday, 26 November 2026" data-te="గురువారం, 26 నవంబర్ 2026">Thursday, 26 November 2026</div>
-
-          <!-- LIVE AUSPICIOUS GLOW HALO CONTAINER -->
-          <div>
-            <div class="muhurtham-glow-halo" id="muhurthamHalo">
-              <div class="event-time-highlight" data-en="9:15 AM" data-te="ఉదయం 9:15 గంటలకు">9:15 AM</div>
-            </div>
-          </div>
-
-          <!-- CONVERSATIONAL TIME-LEFT TRACKER -->
-          <div class="conversational-tracker-box" id="conversationalTracker">
-            Calculating auspicious moments... ✨
-          </div>
+          <div class="event-time-highlight" data-en="9:15 AM" data-te="ఉదయం 9:15 గంటలకు">9:15 AM</div>
 
           <!-- CIRCULAR MEDAL COUNTDOWN BADGES -->
           <div class="countdown-medals">
@@ -1003,14 +650,18 @@
           </div>
         </div>
 
-        <!-- TALAMBRALU (ONLY AKSHINTALU BOWL) -->
+        <!-- TALAMBRALU CEREMONIAL BOWL SHOWER -->
         <div class="talambralu-box">
           <div class="talambralu-title" data-en="Talambralu Blessings 🌾" data-te="తలంబ్రాల ఆశీస్సులు 🌾">Talambralu Blessings 🌾</div>
-          <div style="font-size:0.8rem; color:#7A6953;" data-en="Tap the bowl to shower sacred Akshintalu upon the couple" data-te="వధూవరులపై పవిత్ర అక్షింతలు కురిపించడానికి తాకండి">Tap the bowl to shower sacred Akshintalu upon the couple</div>
+          <div style="font-size:0.8rem; color:#7A6953;" data-en="Tap the sacred bowls to shower blessings upon the couple" data-te="వధూవరులపై తలంబ్రాలు కురిపించడానికి తాకండి">Tap the sacred bowls to shower blessings upon the couple</div>
           <div class="talambralu-bowls-wrap">
             <button class="ceremonial-kinnam-btn" onclick="showerTalambralu('rice')">
               <span class="kinnam-icon">🍚</span>
               <span class="kinnam-lbl" data-en="Yellow Akshintalu" data-te="పసుపు అక్షింతలు">Yellow Akshintalu</span>
+            </button>
+            <button class="ceremonial-kinnam-btn" onclick="showerTalambralu('petals')">
+              <span class="kinnam-icon">🌹</span>
+              <span class="kinnam-lbl" data-en="Rose Petals" data-te="గులాబీ రేకులు">Rose Petals</span>
             </button>
           </div>
         </div>
@@ -1033,7 +684,7 @@
           <div class="livestream-player-box">
             <iframe 
               src="https://www.youtube-nocookie.com/embed/85FWdlUqBkw" 
-              title="Sarika &amp; Sampath Wedding Live Stream" 
+              title="Sampath &amp; Sarika Wedding Live Stream" 
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
               allowfullscreen>
             </iframe>
@@ -1051,7 +702,7 @@
           </div>
           <div class="event-tag" data-en="VENUE" data-te="కళ్యాణ వేదిక">VENUE</div>
           <div class="venue-title">VIP Gardens</div>
-          <div class="event-address" data-en="GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony, Suraram Village, Suraram, Hyderabad, Telangana 500055" data-te="సూరారం విలేజ్ రోడ్, లక్ష్మీ నగర్ కాలనీ, సూరారం, హైదరాబాద్, తెలంగాణ 500055">
+          <div class="event-address">
             GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony,<br>
             Suraram Village, Suraram, Hyderabad, Telangana 500055
           </div>
@@ -1060,13 +711,13 @@
             <a class="cta-btn btn-maps" href="https://maps.google.com/?q=VIP+Gardens+Suraram+Hyderabad" target="_blank" data-en="📍 View on Google Maps" data-te="📍 గూగుల్ మ్యాప్స్ లో చూడండి">
               📍 View on Google Maps
             </a>
-            <a class="cta-btn btn-whatsapp" href="https://wa.me/917675975990?text=Congratulations%20Sarika%20%26%20Sampath!%20Sending%20our%20warmest%20wishes%20for%20your%20wedding." target="_blank" data-en="💬 Send Wishes on WhatsApp" data-te="💬 వాట్సాప్‌లో శుభాకాంక్షలు పంపండి">
+            <a class="cta-btn btn-whatsapp" href="https://wa.me/917675975990?text=Congratulations%20Sampath%20%26%20Sarika!%20Sending%20our%20warmest%20wishes%20for%20your%20wedding." target="_blank" data-en="💬 Send Wishes on WhatsApp" data-te="💬 వాట్సాప్‌లో శుభాకాంక్షలు పంపండి">
               💬 Send Wishes on WhatsApp
             </a>
           </div>
         </div>
 
-        <!-- Interactive Shower Akshintalu Button -->
+        <!-- Interactive Shower Akshintalu & Petals Button -->
         <div class="akshintalu-btn-wrap">
           <button class="akshintalu-btn" onclick="showerAkshintalu()" data-en="🌸 Tap to Shower Akshintalu &amp; Blessings" data-te="🌸 అక్షింతలు &amp; ఆశీస్సులు కురిపించండి">
             🌸 Tap to Shower Akshintalu &amp; Blessings
@@ -1077,7 +728,7 @@
         <!-- GUEST WISHES WALL -->
         <div class="wishes-wall">
           <div class="guestbook-title" data-en="Guest Wishes Wall" data-te="అతిథుల ఆశీస్సుల వేదిక">Guest Wishes Wall</div>
-          <div class="guestbook-sub" data-en="Leave a blessing, snap a selfie, or record a voice note for Sarika &amp; Sampath" data-te="సారిక &amp; సంపత్ లకు మీ ఆశీస్సులు, ఫోటో లేదా వాయిస్ సందేశాన్ని పంపండి">Leave a blessing, snap a selfie, or record a voice note for Sarika &amp; Sampath</div>
+          <div class="guestbook-sub" data-en="Leave a blessing, snap a selfie, or record a voice note for Sampath &amp; Sarika" data-te="మీ ఆశీస్సులు, ఫోటో లేదా వాయిస్ సందేశాన్ని పంపండి">Leave a blessing, snap a selfie, or record a voice note for Sampath &amp; Sarika</div>
           
           <div class="wish-input-group">
             <input type="text" id="guestName" placeholder="Your Name (e.g., Ramesh Uncle)" maxlength="40">
@@ -1085,10 +736,10 @@
 
             <!-- Media Options -->
             <div class="media-action-row">
-              <button type="button" class="media-action-btn" onclick="togglePhotoBooth()" data-en="📸 Snap Selfie Frame" data-te="📸 సెల్ఫీ ఫోటో తీసుకోండి">
+              <button type="button" class="media-action-btn" onclick="togglePhotoBooth()">
                 📸 Snap Selfie Frame
               </button>
-              <button type="button" class="media-action-btn" id="recordVoiceBtn" onclick="handleVoiceRecord()" data-en="🎙️ Voice Note (10s)" data-te="🎙️ వాయిస్ సందేశం (10s)">
+              <button type="button" class="media-action-btn" id="recordVoiceBtn" onclick="handleVoiceRecord()">
                 🎙️ Voice Note (10s)
               </button>
             </div>
@@ -1098,8 +749,8 @@
               <video id="boothVideo" autoplay playsinline></video>
               <canvas id="boothCanvas" width="400" height="400" style="display:none;"></canvas>
               <div class="booth-ctrl-bar">
-                <button type="button" class="booth-snap-btn" onclick="snapSelfie()" data-en="⚡ Take Photo" data-te="⚡ ఫోటో తీయండి">⚡ Take Photo</button>
-                <button type="button" class="booth-cancel-btn" onclick="closePhotoBooth()" data-en="✕ Close" data-te="✕ మూసివేయండి">✕ Close</button>
+                <button type="button" class="booth-snap-btn" onclick="snapSelfie()">⚡ Take Photo</button>
+                <button type="button" class="booth-cancel-btn" onclick="closePhotoBooth()">✕ Close</button>
               </div>
             </div>
 
@@ -1107,8 +758,8 @@
             <div class="captured-selfie-box" id="capturedPhotoPreview">
               <img id="selfieThumb" class="selfie-thumb-img" src="" alt="Captured Selfie">
               <div style="flex:1; text-align:left;">
-                <div style="font-size:0.78rem; font-weight:700; color:#2E7D32;" data-en="✨ Frame Attached!" data-te="✨ ఫోటో సిద్ధమైంది!">✨ Frame Attached!</div>
-                <div style="font-size:0.72rem; color:#851329; cursor:pointer; text-decoration:underline;" onclick="clearSelfie()" data-en="Remove Photo ✕" data-te="తొలగించండి ✕">Remove Photo ✕</div>
+                <div style="font-size:0.78rem; font-weight:700; color:#2E7D32;">✨ Frame Attached!</div>
+                <div style="font-size:0.72rem; color:#851329; cursor:pointer; text-decoration:underline;" onclick="clearSelfie()">Remove Photo ✕</div>
               </div>
             </div>
 
@@ -1116,7 +767,7 @@
             <div class="voice-status-wrapper" id="voiceStatusArea">
               <div class="voice-status-txt" id="recordingTimer">🔴 Recording... 10s</div>
               <audio id="recordedAudioPreview" class="voice-audio-preview" controls></audio>
-              <div id="clearVoiceLink" style="display:none; font-size:0.74rem; color:#851329; cursor:pointer; margin-top:4px; text-decoration:underline;" onclick="clearVoiceNote()" data-en="Delete Voice Note ✕" data-te="వాయిస్ తొలగించండి ✕">Delete Voice Note ✕</div>
+              <div id="clearVoiceLink" style="display:none; font-size:0.74rem; color:#851329; cursor:pointer; margin-top:4px; text-decoration:underline;" onclick="clearVoiceNote()">Delete Voice Note ✕</div>
             </div>
 
             <button class="send-wish-btn" id="postWishBtn" onclick="submitWish()" data-en="✨ Send Blessing" data-te="✨ ఆశీర్వదించండి">✨ Send Blessing</button>
@@ -1124,7 +775,7 @@
           </div>
 
           <div class="wishes-ticker-box" id="wishesBox">
-            <div style="text-align:center; padding:12px; color:#8C7355; font-size:0.85rem;" data-en="Loading blessings... 🪷" data-te="ఆశీస్సులు లోడ్ అవుతున్నాయి... 🪷">
+            <div style="text-align:center; padding:12px; color:#8C7355; font-size:0.85rem;">
               Loading blessings... 🪷
             </div>
           </div>
@@ -1141,7 +792,7 @@
         <div class="footer-bar">
           <em data-en="We can't wait to celebrate this auspicious day with you ❤️" data-te="ఈ శుభదినాన మీతో కలిసి వేడుక చేసుకోవడానికి వేచిచూస్తున్నాము ❤️">We can't wait to celebrate this auspicious day with you ❤️</em>
           <div style="font-size:0.85rem; margin-top:4px; color:#F8DFAD;" data-en="With Love," data-te="ప్రేమతో,">With Love,</div>
-          <div class="footer-couple" data-en="SARIKA &amp; SAMPATH" data-te="సారిక &amp; సంపత్">SARIKA &amp; SAMPATH</div>
+          <div class="footer-couple">SAMPATH &amp; SARIKA</div>
         </div>
 
       </div>
@@ -1153,14 +804,13 @@
     <div class="thankyou-modal-card" onclick="event.stopPropagation()">
       <button class="thankyou-close-btn" onclick="closeThankYouModal()" title="Close">✕</button>
       <div class="thankyou-img-container">
-        <img src="Thankyou.jpeg" alt="Thank You - Sarika &amp; Sampath" onerror="handleImgError(this, 'Thankyou')">
+        <img src="Thankyou.jpeg" alt="Thank You - Sampath &amp; Sarika" onerror="handleImgError(this, 'Thankyou')">
       </div>
     </div>
   </div>
 
-  <!-- HIDDEN CANVASES -->
+  <!-- HIDDEN CANVAS FOR CARD GENERATION -->
   <canvas id="blessingCanvas" width="900" height="1200" style="display:none;"></canvas>
-  <canvas id="offlineSnapshotCanvas" width="1080" height="1920" style="display:none;"></canvas>
 
   <script>
     const extList = ['.jpeg', '.jpg', '.png', '.jfif'];
@@ -1172,463 +822,7 @@
       }
     }
 
-    let selectedSide = null;
-
-    /* 1. BRIDE VS GROOM SIDE SELECTION */
-    function selectWeddingSide(side) {
-      selectedSide = side;
-      const overlay = document.getElementById('sidePickerOverlay');
-      const banner = document.getElementById('familyWelcomeBanner');
-      const smrutulaloCard = document.getElementById('smrutulaloCard');
-      overlay.classList.add('hidden');
-
-      if (side === 'groom') {
-        document.body.classList.add('side-groom');
-        banner.innerText = currentLang === 'en' 
-          ? "✨ Heartfelt Welcome to the Boga Family Celebration! 💛" 
-          : "✨ బోగ వారి కుటుంబ వేడుకకు సాదర సుస్వాగతం! 💛";
-        banner.style.display = 'block';
-
-        // Display In Loving Memory only for Groom's side
-        if (smrutulaloCard) smrutulaloCard.style.display = 'block';
-      } else {
-        document.body.classList.add('side-bride');
-        banner.innerText = currentLang === 'en' 
-          ? "🌸 Heartfelt Welcome to the Deshaboina Family Celebration! 💐" 
-          : "🌸 దేశబోయిన వారి కుటుంబ వేడుకకు సాదర సుస్వాగతం! 💐";
-        banner.style.display = 'block';
-
-        // Keep In Loving Memory hidden on Bride's side
-        if (smrutulaloCard) smrutulaloCard.style.display = 'none';
-      }
-
-      if (navigator.vibrate) navigator.vibrate([40, 30, 40]);
-    }
-
-    /* 2. NIGHT BEFORE WEDDING EVE CHECK (NOV 25, 2026, 6:00 PM) */
-    const weddingDateTime = new Date('2026-11-26T09:15:00+05:30').getTime();
-    const nightBeforeDateTime = new Date('2026-11-25T18:00:00+05:30').getTime();
-
-    function checkNightBeforeStatus() {
-      const now = new Date().getTime();
-      const nightBanner = document.getElementById('nightBeforeBanner');
-      if (now >= nightBeforeDateTime && now < weddingDateTime) {
-        document.body.classList.add('theme-night-before');
-        if (nightBanner) nightBanner.style.display = 'block';
-      }
-    }
-
-    /* 3. DYNAMIC TIME-OF-DAY GREETING SCRIPT */
-    function updateTimeGreeting() {
-      const hour = new Date().getHours();
-      const badge = document.getElementById('timeGreetingBadge');
-      if (!badge) return;
-
-      const isTe = (currentLang === 'te');
-
-      if (hour >= 4 && hour < 12) {
-        badge.innerText = isTe ? "🌸 శుభోదయం (Good Morning) 🙏" : "🌸 Good Morning (Subhodayam) 🙏";
-      } else if (hour >= 12 && hour < 17) {
-        badge.innerText = isTe ? "☀️ శుభ మధ్యాహ్నం (Good Afternoon) 🙏" : "☀️ Good Afternoon (Subha Madhyahnam) 🙏";
-      } else if (hour >= 17 && hour < 21) {
-        badge.innerText = isTe ? "🪔 శుభ సాయంత్రం (Good Evening) 🙏" : "🪔 Good Evening (Subha Sayanathram) 🙏";
-      } else {
-        badge.innerText = isTe ? "🌙 శుభ రాత్రి (Subha Rathri) 🙏" : "🌙 Peaceful Night (Subha Rathri) 🙏";
-      }
-    }
-
-    /* 4. CONVERSATIONAL TIME-LEFT TRACKER */
-    function updateConversationalTracker() {
-      const now = new Date();
-      const diffMs = weddingDateTime - now.getTime();
-      const trackerEl = document.getElementById('conversationalTracker');
-      if (!trackerEl) return;
-
-      if (diffMs <= 0) {
-        trackerEl.innerText = currentLang === 'en' 
-          ? "🎉 The wedding moments are here! Sarika & Sampath are uniting! 💖"
-          : "🎉 శుభ ముహూర్తం ఆసన్నమైంది! సారిక & సంపత్ వివాహ మహోత్సవం! 💖";
-        return;
-      }
-
-      const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-      const currentDayOfWeek = now.getDay();
-
-      if (now >= nightBeforeDateTime && now < weddingDateTime) {
-        trackerEl.innerText = currentLang === 'en'
-          ? "✨ Tonight is the night! Tomorrow morning Sarika & Sampath tie the knot! 💍"
-          : "✨ రేపు ఉదయమే సారిక & సంపత్ ల కల్యాణ మహోత్సవం! 💍";
-      } else if (currentDayOfWeek === 4) {
-        const thursdaysLeft = Math.ceil(totalDays / 7);
-        if (thursdaysLeft <= 1) {
-          trackerEl.innerText = currentLang === 'en'
-            ? "✨ Next Thursday morning, Sarika & Sampath tie the knot! 💍"
-            : "✨ వచ్చే గురువారమే సారిక & సంపత్ ల వివాహం! 💍";
-        } else {
-          trackerEl.innerText = currentLang === 'en'
-            ? `Only ${thursdaysLeft} more Thursdays until Sarika & Sampath tie the knot! 💍`
-            : `సారిక & సంపత్ వివాహానికి ఇంకా ${thursdaysLeft} గురువారాలు మాత్రమే మిగిలి ఉన్నాయి! 💍`;
-        }
-      } else if (totalDays >= 7) {
-        const weeks = Math.floor(totalDays / 7);
-        const remDays = totalDays % 7;
-        const daysStr = remDays > 0 ? ` and ${remDays} days` : "";
-        trackerEl.innerText = currentLang === 'en'
-          ? `Just ${weeks} weeks${daysStr} until the sacred Kalyanam! 🌸`
-          : `సారిక & సంపత్ కల్యాణానికి ఇంకా ${weeks} వారాల సమయం ఉంది! 🌸`;
-      } else if (totalDays === 1) {
-        trackerEl.innerText = currentLang === 'en'
-          ? "Just 1 day left! Celebrations are in full swing! ✨"
-          : "ఇంకా ఒక్క రోజు మాత్రమే మిగిలి ఉంది! ✨";
-      } else {
-        trackerEl.innerText = currentLang === 'en'
-          ? `Only ${totalDays} days to go until Sarika & Sampath tie the knot! 💛`
-          : `సారిక & సంపత్ వివాహానికి ఇంకా ${totalDays} రోజులు మాత్రమే మిగిలి ఉన్నాయి! 💛`;
-      }
-    }
-
-    /* 5. STICKY MUHURTHAM BAR SCROLL LISTENER */
-    window.addEventListener('scroll', () => {
-      const stickyBar = document.getElementById('stickyMuhurthamBar');
-      const muhurthamCard = document.getElementById('muhurthamCardSection');
-      if (!stickyBar || !muhurthamCard) return;
-
-      const rect = muhurthamCard.getBoundingClientRect();
-      if (rect.bottom < 50) {
-        stickyBar.classList.add('show');
-      } else {
-        stickyBar.classList.remove('show');
-      }
-    });
-
-    /* 6. LIVE AUSPICIOUS GLOW */
-    function updateAuspiciousGlow() {
-      const now = new Date().getTime();
-      const diffMs = weddingDateTime - now;
-      const daysLeft = diffMs / (1000 * 60 * 60 * 24);
-
-      const halo = document.getElementById('muhurthamHalo');
-      if (!halo) return;
-
-      if (diffMs <= 0 && diffMs >= -(1000 * 60 * 60 * 6)) {
-        halo.style.boxShadow = "0 0 50px rgba(255, 215, 0, 1), 0 0 25px rgba(255, 140, 0, 0.9)";
-        halo.style.background = "radial-gradient(circle, rgba(255,245,210,0.95) 0%, rgba(255,215,0,0.4) 100%)";
-        halo.style.animation = "pulseTarget 0.9s infinite ease-in-out";
-      } else if (daysLeft <= 7) {
-        halo.style.boxShadow = "0 0 35px rgba(255, 215, 0, 0.85), 0 0 16px rgba(212, 175, 55, 0.6)";
-        halo.style.background = "radial-gradient(circle, rgba(255,250,225,0.85) 0%, rgba(255,215,0,0.25) 100%)";
-        halo.style.animation = "pulseTarget 1.4s infinite ease-in-out";
-      } else if (daysLeft <= 30) {
-        halo.style.boxShadow = "0 0 22px rgba(218, 165, 32, 0.6)";
-        halo.style.background = "rgba(255, 248, 225, 0.7)";
-      } else {
-        halo.style.boxShadow = "0 0 14px rgba(218, 165, 32, 0.4)";
-      }
-    }
-
-    /* CANVAS TEXT-WRAPPING HELPER */
-    function renderCanvasWrapped(ctx, text, x, startY, maxWidth, lineHeight) {
-      const words = String(text).split(' ');
-      let line = '';
-      let currentY = startY;
-      for (let n = 0; n < words.length; n++) {
-        const testLine = line + words[n] + ' ';
-        const metrics = ctx.measureText(testLine);
-        if (metrics.width > maxWidth && n > 0) {
-          ctx.fillText(line.trim(), x, currentY);
-          line = words[n] + ' ';
-          currentY += lineHeight;
-        } else {
-          line = testLine;
-        }
-      }
-      ctx.fillText(line.trim(), x, currentY);
-      return currentY;
-    }
-
-    function drawCanvasFlower(ctx, cx, cy, radius, primaryColor, centerColor) {
-      ctx.save();
-      for (let i = 0; i < 6; i++) {
-        const angle = (i * Math.PI) / 3;
-        const px = cx + Math.cos(angle) * (radius * 0.7);
-        const py = cy + Math.sin(angle) * (radius * 0.7);
-        ctx.beginPath();
-        ctx.arc(px, py, radius * 0.55, 0, Math.PI * 2);
-        ctx.fillStyle = primaryColor;
-        ctx.fill();
-      }
-      ctx.beginPath();
-      ctx.arc(cx, cy, radius * 0.45, 0, Math.PI * 2);
-      ctx.fillStyle = centerColor;
-      ctx.fill();
-      ctx.restore();
-    }
-
-    function drawCanvasLotusCorner(ctx, cx, cy, size, flipX, flipY) {
-      ctx.save();
-      ctx.translate(cx, cy);
-      ctx.scale(flipX ? -1 : 1, flipY ? -1 : 1);
-      
-      ctx.fillStyle = '#FF6584';
-      ctx.beginPath();
-      ctx.ellipse(-size * 0.4, -size * 0.2, size * 0.28, size * 0.55, -0.4, 0, Math.PI * 2);
-      ctx.fill();
-      ctx.beginPath();
-      ctx.ellipse(size * 0.4, -size * 0.2, size * 0.28, size * 0.55, 0.4, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.fillStyle = '#FFA8B6';
-      ctx.beginPath();
-      ctx.ellipse(0, -size * 0.35, size * 0.3, size * 0.65, 0, 0, Math.PI * 2);
-      ctx.fill();
-
-      ctx.fillStyle = '#E5B80B';
-      ctx.beginPath();
-      ctx.arc(0, 0, size * 0.28, 0, Math.PI);
-      ctx.fill();
-      ctx.restore();
-    }
-
-    /* 7. VIBRANT FLORAL OFFLINE SNAPSHOT CARD */
-    function downloadOfflineSnapshotCard() {
-      const canvas = document.getElementById('offlineSnapshotCanvas');
-      const ctx = canvas.getContext('2d');
-      const W = canvas.width;
-      const H = canvas.height;
-      const isTe = (currentLang === 'te');
-      const showAncestors = (selectedSide === 'groom');
-
-      const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 100, W / 2, H / 2, 1150);
-      bgGrad.addColorStop(0, '#FFFDF8');
-      bgGrad.addColorStop(0.5, '#FFF8EC');
-      bgGrad.addColorStop(1, '#F7E7CD');
-      ctx.fillStyle = bgGrad;
-      ctx.fillRect(0, 0, W, H);
-
-      ctx.lineWidth = 22;
-      ctx.strokeStyle = '#851329';
-      ctx.strokeRect(32, 32, W - 64, H - 64);
-
-      ctx.lineWidth = 5;
-      ctx.strokeStyle = '#D4AF37';
-      ctx.strokeRect(52, 52, W - 104, H - 104);
-
-      ctx.lineWidth = 2;
-      ctx.strokeStyle = '#C59A3F';
-      ctx.setLineDash([10, 8]);
-      ctx.strokeRect(66, 66, W - 132, H - 132);
-      ctx.setLineDash([]);
-
-      ctx.save();
-      const toranamY = 82;
-      const step = 64;
-      for (let x = 90; x <= W - 90; x += step) {
-        ctx.fillStyle = '#2E7D32';
-        ctx.beginPath();
-        ctx.moveTo(x - 16, toranamY);
-        ctx.quadraticCurveTo(x, toranamY + 44, x, toranamY + 54);
-        ctx.quadraticCurveTo(x, toranamY + 44, x + 16, toranamY);
-        ctx.closePath();
-        ctx.fill();
-
-        const isYellow = (x / step) % 2 === 0;
-        drawCanvasFlower(ctx, x, toranamY + 12, 11, isYellow ? '#FFD54F' : '#FF8F00', isYellow ? '#E65100' : '#FFF9C4');
-      }
-      ctx.restore();
-
-      const garlandTop = 160;
-      const garlandBottom = H - 160;
-      const garlandStep = 60;
-      for (let y = garlandTop; y <= garlandBottom; y += garlandStep) {
-        const isOrange = (y / garlandStep) % 2 === 0;
-        drawCanvasFlower(ctx, 42, y, 12, isOrange ? '#FF8F00' : '#FFD54F', isOrange ? '#FFF59D' : '#E65100');
-        drawCanvasFlower(ctx, W - 42, y, 12, isOrange ? '#FF8F00' : '#FFD54F', isOrange ? '#FFF59D' : '#E65100');
-      }
-
-      drawCanvasLotusCorner(ctx, 110, 110, 38, false, false);
-      drawCanvasLotusCorner(ctx, W - 110, 110, 38, true, false);
-      drawCanvasLotusCorner(ctx, 110, H - 110, 38, false, true);
-      drawCanvasLotusCorner(ctx, W - 110, H - 110, 38, true, true);
-
-      ctx.textAlign = 'center';
-      ctx.font = '54px sans-serif';
-      ctx.fillText('🏺', W / 2, 185);
-
-      ctx.font = 'bold 34px "Noto Sans Telugu", sans-serif';
-      ctx.fillStyle = '#851329';
-      ctx.fillText('|| శ్రీరస్తు - శుభమస్తు - అవిఘ్నమస్తు ||', W / 2, 245);
-
-      ctx.font = isTe ? 'bold 32px "Noto Sans Telugu", sans-serif' : 'bold 30px "Cinzel", serif';
-      ctx.fillStyle = '#8E6A26';
-      ctx.letterSpacing = isTe ? '1px' : '3px';
-      ctx.fillText(isTe ? 'వివాహ మహోత్సవ ఆహ్వాన పత్రిక' : 'WEDDING INVITATION', W / 2, 305);
-
-      if (isTe) {
-        ctx.font = 'bold 88px "Noto Sans Telugu", sans-serif';
-        ctx.fillStyle = '#851329';
-        ctx.shadowColor = 'rgba(212, 175, 55, 0.45)';
-        ctx.shadowBlur = 14;
-        ctx.fillText('సారిక & సంపత్', W / 2, 425);
-      } else {
-        ctx.font = 'bold 106px "Great Vibes", cursive, serif';
-        ctx.fillStyle = '#851329';
-        ctx.shadowColor = 'rgba(212, 175, 55, 0.45)';
-        ctx.shadowBlur = 14;
-        ctx.fillText('Sarika & Sampath', W / 2, 425);
-      }
-      ctx.shadowBlur = 0;
-
-      ctx.font = 'bold 30px "Cinzel", "Noto Sans Telugu", serif';
-      ctx.fillStyle = '#8E6A26';
-      ctx.fillText('#SamRika', W / 2, 485);
-
-      ctx.beginPath();
-      ctx.moveTo(W / 2 - 260, 520);
-      ctx.lineTo(W / 2 + 260, 520);
-      ctx.lineWidth = 2.5;
-      ctx.strokeStyle = '#DFC394';
-      ctx.stroke();
-
-      drawCanvasFlower(ctx, W / 2, 520, 12, '#DE3163', '#FFD54F');
-
-      ctx.font = isTe ? 'bold 26px "Noto Sans Telugu", sans-serif' : 'italic 28px "Playfair Display", serif';
-      ctx.fillStyle = '#4D3205';
-      const leadText = isTe
-        ? 'మా వివాహ మహోత్సవానికి విచ్చేసి నూతన వధూవరులను ఆశీర్వదించగలరని ప్రార్థన'
-        : 'Soliciting your gracious presence and heartfelt blessings on our auspicious marriage';
-      renderCanvasWrapped(ctx, leadText, W / 2, 575, W - 280, 38);
-
-      const cardBoxW = W - 240;
-      const cardBoxX = 120;
-
-      // Bride Parents Card Box
-      ctx.fillStyle = '#FFFFFF';
-      ctx.strokeStyle = '#F1BFB3';
-      ctx.lineWidth = 2.5;
-      ctx.beginPath();
-      ctx.roundRect(cardBoxX, 640, cardBoxW, 140, 18);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.font = isTe ? 'bold 24px "Noto Sans Telugu", sans-serif' : 'bold 22px "Cinzel", serif';
-      ctx.fillStyle = '#8E1F35';
-      ctx.fillText(isTe ? '🌸 వధువు తల్లిదండ్రులు' : '🌸 BRIDE\'S PARENTS', W / 2, 680);
-
-      ctx.font = isTe ? 'bold 28px "Noto Sans Telugu", sans-serif' : 'bold 30px "Playfair Display", serif';
-      ctx.fillStyle = '#222222';
-      const brideParents = isTe 
-        ? 'దేశబోయిన వెంకటేశ్వర ప్రభు & శ్రీమతి శారదాంబ' 
-        : 'Deshaboina Venkateshwara Prabhu & Mrs. Sharadamba';
-      renderCanvasWrapped(ctx, brideParents, W / 2, 730, cardBoxW - 50, 36);
-
-      // Groom Parents Card Box
-      ctx.fillStyle = '#FFFFFF';
-      ctx.strokeStyle = '#ECC968';
-      ctx.lineWidth = 2.5;
-      ctx.beginPath();
-      ctx.roundRect(cardBoxX, 795, cardBoxW, 140, 18);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.font = isTe ? 'bold 24px "Noto Sans Telugu", sans-serif' : 'bold 22px "Cinzel", serif';
-      ctx.fillStyle = '#7A570D';
-      ctx.fillText(isTe ? '🪷 వరుని తల్లిదండ్రులు' : '🪷 GROOM\'S PARENTS', W / 2, 835);
-
-      ctx.font = isTe ? 'bold 28px "Noto Sans Telugu", sans-serif' : 'bold 30px "Playfair Display", serif';
-      ctx.fillStyle = '#222222';
-      const groomParents = isTe 
-        ? 'బోగ అశోక్ & శ్రీమతి గీత' 
-        : 'Boga Ashok & Mrs. Geetha';
-      renderCanvasWrapped(ctx, groomParents, W / 2, 885, cardBoxW - 50, 36);
-
-      let nextSectionY = 955;
-
-      // In Loving Memory (Smrutulalo) Box (Groom's Side Only)
-      if (showAncestors) {
-        ctx.fillStyle = '#FFFDF5';
-        ctx.strokeStyle = '#DFC394';
-        ctx.lineWidth = 2;
-        ctx.beginPath();
-        ctx.roundRect(cardBoxX, nextSectionY, cardBoxW, 110, 16);
-        ctx.fill();
-        ctx.stroke();
-
-        ctx.font = isTe ? 'bold 22px "Noto Sans Telugu", sans-serif' : 'bold 20px "Cinzel", serif';
-        ctx.fillStyle = '#851329';
-        ctx.fillText(isTe ? '🕊️ దివ్య స్మృతులలో 🪷' : '🕊️ In Loving Memory (Smrutulalo) 🪷', W / 2, nextSectionY + 35);
-
-        ctx.font = isTe ? 'bold 26px "Noto Sans Telugu", sans-serif' : 'bold 24px "Playfair Display", serif';
-        ctx.fillStyle = '#7A570D';
-        const ancestors = isTe 
-          ? 'దివంగతులు శ్రీ బోగ శివలింగం (తాతయ్య) & శ్రీమతి బోగ నర్సమ్మ (నానమ్మ)' 
-          : 'Late Boga Shivalingam (Thathayya) & Late Boga Narsamma (Nanamma)';
-        renderCanvasWrapped(ctx, ancestors, W / 2, nextSectionY + 75, cardBoxW - 40, 32);
-
-        nextSectionY += 125;
-      }
-
-      // Sumuhurtham Card Box
-      ctx.fillStyle = '#FFF8E6';
-      ctx.strokeStyle = '#C59A3F';
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-      ctx.roundRect(cardBoxX, nextSectionY, cardBoxW, 260, 22);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.font = isTe ? 'bold 32px "Noto Sans Telugu", sans-serif' : 'bold 30px "Cinzel", serif';
-      ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? '✨ సుముహూర్తం ✨' : '✨ SUMUHURTHAM ✨', W / 2, nextSectionY + 55);
-
-      ctx.font = isTe ? 'bold 36px "Noto Sans Telugu", sans-serif' : 'bold 40px "Playfair Display", serif';
-      ctx.fillStyle = '#222222';
-      ctx.fillText(isTe ? 'గురువారం, 26 నవంబర్ 2026' : 'Thursday, 26 November 2026', W / 2, nextSectionY + 125);
-
-      ctx.font = isTe ? 'bold 54px "Noto Sans Telugu", sans-serif' : 'bold 60px "Cinzel", serif';
-      ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? 'ఉదయం 9:15 గంటలకు' : '9:15 AM', W / 2, nextSectionY + 205);
-
-      nextSectionY += 275;
-
-      // Venue Box
-      ctx.fillStyle = '#FFFFFF';
-      ctx.strokeStyle = '#DFC394';
-      ctx.lineWidth = 2.5;
-      ctx.beginPath();
-      ctx.roundRect(cardBoxX, nextSectionY, cardBoxW, 235, 22);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.font = isTe ? 'bold 28px "Noto Sans Telugu", sans-serif' : 'bold 28px "Cinzel", serif';
-      ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? '📍 వివాహ వేదిక: వీఐపీ గార్డెన్స్' : '📍 VENUE: VIP GARDENS', W / 2, nextSectionY + 50);
-
-      ctx.font = isTe ? '600 26px "Noto Sans Telugu", sans-serif' : '600 28px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = '#2F2620';
-      const venueAddress = isTe
-        ? 'సూరారం విలేజ్ రోడ్, లక్ష్మీ నగర్ కాలనీ, సూరారం, హైదరాబాద్, తెలంగాణ 500055'
-        : 'GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony, Suraram, Hyderabad, Telangana 500055';
-      renderCanvasWrapped(ctx, venueAddress, W / 2, nextSectionY + 110, cardBoxW - 60, 38);
-
-      // Traditional Blessing at Bottom
-      ctx.font = isTe ? 'italic 26px "Noto Sans Telugu", sans-serif' : 'italic 26px "Playfair Display", serif';
-      ctx.fillStyle = '#8E6A26';
-      const bottomBlessing = isTe
-        ? 'శ్రీ వేంకటేశ్వర స్వామి వారి కృపాకటాక్షాలతో సుఖసంతోషాలతో వర్ధిల్లాలని ఆకాంక్షిస్తూ... 🙏'
-        : 'May Lord Venkateshwara bless our union with eternal love, harmony & prosperity 🙏';
-      renderCanvasWrapped(ctx, bottomBlessing, W / 2, 1690, W - 280, 36);
-
-      ctx.font = isTe ? 'bold 42px "Noto Sans Telugu", sans-serif' : 'bold 36px "Cinzel", serif';
-      ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? 'సారిక & సంపత్' : 'SARIKA & SAMPATH', W / 2, 1795);
-
-      const link = document.createElement('a');
-      link.download = isTe ? 'సారిక_సంపత్_వివాహ_ఆహ్వాన_పత్రిక.jpg' : 'Sarika_Sampath_Wedding_Invitation_Card.jpg';
-      link.href = canvas.toDataURL('image/jpeg', 0.95);
-      link.click();
-    }
-
-    /* DYNAMIC TIME THEMES */
+    /* DYNAMIC TIME OF DAY THEME DETECTION */
     function applyTimeOfDayTheme() {
       const hour = new Date().getHours();
       if (hour >= 5 && hour < 12) {
@@ -1641,28 +835,18 @@
     }
     applyTimeOfDayTheme();
 
-    /* FULL MULTI-LANGUAGE TOGGLE (EN / TE) */
+    /* MULTI-LANGUAGE TOGGLE (ENGLISH / TELUGU) */
     let currentLang = 'en';
     function toggleLanguage() {
       currentLang = currentLang === 'en' ? 'te' : 'en';
-      
-      if (currentLang === 'te') {
-        document.body.classList.add('lang-te');
-      } else {
-        document.body.classList.remove('lang-te');
-      }
-
       document.querySelectorAll('[data-en]').forEach(el => {
-        el.innerHTML = el.getAttribute(`data-${currentLang}`);
+        el.innerText = el.getAttribute(`data-${currentLang}`);
       });
-
       document.getElementById('guestName').placeholder = currentLang === 'en' ? 'Your Name (e.g., Ramesh Uncle)' : 'మీ పేరు (ఉదా: రమేష్ బాబాయ్)';
       document.getElementById('guestMessage').placeholder = currentLang === 'en' ? 'Your blessing / wish...' : 'మీ ఆశీస్సులు / శుభాకాంక్షలు...';
-      updateTimeGreeting();
-      updateConversationalTracker();
     }
 
-    /* AUDIO SWELL CONTROLLER */
+    /* AUDIO & SCROLL MUSIC SWELL CONTROLLER */
     const audio = document.getElementById('weddingAudio');
     const audioIcon = document.getElementById('audioPillIcon');
     let isPlaying = false;
@@ -1683,10 +867,11 @@
           musicGain.connect(audioCtx.destination);
         }
       } catch (e) {
-        console.log("WebAudio fallback:", e);
+        console.log("WebAudio routing fallback:", e);
       }
     }
 
+    // Scroll-based romantic music swell on Story section
     window.addEventListener('scroll', () => {
       if (!musicGain || !audioCtx) return;
       const storyEl = document.getElementById('storySection');
@@ -1700,9 +885,11 @@
       }
     });
 
-    /* HAPTIC HEARTBEAT + AUDIBLE SOUND */
+    /* HAPTIC HEARTBEAT PULSE + AUDIBLE LUB-DUB SOUND */
     function triggerHeartbeatPulse() {
-      if (navigator.vibrate) navigator.vibrate([60, 40, 80]);
+      if (navigator.vibrate) {
+        navigator.vibrate([60, 40, 80]);
+      }
     }
 
     function playHeartbeatSound() {
@@ -1712,19 +899,26 @@
         if (audioCtx.state === 'suspended') audioCtx.resume();
 
         const now = audioCtx.currentTime;
+
         function makeThump(startTime, freq, duration, gainVal) {
           const osc = audioCtx.createOscillator();
           const gain = audioCtx.createGain();
+
           osc.type = 'sine';
           osc.frequency.setValueAtTime(freq, startTime);
           osc.frequency.exponentialRampToValueAtTime(30, startTime + duration);
+
           gain.gain.setValueAtTime(gainVal, startTime);
           gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
           osc.connect(gain);
           gain.connect(audioCtx.destination);
+
           osc.start(startTime);
           osc.stop(startTime + duration);
         }
+
+        // Lub-Dub double beat
         makeThump(now, 65, 0.14, 0.9);
         makeThump(now + 0.18, 85, 0.11, 0.7);
       } catch (e) {
@@ -1743,6 +937,7 @@
       if (pulse) pulse.style.display = 'none';
       if (prompt) prompt.style.display = 'none';
 
+      // Physical vibration + speaker lub-dub sound
       triggerHeartbeatPulse();
       playHeartbeatSound();
 
@@ -1769,409 +964,548 @@
         audio.pause();
         isPlaying = false;
         audioIcon.innerText = '🔇';
-      }
-      audioIcon.innerText = '🔇';
       } else {
         setupWebAudioMusic();
         audio.play().then(() => {
           isPlaying = true;
           audioIcon.innerText = '🔊';
-        }).catch(err => console.log('Audio play error:', err));
+        }).catch(err => console.log('Playback error:', err));
       }
-    
-
-    /* 8. WEDDING COUNTDOWN TIMER */
-    function initCountdown() {
-      const daysEl = document.getElementById('days');
-      const hoursEl = document.getElementById('hours');
-      const minsEl = document.getElementById('mins');
-      const secsEl = document.getElementById('secs');
-
-      function tick() {
-        const now = new Date().getTime();
-        const diff = weddingDateTime - now;
-
-        if (diff <= 0) {
-          daysEl.innerText = '00'; hoursEl.innerText = '00';
-          minsEl.innerText = '00'; secsEl.innerText = '00';
-          return;
-        }
-
-        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-        const s = Math.floor((diff % (1000 * 60)) / 1000);
-
-        daysEl.innerText = d.toString().padStart(2, '0');
-        hoursEl.innerText = h.toString().padStart(2, '0');
-        minsEl.innerText = m.toString().padStart(2, '0');
-        secsEl.innerText = s.toString().padStart(2, '0');
-      }
-      tick();
-      setInterval(tick, 1000);
-    }
-    initCountdown();
-
-    /* Background Interval Updaters */
-    setInterval(updateTimeGreeting, 60000);
-    setInterval(updateConversationalTracker, 60000);
-    setInterval(updateAuspiciousGlow, 60000);
-    setInterval(checkNightBeforeStatus, 60000);
-    updateTimeGreeting();
-    updateConversationalTracker();
-    updateAuspiciousGlow();
-
-    /* 9. STORY CARD FLIP */
-    function flipStoryCard(element) {
-      element.classList.toggle('flipped');
     }
 
-    /* 10. DIGITAL SCRATCH CARD */
+    /* DIGITAL GOLD FOIL SCRATCH CARD */
     function initScratchCard() {
       const canvas = document.getElementById('scratchCanvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
-      let isDrawing = false;
-      let scratchedRatio = 0;
+      const W = canvas.width;
+      const H = canvas.height;
 
-      // Fill with Gold Foil
-      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
-      gradient.addColorStop(0, '#D4AF37');
-      gradient.addColorStop(0.5, '#FFF2CD');
-      gradient.addColorStop(1, '#AA7C11');
-      ctx.fillStyle = gradient;
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      // Add Text overlay
-      ctx.font = 'bold 16px "Cinzel", serif';
-      ctx.fillStyle = '#851329';
-      ctx.textAlign = 'center';
-      ctx.fillText('✨ SCRATCH HERE ✨', canvas.width/2, canvas.height/2 + 6);
+      const goldGrad = ctx.createLinearGradient(0, 0, W, H);
+      goldGrad.addColorStop(0, '#E6CA65');
+      goldGrad.addColorStop(0.3, '#FFF3A8');
+      goldGrad.addColorStop(0.6, '#C4982E');
+      goldGrad.addColorStop(1, '#9C7227');
+      ctx.fillStyle = goldGrad;
+      ctx.fillRect(0, 0, W, H);
 
-      function getMousePos(evt) {
-        const rect = canvas.getBoundingClientRect();
-        const scaleX = canvas.width / rect.width;
-        const scaleY = canvas.height / rect.height;
-        let clientX = evt.clientX;
-        let clientY = evt.clientY;
-        if(evt.touches && evt.touches.length > 0) {
-          clientX = evt.touches[0].clientX;
-          clientY = evt.touches[0].clientY;
-        }
-        return {
-          x: (clientX - rect.left) * scaleX,
-          y: (clientY - rect.top) * scaleY
-        };
+      ctx.fillStyle = 'rgba(255,255,255,0.4)';
+      for (let i = 0; i < 150; i++) {
+        ctx.fillRect(Math.random() * W, Math.random() * H, 2, 2);
       }
 
-      function scratch(evt) {
+      ctx.font = 'bold 15px "Cinzel", serif';
+      ctx.fillStyle = '#4D3205';
+      ctx.textAlign = 'center';
+      ctx.fillText('✨ SCRATCH HERE WITH FINGER ✨', W / 2, H / 2 + 5);
+
+      let isDrawing = false;
+      function scratch(e) {
         if (!isDrawing) return;
-        evt.preventDefault();
-        const pos = getMousePos(evt);
+        const rect = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        const x = (clientX - rect.left) * (canvas.width / rect.width);
+        const y = (clientY - rect.top) * (canvas.height / rect.height);
+
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
-        ctx.arc(pos.x, pos.y, 22, 0, Math.PI * 2, false);
+        ctx.arc(x, y, 18, 0, Math.PI * 2);
         ctx.fill();
-        checkScratch();
+
+        if (navigator.vibrate) navigator.vibrate(15);
       }
 
-      function checkScratch() {
-        const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
-        let clearPixels = 0;
-        for (let i = 3; i < data.length; i += 4) {
-          if (data[i] === 0) clearPixels++;
-        }
-        scratchedRatio = clearPixels / (canvas.width * canvas.height);
-        if (scratchedRatio > 0.45) {
-          canvas.style.transition = "opacity 0.6s ease";
-          canvas.style.opacity = 0;
-          setTimeout(() => canvas.style.display = 'none', 600);
-          if (navigator.vibrate) navigator.vibrate([40, 60, 40]);
-          triggerConfetti(['#FFD700', '#FF69B4', '#FFFFFF']);
-        }
-      }
-
-      canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
-      canvas.addEventListener('mousemove', scratch);
+      canvas.addEventListener('mousedown', () => isDrawing = true);
       canvas.addEventListener('mouseup', () => isDrawing = false);
-      canvas.addEventListener('mouseleave', () => isDrawing = false);
-      canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); }, {passive: false});
-      canvas.addEventListener('touchmove', scratch, {passive: false});
+      canvas.addEventListener('mousemove', scratch);
+
+      canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
       canvas.addEventListener('touchend', () => isDrawing = false);
+      canvas.addEventListener('touchmove', scratch);
     }
-    setTimeout(initScratchCard, 500);
 
-    /* 11. LIGHT SACRED DIYA */
-    let diyaLit = false;
+    /* DIYA LIGHTING & TEMPLE BELL */
+    function playTempleBellChime() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!audioCtx) audioCtx = new AudioContext();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const now = audioCtx.currentTime;
+        const freqs = [587.33, 880, 1174.66, 1760];
+        freqs.forEach((freq, i) => {
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now);
+          gain.gain.setValueAtTime(0.25 / (i + 1), now);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.2);
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.start(now);
+          osc.stop(now + 2.2);
+        });
+      } catch (e) {
+        console.log("Bell chime error:", e);
+      }
+    }
+
+    let isDiyaLit = false;
     function lightTheDiya() {
-      if (diyaLit) return;
-      const box = document.getElementById('diyaBox');
+      if (isDiyaLit) return;
+      isDiyaLit = true;
+
+      const diya = document.getElementById('diyaBox');
       const status = document.getElementById('diyaStatus');
-      box.classList.add('lit');
-      status.innerText = currentLang === 'en' 
-        ? "✨ The Sacred Diya is Lit! Divine Blessings Showered ✨" 
-        : "✨ మంగళ దీపం వెలిగింది! దివ్య ఆశీస్సులు అందాయి ✨";
-      diyaLit = true;
-      if (navigator.vibrate) navigator.vibrate([40, 60, 40]);
-      showerAkshintalu();
-    }
 
-    /* 12. AKSHINTALU & TALAMBRALU CONFETTI EFFECTS */
-    let blessingCount = 512;
-    const bCountEl = document.getElementById('blessingCount');
-    if (bCountEl) bCountEl.innerText = blessingCount;
+      diya.classList.add('lit');
+      status.innerText = currentLang === 'en' ? "✨ The Sacred Diya is Lit! Divine Blessings Showered 🙏" : "✨ మంగళ దీపం వెలిగించబడింది! దైవ ఆశీస్సులు 🙏";
+      status.style.color = "#A37C32";
 
-    function triggerConfetti(colors) {
+      triggerHeartbeatPulse();
+      playTempleBellChime();
+
       if (typeof confetti === 'function') {
         confetti({
-          particleCount: 90,
-          spread: 100,
-          origin: { y: 0.1 },
-          colors: colors,
-          ticks: 300,
-          gravity: 0.85,
-          disableForReducedMotion: true
+          particleCount: 45,
+          spread: 60,
+          origin: { y: 0.65 },
+          colors: ['#FFD700', '#FF9F1C', '#FFF275', '#E71D36']
         });
       }
+    }
+
+    function flipStoryCard(card) {
+      card.classList.toggle('flipped');
     }
 
     function showerTalambralu(type) {
-      blessingCount++;
-      if (bCountEl) bCountEl.innerText = blessingCount;
-      if (navigator.vibrate) navigator.vibrate(40);
-      triggerConfetti(['#FFD700', '#FFF5EE', '#FFFFFF', '#FFB300']);
+      triggerHeartbeatPulse();
+      if (type === 'rice') {
+        confetti({
+          particleCount: 65,
+          spread: 80,
+          angle: 90,
+          origin: { y: 0.65 },
+          colors: ['#FFD700', '#FFEA00', '#FFFDD0', '#E5B80B']
+        });
+      } else {
+        confetti({
+          particleCount: 50,
+          spread: 75,
+          angle: 90,
+          origin: { y: 0.65 },
+          colors: ['#C41E3A', '#DE3163', '#FF4081', '#FFB7B2']
+        });
+      }
     }
 
-    function showerAkshintalu() {
-      blessingCount++;
-      if (bCountEl) bCountEl.innerText = blessingCount;
-      if (navigator.vibrate) navigator.vibrate([30, 40]);
-      triggerConfetti(['#FFC107', '#FF9800', '#FFEB3B', '#E65100']);
-    }
+    /* VIRTUAL PHOTO BOOTH */
+    let streamObj = null;
+    let capturedSelfieBase64 = null;
 
-    /* 13. VIRTUAL PHOTO BOOTH */
-    let videoStream = null;
-    function togglePhotoBooth() {
-      const booth = document.getElementById('boothArea');
-      const video = document.getElementById('boothVideo');
-      if (booth.style.display === 'block') {
+    async function togglePhotoBooth() {
+      const boothArea = document.getElementById('boothArea');
+      if (boothArea.style.display === 'block') {
         closePhotoBooth();
         return;
       }
-      booth.style.display = 'block';
-      navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false })
-        .then(stream => {
-          videoStream = stream;
-          video.srcObject = stream;
-        })
-        .catch(err => {
-          alert(currentLang === 'en' ? "Camera access denied or unavailable." : "కెమెరా అనుమతి నిరాకరించబడింది.");
-          booth.style.display = 'none';
+      try {
+        streamObj = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "user", width: { ideal: 400 }, height: { ideal: 400 } },
+          audio: false
         });
-    }
-
-    function closePhotoBooth() {
-      const booth = document.getElementById('boothArea');
-      booth.style.display = 'none';
-      if (videoStream) {
-        videoStream.getTracks().forEach(t => t.stop());
-        videoStream = null;
+        const video = document.getElementById('boothVideo');
+        video.srcObject = streamObj;
+        boothArea.style.display = 'block';
+      } catch (err) {
+        alert("Camera permission is required to snap a selfie frame! 📸");
       }
     }
 
-    let capturedImageURL = null;
+    function closePhotoBooth() {
+      if (streamObj) {
+        streamObj.getTracks().forEach(t => t.stop());
+        streamObj = null;
+      }
+      document.getElementById('boothArea').style.display = 'none';
+    }
+
     function snapSelfie() {
       const video = document.getElementById('boothVideo');
       const canvas = document.getElementById('boothCanvas');
       const ctx = canvas.getContext('2d');
-      if(!videoStream) return;
-      
-      ctx.translate(canvas.width, 0);
-      ctx.scale(-1, 1);
-      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
-      ctx.setTransform(1, 0, 0, 1, 0, 0); 
-      
-      // Add SamRika Frame Overlay
-      ctx.strokeStyle = '#D4AF37';
-      ctx.lineWidth = 15;
-      ctx.strokeRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = '#851329';
-      ctx.font = 'bold 28px "Cinzel"';
-      ctx.textAlign = 'center';
-      ctx.fillText('#SamRika 2026', canvas.width/2, canvas.height - 25);
 
-      capturedImageURL = canvas.toDataURL('image/jpeg', 0.9);
-      closePhotoBooth();
-      
-      document.getElementById('selfieThumb').src = capturedImageURL;
+      ctx.save();
+      ctx.translate(400, 0);
+      ctx.scale(-1, 1);
+      ctx.drawImage(video, 0, 0, 400, 400);
+      ctx.restore();
+
+      ctx.lineWidth = 14;
+      ctx.strokeStyle = '#851329';
+      ctx.strokeRect(7, 7, 386, 386);
+
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#D4AF37';
+      ctx.strokeRect(16, 16, 368, 368);
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(80, 355, 240, 30);
+      ctx.strokeStyle = '#D4AF37';
+      ctx.strokeRect(80, 355, 240, 30);
+
+      ctx.fillStyle = '#851329';
+      ctx.font = 'bold 16px "Cinzel", serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Sampath & Sarika #SamRika', 200, 376);
+
+      capturedSelfieBase64 = canvas.toDataURL('image/jpeg', 0.6);
+      document.getElementById('selfieThumb').src = capturedSelfieBase64;
       document.getElementById('capturedPhotoPreview').style.display = 'flex';
+      closePhotoBooth();
     }
 
     function clearSelfie() {
-      capturedImageURL = null;
+      capturedSelfieBase64 = null;
       document.getElementById('capturedPhotoPreview').style.display = 'none';
     }
 
-    /* 14. VOICE NOTE RECORDER */
+    /* AUDIO GUESTBOOK (10-SEC VOICE NOTE WITH FAST AUTO-FINALIZE) */
     let mediaRecorder = null;
     let audioChunks = [];
-    let recordedAudioURL = null;
-    let recordTimeout = null;
+    let capturedAudioBase64 = null;
+    let countdownInterval = null;
+    let voiceResolvePromise = null;
 
-    function handleVoiceRecord() {
-      if(mediaRecorder && mediaRecorder.state === 'recording') return;
-      navigator.mediaDevices.getUserMedia({ audio: true })
-        .then(stream => {
-          mediaRecorder = new MediaRecorder(stream);
-          mediaRecorder.start();
-          audioChunks = [];
-          document.getElementById('voiceStatusArea').style.display = 'block';
-          const timerTxt = document.getElementById('recordingTimer');
-          let timeLeft = 10;
-          
-          const interval = setInterval(() => {
-            timeLeft--;
-            timerTxt.innerText = `🔴 Recording... ${timeLeft}s`;
-            if(timeLeft <= 0) clearInterval(interval);
-          }, 1000);
+    async function handleVoiceRecord() {
+      const statusArea = document.getElementById('voiceStatusArea');
+      const timerLbl = document.getElementById('recordingTimer');
+      const audioPreview = document.getElementById('recordedAudioPreview');
+      const clearLink = document.getElementById('clearVoiceLink');
+      const recBtn = document.getElementById('recordVoiceBtn');
 
-          recordTimeout = setTimeout(() => {
-            if(mediaRecorder.state === 'recording') mediaRecorder.stop();
-            clearInterval(interval);
-            stream.getTracks().forEach(t => t.stop());
-          }, 10000);
+      if (mediaRecorder && mediaRecorder.state === "recording") {
+        mediaRecorder.stop();
+        return;
+      }
 
-          mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
-          mediaRecorder.onstop = () => {
-            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
-            recordedAudioURL = URL.createObjectURL(audioBlob);
-            timerTxt.innerText = currentLang === 'en' ? "✅ Voice Note Recorded" : "✅ వాయిస్ రికార్డ్ చేయబడింది";
-            const preview = document.getElementById('recordedAudioPreview');
-            preview.src = recordedAudioURL;
-            preview.style.display = 'inline-block';
-            document.getElementById('clearVoiceLink').style.display = 'block';
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+        audioChunks = [];
+        mediaRecorder = new MediaRecorder(stream);
+
+        mediaRecorder.ondataavailable = e => {
+          if (e.data.size > 0) audioChunks.push(e.data);
+        };
+
+        mediaRecorder.onstop = () => {
+          clearInterval(countdownInterval);
+          stream.getTracks().forEach(t => t.stop());
+
+          const blob = new Blob(audioChunks, { type: 'audio/webm' });
+          const reader = new FileReader();
+          reader.onloadend = () => {
+            capturedAudioBase64 = reader.result;
+            audioPreview.src = capturedAudioBase64;
+            audioPreview.style.display = 'block';
+            clearLink.style.display = 'block';
+            timerLbl.innerText = "✅ Voice Blessing Ready!";
+            timerLbl.style.color = "#2E7D32";
+            recBtn.innerText = "🎙️ Re-record (10s)";
+
+            if (voiceResolvePromise) {
+              voiceResolvePromise(capturedAudioBase64);
+              voiceResolvePromise = null;
+            }
           };
-        }).catch(err => alert(currentLang === 'en' ? "Microphone access denied." : "మైక్రోఫోన్ అనుమతి నిరాకరించబడింది."));
+          reader.readAsDataURL(blob);
+        };
+
+        mediaRecorder.start();
+        statusArea.style.display = 'block';
+        audioPreview.style.display = 'none';
+        clearLink.style.display = 'none';
+        recBtn.innerText = "⏹️ Stop Recording";
+
+        let secLeft = 10;
+        timerLbl.innerText = `🔴 Recording... ${secLeft}s (Tap Stop or Send)`;
+        timerLbl.style.color = "#851329";
+
+        countdownInterval = setInterval(() => {
+          secLeft--;
+          if (secLeft <= 0) {
+            clearInterval(countdownInterval);
+            if (mediaRecorder && mediaRecorder.state === "recording") {
+              mediaRecorder.stop();
+            }
+          } else {
+            timerLbl.innerText = `🔴 Recording... ${secLeft}s (Tap Stop or Send)`;
+          }
+        }, 1000);
+
+      } catch (err) {
+        alert("Microphone permission is required to leave a voice blessing! 🎙️");
+      }
     }
 
     function clearVoiceNote() {
-      recordedAudioURL = null;
-      audioChunks = [];
+      capturedAudioBase64 = null;
       document.getElementById('voiceStatusArea').style.display = 'none';
-      document.getElementById('recordedAudioPreview').style.display = 'none';
-      document.getElementById('clearVoiceLink').style.display = 'none';
-      document.getElementById('recordingTimer').innerText = '🔴 Recording... 10s';
+      document.getElementById('recordedAudioPreview').src = '';
+      document.getElementById('recordVoiceBtn').innerText = "🎙️ Voice Note (10s)";
     }
 
-    /* 15. SUBMIT WISH AND UPDATE UI */
-    let lastWishObj = null;
-    function submitWish() {
-      const nameInput = document.getElementById('guestName');
-      const msgInput = document.getElementById('guestMessage');
-      const name = nameInput.value.trim() || (currentLang === 'en' ? 'Well Wisher' : 'శ్రేయోభిలాషి');
-      const msg = msgInput.value.trim() || (currentLang === 'en' ? 'Congratulations!' : 'శుభాకాంక్షలు!');
-      
-      lastWishObj = { name, msg, photo: capturedImageURL, audio: recordedAudioURL };
-
-      const ticker = document.getElementById('wishesBox');
-      const item = document.createElement('div');
-      item.className = 'wish-item';
-      
-      let mediaHTML = '';
-      if(capturedImageURL) {
-        mediaHTML += `<img src="${capturedImageURL}" alt="Selfie Wish" style="width:100%; border-radius:8px; margin-bottom:10px; border:2px solid #D4AF37;">`;
+    /* DOWNLOADABLE BLESSING CARD */
+    function renderWrappedLines(ctx, text, x, startY, maxWidth, lineHeight) {
+      const words = text.split(' ');
+      let line = '';
+      let currentY = startY;
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && n > 0) {
+          ctx.fillText(line.trim(), x, currentY);
+          line = words[n] + ' ';
+          currentY += lineHeight;
+        } else {
+          line = testLine;
+        }
       }
-      let contentHTML = `<div class="wish-text">"${msg}"</div>`;
-      if(recordedAudioURL) {
-        contentHTML += `<audio class="wish-audio-bar" src="${recordedAudioURL}" controls></audio>`;
-      }
-
-      item.innerHTML = `
-        ${mediaHTML}
-        <div class="wish-flex-body">
-          <img class="wish-user-avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='40' r='20' fill='%23D4AF37'/><path d='M20 90 Q50 50 80 90' fill='%23D4AF37'/></svg>" alt="User">
-          <div style="flex:1;">
-            ${contentHTML}
-            <div class="wish-author">— ${name}</div>
-          </div>
-        </div>
-      `;
-
-      if (ticker.innerText.includes('Loading') || ticker.innerText.includes('లోడ్')) ticker.innerHTML = '';
-      ticker.prepend(item);
-      
-      // Reset Inputs
-      nameInput.value = '';
-      msgInput.value = '';
-      clearSelfie();
-      clearVoiceNote();
-
-      document.getElementById('downloadCardBtn').style.display = 'block';
-      showerAkshintalu();
-      if (navigator.vibrate) navigator.vibrate([30, 40, 30]);
+      ctx.fillText(line.trim(), x, currentY);
+      return currentY;
     }
 
-    /* 16. GENERATE BLESSING CARD */
+    let lastPostedName = "";
+    let lastPostedWish = "";
+
     function generateAndDownloadBlessingCard() {
-      if (!lastWishObj) return;
       const canvas = document.getElementById('blessingCanvas');
       const ctx = canvas.getContext('2d');
       const W = canvas.width;
       const H = canvas.height;
-      const isTe = (currentLang === 'te');
 
-      ctx.fillStyle = '#FFFDF8';
+      const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 80, W / 2, H / 2, 700);
+      bgGrad.addColorStop(0, '#FFFDF7');
+      bgGrad.addColorStop(0.7, '#FBF3E3');
+      bgGrad.addColorStop(1, '#F2E0C2');
+      ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, W, H);
 
-      ctx.lineWidth = 15;
-      ctx.strokeStyle = '#D4AF37';
-      ctx.strokeRect(20, 20, W-40, H-40);
-      
-      ctx.lineWidth = 3;
+      ctx.lineWidth = 14;
       ctx.strokeStyle = '#851329';
-      ctx.strokeRect(40, 40, W-80, H-80);
+      ctx.strokeRect(26, 26, W - 52, H - 52);
 
-      ctx.font = isTe ? 'bold 46px "Noto Sans Telugu", sans-serif' : 'bold 46px "Cinzel", serif';
-      ctx.fillStyle = '#851329';
+      ctx.lineWidth = 3;
+      ctx.strokeStyle = '#C59A3F';
+      ctx.strokeRect(44, 44, W - 88, H - 88);
+
       ctx.textAlign = 'center';
-      ctx.fillText(isTe ? 'ఆశీస్సులు' : 'BLESSINGS FOR', W/2, 140);
-      
-      ctx.font = isTe ? 'bold 70px "Noto Sans Telugu", sans-serif' : 'bold 85px "Great Vibes", cursive';
-      ctx.fillText(isTe ? 'సారిక & సంపత్' : 'Sarika & Sampath', W/2, 250);
+      ctx.font = 'bold 26px "Noto Sans Telugu", sans-serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText('🪷  శ్రీరస్తు - శుభమస్తు  🪷', W / 2, 140);
 
-      ctx.font = isTe ? 'italic 36px "Noto Sans Telugu", sans-serif' : 'italic 40px "Playfair Display", serif';
-      ctx.fillStyle = '#4D3205';
-      renderCanvasWrapped(ctx, `"${lastWishObj.msg}"`, W/2, 450, W-180, 55);
+      ctx.font = 'bold 26px "Cinzel", serif';
+      ctx.fillStyle = '#8E6A26';
+      ctx.fillText('WEDDING BLESSINGS', W / 2, 195);
 
-      ctx.font = isTe ? 'bold 36px "Noto Sans Telugu", sans-serif' : 'bold 34px "Cinzel", serif';
-      ctx.fillStyle = '#D4AF37';
-      ctx.fillText(`— ${lastWishObj.name}`, W/2, 700);
-      
+      ctx.font = 'bold 76px "Great Vibes", cursive, serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText('Sampath & Sarika', W / 2, 290);
+
       ctx.font = 'bold 24px "Cinzel", serif';
-      ctx.fillStyle = '#A67C1E';
-      ctx.fillText('#SamRika 2026', W/2, 1080);
+      ctx.fillStyle = '#8E6A26';
+      ctx.fillText('#SamRika  •  26 November 2026', W / 2, 345);
 
+      const boxX = 80;
+      const boxY = 430;
+      const boxW = W - 160;
+      const boxH = 480;
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.beginPath();
+      ctx.roundRect(boxX, boxY, boxW, boxH, 20);
+      ctx.fill();
+      ctx.strokeStyle = '#E8D5B5';
+      ctx.stroke();
+
+      const messageText = lastPostedWish || "Wishing you both a lifetime of happiness, divine harmony, and endless love!";
+      ctx.font = 'italic 34px "Playfair Display", serif';
+      ctx.fillStyle = '#2F2620';
+      const lastMsgY = renderWrappedLines(ctx, `"${messageText}"`, W / 2, boxY + 120, boxW - 80, 48);
+
+      const divY = Math.max(lastMsgY + 40, boxY + 280);
+      const guestAuthor = lastPostedName || "Well Wisher";
+      ctx.font = 'bold 28px "Playfair Display", serif';
+      ctx.fillStyle = '#851329';
+      renderWrappedLines(ctx, `— With Love & Blessings, ${guestAuthor}`, W / 2, divY + 45, boxW - 60, 38);
+
+      ctx.font = '600 24px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = '#7A6953';
+      ctx.fillText('VIP Gardens, Suraram, Hyderabad', W / 2, 1000);
+
+      const cleanName = (lastPostedName || 'Guest').replace(/[^a-zA-Z0-9]/g, '_');
       const link = document.createElement('a');
-      link.download = isTe ? 'నా_ఆశీర్వాదం_సారిక_సంపత్.jpg' : 'My_Blessing_Sarika_Sampath.jpg';
-      link.href = canvas.toDataURL('image/jpeg', 0.95);
+      link.download = `Wedding_Blessing_Sampath_Sarika_${cleanName}.png`;
+      link.href = canvas.toDataURL('image/png');
       link.click();
     }
 
-    /* 17. THANK YOU POPUP */
+    /* THANK YOU MODAL */
     function openThankYouModal() {
       document.getElementById('thankyouModal').classList.add('active');
+      showerAkshintalu();
     }
-    function closeThankYouModal(e) {
-      if (e && e.target !== document.getElementById('thankyouModal') && e.target !== document.querySelector('.thankyou-close-btn')) return;
+    function closeThankYouModal() {
       document.getElementById('thankyouModal').classList.remove('active');
     }
 
-    /* ON LOAD INITIALIZATION */
-    window.onload = () => {
-      // Show the side picker dynamically on load
-      document.getElementById('sidePickerOverlay').classList.remove('hidden');
-      checkNightBeforeStatus();
-    };
+    /* FIREBASE INTEGRATION & UNBLOCKED SUBMISSION */
+    const FIREBASE_ENDPOINT = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/wishes.json";
+    const FIREBASE_COUNTER_URL = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/counter.json";
+    let totalBlessings = 356;
+
+    async function loadCloudCounter() {
+      try {
+        const res = await fetch(FIREBASE_COUNTER_URL);
+        const data = await res.json();
+        if (data && typeof data.count === 'number') totalBlessings = data.count;
+      } catch (err) {}
+      const counterEl = document.getElementById('blessingCount');
+      if (counterEl) counterEl.innerText = totalBlessings;
+    }
+
+    async function showerAkshintalu() {
+      totalBlessings++;
+      const counterEl = document.getElementById('blessingCount');
+      if (counterEl) counterEl.innerText = totalBlessings;
+
+      if (typeof confetti === 'function') {
+        confetti({ particleCount: 70, spread: 70, origin: { x: 0.5, y: 0.2 }, colors: ['#FFD700', '#FFA000', '#D2143A', '#FFB7B2', '#FFFFFF'] });
+      }
+      try {
+        await fetch(FIREBASE_COUNTER_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ count: totalBlessings }) });
+      } catch (err) {}
+    }
+
+    async function loadCloudWishes() {
+      const box = document.getElementById('wishesBox');
+      try {
+        const response = await fetch(FIREBASE_ENDPOINT);
+        const data = await response.json();
+        box.innerHTML = '';
+        if (data) {
+          const wishes = Object.values(data).reverse();
+          wishes.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'wish-item';
+            const photoHtml = item.photo ? `<img src="${item.photo}" class="wish-user-avatar" alt="Selfie">` : '';
+            const audioHtml = item.audio ? `<audio controls src="${item.audio}" class="wish-audio-bar"></audio>` : '';
+            card.innerHTML = `
+              <div class="wish-flex-body">
+                ${photoHtml}
+                <div style="flex:1;">
+                  <div class="wish-text">"${escapeHtml(item.wish || 'Heartfelt Wedding Blessings! 💐')}"</div>
+                  <div class="wish-author">— ${escapeHtml(item.name || 'Well Wisher')}</div>
+                  ${audioHtml}
+                </div>
+              </div>
+            `;
+            box.appendChild(card);
+          });
+        }
+      } catch (err) {
+        box.innerHTML = '<div style="text-align:center; padding:12px; color:#8C7355;">Warm Blessings to the lovely couple! 💐</div>';
+      }
+    }
+
+    /* UNBLOCKED SUBMISSION (INSTANT RECORDING AUTO-FINALIZE) */
+    async function submitWish() {
+      const postBtn = document.getElementById('postWishBtn');
+
+      // If active recording exists when clicking Send Blessing, stop and finalize immediately
+      if (mediaRecorder && mediaRecorder.state === "recording") {
+        postBtn.innerText = currentLang === 'en' ? "Finishing Voice Note..." : "వాయిస్ నోట్ సిద్ధమవుతోంది...";
+        await new Promise((resolve) => {
+          voiceResolvePromise = resolve;
+          mediaRecorder.stop();
+        });
+      }
+
+      const nameInput = document.getElementById('guestName');
+      const msgInput = document.getElementById('guestMessage');
+      const downloadBtn = document.getElementById('downloadCardBtn');
+
+      const name = nameInput.value.trim() || "Well Wisher";
+      const wish = msgInput.value.trim();
+
+      if (!wish && !capturedSelfieBase64 && !capturedAudioBase64) {
+        alert(currentLang === 'en' ? "Please leave a blessing message, photo, or voice note! 💛" : "దయచేసి ఒక సందేశం, ఫోటో లేదా వాయిస్ నోట్ జతచేయండి! 💛");
+        return;
+      }
+
+      postBtn.innerText = currentLang === 'en' ? "Saving Blessing..." : "సేవ్ అవుతోంది...";
+      postBtn.disabled = true;
+
+      try {
+        await fetch(FIREBASE_ENDPOINT, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: name,
+            wish: wish || (capturedAudioBase64 ? "🎵 Voice Blessing" : "📸 Wedding Photo Blessing"),
+            photo: capturedSelfieBase64 || null,
+            audio: capturedAudioBase64 || null,
+            timestamp: Date.now()
+          })
+        });
+
+        lastPostedName = name;
+        lastPostedWish = wish || "Hearty Congratulations Sampath & Sarika!";
+
+        nameInput.value = '';
+        msgInput.value = '';
+        clearSelfie();
+        clearVoiceNote();
+
+        await loadCloudWishes();
+        showerAkshintalu();
+
+        if (downloadBtn) downloadBtn.style.display = 'block';
+      } catch (err) {
+        alert("Could not connect. Please check your internet connection.");
+      } finally {
+        postBtn.innerText = currentLang === 'en' ? "✨ Send Blessing" : "✨ ఆశీర్వదించండి";
+        postBtn.disabled = false;
+      }
+    }
+
+    function escapeHtml(text) {
+      return String(text).replace(/[&<>"']/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+      });
+    }
+
+    // Countdown
+    const weddingDate = new Date('2026-11-26T09:15:00+05:30').getTime();
+    function updateWeddingCountdown() {
+      const now = new Date().getTime();
+      const diff = weddingDate - now;
+      if (diff <= 0) return;
+      document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
+      document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
+      document.getElementById('mins').innerText = String(Math.floor((diff % (1000 * 60)) / (1000 * 60))).padStart(2, '0');
+      document.getElementById('secs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initScratchCard();
+      loadCloudWishes();
+      loadCloudCounter();
+      setInterval(updateWeddingCountdown, 1000);
+      updateWeddingCountdown();
+    });
   </script>
 </body>
 </html>
