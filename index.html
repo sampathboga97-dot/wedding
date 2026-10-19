@@ -398,8 +398,9 @@
     .parent-name { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: 1.05rem; font-weight: 700; color: #241C16; line-height: 1.35; }
     .parent-connector { font-family: 'Great Vibes', 'Noto Sans Telugu', cursive; font-size: 1.35rem; color: #B8860B; display: block; margin: 1px 0; }
 
-    /* IN LOVING MEMORY (SMRUTULALO) ANCESTRAL TRIBUTE CARD */
+    /* IN LOVING MEMORY (SMRUTULALO) ANCESTRAL TRIBUTE CARD (GROOM ONLY) */
     .smrutulalo-card {
+      display: none;
       background: radial-gradient(circle at center, #FFFDF8 0%, #FAF2E3 100%);
       border: 1.5px solid #DFC394;
       border-radius: 18px;
@@ -458,7 +459,7 @@
     .polaroid-back h4 { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 0.78rem; color: var(--maroon-primary); margin-bottom: 4px; }
     .polaroid-back p { font-size: 0.68rem; color: #4C4238; line-height: 1.35; font-style: italic; }
 
-    /* COMPACT SACRED DIYA (ONLY INSTRUCTION TEXT) */
+    /* COMPACT SACRED DIYA */
     .diya-section {
       background: radial-gradient(circle at center, #FFFDF6 0%, #FAF1DF 100%);
       border: 1.5px solid #E8D7B8;
@@ -853,8 +854,8 @@
           </div>
         </div>
 
-        <!-- IN LOVING MEMORY (SMRUTULALO) ANCESTRAL TRIBUTE CARD (THATHAYYA & NANAMMA) -->
-        <div class="smrutulalo-card">
+        <!-- IN LOVING MEMORY (SMRUTULALO) ANCESTRAL TRIBUTE CARD (GROOM ONLY) -->
+        <div class="smrutulalo-card" id="smrutulaloCard">
           <div class="smrutulalo-header">
             <span class="smrutulalo-icon">🕊️</span>
             <span class="smrutulalo-title" data-en="In Loving Memory • Smrutulalo" data-te="దివ్య స్మృతులలో (ఆత్మశాంతి కోరుతూ)">In Loving Memory • Smrutulalo</span>
@@ -1171,10 +1172,14 @@
       }
     }
 
+    let selectedSide = null;
+
     /* 1. BRIDE VS GROOM SIDE SELECTION */
     function selectWeddingSide(side) {
+      selectedSide = side;
       const overlay = document.getElementById('sidePickerOverlay');
       const banner = document.getElementById('familyWelcomeBanner');
+      const smrutulaloCard = document.getElementById('smrutulaloCard');
       overlay.classList.add('hidden');
 
       if (side === 'groom') {
@@ -1183,12 +1188,18 @@
           ? "✨ Heartfelt Welcome to the Boga Family Celebration! 💛" 
           : "✨ బోగ వారి కుటుంబ వేడుకకు సాదర సుస్వాగతం! 💛";
         banner.style.display = 'block';
+
+        // Display In Loving Memory only for Groom's side
+        if (smrutulaloCard) smrutulaloCard.style.display = 'block';
       } else {
         document.body.classList.add('side-bride');
         banner.innerText = currentLang === 'en' 
           ? "🌸 Heartfelt Welcome to the Deshaboina Family Celebration! 💐" 
           : "🌸 దేశబోయిన వారి కుటుంబ వేడుకకు సాదర సుస్వాగతం! 💐";
         banner.style.display = 'block';
+
+        // Keep In Loving Memory hidden on Bride's side
+        if (smrutulaloCard) smrutulaloCard.style.display = 'none';
       }
 
       if (navigator.vibrate) navigator.vibrate([40, 30, 40]);
@@ -1378,13 +1389,14 @@
       ctx.restore();
     }
 
-    /* 7. VIBRANT FLORAL OFFLINE SNAPSHOT CARD WITH SMRUTULALO ANCESTRAL TRIBUTE */
+    /* 7. VIBRANT FLORAL OFFLINE SNAPSHOT CARD */
     function downloadOfflineSnapshotCard() {
       const canvas = document.getElementById('offlineSnapshotCanvas');
       const ctx = canvas.getContext('2d');
       const W = canvas.width;
       const H = canvas.height;
       const isTe = (currentLang === 'te');
+      const showAncestors = (selectedSide === 'groom');
 
       const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 100, W / 2, H / 2, 1150);
       bgGrad.addColorStop(0, '#FFFDF8');
@@ -1529,66 +1541,74 @@
         : 'Boga Ashok & Mrs. Geetha';
       renderCanvasWrapped(ctx, groomParents, W / 2, 885, cardBoxW - 50, 36);
 
-      // In Loving Memory (Smrutulalo) Box
-      ctx.fillStyle = '#FFFDF5';
-      ctx.strokeStyle = '#DFC394';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.roundRect(cardBoxX, 950, cardBoxW, 110, 16);
-      ctx.fill();
-      ctx.stroke();
+      let nextSectionY = 955;
 
-      ctx.font = isTe ? 'bold 22px "Noto Sans Telugu", sans-serif' : 'bold 20px "Cinzel", serif';
-      ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? '🕊️ దివ్య స్మృతులలో 🪷' : '🕊️ In Loving Memory (Smrutulalo) 🪷', W / 2, 985);
+      // In Loving Memory (Smrutulalo) Box (Groom's Side Only)
+      if (showAncestors) {
+        ctx.fillStyle = '#FFFDF5';
+        ctx.strokeStyle = '#DFC394';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.roundRect(cardBoxX, nextSectionY, cardBoxW, 110, 16);
+        ctx.fill();
+        ctx.stroke();
 
-      ctx.font = isTe ? 'bold 26px "Noto Sans Telugu", sans-serif' : 'bold 24px "Playfair Display", serif';
-      ctx.fillStyle = '#7A570D';
-      const ancestors = isTe 
-        ? 'దివంగతులు శ్రీ బోగ శివలింగం (తాతయ్య) & శ్రీమతి బోగ నర్సమ్మ (నానమ్మ)' 
-        : 'Late Boga Shivalingam (Thathayya) & Late Boga Narsamma (Nanamma)';
-      renderCanvasWrapped(ctx, ancestors, W / 2, 1025, cardBoxW - 40, 32);
+        ctx.font = isTe ? 'bold 22px "Noto Sans Telugu", sans-serif' : 'bold 20px "Cinzel", serif';
+        ctx.fillStyle = '#851329';
+        ctx.fillText(isTe ? '🕊️ దివ్య స్మృతులలో 🪷' : '🕊️ In Loving Memory (Smrutulalo) 🪷', W / 2, nextSectionY + 35);
+
+        ctx.font = isTe ? 'bold 26px "Noto Sans Telugu", sans-serif' : 'bold 24px "Playfair Display", serif';
+        ctx.fillStyle = '#7A570D';
+        const ancestors = isTe 
+          ? 'దివంగతులు శ్రీ బోగ శివలింగం (తాతయ్య) & శ్రీమతి బోగ నర్సమ్మ (నానమ్మ)' 
+          : 'Late Boga Shivalingam (Thathayya) & Late Boga Narsamma (Nanamma)';
+        renderCanvasWrapped(ctx, ancestors, W / 2, nextSectionY + 75, cardBoxW - 40, 32);
+
+        nextSectionY += 125;
+      }
 
       // Sumuhurtham Card Box
       ctx.fillStyle = '#FFF8E6';
       ctx.strokeStyle = '#C59A3F';
       ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.roundRect(cardBoxX, 1075, cardBoxW, 260, 22);
+      ctx.roundRect(cardBoxX, nextSectionY, cardBoxW, 260, 22);
       ctx.fill();
       ctx.stroke();
 
       ctx.font = isTe ? 'bold 32px "Noto Sans Telugu", sans-serif' : 'bold 30px "Cinzel", serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? '✨ సుముహూర్తం ✨' : '✨ SUMUHURTHAM ✨', W / 2, 1130);
+      ctx.fillText(isTe ? '✨ సుముహూర్తం ✨' : '✨ SUMUHURTHAM ✨', W / 2, nextSectionY + 55);
 
       ctx.font = isTe ? 'bold 36px "Noto Sans Telugu", sans-serif' : 'bold 40px "Playfair Display", serif';
       ctx.fillStyle = '#222222';
-      ctx.fillText(isTe ? 'గురువారం, 26 నవంబర్ 2026' : 'Thursday, 26 November 2026', W / 2, 1200);
+      ctx.fillText(isTe ? 'గురువారం, 26 నవంబర్ 2026' : 'Thursday, 26 November 2026', W / 2, nextSectionY + 125);
 
       ctx.font = isTe ? 'bold 54px "Noto Sans Telugu", sans-serif' : 'bold 60px "Cinzel", serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? 'ఉదయం 9:15 గంటలకు' : '9:15 AM', W / 2, 1280);
+      ctx.fillText(isTe ? 'ఉదయం 9:15 గంటలకు' : '9:15 AM', W / 2, nextSectionY + 205);
+
+      nextSectionY += 275;
 
       // Venue Box
       ctx.fillStyle = '#FFFFFF';
       ctx.strokeStyle = '#DFC394';
       ctx.lineWidth = 2.5;
       ctx.beginPath();
-      ctx.roundRect(cardBoxX, 1350, cardBoxW, 235, 22);
+      ctx.roundRect(cardBoxX, nextSectionY, cardBoxW, 235, 22);
       ctx.fill();
       ctx.stroke();
 
       ctx.font = isTe ? 'bold 28px "Noto Sans Telugu", sans-serif' : 'bold 28px "Cinzel", serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? '📍 వివాహ వేదిక: వీఐపీ గార్డెన్స్' : '📍 VENUE: VIP GARDENS', W / 2, 1400);
+      ctx.fillText(isTe ? '📍 వివాహ వేదిక: వీఐపీ గార్డెన్స్' : '📍 VENUE: VIP GARDENS', W / 2, nextSectionY + 50);
 
       ctx.font = isTe ? '600 26px "Noto Sans Telugu", sans-serif' : '600 28px "Plus Jakarta Sans", sans-serif';
       ctx.fillStyle = '#2F2620';
       const venueAddress = isTe
         ? 'సూరారం విలేజ్ రోడ్, లక్ష్మీ నగర్ కాలనీ, సూరారం, హైదరాబాద్, తెలంగాణ 500055'
         : 'GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony, Suraram, Hyderabad, Telangana 500055';
-      renderCanvasWrapped(ctx, venueAddress, W / 2, 1460, cardBoxW - 60, 38);
+      renderCanvasWrapped(ctx, venueAddress, W / 2, nextSectionY + 110, cardBoxW - 60, 38);
 
       // Traditional Blessing at Bottom
       ctx.font = isTe ? 'italic 26px "Noto Sans Telugu", sans-serif' : 'italic 26px "Playfair Display", serif';
@@ -1749,527 +1769,409 @@
         audio.pause();
         isPlaying = false;
         audioIcon.innerText = '🔇';
+      }
+      audioIcon.innerText = '🔇';
       } else {
         setupWebAudioMusic();
         audio.play().then(() => {
           isPlaying = true;
           audioIcon.innerText = '🔊';
-        }).catch(err => console.log('Playback error:', err));
+        }).catch(err => console.log('Audio play error:', err));
       }
     }
 
-    /* DIGITAL GOLD SCRATCH CARD */
+    /* 8. WEDDING COUNTDOWN TIMER */
+    function initCountdown() {
+      const daysEl = document.getElementById('days');
+      const hoursEl = document.getElementById('hours');
+      const minsEl = document.getElementById('mins');
+      const secsEl = document.getElementById('secs');
+
+      function tick() {
+        const now = new Date().getTime();
+        const diff = weddingDateTime - now;
+
+        if (diff <= 0) {
+          daysEl.innerText = '00'; hoursEl.innerText = '00';
+          minsEl.innerText = '00'; secsEl.innerText = '00';
+          return;
+        }
+
+        const d = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+        const s = Math.floor((diff % (1000 * 60)) / 1000);
+
+        daysEl.innerText = d.toString().padStart(2, '0');
+        hoursEl.innerText = h.toString().padStart(2, '0');
+        minsEl.innerText = m.toString().padStart(2, '0');
+        secsEl.innerText = s.toString().padStart(2, '0');
+      }
+      tick();
+      setInterval(tick, 1000);
+    }
+    initCountdown();
+
+    /* Background Interval Updaters */
+    setInterval(updateTimeGreeting, 60000);
+    setInterval(updateConversationalTracker, 60000);
+    setInterval(updateAuspiciousGlow, 60000);
+    setInterval(checkNightBeforeStatus, 60000);
+    updateTimeGreeting();
+    updateConversationalTracker();
+    updateAuspiciousGlow();
+
+    /* 9. STORY CARD FLIP */
+    function flipStoryCard(element) {
+      element.classList.toggle('flipped');
+    }
+
+    /* 10. DIGITAL SCRATCH CARD */
     function initScratchCard() {
       const canvas = document.getElementById('scratchCanvas');
       if (!canvas) return;
       const ctx = canvas.getContext('2d');
-      const W = canvas.width;
-      const H = canvas.height;
+      let isDrawing = false;
+      let scratchedRatio = 0;
 
-      const goldGrad = ctx.createLinearGradient(0, 0, W, H);
-      goldGrad.addColorStop(0, '#E6CA65');
-      goldGrad.addColorStop(0.3, '#FFF3A8');
-      goldGrad.addColorStop(0.6, '#C4982E');
-      goldGrad.addColorStop(1, '#9C7227');
-      ctx.fillStyle = goldGrad;
-      ctx.fillRect(0, 0, W, H);
+      // Fill with Gold Foil
+      const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+      gradient.addColorStop(0, '#D4AF37');
+      gradient.addColorStop(0.5, '#FFF2CD');
+      gradient.addColorStop(1, '#AA7C11');
+      ctx.fillStyle = gradient;
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      
+      // Add Text overlay
+      ctx.font = 'bold 16px "Cinzel", serif';
+      ctx.fillStyle = '#851329';
+      ctx.textAlign = 'center';
+      ctx.fillText('✨ SCRATCH HERE ✨', canvas.width/2, canvas.height/2 + 6);
 
-      ctx.fillStyle = 'rgba(255,255,255,0.4)';
-      for (let i = 0; i < 150; i++) {
-        ctx.fillRect(Math.random() * W, Math.random() * H, 2, 2);
+      function getMousePos(evt) {
+        const rect = canvas.getBoundingClientRect();
+        const scaleX = canvas.width / rect.width;
+        const scaleY = canvas.height / rect.height;
+        let clientX = evt.clientX;
+        let clientY = evt.clientY;
+        if(evt.touches && evt.touches.length > 0) {
+          clientX = evt.touches[0].clientX;
+          clientY = evt.touches[0].clientY;
+        }
+        return {
+          x: (clientX - rect.left) * scaleX,
+          y: (clientY - rect.top) * scaleY
+        };
       }
 
-      ctx.font = 'bold 15px "Cinzel", serif';
-      ctx.fillStyle = '#4D3205';
-      ctx.textAlign = 'center';
-      ctx.fillText('✨ SCRATCH HERE WITH FINGER ✨', W / 2, H / 2 + 5);
-
-      let isDrawing = false;
-      function scratch(e) {
+      function scratch(evt) {
         if (!isDrawing) return;
-        const rect = canvas.getBoundingClientRect();
-        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
-        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
-        const x = (clientX - rect.left) * (canvas.width / rect.width);
-        const y = (clientY - rect.top) * (canvas.height / rect.height);
-
+        evt.preventDefault();
+        const pos = getMousePos(evt);
         ctx.globalCompositeOperation = 'destination-out';
         ctx.beginPath();
-        ctx.arc(x, y, 18, 0, Math.PI * 2);
+        ctx.arc(pos.x, pos.y, 22, 0, Math.PI * 2, false);
         ctx.fill();
-
-        if (navigator.vibrate) navigator.vibrate(15);
+        checkScratch();
       }
 
-      canvas.addEventListener('mousedown', () => isDrawing = true);
-      canvas.addEventListener('mouseup', () => isDrawing = false);
+      function checkScratch() {
+        const data = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+        let clearPixels = 0;
+        for (let i = 3; i < data.length; i += 4) {
+          if (data[i] === 0) clearPixels++;
+        }
+        scratchedRatio = clearPixels / (canvas.width * canvas.height);
+        if (scratchedRatio > 0.45) {
+          canvas.style.transition = "opacity 0.6s ease";
+          canvas.style.opacity = 0;
+          setTimeout(() => canvas.style.display = 'none', 600);
+          if (navigator.vibrate) navigator.vibrate([40, 60, 40]);
+          triggerConfetti(['#FFD700', '#FF69B4', '#FFFFFF']);
+        }
+      }
+
+      canvas.addEventListener('mousedown', (e) => { isDrawing = true; scratch(e); });
       canvas.addEventListener('mousemove', scratch);
-
-      canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); });
+      canvas.addEventListener('mouseup', () => isDrawing = false);
+      canvas.addEventListener('mouseleave', () => isDrawing = false);
+      canvas.addEventListener('touchstart', (e) => { isDrawing = true; scratch(e); }, {passive: false});
+      canvas.addEventListener('touchmove', scratch, {passive: false});
       canvas.addEventListener('touchend', () => isDrawing = false);
-      canvas.addEventListener('touchmove', scratch);
     }
+    setTimeout(initScratchCard, 500);
 
-    /* DIYA LIGHTING */
-    function playTempleBellChime() {
-      try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (!audioCtx) audioCtx = new AudioContext();
-        if (audioCtx.state === 'suspended') audioCtx.resume();
-
-        const now = audioCtx.currentTime;
-        const freqs = [587.33, 880, 1174.66, 1760];
-        freqs.forEach((freq, i) => {
-          const osc = audioCtx.createOscillator();
-          const gain = audioCtx.createGain();
-          osc.type = 'sine';
-          osc.frequency.setValueAtTime(freq, now);
-          gain.gain.setValueAtTime(0.25 / (i + 1), now);
-          gain.gain.exponentialRampToValueAtTime(0.0001, now + 2.2);
-          osc.connect(gain);
-          gain.connect(audioCtx.destination);
-          osc.start(now);
-          osc.stop(now + 2.2);
-        });
-      } catch (e) {
-        console.log("Bell chime error:", e);
-      }
-    }
-
-    let isDiyaLit = false;
+    /* 11. LIGHT SACRED DIYA */
+    let diyaLit = false;
     function lightTheDiya() {
-      if (isDiyaLit) return;
-      isDiyaLit = true;
-
-      const diya = document.getElementById('diyaBox');
+      if (diyaLit) return;
+      const box = document.getElementById('diyaBox');
       const status = document.getElementById('diyaStatus');
+      box.classList.add('lit');
+      status.innerText = currentLang === 'en' 
+        ? "✨ The Sacred Diya is Lit! Divine Blessings Showered ✨" 
+        : "✨ మంగళ దీపం వెలిగింది! దివ్య ఆశీస్సులు అందాయి ✨";
+      diyaLit = true;
+      if (navigator.vibrate) navigator.vibrate([40, 60, 40]);
+      showerAkshintalu();
+    }
 
-      diya.classList.add('lit');
-      status.innerText = currentLang === 'en' ? "✨ The Sacred Diya is Lit! Divine Blessings Showered 🙏" : "✨ మంగళ దీపం వెలిగించబడింది! దైవ ఆశీస్సులు 🙏";
-      status.style.color = "#A37C32";
+    /* 12. AKSHINTALU & TALAMBRALU CONFETTI EFFECTS */
+    let blessingCount = 512;
+    const bCountEl = document.getElementById('blessingCount');
+    if (bCountEl) bCountEl.innerText = blessingCount;
 
-      triggerHeartbeatPulse();
-      playTempleBellChime();
-
+    function triggerConfetti(colors) {
       if (typeof confetti === 'function') {
         confetti({
-          particleCount: 45,
-          spread: 60,
-          origin: { y: 0.65 },
-          colors: ['#FFD700', '#FF9F1C', '#FFF275', '#E71D36']
+          particleCount: 90,
+          spread: 100,
+          origin: { y: 0.1 },
+          colors: colors,
+          ticks: 300,
+          gravity: 0.85,
+          disableForReducedMotion: true
         });
       }
-    }
-
-    function flipStoryCard(card) {
-      card.classList.toggle('flipped');
     }
 
     function showerTalambralu(type) {
-      triggerHeartbeatPulse();
-      confetti({
-        particleCount: 65,
-        spread: 80,
-        angle: 90,
-        origin: { y: 0.65 },
-        colors: ['#FFD700', '#FFEA00', '#FFFDD0', '#E5B80B']
-      });
+      blessingCount++;
+      if (bCountEl) bCountEl.innerText = blessingCount;
+      if (navigator.vibrate) navigator.vibrate(40);
+      triggerConfetti(['#FFD700', '#FFF5EE', '#FFFFFF', '#FFB300']);
     }
 
-    /* VIRTUAL PHOTO BOOTH */
-    let streamObj = null;
-    let capturedSelfieBase64 = null;
+    function showerAkshintalu() {
+      blessingCount++;
+      if (bCountEl) bCountEl.innerText = blessingCount;
+      if (navigator.vibrate) navigator.vibrate([30, 40]);
+      triggerConfetti(['#FFC107', '#FF9800', '#FFEB3B', '#E65100']);
+    }
 
-    async function togglePhotoBooth() {
-      const boothArea = document.getElementById('boothArea');
-      if (boothArea.style.display === 'block') {
+    /* 13. VIRTUAL PHOTO BOOTH */
+    let videoStream = null;
+    function togglePhotoBooth() {
+      const booth = document.getElementById('boothArea');
+      const video = document.getElementById('boothVideo');
+      if (booth.style.display === 'block') {
         closePhotoBooth();
         return;
       }
-      try {
-        streamObj = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: "user", width: { ideal: 400 }, height: { ideal: 400 } },
-          audio: false
+      booth.style.display = 'block';
+      navigator.mediaDevices.getUserMedia({ video: { facingMode: "user" }, audio: false })
+        .then(stream => {
+          videoStream = stream;
+          video.srcObject = stream;
+        })
+        .catch(err => {
+          alert(currentLang === 'en' ? "Camera access denied or unavailable." : "కెమెరా అనుమతి నిరాకరించబడింది.");
+          booth.style.display = 'none';
         });
-        const video = document.getElementById('boothVideo');
-        video.srcObject = streamObj;
-        boothArea.style.display = 'block';
-      } catch (err) {
-        alert("Camera permission is required to snap a selfie frame! 📸");
-      }
     }
 
     function closePhotoBooth() {
-      if (streamObj) {
-        streamObj.getTracks().forEach(t => t.stop());
-        streamObj = null;
+      const booth = document.getElementById('boothArea');
+      booth.style.display = 'none';
+      if (videoStream) {
+        videoStream.getTracks().forEach(t => t.stop());
+        videoStream = null;
       }
-      document.getElementById('boothArea').style.display = 'none';
     }
 
+    let capturedImageURL = null;
     function snapSelfie() {
       const video = document.getElementById('boothVideo');
       const canvas = document.getElementById('boothCanvas');
       const ctx = canvas.getContext('2d');
-
-      ctx.save();
-      ctx.translate(400, 0);
+      if(!videoStream) return;
+      
+      ctx.translate(canvas.width, 0);
       ctx.scale(-1, 1);
-      ctx.drawImage(video, 0, 0, 400, 400);
-      ctx.restore();
-
-      ctx.lineWidth = 14;
-      ctx.strokeStyle = '#851329';
-      ctx.strokeRect(7, 7, 386, 386);
-
-      ctx.lineWidth = 3;
+      ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+      ctx.setTransform(1, 0, 0, 1, 0, 0); 
+      
+      // Add SamRika Frame Overlay
       ctx.strokeStyle = '#D4AF37';
-      ctx.strokeRect(16, 16, 368, 368);
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.fillRect(80, 355, 240, 30);
-      ctx.strokeStyle = '#D4AF37';
-      ctx.strokeRect(80, 355, 240, 30);
-
+      ctx.lineWidth = 15;
+      ctx.strokeRect(0, 0, canvas.width, canvas.height);
       ctx.fillStyle = '#851329';
-      ctx.font = 'bold 16px "Cinzel", serif';
+      ctx.font = 'bold 28px "Cinzel"';
       ctx.textAlign = 'center';
-      ctx.fillText('Sarika & Sampath #SamRika', 200, 376);
+      ctx.fillText('#SamRika 2026', canvas.width/2, canvas.height - 25);
 
-      capturedSelfieBase64 = canvas.toDataURL('image/jpeg', 0.6);
-      document.getElementById('selfieThumb').src = capturedSelfieBase64;
-      document.getElementById('capturedPhotoPreview').style.display = 'flex';
+      capturedImageURL = canvas.toDataURL('image/jpeg', 0.9);
       closePhotoBooth();
+      
+      document.getElementById('selfieThumb').src = capturedImageURL;
+      document.getElementById('capturedPhotoPreview').style.display = 'flex';
     }
 
     function clearSelfie() {
-      capturedSelfieBase64 = null;
+      capturedImageURL = null;
       document.getElementById('capturedPhotoPreview').style.display = 'none';
     }
 
-    /* AUDIO GUESTBOOK */
+    /* 14. VOICE NOTE RECORDER */
     let mediaRecorder = null;
     let audioChunks = [];
-    let capturedAudioBase64 = null;
-    let countdownInterval = null;
-    let voiceResolvePromise = null;
+    let recordedAudioURL = null;
+    let recordTimeout = null;
 
-    async function handleVoiceRecord() {
-      const statusArea = document.getElementById('voiceStatusArea');
-      const timerLbl = document.getElementById('recordingTimer');
-      const audioPreview = document.getElementById('recordedAudioPreview');
-      const clearLink = document.getElementById('clearVoiceLink');
-      const recBtn = document.getElementById('recordVoiceBtn');
+    function handleVoiceRecord() {
+      if(mediaRecorder && mediaRecorder.state === 'recording') return;
+      navigator.mediaDevices.getUserMedia({ audio: true })
+        .then(stream => {
+          mediaRecorder = new MediaRecorder(stream);
+          mediaRecorder.start();
+          audioChunks = [];
+          document.getElementById('voiceStatusArea').style.display = 'block';
+          const timerTxt = document.getElementById('recordingTimer');
+          let timeLeft = 10;
+          
+          const interval = setInterval(() => {
+            timeLeft--;
+            timerTxt.innerText = `🔴 Recording... ${timeLeft}s`;
+            if(timeLeft <= 0) clearInterval(interval);
+          }, 1000);
 
-      if (mediaRecorder && mediaRecorder.state === "recording") {
-        mediaRecorder.stop();
-        return;
-      }
+          recordTimeout = setTimeout(() => {
+            if(mediaRecorder.state === 'recording') mediaRecorder.stop();
+            clearInterval(interval);
+            stream.getTracks().forEach(t => t.stop());
+          }, 10000);
 
-      try {
-        const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-        audioChunks = [];
-        mediaRecorder = new MediaRecorder(stream);
-
-        mediaRecorder.ondataavailable = e => {
-          if (e.data.size > 0) audioChunks.push(e.data);
-        };
-
-        mediaRecorder.onstop = () => {
-          clearInterval(countdownInterval);
-          stream.getTracks().forEach(t => t.stop());
-
-          const blob = new Blob(audioChunks, { type: 'audio/webm' });
-          const reader = new FileReader();
-          reader.onloadend = () => {
-            capturedAudioBase64 = reader.result;
-            audioPreview.src = capturedAudioBase64;
-            audioPreview.style.display = 'block';
-            clearLink.style.display = 'block';
-            timerLbl.innerText = "✅ Voice Blessing Ready!";
-            timerLbl.style.color = "#2E7D32";
-            recBtn.innerText = "🎙️ Re-record (10s)";
-
-            if (voiceResolvePromise) {
-              voiceResolvePromise(capturedAudioBase64);
-              voiceResolvePromise = null;
-            }
+          mediaRecorder.ondataavailable = e => audioChunks.push(e.data);
+          mediaRecorder.onstop = () => {
+            const audioBlob = new Blob(audioChunks, { type: 'audio/webm' });
+            recordedAudioURL = URL.createObjectURL(audioBlob);
+            timerTxt.innerText = currentLang === 'en' ? "✅ Voice Note Recorded" : "✅ వాయిస్ రికార్డ్ చేయబడింది";
+            const preview = document.getElementById('recordedAudioPreview');
+            preview.src = recordedAudioURL;
+            preview.style.display = 'inline-block';
+            document.getElementById('clearVoiceLink').style.display = 'block';
           };
-          reader.readAsDataURL(blob);
-        };
-
-        mediaRecorder.start();
-        statusArea.style.display = 'block';
-        audioPreview.style.display = 'none';
-        clearLink.style.display = 'none';
-        recBtn.innerText = "⏹️ Stop Recording";
-
-        let secLeft = 10;
-        timerLbl.innerText = `🔴 Recording... ${secLeft}s (Tap Stop or Send)`;
-        timerLbl.style.color = "#851329";
-
-        countdownInterval = setInterval(() => {
-          secLeft--;
-          if (secLeft <= 0) {
-            clearInterval(countdownInterval);
-            if (mediaRecorder && mediaRecorder.state === "recording") {
-              mediaRecorder.stop();
-            }
-          } else {
-            timerLbl.innerText = `🔴 Recording... ${secLeft}s (Tap Stop or Send)`;
-          }
-        }, 1000);
-
-      } catch (err) {
-        alert("Microphone permission is required to leave a voice blessing! 🎙️");
-      }
+        }).catch(err => alert(currentLang === 'en' ? "Microphone access denied." : "మైక్రోఫోన్ అనుమతి నిరాకరించబడింది."));
     }
 
     function clearVoiceNote() {
-      capturedAudioBase64 = null;
+      recordedAudioURL = null;
+      audioChunks = [];
       document.getElementById('voiceStatusArea').style.display = 'none';
-      document.getElementById('recordedAudioPreview').src = '';
-      document.getElementById('recordVoiceBtn').innerText = currentLang === 'en' ? "🎙️ Voice Note (10s)" : "🎙️ వాయిస్ సందేశం (10s)";
+      document.getElementById('recordedAudioPreview').style.display = 'none';
+      document.getElementById('clearVoiceLink').style.display = 'none';
+      document.getElementById('recordingTimer').innerText = '🔴 Recording... 10s';
     }
 
-    /* DOWNLOADABLE WHATSAPP BLESSING CARD */
-    let lastPostedName = "";
-    let lastPostedWish = "";
+    /* 15. SUBMIT WISH AND UPDATE UI */
+    let lastWishObj = null;
+    function submitWish() {
+      const nameInput = document.getElementById('guestName');
+      const msgInput = document.getElementById('guestMessage');
+      const name = nameInput.value.trim() || (currentLang === 'en' ? 'Well Wisher' : 'శ్రేయోభిలాషి');
+      const msg = msgInput.value.trim() || (currentLang === 'en' ? 'Congratulations!' : 'శుభాకాంక్షలు!');
+      
+      lastWishObj = { name, msg, photo: capturedImageURL, audio: recordedAudioURL };
 
+      const ticker = document.getElementById('wishesBox');
+      const item = document.createElement('div');
+      item.className = 'wish-item';
+      
+      let mediaHTML = '';
+      if(capturedImageURL) {
+        mediaHTML += `<img src="${capturedImageURL}" alt="Selfie Wish" style="width:100%; border-radius:8px; margin-bottom:10px; border:2px solid #D4AF37;">`;
+      }
+      let contentHTML = `<div class="wish-text">"${msg}"</div>`;
+      if(recordedAudioURL) {
+        contentHTML += `<audio class="wish-audio-bar" src="${recordedAudioURL}" controls></audio>`;
+      }
+
+      item.innerHTML = `
+        ${mediaHTML}
+        <div class="wish-flex-body">
+          <img class="wish-user-avatar" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='40' r='20' fill='%23D4AF37'/><path d='M20 90 Q50 50 80 90' fill='%23D4AF37'/></svg>" alt="User">
+          <div style="flex:1;">
+            ${contentHTML}
+            <div class="wish-author">— ${name}</div>
+          </div>
+        </div>
+      `;
+
+      if (ticker.innerText.includes('Loading') || ticker.innerText.includes('లోడ్')) ticker.innerHTML = '';
+      ticker.prepend(item);
+      
+      // Reset Inputs
+      nameInput.value = '';
+      msgInput.value = '';
+      clearSelfie();
+      clearVoiceNote();
+
+      document.getElementById('downloadCardBtn').style.display = 'block';
+      showerAkshintalu();
+      if (navigator.vibrate) navigator.vibrate([30, 40, 30]);
+    }
+
+    /* 16. GENERATE BLESSING CARD */
     function generateAndDownloadBlessingCard() {
+      if (!lastWishObj) return;
       const canvas = document.getElementById('blessingCanvas');
       const ctx = canvas.getContext('2d');
       const W = canvas.width;
       const H = canvas.height;
       const isTe = (currentLang === 'te');
 
-      const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 80, W / 2, H / 2, 700);
-      bgGrad.addColorStop(0, '#FFFDF7');
-      bgGrad.addColorStop(0.7, '#FBF3E3');
-      bgGrad.addColorStop(1, '#F2E0C2');
-      ctx.fillStyle = bgGrad;
+      ctx.fillStyle = '#FFFDF8';
       ctx.fillRect(0, 0, W, H);
 
-      ctx.lineWidth = 14;
-      ctx.strokeStyle = '#851329';
-      ctx.strokeRect(26, 26, W - 52, H - 52);
-
+      ctx.lineWidth = 15;
+      ctx.strokeStyle = '#D4AF37';
+      ctx.strokeRect(20, 20, W-40, H-40);
+      
       ctx.lineWidth = 3;
-      ctx.strokeStyle = '#C59A3F';
-      ctx.strokeRect(44, 44, W - 88, H - 88);
+      ctx.strokeStyle = '#851329';
+      ctx.strokeRect(40, 40, W-80, H-80);
 
+      ctx.font = isTe ? 'bold 46px "Noto Sans Telugu", sans-serif' : 'bold 46px "Cinzel", serif';
+      ctx.fillStyle = '#851329';
       ctx.textAlign = 'center';
-      ctx.font = 'bold 26px "Noto Sans Telugu", sans-serif';
-      ctx.fillStyle = '#851329';
-      ctx.fillText('🪷  శ్రీరస్తు - శుభమస్తు  🪷', W / 2, 140);
+      ctx.fillText(isTe ? 'ఆశీస్సులు' : 'BLESSINGS FOR', W/2, 140);
+      
+      ctx.font = isTe ? 'bold 70px "Noto Sans Telugu", sans-serif' : 'bold 85px "Great Vibes", cursive';
+      ctx.fillText(isTe ? 'సారిక & సంపత్' : 'Sarika & Sampath', W/2, 250);
 
-      ctx.font = isTe ? 'bold 26px "Noto Sans Telugu", sans-serif' : 'bold 26px "Cinzel", serif';
-      ctx.fillStyle = '#8E6A26';
-      ctx.fillText(isTe ? 'వివాహ శుభాకాంక్షలు' : 'WEDDING BLESSINGS', W / 2, 195);
+      ctx.font = isTe ? 'italic 36px "Noto Sans Telugu", sans-serif' : 'italic 40px "Playfair Display", serif';
+      ctx.fillStyle = '#4D3205';
+      renderCanvasWrapped(ctx, `"${lastWishObj.msg}"`, W/2, 450, W-180, 55);
 
-      if (isTe) {
-        ctx.font = 'bold 54px "Noto Sans Telugu", sans-serif';
-        ctx.fillStyle = '#851329';
-        ctx.fillText('సారిక & సంపత్', W / 2, 285);
-      } else {
-        ctx.font = 'bold 76px "Great Vibes", cursive, serif';
-        ctx.fillStyle = '#851329';
-        ctx.fillText('Sarika & Sampath', W / 2, 290);
-      }
+      ctx.font = isTe ? 'bold 36px "Noto Sans Telugu", sans-serif' : 'bold 34px "Cinzel", serif';
+      ctx.fillStyle = '#D4AF37';
+      ctx.fillText(`— ${lastWishObj.name}`, W/2, 700);
+      
+      ctx.font = 'bold 24px "Cinzel", serif';
+      ctx.fillStyle = '#A67C1E';
+      ctx.fillText('#SamRika 2026', W/2, 1080);
 
-      ctx.font = 'bold 24px "Cinzel", "Noto Sans Telugu", serif';
-      ctx.fillStyle = '#8E6A26';
-      ctx.fillText('#SamRika  •  26 November 2026', W / 2, 345);
-
-      const boxX = 80;
-      const boxY = 430;
-      const boxW = W - 160;
-      const boxH = 480;
-
-      ctx.fillStyle = '#FFFFFF';
-      ctx.beginPath();
-      ctx.roundRect(boxX, boxY, boxW, boxH, 20);
-      ctx.fill();
-      ctx.strokeStyle = '#E8D5B5';
-      ctx.stroke();
-
-      const messageText = lastPostedWish || (isTe ? "నూతన వధూవరులకు హృదయపూర్వక వివాహ శుభాకాంక్షలు!" : "Wishing you both a lifetime of happiness, divine harmony, and endless love!");
-      ctx.font = isTe ? 'italic 30px "Noto Sans Telugu", serif' : 'italic 34px "Playfair Display", serif';
-      ctx.fillStyle = '#2F2620';
-      const lastMsgY = renderCanvasWrapped(ctx, `"${messageText}"`, W / 2, boxY + 120, boxW - 80, 48);
-
-      const divY = Math.max(lastMsgY + 40, boxY + 280);
-      const guestAuthor = lastPostedName || (isTe ? "హితైషి" : "Well Wisher");
-      ctx.font = isTe ? 'bold 26px "Noto Sans Telugu", serif' : 'bold 28px "Playfair Display", serif';
-      ctx.fillStyle = '#851329';
-      renderCanvasWrapped(ctx, isTe ? `— ఆశీస్సులతో, ${guestAuthor}` : `— With Love & Blessings, ${guestAuthor}`, W / 2, divY + 45, boxW - 60, 38);
-
-      ctx.font = '600 24px "Plus Jakarta Sans", "Noto Sans Telugu", sans-serif';
-      ctx.fillStyle = '#7A6953';
-      ctx.fillText(isTe ? 'వీఐపీ గార్డెన్స్, సూరారం, హైదరాబాద్' : 'VIP Gardens, Suraram, Hyderabad', W / 2, 1000);
-
-      const cleanName = (lastPostedName || 'Guest').replace(/[^a-zA-Z0-9]/g, '_');
       const link = document.createElement('a');
-      link.download = `Wedding_Blessing_Sarika_Sampath_${cleanName}.png`;
-      link.href = canvas.toDataURL('image/png');
+      link.download = isTe ? 'నా_ఆశీర్వాదం_సారిక_సంపత్.jpg' : 'My_Blessing_Sarika_Sampath.jpg';
+      link.href = canvas.toDataURL('image/jpeg', 0.95);
       link.click();
     }
 
-    /* THANK YOU MODAL */
+    /* 17. THANK YOU POPUP */
     function openThankYouModal() {
       document.getElementById('thankyouModal').classList.add('active');
-      showerAkshintalu();
     }
-    function closeThankYouModal() {
+    function closeThankYouModal(e) {
+      if (e && e.target !== document.getElementById('thankyouModal') && e.target !== document.querySelector('.thankyou-close-btn')) return;
       document.getElementById('thankyouModal').classList.remove('active');
     }
 
-    /* FIREBASE INTEGRATION & UNBLOCKED SUBMISSION */
-    const FIREBASE_ENDPOINT = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/wishes.json";
-    const FIREBASE_COUNTER_URL = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/counter.json";
-    let totalBlessings = 356;
-
-    async function loadCloudCounter() {
-      try {
-        const res = await fetch(FIREBASE_COUNTER_URL);
-        const data = await res.json();
-        if (data && typeof data.count === 'number') totalBlessings = data.count;
-      } catch (err) {}
-      const counterEl = document.getElementById('blessingCount');
-      if (counterEl) counterEl.innerText = totalBlessings;
-    }
-
-    async function showerAkshintalu() {
-      totalBlessings++;
-      const counterEl = document.getElementById('blessingCount');
-      if (counterEl) counterEl.innerText = totalBlessings;
-
-      if (typeof confetti === 'function') {
-        confetti({ particleCount: 70, spread: 70, origin: { x: 0.5, y: 0.2 }, colors: ['#FFD700', '#FFA000', '#D2143A', '#FFB7B2', '#FFFFFF'] });
-      }
-      try {
-        await fetch(FIREBASE_COUNTER_URL, { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ count: totalBlessings }) });
-      } catch (err) {}
-    }
-
-    async function loadCloudWishes() {
-      const box = document.getElementById('wishesBox');
-      try {
-        const response = await fetch(FIREBASE_ENDPOINT);
-        const data = await response.json();
-        box.innerHTML = '';
-        if (data) {
-          const wishes = Object.values(data).reverse();
-          wishes.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'wish-item';
-            const photoHtml = item.photo ? `<img src="${item.photo}" class="wish-user-avatar" alt="Selfie">` : '';
-            const audioHtml = item.audio ? `<audio controls src="${item.audio}" class="wish-audio-bar"></audio>` : '';
-            card.innerHTML = `
-              <div class="wish-flex-body">
-                ${photoHtml}
-                <div style="flex:1;">
-                  <div class="wish-text">"${escapeHtml(item.wish || 'Heartfelt Wedding Blessings! 💐')}"</div>
-                  <div class="wish-author">— ${escapeHtml(item.name || 'Well Wisher')}</div>
-                  ${audioHtml}
-                </div>
-              </div>
-            `;
-            box.appendChild(card);
-          });
-        }
-      } catch (err) {
-        box.innerHTML = '<div style="text-align:center; padding:12px; color:#8C7355;">Warm Blessings to the lovely couple! 💐</div>';
-      }
-    }
-
-    async function submitWish() {
-      const postBtn = document.getElementById('postWishBtn');
-
-      if (mediaRecorder && mediaRecorder.state === "recording") {
-        postBtn.innerText = currentLang === 'en' ? "Finishing Voice Note..." : "వాయిస్ నోట్ సిద్ధమవుతోంది...";
-        await new Promise((resolve) => {
-          voiceResolvePromise = resolve;
-          mediaRecorder.stop();
-        });
-      }
-
-      const nameInput = document.getElementById('guestName');
-      const msgInput = document.getElementById('guestMessage');
-      const downloadBtn = document.getElementById('downloadCardBtn');
-
-      const name = nameInput.value.trim() || (currentLang === 'en' ? "Well Wisher" : "హితైషి");
-      const wish = msgInput.value.trim();
-
-      if (!wish && !capturedSelfieBase64 && !capturedAudioBase64) {
-        alert(currentLang === 'en' ? "Please leave a blessing message, photo, or voice note! 💛" : "దయచేసి ఒక సందేశం, ఫోటో లేదా వాయిస్ నోట్ జతచేయండి! 💛");
-        return;
-      }
-
-      postBtn.innerText = currentLang === 'en' ? "Saving Blessing..." : "సేవ్ అవుతోంది...";
-      postBtn.disabled = true;
-
-      try {
-        await fetch(FIREBASE_ENDPOINT, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            name: name,
-            wish: wish || (capturedAudioBase64 ? "🎵 Voice Blessing" : "📸 Wedding Photo Blessing"),
-            photo: capturedSelfieBase64 || null,
-            audio: capturedAudioBase64 || null,
-            timestamp: Date.now()
-          })
-        });
-
-        lastPostedName = name;
-        lastPostedWish = wish || (currentLang === 'en' ? "Hearty Congratulations Sarika & Sampath!" : "సారిక & సంపత్ లకు హృదయపూర్వక శుభాకాంక్షలు!");
-
-        nameInput.value = '';
-        msgInput.value = '';
-        clearSelfie();
-        clearVoiceNote();
-
-        await loadCloudWishes();
-        showerAkshintalu();
-
-        if (downloadBtn) downloadBtn.style.display = 'block';
-      } catch (err) {
-        alert("Could not connect. Please check your internet connection.");
-      } finally {
-        postBtn.innerText = currentLang === 'en' ? "✨ Send Blessing" : "✨ ఆశీర్వదించండి";
-        postBtn.disabled = false;
-      }
-    }
-
-    function escapeHtml(text) {
-      return String(text).replace(/[&<>"']/g, function(m) {
-        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
-      });
-    }
-
-    function updateWeddingCountdown() {
-      const now = new Date().getTime();
-      const diff = weddingDateTime - now;
-      if (diff <= 0) return;
-      document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
-      document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
-      document.getElementById('mins').innerText = String(Math.floor((diff % (1000 * 60)) / (1000 * 60))).padStart(2, '0');
-      document.getElementById('secs').innerText = String(Math.floor((diff % (1000 * 60)) / 1000)).padStart(2, '0');
-    }
-
-    window.addEventListener('DOMContentLoaded', () => {
-      initScratchCard();
-      loadCloudWishes();
-      loadCloudCounter();
+    /* ON LOAD INITIALIZATION */
+    window.onload = () => {
+      // Show the side picker dynamically on load
+      document.getElementById('sidePickerOverlay').classList.remove('hidden');
       checkNightBeforeStatus();
-      updateAuspiciousGlow();
-      updateTimeGreeting();
-      updateConversationalTracker();
-      setInterval(updateWeddingCountdown, 1000);
-      setInterval(updateConversationalTracker, 60000);
-      updateWeddingCountdown();
-    });
+    };
   </script>
 </body>
 </html>
