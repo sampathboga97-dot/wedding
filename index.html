@@ -18,10 +18,12 @@
       --gold-border: #E8D7B8;
       --text-dark: #2F2620;
       --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFFDF9 0%, #F5ECDD 100%);
+      --side-accent-color: #851329;
+      --side-glow: rgba(133, 19, 41, 0.2);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
-    /* DYNAMIC TIME OF DAY THEMES */
+    /* DYNAMIC TIME OF DAY & SIDE THEMES */
     body {
       background-color: #F8F3EA;
       background-image: 
@@ -32,47 +34,177 @@
       color: var(--text-dark);
       min-height: 100vh;
       display: flex;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: flex-start;
       align-items: center;
       overflow-x: hidden;
-      padding: 14px 6px;
-      transition: background 1.2s ease;
+      padding: 56px 6px 14px;
+      transition: background 1.2s ease, color 0.6s ease;
     }
-    body.theme-morning {
-      --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFF8EE 0%, #FBE5C8 100%);
-    }
-    body.theme-afternoon {
-      --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFFDF6 0%, #F3DFB6 100%);
-    }
+    body.theme-morning { --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFF8EE 0%, #FBE5C8 100%); }
+    body.theme-afternoon { --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFFDF6 0%, #F3DFB6 100%); }
     body.theme-night {
       --theme-bg-grad: radial-gradient(circle at 50% 0%, #2A1728 0%, #150914 100%);
       background-color: #120712;
       color: #E8D7B8;
     }
-    body.theme-night .invitation-container {
-      background: #1B0F19;
-      border-color: #A37C32;
+
+    /* SIDE THEME ADAPTATIONS */
+    body.side-groom {
+      --side-accent-color: #851329;
+      --side-glow: rgba(133, 19, 41, 0.35);
     }
-    body.theme-night .card-inner {
-      background: #20111F;
+    body.side-bride {
+      --side-accent-color: #0E6B38;
+      --side-glow: rgba(14, 107, 56, 0.35);
+      --gold-deep: #946E12;
     }
 
-    /* LANGUAGE TOGGLE */
-    .lang-toggle-btn {
+    /* TOP PERSISTENT ACTIONS BAR */
+    .top-action-bar {
       position: fixed;
-      top: 14px;
-      right: 14px;
-      z-index: 101;
-      background: rgba(255, 255, 255, 0.92);
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 48px;
+      background: rgba(255, 253, 249, 0.94);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #DFC394;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+    }
+    .btn-offline-snapshot {
+      background: linear-gradient(135deg, #C59A3F 0%, #8E6A26 100%);
+      color: #FFFFFF;
+      border: 1px solid #FFE4A0;
+      border-radius: 20px;
+      padding: 6px 12px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      box-shadow: 0 2px 8px rgba(142, 106, 38, 0.3);
+      transition: transform 0.15s ease;
+    }
+    .btn-offline-snapshot:active { transform: scale(0.96); }
+    .lang-toggle-btn {
+      background: #FFFFFF;
       border: 1.5px solid #DFC394;
       border-radius: 20px;
       padding: 5px 12px;
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       font-weight: 800;
       color: var(--maroon-primary);
       cursor: pointer;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
-      backdrop-filter: blur(6px);
+    }
+
+    /* 1. BRIDE VS GROOM SIDE INTERACTIVE MODAL OVERLAY */
+    .side-picker-overlay {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100dvh;
+      z-index: 1050;
+      background: rgba(14, 8, 5, 0.94);
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .side-picker-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    .side-picker-card {
+      background: #FFFDF9;
+      border: 2px solid #DFC394;
+      border-radius: 26px;
+      padding: 28px 18px 22px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    }
+    .side-picker-shloka {
+      font-family: 'Noto Sans Telugu', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--maroon-primary);
+      margin-bottom: 8px;
+    }
+    .side-picker-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .side-picker-sub {
+      font-size: 0.86rem;
+      color: #6C5D4B;
+      margin-bottom: 20px;
+    }
+    .side-options-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .side-choice-btn {
+      padding: 14px;
+      border-radius: 16px;
+      cursor: pointer;
+      border: 2px solid transparent;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      background: #FFF;
+      text-align: left;
+    }
+    .side-choice-btn:active { transform: scale(0.97); }
+    .side-groom-btn {
+      border-color: #E5CCA2;
+      box-shadow: 0 4px 14px rgba(133, 19, 41, 0.12);
+    }
+    .side-groom-btn:hover { background: #FFF9F6; }
+    .side-bride-btn {
+      border-color: #B2D8C1;
+      box-shadow: 0 4px 14px rgba(14, 107, 56, 0.12);
+    }
+    .side-bride-btn:hover { background: #F6FFF9; }
+    .side-btn-icon { font-size: 1.8rem; line-height: 1; }
+    .side-btn-text h4 { font-family: 'Cinzel', serif; font-size: 0.98rem; font-weight: 800; color: #222; }
+    .side-btn-text p { font-size: 0.74rem; color: #666; margin-top: 1px; }
+
+    /* RECOGNITION WELCOME TOAST */
+    .family-welcome-banner {
+      display: none;
+      background: rgba(255, 255, 255, 0.95);
+      border: 1.5px solid #DFC394;
+      border-radius: 20px;
+      padding: 8px 16px;
+      margin: 10px auto 14px;
+      text-align: center;
+      font-family: 'Cinzel', serif;
+      font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--side-accent-color);
+      box-shadow: 0 4px 15px var(--side-glow);
+      animation: bannerSlide 0.6s ease;
+    }
+    @keyframes bannerSlide {
+      from { transform: translateY(-10px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
     }
 
     /* FULL-SCREEN REACHING HANDS OVERLAY */
@@ -115,14 +247,8 @@
       transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
       z-index: 2;
     }
-    .hands-overlay-screen.connecting .hands-layer-initial {
-      opacity: 0;
-      transform: scale(1.08);
-    }
-    .hands-overlay-screen.connecting .hands-layer-united {
-      opacity: 1;
-      transform: scale(1.03);
-    }
+    .hands-overlay-screen.connecting .hands-layer-initial { opacity: 0; transform: scale(1.08); }
+    .hands-overlay-screen.connecting .hands-layer-united { opacity: 1; transform: scale(1.03); }
     .center-touch-pulse {
       position: absolute;
       top: 50%;
@@ -132,7 +258,7 @@
       height: 130px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,225,140,0.5) 45%, transparent 75%);
-      box-shadow: 0 0 45px rgba(255, 220, 140, 0.95), inset 0 0 20px rgba(255, 255, 255, 0.6);
+      box-shadow: 0 0 45px rgba(255, 220, 140, 0.95);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -143,8 +269,7 @@
       0%, 100% { transform: translate(-50%, -50%) scale(0.92); opacity: 0.85; }
       50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
     }
-    .center-touch-pulse span { font-size: 42px; line-height: 1; filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)); }
-    .hands-overlay-screen.connecting .center-touch-pulse { display: none !important; }
+    .center-touch-pulse span { font-size: 42px; line-height: 1; }
     .tap-guide-prompt {
       position: absolute;
       bottom: clamp(26px, 5vh, 40px);
@@ -168,18 +293,85 @@
       0%, 100% { transform: translate(-50%, 0); }
       50% { transform: translate(-50%, -6px); }
     }
-    .hands-overlay-screen.connecting .tap-guide-prompt { display: none !important; }
+
+    /* 2. ROYAL SCROLL UNROLL WRAPPER (RAAJA PATRAM) */
+    .scroll-outer-wrapper {
+      width: 100%;
+      max-width: 490px;
+      position: relative;
+      margin: 0 auto;
+    }
+    .scroll-finial {
+      width: 100%;
+      height: 34px;
+      background: radial-gradient(circle at 50% 50%, #FFEBA3 0%, #D4AF37 50%, #87620E 100%);
+      border-radius: 17px;
+      border: 2px solid #5C3A10;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.35);
+      position: relative;
+      z-index: 30;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 14px;
+    }
+    .finial-knob {
+      width: 22px;
+      height: 22px;
+      background: radial-gradient(circle, #FFF 0%, #DFC394 60%, #8B6B23 100%);
+      border-radius: 50%;
+      border: 1.5px solid #3E2405;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    }
+    .scroll-unroll-trigger-card {
+      background: #FFFDF9;
+      border: 2px solid #DFC394;
+      border-radius: 22px;
+      padding: 24px 16px;
+      margin: 12px 0;
+      text-align: center;
+      cursor: pointer;
+      box-shadow: 0 10px 30px rgba(142, 106, 38, 0.2);
+      transition: transform 0.2s ease;
+    }
+    .scroll-unroll-trigger-card:hover { transform: scale(1.02); }
+    .scroll-seal-crest {
+      font-size: 3rem;
+      line-height: 1;
+      margin-bottom: 8px;
+      animation: pulseTarget 2s infinite ease-in-out;
+    }
+    .scroll-unroll-prompt {
+      font-family: 'Cinzel', serif;
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      letter-spacing: 1.5px;
+    }
+    
+    /* SCROLL EXPANDING CONTAINER */
+    .scroll-content-collapsible {
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      transform-origin: top center;
+      transition: max-height 1.4s cubic-bezier(0.2, 0.9, 0.3, 1), opacity 0.8s ease;
+    }
+    .scroll-content-collapsible.unrolled {
+      max-height: 9000px;
+      opacity: 1;
+    }
 
     /* INVITATION CONTAINER */
     .invitation-container {
       width: 100%;
-      max-width: 490px;
       position: relative;
-      border-radius: 30px;
+      border-radius: 0 0 24px 24px;
       overflow: hidden;
       box-shadow: 0 24px 70px rgba(78, 48, 14, 0.3);
       background: #FFFFFF;
       border: 2px solid var(--gold-border);
+      border-top: none;
     }
     .card-inner {
       position: relative;
@@ -190,10 +382,7 @@
     .card-inner::after {
       content: "";
       position: absolute;
-      top: 10px;
-      left: 10px;
-      right: 10px;
-      bottom: 10px;
+      top: 10px; left: 10px; right: 10px; bottom: 10px;
       border: 1.5px dashed #DFC394;
       border-radius: 22px;
       pointer-events: none;
@@ -201,17 +390,12 @@
     }
 
     .top-toranam {
-      position: absolute;
-      top: 0; left: 0; right: 0; height: 42px;
+      position: absolute; top: 0; left: 0; right: 0; height: 42px;
       z-index: 10; pointer-events: none;
-      background-repeat: repeat-x;
-      background-size: 54px 40px;
+      background-repeat: repeat-x; background-size: 54px 40px;
       background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 54 40'%3E%3Cpath d='M0 0 Q27 26 54 0' fill='none' stroke='%232E7D32' stroke-width='2.5'/%3E%3Cpath d='M15 6 Q19 22 15 28 Q11 22 15 6 Z' fill='%23388E3C'/%3E%3Cpath d='M39 6 Q43 22 39 28 Q35 22 39 6 Z' fill='%23388E3C'/%3E%3Ccircle cx='27' cy='18' r='8' fill='%23FF8F00'/%3E%3Ccircle cx='27' cy='18' r='5' fill='%23FFD54F'/%3E%3Ccircle cx='27' cy='18' r='2' fill='%23E65100'/%3E%3C/svg%3E");
     }
-    .garland-side {
-      position: absolute; top: 40px; bottom: 15px; width: 20px; z-index: 5; pointer-events: none;
-      background-repeat: repeat-y; background-size: 20px 48px;
-    }
+    .garland-side { position: absolute; top: 40px; bottom: 15px; width: 20px; z-index: 5; pointer-events: none; background-repeat: repeat-y; background-size: 20px 48px; }
     .garland-left { left: 2px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 48'%3E%3Cline x1='10' y1='0' x2='10' y2='48' stroke='%23BDBDBD' stroke-width='1' stroke-dasharray='2 2'/%3E%3Ccircle cx='10' cy='10' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='10' r='3.5' fill='%23FFD54F'/%3E%3Ccircle cx='10' cy='24' r='6' fill='%23E65100'/%3E%3Ccircle cx='10' cy='24' r='3' fill='%23FFB74D'/%3E%3Ccircle cx='10' cy='38' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='38' r='3.5' fill='%23FFD54F'/%3E%3C/svg%3E"); }
     .garland-right { right: 2px; transform: scaleX(-1); background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 48'%3E%3Cline x1='10' y1='0' x2='10' y2='48' stroke='%23BDBDBD' stroke-width='1' stroke-dasharray='2 2'/%3E%3Ccircle cx='10' cy='10' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='10' r='3.5' fill='%23FFD54F'/%3E%3Ccircle cx='10' cy='24' r='6' fill='%23E65100'/%3E%3Ccircle cx='10' cy='24' r='3' fill='%23FFB74D'/%3E%3Ccircle cx='10' cy='38' r='6.5' fill='%23FFA000'/%3E%3Ccircle cx='10' cy='38' r='3.5' fill='%23FFD54F'/%3E%3C/svg%3E"); }
 
@@ -278,13 +462,41 @@
     @keyframes flameWiggle { 0% { transform: rotate(-2deg); } 100% { transform: rotate(3deg); } }
     .diya-status-tag { font-size: 0.82rem; font-weight: 700; color: var(--gold-deep); margin-top: 8px; }
 
-    /* MUHURTHAM EVENT CARD */
+    /* 3. LIVE AUSPICIOUS GLOW AROUND MUHURTHAM (9:15 AM) */
     .event-card { background: #FAF5EB; border: 1px solid #EFE2CB; border-radius: 22px; padding: 20px 14px; margin-bottom: 18px; box-shadow: 0 8px 22px rgba(142, 106, 38, 0.1); }
     .event-img-wrap { width: 100%; max-width: 290px; height: 240px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; border: 2px solid #E5CCA2; background: #FFF; }
     .event-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .event-tag { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 4px; }
     .event-subtitle { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: #6C5D4B; margin-bottom: 8px; }
-    .event-time-highlight { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 800; color: var(--maroon-primary); margin-top: 4px; }
+    
+    .muhurtham-glow-halo {
+      position: relative;
+      display: inline-block;
+      padding: 6px 20px;
+      margin: 8px auto 4px;
+      border-radius: 30px;
+      transition: box-shadow 0.5s ease;
+    }
+    .event-time-highlight {
+      font-family: 'Cinzel', serif;
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      line-height: 1;
+      position: relative;
+      z-index: 2;
+    }
+    .auspicious-status-pill {
+      display: inline-block;
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #9C7227;
+      background: #FFF8E6;
+      border: 1px dashed #DFC394;
+      border-radius: 15px;
+      padding: 3px 12px;
+      margin-top: 4px;
+    }
 
     .countdown-medals { display: flex; justify-content: center; gap: 10px; margin: 18px 0 10px; }
     .medal-item { width: 70px; height: 70px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF6DB 0%, #E3BC6A 60%, #9C7227 100%); border: 2px solid #FFFFFF; box-shadow: 0 6px 15px rgba(156, 114, 39, 0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -333,25 +545,9 @@
       padding: 12px;
       z-index: 1;
     }
-    .scratch-secret-message h4 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 1.8rem;
-      color: var(--maroon-primary);
-      line-height: 1.1;
-    }
-    .scratch-secret-message p {
-      font-family: 'Playfair Display', serif;
-      font-style: italic;
-      font-size: 0.82rem;
-      color: #5C3A10;
-      margin-top: 4px;
-    }
-    #scratchCanvas {
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      cursor: crosshair;
-    }
+    .scratch-secret-message h4 { font-family: 'Great Vibes', cursive; font-size: 1.8rem; color: var(--maroon-primary); line-height: 1.1; }
+    .scratch-secret-message p { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.82rem; color: #5C3A10; margin-top: 4px; }
+    #scratchCanvas { position: absolute; inset: 0; z-index: 2; cursor: crosshair; }
 
     /* LIVE STREAMING */
     .livestream-card { background: #FFFDF9; border: 1.5px solid #DFC394; border-radius: 22px; padding: 20px 14px; margin: 18px auto 20px; max-width: 430px; box-shadow: 0 8px 24px rgba(133, 19, 41, 0.08); text-align: center; }
@@ -429,11 +625,42 @@
 </head>
 <body>
 
-  <!-- LANGUAGE TOGGLE BUTTON -->
-  <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLanguage()">తెలుగు / EN</button>
+  <!-- TOP ACTION BAR: OFFLINE SNAPSHOT & LANGUAGE TOGGLE -->
+  <div class="top-action-bar">
+    <button class="btn-offline-snapshot" onclick="downloadOfflineSnapshotCard()">
+      📥 <span data-en="Download Invitation Photo" data-te="ఆహ్వాన పత్రిక ఫోటో డౌన్‌లోడ్">Download Invitation Photo</span>
+    </button>
+    <button class="lang-toggle-btn" id="langToggleBtn" onclick="toggleLanguage()">తెలుగు / EN</button>
+  </div>
 
   <!-- Audio Element -->
   <audio id="weddingAudio" src="Divine Nadaswaram.mp3" loop preload="auto"></audio>
+
+  <!-- 1. BRIDE VS GROOM SIDE INTERACTIVE GREETING MODAL -->
+  <div class="side-picker-overlay" id="sidePickerOverlay">
+    <div class="side-picker-card">
+      <div class="side-picker-shloka">|| శ్రీరస్తు - శుభమస్తు ||</div>
+      <div class="side-picker-title" data-en="Auspicious Welcome" data-te="శుభాగమనం">Auspicious Welcome</div>
+      <div class="side-picker-sub" data-en="Whose guests are you joining today?" data-te="మీరు ఎవరి తరపున విచ్చేసారు?">Whose guests are you joining today?</div>
+      
+      <div class="side-options-grid">
+        <button class="side-choice-btn side-groom-btn" onclick="selectWeddingSide('groom')">
+          <span class="side-btn-icon">🤵‍♂️</span>
+          <div class="side-btn-text">
+            <h4 data-en="Sampath's Side (Groom)" data-te="సంపత్ తరపున (వరుడు)">Sampath's Side (Groom)</h4>
+            <p data-en="Boga Family Celebration" data-te="బోగ వారి కుటుంబ వేడుక">Boga Family Celebration</p>
+          </div>
+        </button>
+        <button class="side-choice-btn side-bride-btn" onclick="selectWeddingSide('bride')">
+          <span class="side-btn-icon">👰‍♀️</span>
+          <div class="side-btn-text">
+            <h4 data-en="Sarika's Side (Bride)" data-te="సారిక తరపున (వధువు)">Sarika's Side (Bride)</h4>
+            <p data-en="Deshaboina Family Celebration" data-te="దేశబోయిన వారి కుటుంబ వేడుక">Deshaboina Family Celebration</p>
+          </div>
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- SCREEN 1: REACHING HANDS -> UNITED HANDS TOUCH SEQUENCE -->
   <div class="hands-overlay-screen" id="handsScreen" onclick="handleHandConnect()">
@@ -453,350 +680,392 @@
     <span class="audio-icon-bubble" id="audioPillIcon">🔊</span>
   </div>
 
-  <!-- MAIN INVITATION FRAME CONTAINER -->
-  <div class="invitation-container">
-    <div class="card-inner">
-      
-      <!-- Continuous Drifting Lotus Petals -->
-      <div class="floating-petals-layer">
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-        <div class="petal"></div>
-      </div>
-
-      <!-- Festive Toranam & Side Garlands -->
-      <div class="top-toranam"></div>
-      <div class="garland-side garland-left"></div>
-      <div class="garland-side garland-right"></div>
-
-      <div class="main-body">
-
-        <!-- DEITY CEREMONY PHOTO WITH DIVINE HALO AURA -->
-        <div class="deity-halo-container">
-          <div class="divine-aura"></div>
-          <div class="deity-frame">
-            <img src="couple-ceremony.jpg" alt="Godha Kalyanam" onerror="handleImgError(this, 'couple-ceremony')">
-          </div>
-        </div>
-
-        <!-- Sacred Shloka -->
-        <div class="sacred-shloka">
-          || మంగళం భగవాన్ విష్ణుః మంగళం గరుడధ్వజః | మంగళం పుండరీకాక్షో మంగళాయ తనో హరిః || 🙏
-        </div>
-
-        <!-- HIGHLIGHTED COUPLE NAMES -->
-        <div class="couple-title">Sampath &amp; Sarika</div>
-        <div class="hashtag-tag">#SamRika</div>
-        <div class="invite-lead" data-en="We invite you to celebrate our wedding" data-te="మా వివాహ మహోత్సవానికి మిమ్మల్ని సాదరంగా ఆహ్వానిస్తున్నాము">We invite you to celebrate our wedding</div>
-
-        <!-- Divider with Sacred Kalash -->
-        <div class="ornate-divider">
-          <span class="divider-line"></span>
-          <span class="divider-icon">🏺</span>
-          <span class="divider-line"></span>
-        </div>
-
-        <div class="section-title" data-en="With the Blessings Of" data-te="పెద్దల ఆశీస్సులతో">With the Blessings Of</div>
-
-        <!-- REFINED COMPACT PARENT CARDS -->
-        <div class="parents-section">
-          <!-- Bride's Parents -->
-          <div class="royal-parent-card bride-royal-frame">
-            <div class="bride-inner-border">
-              <div class="card-badge bride-badge" data-en="🌸 BRIDE'S PARENTS" data-te="🌸 వధువు తల్లిదండ్రులు">🌸 BRIDE'S PARENTS</div>
-              <div class="parent-name">
-                Deshaboina Venkateshwara Prabhu
-                <span class="parent-connector">&amp;</span>
-                Mrs. Sharadamba
-              </div>
-            </div>
-          </div>
-
-          <!-- Groom's Parents -->
-          <div class="royal-parent-card groom-royal-frame">
-            <div class="groom-inner-border">
-              <div class="card-badge groom-badge" data-en="🪷 GROOM'S PARENTS" data-te="🪷 వరుని తల్లిదండ్రులు">🪷 GROOM'S PARENTS</div>
-              <div class="parent-name">
-                Boga Ashok
-                <span class="parent-connector">&amp;</span>
-                Mrs. Geetha
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- POLAROID FLIP STORY CARDS (WITH SCROLL MUSIC SWELL SENSOR) -->
-        <div class="story-section" id="storySection">
-          <div style="font-family:'Cinzel', serif; font-size:1.2rem; font-weight:800; color:var(--maroon-primary);" data-en="Our Story" data-te="మా ప్రేమ కథ">Our Story</div>
-          <div style="font-size:0.8rem; color:#7A6953; font-style:italic;" data-en="Tap a memory to flip 💫" data-te="జ్ఞాపకాన్ని చూడటానికి తాకండి 💫">Tap a memory to flip 💫</div>
-          
-          <div class="story-grid">
-            <div class="polaroid-card" onclick="flipStoryCard(this)">
-              <div class="polaroid-inner">
-                <div class="polaroid-front">
-                  <img src="story.jpg" alt="The Beginning" onerror="handleImgError(this, 'story')">
-                  <div class="p-caption" data-en="The Beginning 💛" data-te="ప్రారంభం 💛">The Beginning 💛</div>
-                </div>
-                <div class="polaroid-back">
-                  <h4 data-en="Destiny" data-te="విధి">Destiny</h4>
-                  <p data-en="&quot;Two hearts brought together by divine blessings.&quot;" data-te="&quot;దైవ ఆశీస్సులతో కలిసిన రెండు హృదయాలు.&quot;">"Two hearts brought together by divine blessings."</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="polaroid-card" onclick="flipStoryCard(this)">
-              <div class="polaroid-inner">
-                <div class="polaroid-front">
-                  <img src="story2.jpg" alt="Courtship" onerror="handleImgError(this, 'story2')">
-                  <div class="p-caption" data-en="Courtship 🌸" data-te="అనుబంధం 🌸">Courtship 🌸</div>
-                </div>
-                <div class="polaroid-back">
-                  <h4 data-en="Together" data-te="కలిసి">Together</h4>
-                  <p data-en="&quot;Every shared laugh turned into our lifelong promise.&quot;" data-te="&quot;ప్రతి నవ్వు జీవితాంతం నిలిచే ఒక వాగ్దానంగా మారింది.&quot;">"Every shared laugh turned into our lifelong promise."</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="polaroid-card" onclick="flipStoryCard(this)">
-              <div class="polaroid-inner">
-                <div class="polaroid-front">
-                  <img src="story3.jpg" alt="Forever" onerror="handleImgError(this, 'story3')">
-                  <div class="p-caption" data-en="Forever 💍" data-te="శాశ్వతం 💍">Forever 💍</div>
-                </div>
-                <div class="polaroid-back">
-                  <h4 data-en="Sacred Union" data-te="ఏడడుగులు">Sacred Union</h4>
-                  <p data-en="&quot;Stepping into the sacred Seven Vows on Nov 26, 2026.&quot;" data-te="&quot;నవంబర్ 26, 2026న ప్రారంభమయ్యే పవిత్ర వైవాహిక బంధం.&quot;">"Stepping into the sacred Seven Vows on Nov 26, 2026."</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- DIGITAL GOLD FOIL SCRATCH CARD -->
-        <div class="scratch-card-section">
-          <div style="font-family:'Cinzel', serif; font-size:1.1rem; font-weight:800; color:var(--maroon-primary);" data-en="✨ Surprise Scratch Card ✨" data-te="✨ గోల్డ్ స్క్రాచ్ కార్డ్ ✨">✨ Surprise Scratch Card ✨</div>
-          <div style="font-size:0.8rem; color:#7A6953; margin-top:2px;" data-en="Scratch with your finger to reveal our special note!" data-te="మా ప్రత్యేక సందేశాన్ని చూడటానికి స్క్రాచ్ చేయండి!">Scratch with your finger to reveal our special note!</div>
-          
-          <div class="scratch-container" id="scratchContainer">
-            <div class="scratch-secret-message">
-              <h4 data-en="With All Our Hearts" data-te="హృదయపూర్వక ధన్యవాదాలు">With All Our Hearts</h4>
-              <p data-en="&quot;Your presence &amp; blessings are the greatest gift as we begin our forever.&quot; ❤️" data-te="&quot;మా కొత్త ప్రయాణంలో మీ ఆశీస్సులే మాకు కొండంత బలం.&quot; ❤️">"Your presence &amp; blessings are the greatest gift as we begin our forever." ❤️</p>
-            </div>
-            <canvas id="scratchCanvas" width="290" height="130"></canvas>
-          </div>
-        </div>
-
-        <!-- Divider with Lotus -->
-        <div class="ornate-divider">
-          <span class="divider-line"></span>
-          <span class="divider-icon">🪷</span>
-          <span class="divider-line"></span>
-        </div>
-
-        <!-- SACRED DIYA LIGHTING -->
-        <div class="diya-section">
-          <div class="diya-heading" data-en="Light the Sacred Diya" data-te="మంగళ దీపం వెలిగించండి">Light the Sacred Diya</div>
-          <div class="diya-sub" data-en="Touch the lamp to ignite divine blessings for Sampath &amp; Sarika 🪔" data-te="సంపత్ &amp; సారికల కొరకు మంగళ దీపాన్ని తాకి వెలిగించండి 🪔">Touch the lamp to ignite divine blessings for Sampath &amp; Sarika 🪔</div>
-          
-          <div class="diya-lamp-box" id="diyaBox" onclick="lightTheDiya()">
-            <div class="diya-aura"></div>
-            <svg viewBox="0 0 100 100" width="80" height="80">
-              <path class="diya-flame" d="M50 12 C44 26 40 38 50 48 C60 38 56 26 50 12 Z" fill="url(#flameGradient)"/>
-              <ellipse class="diya-flame" cx="50" cy="38" rx="4" ry="7" fill="#FFFFFF" opacity="0.8"/>
-              <path d="M24 55 Q50 68 76 55 Q78 68 62 76 L66 88 L34 88 L38 76 Q22 68 24 55 Z" fill="#D4AF37" stroke="#A67C1E" stroke-width="2"/>
-              <ellipse cx="50" cy="55" rx="26" ry="6" fill="#F3D778"/>
-              <ellipse cx="50" cy="55" rx="16" ry="3" fill="#A67C1E"/>
-              <defs>
-                <linearGradient id="flameGradient" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#FFF275"/>
-                  <stop offset="45%" stop-color="#FF9F1C"/>
-                  <stop offset="100%" stop-color="#E71D36"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-          <div class="diya-status-tag" id="diyaStatus" data-en="Touch to light the Diya ✨" data-te="దీపం వెలిగించడానికి తాకండి ✨">Touch to light the Diya ✨</div>
-        </div>
-
-        <!-- Muhurtham Section -->
-        <div class="event-card">
-          <div class="event-img-wrap">
-            <img src="kalyanam.jpeg" alt="Sita Rama Kalyanam" onerror="handleImgError(this, 'kalyanam')">
-          </div>
-          <div class="event-tag" data-en="MUHURTHAM" data-te="సుముహూర్తం">MUHURTHAM</div>
-          <div class="event-subtitle" data-en="With divine blessings, soliciting your gracious presence" data-te="మీ పవిత్ర సమక్షాన్ని కోరుకుంటూ">With divine blessings, soliciting your gracious presence</div>
-          <div style="font-size: 1.05rem; font-weight:700;" data-en="Thursday, 26 November 2026" data-te="గురువారం, 26 నవంబర్ 2026">Thursday, 26 November 2026</div>
-          <div class="event-time-highlight" data-en="9:15 AM" data-te="ఉదయం 9:15 గంటలకు">9:15 AM</div>
-
-          <!-- CIRCULAR MEDAL COUNTDOWN BADGES -->
-          <div class="countdown-medals">
-            <div class="medal-item">
-              <div class="medal-val" id="days">--</div>
-              <div class="medal-lbl" data-en="Days" data-te="రోజులు">Days</div>
-            </div>
-            <div class="medal-item">
-              <div class="medal-val" id="hours">--</div>
-              <div class="medal-lbl" data-en="Hours" data-te="గంటలు">Hours</div>
-            </div>
-            <div class="medal-item">
-              <div class="medal-val" id="mins">--</div>
-              <div class="medal-lbl" data-en="Mins" data-te="నిమిషాలు">Mins</div>
-            </div>
-            <div class="medal-item">
-              <div class="medal-val" id="secs">--</div>
-              <div class="medal-lbl" data-en="Secs" data-te="సెకన్లు">Secs</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- TALAMBRALU CEREMONIAL BOWL SHOWER -->
-        <div class="talambralu-box">
-          <div class="talambralu-title" data-en="Talambralu Blessings 🌾" data-te="తలంబ్రాల ఆశీస్సులు 🌾">Talambralu Blessings 🌾</div>
-          <div style="font-size:0.8rem; color:#7A6953;" data-en="Tap the sacred bowls to shower blessings upon the couple" data-te="వధూవరులపై తలంబ్రాలు కురిపించడానికి తాకండి">Tap the sacred bowls to shower blessings upon the couple</div>
-          <div class="talambralu-bowls-wrap">
-            <button class="ceremonial-kinnam-btn" onclick="showerTalambralu('rice')">
-              <span class="kinnam-icon">🍚</span>
-              <span class="kinnam-lbl" data-en="Yellow Akshintalu" data-te="పసుపు అక్షింతలు">Yellow Akshintalu</span>
-            </button>
-            <button class="ceremonial-kinnam-btn" onclick="showerTalambralu('petals')">
-              <span class="kinnam-icon">🌹</span>
-              <span class="kinnam-lbl" data-en="Rose Petals" data-te="గులాబీ రేకులు">Rose Petals</span>
-            </button>
-          </div>
-        </div>
-
-        <!-- Divider with Kalash -->
-        <div class="ornate-divider">
-          <span class="divider-line"></span>
-          <span class="divider-icon">🏺</span>
-          <span class="divider-line"></span>
-        </div>
-
-        <!-- LIVE STREAMING SECTION -->
-        <div class="livestream-card">
-          <div class="livestream-badge">
-            <span class="live-dot"></span> <span data-en="LIVE BROADCAST" data-te="ప్రత్యక్ష ప్రసారం">LIVE BROADCAST</span>
-          </div>
-          <div class="livestream-title" data-en="Watch Live Kalyanam" data-te="కల్యాణ మహోత్సవం లైవ్">Watch Live Kalyanam</div>
-          <div class="livestream-sub" data-en="Join our sacred ceremony virtually from anywhere in the world 🎥✨" data-te="ఎక్కడి నుంచైనా మా వివాహాన్ని ప్రత్యక్షంగా వీక్షించండి 🎥✨">Join our sacred ceremony virtually from anywhere in the world 🎥✨</div>
-
-          <div class="livestream-player-box">
-            <iframe 
-              src="https://www.youtube-nocookie.com/embed/85FWdlUqBkw" 
-              title="Sampath &amp; Sarika Wedding Live Stream" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-              allowfullscreen>
-            </iframe>
-          </div>
-
-          <a class="btn-watch-youtube" href="https://www.youtube.com/live/85FWdlUqBkw?si=OjerFT0wgh_VMp9-" target="_blank" data-en="▶️ Open in YouTube App" data-te="▶️ యూట్యూబ్‌లో చూడండి">
-            ▶️ Open in YouTube App
-          </a>
-        </div>
-
-        <!-- Venue Section -->
-        <div class="event-card">
-          <div class="event-img-wrap" style="height: 220px;">
-            <img src="temple.jpeg" alt="VIP Gardens" onerror="handleImgError(this, 'temple')">
-          </div>
-          <div class="event-tag" data-en="VENUE" data-te="కళ్యాణ వేదిక">VENUE</div>
-          <div class="venue-title">VIP Gardens</div>
-          <div class="event-address">
-            GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony,<br>
-            Suraram Village, Suraram, Hyderabad, Telangana 500055
-          </div>
-
-          <div class="btn-group">
-            <a class="cta-btn btn-maps" href="https://maps.google.com/?q=VIP+Gardens+Suraram+Hyderabad" target="_blank" data-en="📍 View on Google Maps" data-te="📍 గూగుల్ మ్యాప్స్ లో చూడండి">
-              📍 View on Google Maps
-            </a>
-            <a class="cta-btn btn-whatsapp" href="https://wa.me/917675975990?text=Congratulations%20Sampath%20%26%20Sarika!%20Sending%20our%20warmest%20wishes%20for%20your%20wedding." target="_blank" data-en="💬 Send Wishes on WhatsApp" data-te="💬 వాట్సాప్‌లో శుభాకాంక్షలు పంపండి">
-              💬 Send Wishes on WhatsApp
-            </a>
-          </div>
-        </div>
-
-        <!-- Interactive Shower Akshintalu & Petals Button -->
-        <div class="akshintalu-btn-wrap">
-          <button class="akshintalu-btn" onclick="showerAkshintalu()" data-en="🌸 Tap to Shower Akshintalu &amp; Blessings" data-te="🌸 అక్షింతలు &amp; ఆశీస్సులు కురిపించండి">
-            🌸 Tap to Shower Akshintalu &amp; Blessings
-          </button>
-          <div class="blessing-ticker">💖 <span id="blessingCount">...</span> <span data-en="blessings showered so far!" data-te="ఆశీస్సులు అందాయి!">blessings showered so far!</span></div>
-        </div>
-
-        <!-- GUEST WISHES WALL -->
-        <div class="wishes-wall">
-          <div class="guestbook-title" data-en="Guest Wishes Wall" data-te="అతిథుల ఆశీస్సుల వేదిక">Guest Wishes Wall</div>
-          <div class="guestbook-sub" data-en="Leave a blessing, snap a selfie, or record a voice note for Sampath &amp; Sarika" data-te="మీ ఆశీస్సులు, ఫోటో లేదా వాయిస్ సందేశాన్ని పంపండి">Leave a blessing, snap a selfie, or record a voice note for Sampath &amp; Sarika</div>
-          
-          <div class="wish-input-group">
-            <input type="text" id="guestName" placeholder="Your Name (e.g., Ramesh Uncle)" maxlength="40">
-            <input type="text" id="guestMessage" placeholder="Your blessing / wish..." maxlength="120">
-
-            <!-- Media Options -->
-            <div class="media-action-row">
-              <button type="button" class="media-action-btn" onclick="togglePhotoBooth()">
-                📸 Snap Selfie Frame
-              </button>
-              <button type="button" class="media-action-btn" id="recordVoiceBtn" onclick="handleVoiceRecord()">
-                🎙️ Voice Note (10s)
-              </button>
-            </div>
-
-            <!-- Virtual Photo Booth Live Camera View -->
-            <div class="booth-live-wrapper" id="boothArea">
-              <video id="boothVideo" autoplay playsinline></video>
-              <canvas id="boothCanvas" width="400" height="400" style="display:none;"></canvas>
-              <div class="booth-ctrl-bar">
-                <button type="button" class="booth-snap-btn" onclick="snapSelfie()">⚡ Take Photo</button>
-                <button type="button" class="booth-cancel-btn" onclick="closePhotoBooth()">✕ Close</button>
-              </div>
-            </div>
-
-            <!-- Captured Selfie Confirmation -->
-            <div class="captured-selfie-box" id="capturedPhotoPreview">
-              <img id="selfieThumb" class="selfie-thumb-img" src="" alt="Captured Selfie">
-              <div style="flex:1; text-align:left;">
-                <div style="font-size:0.78rem; font-weight:700; color:#2E7D32;">✨ Frame Attached!</div>
-                <div style="font-size:0.72rem; color:#851329; cursor:pointer; text-decoration:underline;" onclick="clearSelfie()">Remove Photo ✕</div>
-              </div>
-            </div>
-
-            <!-- 10-Second Voice Recorder Status Box -->
-            <div class="voice-status-wrapper" id="voiceStatusArea">
-              <div class="voice-status-txt" id="recordingTimer">🔴 Recording... 10s</div>
-              <audio id="recordedAudioPreview" class="voice-audio-preview" controls></audio>
-              <div id="clearVoiceLink" style="display:none; font-size:0.74rem; color:#851329; cursor:pointer; margin-top:4px; text-decoration:underline;" onclick="clearVoiceNote()">Delete Voice Note ✕</div>
-            </div>
-
-            <button class="send-wish-btn" id="postWishBtn" onclick="submitWish()" data-en="✨ Send Blessing" data-te="✨ ఆశీర్వదించండి">✨ Send Blessing</button>
-            <button class="download-card-btn" id="downloadCardBtn" onclick="generateAndDownloadBlessingCard()" data-en="💌 Download My Blessing Card" data-te="💌 నా ఆశీర్వాద కార్డు డౌన్‌లోడ్ చేసుకోండి">💌 Download My Blessing Card</button>
-          </div>
-
-          <div class="wishes-ticker-box" id="wishesBox">
-            <div style="text-align:center; padding:12px; color:#8C7355; font-size:0.85rem;">
-              Loading blessings... 🪷
-            </div>
-          </div>
-        </div>
-
-        <!-- THANK YOU POPUP TRIGGER BUTTON -->
-        <div class="thankyou-trigger-wrap">
-          <button class="btn-thankyou-popup" onclick="openThankYouModal()" data-en="🙏 View Thank You Message" data-te="🙏 ధన్యవాద సందేశం చూడండి">
-            🙏 View Thank You Message
-          </button>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer-bar">
-          <em data-en="We can't wait to celebrate this auspicious day with you ❤️" data-te="ఈ శుభదినాన మీతో కలిసి వేడుక చేసుకోవడానికి వేచిచూస్తున్నాము ❤️">We can't wait to celebrate this auspicious day with you ❤️</em>
-          <div style="font-size:0.85rem; margin-top:4px; color:#F8DFAD;" data-en="With Love," data-te="ప్రేమతో,">With Love,</div>
-          <div class="footer-couple">SAMPATH &amp; SARIKA</div>
-        </div>
-
-      </div>
+  <!-- 2. ROYAL SCROLL UNROLL WRAPPER (RAAJA PATRAM) -->
+  <div class="scroll-outer-wrapper">
+    
+    <!-- Top Royal Finial Cylinder -->
+    <div class="scroll-finial">
+      <div class="finial-knob"></div>
+      <div style="font-family:'Cinzel', serif; font-size:0.75rem; font-weight:800; color:#4E3205; letter-spacing:2px;">• RAAJA PATRAM •</div>
+      <div class="finial-knob"></div>
     </div>
+
+    <!-- Scroll Unroll Prompt Trigger Card -->
+    <div class="scroll-unroll-trigger-card" id="scrollTriggerCard" onclick="unrollRoyalPatram()">
+      <div class="scroll-seal-crest">📜</div>
+      <div class="scroll-unroll-prompt" id="unrollPromptTxt" data-en="Tap to Unroll Sacred Patram ✨" data-te="పవిత్ర ఆహ్వాన పత్రం తెరవండి ✨">Tap to Unroll Sacred Patram ✨</div>
+      <div style="font-size:0.8rem; color:#8C7355; margin-top:4px;" data-en="Touch to unfurl the wedding proclamation" data-te="శుభలేఖను చదవడానికి తాకండి">Touch to unfurl the wedding proclamation</div>
+    </div>
+
+    <!-- Collapsible Unrolling Scroll Body -->
+    <div class="scroll-content-collapsible" id="scrollCollapsible">
+      
+      <div class="invitation-container">
+        <div class="card-inner">
+          
+          <!-- Continuous Drifting Lotus Petals -->
+          <div class="floating-petals-layer">
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+            <div class="petal"></div>
+          </div>
+
+          <!-- Side Welcome Banner from Side Choice -->
+          <div class="family-welcome-banner" id="familyWelcomeBanner"></div>
+
+          <!-- Festive Toranam & Side Garlands -->
+          <div class="top-toranam"></div>
+          <div class="garland-side garland-left"></div>
+          <div class="garland-side garland-right"></div>
+
+          <div class="main-body">
+
+            <!-- DEITY CEREMONY PHOTO WITH DIVINE HALO AURA -->
+            <div class="deity-halo-container">
+              <div class="divine-aura"></div>
+              <div class="deity-frame">
+                <img src="couple-ceremony.jpg" alt="Godha Kalyanam" onerror="handleImgError(this, 'couple-ceremony')">
+              </div>
+            </div>
+
+            <!-- Sacred Shloka -->
+            <div class="sacred-shloka">
+              || మంగళం భగవాన్ విష్ణుః మంగళం గరుడధ్వజః | మంగళం పుండరీకాక్షో మంగళాయ తనో హరిః || 🙏
+            </div>
+
+            <!-- HIGHLIGHTED COUPLE NAMES -->
+            <div class="couple-title">Sampath &amp; Sarika</div>
+            <div class="hashtag-tag">#SamRika</div>
+            <div class="invite-lead" data-en="We invite you to celebrate our wedding" data-te="మా వివాహ మహోత్సవానికి మిమ్మల్ని సాదరంగా ఆహ్వానిస్తున్నాము">We invite you to celebrate our wedding</div>
+
+            <!-- Divider with Sacred Kalash -->
+            <div class="ornate-divider">
+              <span class="divider-line"></span>
+              <span class="divider-icon">🏺</span>
+              <span class="divider-line"></span>
+            </div>
+
+            <div class="section-title" data-en="With the Blessings Of" data-te="పెద్దల ఆశీస్సులతో">With the Blessings Of</div>
+
+            <!-- REFINED COMPACT PARENT CARDS -->
+            <div class="parents-section">
+              <!-- Bride's Parents -->
+              <div class="royal-parent-card bride-royal-frame">
+                <div class="bride-inner-border">
+                  <div class="card-badge bride-badge" data-en="🌸 BRIDE'S PARENTS" data-te="🌸 వధువు తల్లిదండ్రులు">🌸 BRIDE'S PARENTS</div>
+                  <div class="parent-name">
+                    Deshaboina Venkateshwara Prabhu
+                    <span class="parent-connector">&amp;</span>
+                    Mrs. Sharadamba
+                  </div>
+                </div>
+              </div>
+
+              <!-- Groom's Parents -->
+              <div class="royal-parent-card groom-royal-frame">
+                <div class="groom-inner-border">
+                  <div class="card-badge groom-badge" data-en="🪷 GROOM'S PARENTS" data-te="🪷 వరుని తల్లిదండ్రులు">🪷 GROOM'S PARENTS</div>
+                  <div class="parent-name">
+                    Boga Ashok
+                    <span class="parent-connector">&amp;</span>
+                    Mrs. Geetha
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- POLAROID FLIP STORY CARDS (WITH SCROLL MUSIC SWELL SENSOR) -->
+            <div class="story-section" id="storySection">
+              <div style="font-family:'Cinzel', serif; font-size:1.2rem; font-weight:800; color:var(--maroon-primary);" data-en="Our Story" data-te="మా ప్రేమ కథ">Our Story</div>
+              <div style="font-size:0.8rem; color:#7A6953; font-style:italic;" data-en="Tap a memory to flip 💫" data-te="జ్ఞాపకాన్ని చూడటానికి తాకండి 💫">Tap a memory to flip 💫</div>
+              
+              <div class="story-grid">
+                <div class="polaroid-card" onclick="flipStoryCard(this)">
+                  <div class="polaroid-inner">
+                    <div class="polaroid-front">
+                      <img src="story.jpg" alt="The Beginning" onerror="handleImgError(this, 'story')">
+                      <div class="p-caption" data-en="The Beginning 💛" data-te="ప్రారంభం 💛">The Beginning 💛</div>
+                    </div>
+                    <div class="polaroid-back">
+                      <h4 data-en="Destiny" data-te="విధి">Destiny</h4>
+                      <p data-en="&quot;Two hearts brought together by divine blessings.&quot;" data-te="&quot;దైవ ఆశీస్సులతో కలిసిన రెండు హృదయాలు.&quot;">"Two hearts brought together by divine blessings."</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="polaroid-card" onclick="flipStoryCard(this)">
+                  <div class="polaroid-inner">
+                    <div class="polaroid-front">
+                      <img src="story2.jpg" alt="Courtship" onerror="handleImgError(this, 'story2')">
+                      <div class="p-caption" data-en="Courtship 🌸" data-te="అనుబంధం 🌸">Courtship 🌸</div>
+                    </div>
+                    <div class="polaroid-back">
+                      <h4 data-en="Together" data-te="కలిసి">Together</h4>
+                      <p data-en="&quot;Every shared laugh turned into our lifelong promise.&quot;" data-te="&quot;ప్రతి నవ్వు జీవితాంతం నిలిచే ఒక వాగ్దానంగా మారింది.&quot;">"Every shared laugh turned into our lifelong promise."</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="polaroid-card" onclick="flipStoryCard(this)">
+                  <div class="polaroid-inner">
+                    <div class="polaroid-front">
+                      <img src="story3.jpg" alt="Forever" onerror="handleImgError(this, 'story3')">
+                      <div class="p-caption" data-en="Forever 💍" data-te="శాశ్వతం 💍">Forever 💍</div>
+                    </div>
+                    <div class="polaroid-back">
+                      <h4 data-en="Sacred Union" data-te="ఏడడుగులు">Sacred Union</h4>
+                      <p data-en="&quot;Stepping into the sacred Seven Vows on Nov 26, 2026.&quot;" data-te="&quot;నవంబర్ 26, 2026న ప్రారంభమయ్యే పవిత్ర వైవాహిక బంధం.&quot;">"Stepping into the sacred Seven Vows on Nov 26, 2026."</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- DIGITAL GOLD FOIL SCRATCH CARD -->
+            <div class="scratch-card-section">
+              <div style="font-family:'Cinzel', serif; font-size:1.1rem; font-weight:800; color:var(--maroon-primary);" data-en="✨ Surprise Scratch Card ✨" data-te="✨ గోల్డ్ స్క్రాచ్ కార్డ్ ✨">✨ Surprise Scratch Card ✨</div>
+              <div style="font-size:0.8rem; color:#7A6953; margin-top:2px;" data-en="Scratch with your finger to reveal our special note!" data-te="మా ప్రత్యేక సందేశాన్ని చూడటానికి స్క్రాచ్ చేయండి!">Scratch with your finger to reveal our special note!</div>
+              
+              <div class="scratch-container" id="scratchContainer">
+                <div class="scratch-secret-message">
+                  <h4 data-en="With All Our Hearts" data-te="హృదయపూర్వక ధన్యవాదాలు">With All Our Hearts</h4>
+                  <p data-en="&quot;Your presence &amp; blessings are the greatest gift as we begin our forever.&quot; ❤️" data-te="&quot;మా కొత్త ప్రయాణంలో మీ ఆశీస్సులే మాకు కొండంత బలం.&quot; ❤️">"Your presence &amp; blessings are the greatest gift as we begin our forever." ❤️</p>
+                </div>
+                <canvas id="scratchCanvas" width="290" height="130"></canvas>
+              </div>
+            </div>
+
+            <!-- Divider with Lotus -->
+            <div class="ornate-divider">
+              <span class="divider-line"></span>
+              <span class="divider-icon">🪷</span>
+              <span class="divider-line"></span>
+            </div>
+
+            <!-- SACRED DIYA LIGHTING -->
+            <div class="diya-section">
+              <div class="diya-heading" data-en="Light the Sacred Diya" data-te="మంగళ దీపం వెలిగించండి">Light the Sacred Diya</div>
+              <div class="diya-sub" data-en="Touch the lamp to ignite divine blessings for Sampath &amp; Sarika 🪔" data-te="సంపత్ &amp; సారికల కొరకు మంగళ దీపాన్ని తాకి వెలిగించండి 🪔">Touch the lamp to ignite divine blessings for Sampath &amp; Sarika 🪔</div>
+              
+              <div class="diya-lamp-box" id="diyaBox" onclick="lightTheDiya()">
+                <div class="diya-aura"></div>
+                <svg viewBox="0 0 100 100" width="80" height="80">
+                  <path class="diya-flame" d="M50 12 C44 26 40 38 50 48 C60 38 56 26 50 12 Z" fill="url(#flameGradient)"/>
+                  <ellipse class="diya-flame" cx="50" cy="38" rx="4" ry="7" fill="#FFFFFF" opacity="0.8"/>
+                  <path d="M24 55 Q50 68 76 55 Q78 68 62 76 L66 88 L34 88 L38 76 Q22 68 24 55 Z" fill="#D4AF37" stroke="#A67C1E" stroke-width="2"/>
+                  <ellipse cx="50" cy="55" rx="26" ry="6" fill="#F3D778"/>
+                  <ellipse cx="50" cy="55" rx="16" ry="3" fill="#A67C1E"/>
+                  <defs>
+                    <linearGradient id="flameGradient" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stop-color="#FFF275"/>
+                      <stop offset="45%" stop-color="#FF9F1C"/>
+                      <stop offset="100%" stop-color="#E71D36"/>
+                    </linearGradient>
+                  </defs>
+                </svg>
+              </div>
+              <div class="diya-status-tag" id="diyaStatus" data-en="Touch to light the Diya ✨" data-te="దీపం వెలిగించడానికి తాకండి ✨">Touch to light the Diya ✨</div>
+            </div>
+
+            <!-- 3. MUHURTHAM SECTION WITH LIVE AUSPICIOUS GLOW (9:15 AM) -->
+            <div class="event-card">
+              <div class="event-img-wrap">
+                <img src="kalyanam.jpeg" alt="Sita Rama Kalyanam" onerror="handleImgError(this, 'kalyanam')">
+              </div>
+              <div class="event-tag" data-en="MUHURTHAM" data-te="సుముహూర్తం">MUHURTHAM</div>
+              <div class="event-subtitle" data-en="With divine blessings, soliciting your gracious presence" data-te="మీ పవిత్ర సమక్షాన్ని కోరుకుంటూ">With divine blessings, soliciting your gracious presence</div>
+              <div style="font-size: 1.05rem; font-weight:700;" data-en="Thursday, 26 November 2026" data-te="గురువారం, 26 నవంబర్ 2026">Thursday, 26 November 2026</div>
+
+              <!-- LIVE AUSPICIOUS GLOW HALO CONTAINER -->
+              <div>
+                <div class="muhurtham-glow-halo" id="muhurthamHalo">
+                  <div class="event-time-highlight" data-en="9:15 AM" data-te="ఉదయం 9:15 గంటలకు">9:15 AM</div>
+                </div>
+              </div>
+              <div>
+                <span class="auspicious-status-pill" id="auspiciousStatusPill">✨ Auspicious Muhurtham Approaching</span>
+              </div>
+
+              <!-- CIRCULAR MEDAL COUNTDOWN BADGES -->
+              <div class="countdown-medals">
+                <div class="medal-item">
+                  <div class="medal-val" id="days">--</div>
+                  <div class="medal-lbl" data-en="Days" data-te="రోజులు">Days</div>
+                </div>
+                <div class="medal-item">
+                  <div class="medal-val" id="hours">--</div>
+                  <div class="medal-lbl" data-en="Hours" data-te="గంటలు">Hours</div>
+                </div>
+                <div class="medal-item">
+                  <div class="medal-val" id="mins">--</div>
+                  <div class="medal-lbl" data-en="Mins" data-te="నిమిషాలు">Mins</div>
+                </div>
+                <div class="medal-item">
+                  <div class="medal-val" id="secs">--</div>
+                  <div class="medal-lbl" data-en="Secs" data-te="సెకన్లు">Secs</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- TALAMBRALU CEREMONIAL BOWL SHOWER -->
+            <div class="talambralu-box">
+              <div class="talambralu-title" data-en="Talambralu Blessings 🌾" data-te="తలంబ్రాల ఆశీస్సులు 🌾">Talambralu Blessings 🌾</div>
+              <div style="font-size:0.8rem; color:#7A6953;" data-en="Tap the sacred bowls to shower blessings upon the couple" data-te="వధూవరులపై తలంబ్రాలు కురిపించడానికి తాకండి">Tap the sacred bowls to shower blessings upon the couple</div>
+              <div class="talambralu-bowls-wrap">
+                <button class="ceremonial-kinnam-btn" onclick="showerTalambralu('rice')">
+                  <span class="kinnam-icon">🍚</span>
+                  <span class="kinnam-lbl" data-en="Yellow Akshintalu" data-te="పసుపు అక్షింతలు">Yellow Akshintalu</span>
+                </button>
+                <button class="ceremonial-kinnam-btn" onclick="showerTalambralu('petals')">
+                  <span class="kinnam-icon">🌹</span>
+                  <span class="kinnam-lbl" data-en="Rose Petals" data-te="గులాబీ రేకులు">Rose Petals</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Divider with Kalash -->
+            <div class="ornate-divider">
+              <span class="divider-line"></span>
+              <span class="divider-icon">🏺</span>
+              <span class="divider-line"></span>
+            </div>
+
+            <!-- LIVE STREAMING SECTION -->
+            <div class="livestream-card">
+              <div class="livestream-badge">
+                <span class="live-dot"></span> <span data-en="LIVE BROADCAST" data-te="ప్రత్యక్ష ప్రసారం">LIVE BROADCAST</span>
+              </div>
+              <div class="livestream-title" data-en="Watch Live Kalyanam" data-te="కల్యాణ మహోత్సవం లైవ్">Watch Live Kalyanam</div>
+              <div class="livestream-sub" data-en="Join our sacred ceremony virtually from anywhere in the world 🎥✨" data-te="ఎక్కడి నుంచైనా మా వివాహాన్ని ప్రత్యక్షంగా వీక్షించండి 🎥✨">Join our sacred ceremony virtually from anywhere in the world 🎥✨</div>
+
+              <div class="livestream-player-box">
+                <iframe 
+                  src="https://www.youtube-nocookie.com/embed/85FWdlUqBkw" 
+                  title="Sampath &amp; Sarika Wedding Live Stream" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                  allowfullscreen>
+                </iframe>
+              </div>
+
+              <a class="btn-watch-youtube" href="https://www.youtube.com/live/85FWdlUqBkw?si=OjerFT0wgh_VMp9-" target="_blank" data-en="▶️ Open in YouTube App" data-te="▶️ యూట్యూబ్‌లో చూడండి">
+                ▶️ Open in YouTube App
+              </a>
+            </div>
+
+            <!-- Venue Section -->
+            <div class="event-card">
+              <div class="event-img-wrap" style="height: 220px;">
+                <img src="temple.jpeg" alt="VIP Gardens" onerror="handleImgError(this, 'temple')">
+              </div>
+              <div class="event-tag" data-en="VENUE" data-te="కళ్యాణ వేదిక">VENUE</div>
+              <div class="venue-title">VIP Gardens</div>
+              <div class="event-address">
+                GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony,<br>
+                Suraram Village, Suraram, Hyderabad, Telangana 500055
+              </div>
+
+              <div class="btn-group">
+                <a class="cta-btn btn-maps" href="https://maps.google.com/?q=VIP+Gardens+Suraram+Hyderabad" target="_blank" data-en="📍 View on Google Maps" data-te="📍 గూగుల్ మ్యాప్స్ లో చూడండి">
+                  📍 View on Google Maps
+                </a>
+                <a class="cta-btn btn-whatsapp" href="https://wa.me/917675975990?text=Congratulations%20Sampath%20%26%20Sarika!%20Sending%20our%20warmest%20wishes%20for%20your%20wedding." target="_blank" data-en="💬 Send Wishes on WhatsApp" data-te="💬 వాట్సాప్‌లో శుభాకాంక్షలు పంపండి">
+                  💬 Send Wishes on WhatsApp
+                </a>
+              </div>
+            </div>
+
+            <!-- Interactive Shower Akshintalu & Petals Button -->
+            <div class="akshintalu-btn-wrap">
+              <button class="akshintalu-btn" onclick="showerAkshintalu()" data-en="🌸 Tap to Shower Akshintalu &amp; Blessings" data-te="🌸 అక్షింతలు &amp; ఆశీస్సులు కురిపించండి">
+                🌸 Tap to Shower Akshintalu &amp; Blessings
+              </button>
+              <div class="blessing-ticker">💖 <span id="blessingCount">...</span> <span data-en="blessings showered so far!" data-te="ఆశీస్సులు అందాయి!">blessings showered so far!</span></div>
+            </div>
+
+            <!-- GUEST WISHES WALL -->
+            <div class="wishes-wall">
+              <div class="guestbook-title" data-en="Guest Wishes Wall" data-te="అతిథుల ఆశీస్సుల వేదిక">Guest Wishes Wall</div>
+              <div class="guestbook-sub" data-en="Leave a blessing, snap a selfie, or record a voice note for Sampath &amp; Sarika" data-te="మీ ఆశీస్సులు, ఫోటో లేదా వాయిస్ సందేశాన్ని పంపండి">Leave a blessing, snap a selfie, or record a voice note for Sampath &amp; Sarika</div>
+              
+              <div class="wish-input-group">
+                <input type="text" id="guestName" placeholder="Your Name (e.g., Ramesh Uncle)" maxlength="40">
+                <input type="text" id="guestMessage" placeholder="Your blessing / wish..." maxlength="120">
+
+                <!-- Media Options -->
+                <div class="media-action-row">
+                  <button type="button" class="media-action-btn" onclick="togglePhotoBooth()">
+                    📸 Snap Selfie Frame
+                  </button>
+                  <button type="button" class="media-action-btn" id="recordVoiceBtn" onclick="handleVoiceRecord()">
+                    🎙️ Voice Note (10s)
+                  </button>
+                </div>
+
+                <!-- Virtual Photo Booth Live Camera View -->
+                <div class="booth-live-wrapper" id="boothArea">
+                  <video id="boothVideo" autoplay playsinline></video>
+                  <canvas id="boothCanvas" width="400" height="400" style="display:none;"></canvas>
+                  <div class="booth-ctrl-bar">
+                    <button type="button" class="booth-snap-btn" onclick="snapSelfie()">⚡ Take Photo</button>
+                    <button type="button" class="booth-cancel-btn" onclick="closePhotoBooth()">✕ Close</button>
+                  </div>
+                </div>
+
+                <!-- Captured Selfie Confirmation -->
+                <div class="captured-selfie-box" id="capturedPhotoPreview">
+                  <img id="selfieThumb" class="selfie-thumb-img" src="" alt="Captured Selfie">
+                  <div style="flex:1; text-align:left;">
+                    <div style="font-size:0.78rem; font-weight:700; color:#2E7D32;">✨ Frame Attached!</div>
+                    <div style="font-size:0.72rem; color:#851329; cursor:pointer; text-decoration:underline;" onclick="clearSelfie()">Remove Photo ✕</div>
+                  </div>
+                </div>
+
+                <!-- 10-Second Voice Recorder Status Box -->
+                <div class="voice-status-wrapper" id="voiceStatusArea">
+                  <div class="voice-status-txt" id="recordingTimer">🔴 Recording... 10s</div>
+                  <audio id="recordedAudioPreview" class="voice-audio-preview" controls></audio>
+                  <div id="clearVoiceLink" style="display:none; font-size:0.74rem; color:#851329; cursor:pointer; margin-top:4px; text-decoration:underline;" onclick="clearVoiceNote()">Delete Voice Note ✕</div>
+                </div>
+
+                <button class="send-wish-btn" id="postWishBtn" onclick="submitWish()" data-en="✨ Send Blessing" data-te="✨ ఆశీర్వదించండి">✨ Send Blessing</button>
+                <button class="download-card-btn" id="downloadCardBtn" onclick="generateAndDownloadBlessingCard()" data-en="💌 Download My Blessing Card" data-te="💌 నా ఆశీర్వాద కార్డు డౌన్‌లోడ్ చేసుకోండి">💌 Download My Blessing Card</button>
+              </div>
+
+              <div class="wishes-ticker-box" id="wishesBox">
+                <div style="text-align:center; padding:12px; color:#8C7355; font-size:0.85rem;">
+                  Loading blessings... 🪷
+                </div>
+              </div>
+            </div>
+
+            <!-- THANK YOU POPUP TRIGGER BUTTON -->
+            <div class="thankyou-trigger-wrap">
+              <button class="btn-thankyou-popup" onclick="openThankYouModal()" data-en="🙏 View Thank You Message" data-te="🙏 ధన్యవాద సందేశం చూడండి">
+                🙏 View Thank You Message
+              </button>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer-bar">
+              <em data-en="We can't wait to celebrate this auspicious day with you ❤️" data-te="ఈ శుభదినాన మీతో కలిసి వేడుక చేసుకోవడానికి వేచిచూస్తున్నాము ❤️">We can't wait to celebrate this auspicious day with you ❤️</em>
+              <div style="font-size:0.85rem; margin-top:4px; color:#F8DFAD;" data-en="With Love," data-te="ప్రేమతో,">With Love,</div>
+              <div class="footer-couple">SAMPATH &amp; SARIKA</div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Royal Finial Cylinder -->
+    <div class="scroll-finial" style="margin-top: -2px;">
+      <div class="finial-knob"></div>
+      <div style="font-family:'Cinzel', serif; font-size:0.75rem; font-weight:800; color:#4E3205; letter-spacing:2px;">• SHUBHAMASTU •</div>
+      <div class="finial-knob"></div>
+    </div>
+
   </div>
 
   <!-- THANK YOU POPUP MODAL -->
@@ -809,8 +1078,9 @@
     </div>
   </div>
 
-  <!-- HIDDEN CANVAS FOR CARD GENERATION -->
+  <!-- HIDDEN CANVASES -->
   <canvas id="blessingCanvas" width="900" height="1200" style="display:none;"></canvas>
+  <canvas id="offlineSnapshotCanvas" width="1080" height="1920" style="display:none;"></canvas>
 
   <script>
     const extList = ['.jpeg', '.jpg', '.png', '.jfif'];
@@ -820,6 +1090,260 @@
         img.setAttribute('data-att', attempt + 1);
         img.src = baseName + extList[attempt];
       }
+    }
+
+    /* 1. BRIDE VS GROOM SIDE SELECTION */
+    function selectWeddingSide(side) {
+      const overlay = document.getElementById('sidePickerOverlay');
+      const banner = document.getElementById('familyWelcomeBanner');
+      overlay.classList.add('hidden');
+
+      if (side === 'groom') {
+        document.body.classList.add('side-groom');
+        banner.innerText = currentLang === 'en' 
+          ? "✨ Heartfelt Welcome to the Boga Family Celebration! 💛" 
+          : "✨ బోగ వారి కుటుంబ వేడుకకు సాదర సుస్వాగతం! 💛";
+        banner.style.display = 'block';
+      } else {
+        document.body.classList.add('side-bride');
+        banner.innerText = currentLang === 'en' 
+          ? "🌸 Heartfelt Welcome to the Deshaboina Family Celebration! 💐" 
+          : "🌸 దేశబోయిన వారి కుటుంబ వేడుకకు సాదర సుస్వాగతం! 💐";
+        banner.style.display = 'block';
+      }
+
+      if (navigator.vibrate) navigator.vibrate([40, 30, 40]);
+    }
+
+    /* 2. ROYAL SCROLL UNROLL (RAAJA PATRAM) */
+    let isScrollUnrolled = false;
+    function playScrollUnrollSound() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!audioCtx) audioCtx = new AudioContext();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        const bufferSize = audioCtx.sampleRate * 0.45;
+        const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (audioCtx.sampleRate * 0.14));
+        }
+
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = buffer;
+
+        const filter = audioCtx.createBiquadFilter();
+        filter.type = 'bandpass';
+        filter.frequency.setValueAtTime(800, audioCtx.currentTime);
+        filter.Q.setValueAtTime(2.5, audioCtx.currentTime);
+
+        const gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0.5, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.45);
+
+        noise.connect(filter);
+        filter.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        noise.start();
+      } catch (e) {
+        console.log("Scroll sound synthesis:", e);
+      }
+    }
+
+    function unrollRoyalPatram() {
+      if (isScrollUnrolled) return;
+      isScrollUnrolled = true;
+
+      playScrollUnrollSound();
+      if (navigator.vibrate) navigator.vibrate([60, 40, 80]);
+
+      const collapsible = document.getElementById('scrollCollapsible');
+      const triggerCard = document.getElementById('scrollTriggerCard');
+
+      collapsible.classList.add('unrolled');
+      triggerCard.style.display = 'none';
+
+      showerAkshintalu();
+    }
+
+    /* 3. LIVE AUSPICIOUS GLOW ENGINE (MUHURTHAM 9:15 AM) */
+    const weddingDateTime = new Date('2026-11-26T09:15:00+05:30').getTime();
+
+    function updateAuspiciousGlow() {
+      const now = new Date().getTime();
+      const diffMs = weddingDateTime - now;
+      const daysLeft = diffMs / (1000 * 60 * 60 * 24);
+
+      const halo = document.getElementById('muhurthamHalo');
+      const statusPill = document.getElementById('auspiciousStatusPill');
+      if (!halo || !statusPill) return;
+
+      if (diffMs <= 0 && diffMs >= -(1000 * 60 * 60 * 6)) {
+        // Today is the wedding ceremony morning!
+        halo.style.boxShadow = "0 0 50px rgba(255, 215, 0, 1), 0 0 25px rgba(255, 140, 0, 0.9)";
+        halo.style.background = "radial-gradient(circle, rgba(255,245,210,0.95) 0%, rgba(255,215,0,0.4) 100%)";
+        halo.style.animation = "pulseTarget 0.9s infinite ease-in-out";
+        statusPill.innerText = "🌟 THE SACRED SUMUHURTHAM HAS ARRIVED! 🌟";
+        statusPill.style.color = "#851329";
+        statusPill.style.fontWeight = "800";
+      } else if (daysLeft <= 7) {
+        // Final week intense auspicious glow
+        halo.style.boxShadow = "0 0 35px rgba(255, 215, 0, 0.85), 0 0 16px rgba(212, 175, 55, 0.6)";
+        halo.style.background = "radial-gradient(circle, rgba(255,250,225,0.85) 0%, rgba(255,215,0,0.25) 100%)";
+        halo.style.animation = "pulseTarget 1.4s infinite ease-in-out";
+        statusPill.innerText = "✨ Sacred Wedding Week: Auspicious Radiant Glow ✨";
+      } else if (daysLeft <= 30) {
+        // Approaching month moderate glow
+        halo.style.boxShadow = "0 0 22px rgba(218, 165, 32, 0.6)";
+        halo.style.background = "rgba(255, 248, 225, 0.7)";
+      } else {
+        // Default warm auspicious shimmer
+        halo.style.boxShadow = "0 0 14px rgba(218, 165, 32, 0.4)";
+      }
+    }
+
+    /* 4. OFFLINE SNAPSHOT MODE (DOWNLOAD TO PHONE GALLERY) */
+    function downloadOfflineSnapshotCard() {
+      const canvas = document.getElementById('offlineSnapshotCanvas');
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width;
+      const H = canvas.height;
+
+      // Regal Silk Parchment Gradient
+      const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 100, W / 2, H / 2, 1100);
+      bgGrad.addColorStop(0, '#FFFDF8');
+      bgGrad.addColorStop(0.65, '#F9EED9');
+      bgGrad.addColorStop(1, '#EED5B0');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, W, H);
+
+      // Gold Borders
+      ctx.lineWidth = 18;
+      ctx.strokeStyle = '#851329';
+      ctx.strokeRect(32, 32, W - 64, H - 64);
+
+      ctx.lineWidth = 4;
+      ctx.strokeStyle = '#C59A3F';
+      ctx.strokeRect(54, 54, W - 108, H - 108);
+
+      // Crest & Header
+      ctx.textAlign = 'center';
+      ctx.font = '54px sans-serif';
+      ctx.fillText('🏺', W / 2, 170);
+
+      ctx.font = 'bold 36px "Noto Sans Telugu", sans-serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText('|| శ్రీరస్తు - శుభమస్తు - అవిఘ్నమస్తు ||', W / 2, 235);
+
+      ctx.font = 'bold 32px "Cinzel", serif';
+      ctx.fillStyle = '#8E6A26';
+      ctx.letterSpacing = '3px';
+      ctx.fillText('WEDDING INVITATION', W / 2, 310);
+
+      // Highlighted Couple Names
+      ctx.font = 'bold 110px "Great Vibes", cursive, serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText('Sampath & Sarika', W / 2, 450);
+
+      ctx.font = 'bold 32px "Cinzel", serif';
+      ctx.fillStyle = '#8E6A26';
+      ctx.fillText('#SamRika', W / 2, 515);
+
+      // Divider
+      ctx.beginPath();
+      ctx.moveTo(W / 2 - 280, 560);
+      ctx.lineTo(W / 2 + 280, 560);
+      ctx.lineWidth = 2.5;
+      ctx.strokeStyle = '#DFC394';
+      ctx.stroke();
+
+      // Parent Sections
+      ctx.font = 'italic 30px "Playfair Display", serif';
+      ctx.fillStyle = '#4D3205';
+      ctx.fillText('Soliciting your gracious presence on our auspicious marriage', W / 2, 630);
+
+      // Bride Parents Box
+      ctx.fillStyle = '#FFFFFF';
+      ctx.strokeStyle = '#F1BFB3';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(140, 680, W - 280, 160, 20);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.font = 'bold 24px "Cinzel", serif';
+      ctx.fillStyle = '#8E1F35';
+      ctx.fillText('🌸 BRIDE\'S PARENTS', W / 2, 725);
+      ctx.font = 'bold 34px "Playfair Display", serif';
+      ctx.fillStyle = '#222';
+      ctx.fillText('Deshaboina Venkateshwara Prabhu & Mrs. Sharadamba', W / 2, 790);
+
+      // Groom Parents Box
+      ctx.fillStyle = '#FFFFFF';
+      ctx.strokeStyle = '#ECC968';
+      ctx.beginPath();
+      ctx.roundRect(140, 870, W - 280, 160, 20);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.font = 'bold 24px "Cinzel", serif';
+      ctx.fillStyle = '#7A570D';
+      ctx.fillText('🪷 GROOM\'S PARENTS', W / 2, 915);
+      ctx.font = 'bold 34px "Playfair Display", serif';
+      ctx.fillStyle = '#222';
+      ctx.fillText('Boga Ashok & Mrs. Geetha', W / 2, 980);
+
+      // Muhurtham Card Box
+      ctx.fillStyle = '#FFF8E6';
+      ctx.strokeStyle = '#C59A3F';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.roundRect(140, 1070, W - 280, 280, 24);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.font = 'bold 34px "Cinzel", serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText('✨ SUMUHURTHAM ✨', W / 2, 1140);
+      ctx.font = 'bold 44px "Playfair Display", serif';
+      ctx.fillStyle = '#222';
+      ctx.fillText('Thursday, 26 November 2026', W / 2, 1220);
+      ctx.font = 'bold 64px "Cinzel", serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText('9:15 AM', W / 2, 1305);
+
+      // Venue Box
+      ctx.fillStyle = '#FFFFFF';
+      ctx.strokeStyle = '#DFC394';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(140, 1380, W - 280, 260, 24);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.font = 'bold 32px "Cinzel", serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText('📍 VENUE: VIP GARDENS', W / 2, 1445);
+      ctx.font = '600 32px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = '#222';
+      ctx.fillText('Suraram Village Rd, Lakshmi Nagar Colony,', W / 2, 1515);
+      ctx.fillText('Suraram, Hyderabad, Telangana 500055', W / 2, 1570);
+
+      // Traditional Footer
+      ctx.font = 'italic 28px "Playfair Display", serif';
+      ctx.fillStyle = '#8E6A26';
+      ctx.fillText('May Lord Venkateshwara bless our union with love & prosperity 🙏', W / 2, 1720);
+      ctx.font = 'bold 34px "Cinzel", serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText('SAMPATH & SARIKA', W / 2, 1790);
+
+      // Trigger Instant Image Download
+      const link = document.createElement('a');
+      link.download = 'Sampath_Sarika_Wedding_Invitation_Card.jpg';
+      link.href = canvas.toDataURL('image/jpeg', 0.92);
+      link.click();
     }
 
     /* DYNAMIC TIME OF DAY THEME DETECTION */
@@ -835,7 +1359,7 @@
     }
     applyTimeOfDayTheme();
 
-    /* MULTI-LANGUAGE TOGGLE (ENGLISH / TELUGU) */
+    /* MULTI-LANGUAGE TOGGLE */
     let currentLang = 'en';
     function toggleLanguage() {
       currentLang = currentLang === 'en' ? 'te' : 'en';
@@ -871,7 +1395,6 @@
       }
     }
 
-    // Scroll-based romantic music swell on Story section
     window.addEventListener('scroll', () => {
       if (!musicGain || !audioCtx) return;
       const storyEl = document.getElementById('storySection');
@@ -887,9 +1410,7 @@
 
     /* HAPTIC HEARTBEAT PULSE + AUDIBLE LUB-DUB SOUND */
     function triggerHeartbeatPulse() {
-      if (navigator.vibrate) {
-        navigator.vibrate([60, 40, 80]);
-      }
+      if (navigator.vibrate) navigator.vibrate([60, 40, 80]);
     }
 
     function playHeartbeatSound() {
@@ -899,26 +1420,19 @@
         if (audioCtx.state === 'suspended') audioCtx.resume();
 
         const now = audioCtx.currentTime;
-
         function makeThump(startTime, freq, duration, gainVal) {
           const osc = audioCtx.createOscillator();
           const gain = audioCtx.createGain();
-
           osc.type = 'sine';
           osc.frequency.setValueAtTime(freq, startTime);
           osc.frequency.exponentialRampToValueAtTime(30, startTime + duration);
-
           gain.gain.setValueAtTime(gainVal, startTime);
           gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
-
           osc.connect(gain);
           gain.connect(audioCtx.destination);
-
           osc.start(startTime);
           osc.stop(startTime + duration);
         }
-
-        // Lub-Dub double beat
         makeThump(now, 65, 0.14, 0.9);
         makeThump(now + 0.18, 85, 0.11, 0.7);
       } catch (e) {
@@ -937,7 +1451,6 @@
       if (pulse) pulse.style.display = 'none';
       if (prompt) prompt.style.display = 'none';
 
-      // Physical vibration + speaker lub-dub sound
       triggerHeartbeatPulse();
       playHeartbeatSound();
 
@@ -1172,7 +1685,7 @@
       document.getElementById('capturedPhotoPreview').style.display = 'none';
     }
 
-    /* AUDIO GUESTBOOK (10-SEC VOICE NOTE WITH FAST AUTO-FINALIZE) */
+    /* AUDIO GUESTBOOK */
     let mediaRecorder = null;
     let audioChunks = [];
     let capturedAudioBase64 = null;
@@ -1420,11 +1933,10 @@
       }
     }
 
-    /* UNBLOCKED SUBMISSION (INSTANT RECORDING AUTO-FINALIZE) */
+    /* UNBLOCKED SUBMISSION */
     async function submitWish() {
       const postBtn = document.getElementById('postWishBtn');
 
-      // If active recording exists when clicking Send Blessing, stop and finalize immediately
       if (mediaRecorder && mediaRecorder.state === "recording") {
         postBtn.innerText = currentLang === 'en' ? "Finishing Voice Note..." : "వాయిస్ నోట్ సిద్ధమవుతోంది...";
         await new Promise((resolve) => {
@@ -1488,10 +2000,9 @@
     }
 
     // Countdown
-    const weddingDate = new Date('2026-11-26T09:15:00+05:30').getTime();
     function updateWeddingCountdown() {
       const now = new Date().getTime();
-      const diff = weddingDate - now;
+      const diff = weddingDateTime - now;
       if (diff <= 0) return;
       document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
       document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
@@ -1503,6 +2014,7 @@
       initScratchCard();
       loadCloudWishes();
       loadCloudCounter();
+      updateAuspiciousGlow();
       setInterval(updateWeddingCountdown, 1000);
       updateWeddingCountdown();
     });
