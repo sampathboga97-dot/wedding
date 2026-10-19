@@ -386,7 +386,7 @@
     .divider-icon { font-size: 1.3rem; }
     .section-title { font-family: 'Cinzel', 'Noto Sans Telugu', serif; font-size: 1.35rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 14px; }
 
-    .parents-section { display: flex; flex-direction: column; gap: 14px; margin: 8px auto 18px; max-width: 360px; }
+    .parents-section { display: flex; flex-direction: column; gap: 14px; margin: 8px auto 14px; max-width: 360px; }
     .royal-parent-card { position: relative; border-radius: 20px; padding: 6px; }
     .bride-royal-frame { background: radial-gradient(circle at center, #FFFBF9 0%, #FEECE7 70%, #F9D0C6 100%); border: 3.5px solid #F1BFB3; }
     .bride-inner-border { border: 1.2px solid #E5907E; border-radius: 14px; padding: 12px 10px; background: rgba(255, 255, 255, 0.55); }
@@ -397,6 +397,53 @@
     .groom-badge { color: #7A570D; background: #FFECA8; border: 1px solid #E5BA58; }
     .parent-name { font-family: 'Playfair Display', 'Noto Sans Telugu', serif; font-size: 1.05rem; font-weight: 700; color: #241C16; line-height: 1.35; }
     .parent-connector { font-family: 'Great Vibes', 'Noto Sans Telugu', cursive; font-size: 1.35rem; color: #B8860B; display: block; margin: 1px 0; }
+
+    /* IN LOVING MEMORY (SMRUTULALO) ANCESTRAL TRIBUTE CARD */
+    .smrutulalo-card {
+      background: radial-gradient(circle at center, #FFFDF8 0%, #FAF2E3 100%);
+      border: 1.5px solid #DFC394;
+      border-radius: 18px;
+      padding: 12px 14px 10px;
+      margin: 4px auto 18px;
+      max-width: 360px;
+      text-align: center;
+      box-shadow: 0 4px 14px rgba(142, 106, 38, 0.08);
+      position: relative;
+    }
+    .smrutulalo-header {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-bottom: 4px;
+    }
+    .smrutulalo-title {
+      font-family: 'Cinzel', 'Noto Sans Telugu', serif;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+      letter-spacing: 1px;
+    }
+    .smrutulalo-icon {
+      font-size: 0.9rem;
+    }
+    .smrutulalo-text {
+      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
+      font-style: italic;
+      font-size: 0.78rem;
+      color: #6C5D4B;
+      line-height: 1.45;
+      margin-bottom: 6px;
+    }
+    .smrutulalo-names {
+      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #7A570D;
+      border-top: 1px dashed rgba(223, 195, 148, 0.6);
+      padding-top: 6px;
+      letter-spacing: 0.5px;
+    }
 
     /* STORY CARDS */
     .story-section { margin: 18px auto 26px; max-width: 420px; }
@@ -806,6 +853,23 @@
           </div>
         </div>
 
+        <!-- IN LOVING MEMORY (SMRUTULALO) ANCESTRAL TRIBUTE CARD (THATHAYYA & NANAMMA) -->
+        <div class="smrutulalo-card">
+          <div class="smrutulalo-header">
+            <span class="smrutulalo-icon">🕊️</span>
+            <span class="smrutulalo-title" data-en="In Loving Memory • Smrutulalo" data-te="దివ్య స్మృతులలో (ఆత్మశాంతి కోరుతూ)">In Loving Memory • Smrutulalo</span>
+            <span class="smrutulalo-icon">🪷</span>
+          </div>
+          <div class="smrutulalo-text" data-en="Forever remembered in our hearts and forever guiding our sacred union with their heavenly blessings from above." data-te="స్వర్గస్తులైన మా ప్రియతమ పెద్దల దివ్య ఆశీస్సులతో, వారి పవిత్ర స్మృతులను సదా మా హృదయాలలో నిలుపుకుంటూ...">
+            Forever remembered in our hearts and forever guiding our sacred union with their heavenly blessings from above.
+          </div>
+          <div class="smrutulalo-names" id="ancestorNames" 
+               data-en="Late Boga Shivalingam (Thathayya) &amp; Late Boga Narsamma (Nanamma)" 
+               data-te="దివంగతులు శ్రీ బోగ శివలింగం (తాతయ్య) &amp; శ్రీమతి బోగ నర్సమ్మ (నానమ్మ)">
+            Late Boga Shivalingam (Thathayya) &amp; Late Boga Narsamma (Nanamma)
+          </div>
+        </div>
+
         <!-- POLAROID FLIP STORY CARDS -->
         <div class="story-section" id="storySection">
           <div style="font-family:'Cinzel', 'Noto Sans Telugu', serif; font-size:1.2rem; font-weight:800; color:var(--maroon-primary);" data-en="Our Story" data-te="మా ప్రేమ కథ">Our Story</div>
@@ -874,7 +938,7 @@
           <span class="divider-line"></span>
         </div>
 
-        <!-- CLEAN SACRED DIYA SECTION (ONLY LAMP & SINGLE INSTRUCTION TEXT) -->
+        <!-- CLEAN SACRED DIYA SECTION -->
         <div class="diya-section">
           <div class="diya-lamp-box" id="diyaBox" onclick="lightTheDiya()">
             <div class="diya-aura"></div>
@@ -1314,7 +1378,7 @@
       ctx.restore();
     }
 
-    /* 7. VIBRANT FLORAL OFFLINE SNAPSHOT CARD */
+    /* 7. VIBRANT FLORAL OFFLINE SNAPSHOT CARD WITH SMRUTULALO ANCESTRAL TRIBUTE */
     function downloadOfflineSnapshotCard() {
       const canvas = document.getElementById('offlineSnapshotCanvas');
       const ctx = canvas.getContext('2d');
@@ -1376,142 +1440,167 @@
 
       ctx.textAlign = 'center';
       ctx.font = '54px sans-serif';
-      ctx.fillText('🏺', W / 2, 195);
+      ctx.fillText('🏺', W / 2, 185);
 
       ctx.font = 'bold 34px "Noto Sans Telugu", sans-serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText('|| శ్రీరస్తు - శుభమస్తు - అవిఘ్నమస్తు ||', W / 2, 255);
+      ctx.fillText('|| శ్రీరస్తు - శుభమస్తు - అవిఘ్నమస్తు ||', W / 2, 245);
 
       ctx.font = isTe ? 'bold 32px "Noto Sans Telugu", sans-serif' : 'bold 30px "Cinzel", serif';
       ctx.fillStyle = '#8E6A26';
       ctx.letterSpacing = isTe ? '1px' : '3px';
-      ctx.fillText(isTe ? 'వివాహ మహోత్సవ ఆహ్వాన పత్రిక' : 'WEDDING INVITATION', W / 2, 320);
+      ctx.fillText(isTe ? 'వివాహ మహోత్సవ ఆహ్వాన పత్రిక' : 'WEDDING INVITATION', W / 2, 305);
 
       if (isTe) {
         ctx.font = 'bold 88px "Noto Sans Telugu", sans-serif';
         ctx.fillStyle = '#851329';
         ctx.shadowColor = 'rgba(212, 175, 55, 0.45)';
         ctx.shadowBlur = 14;
-        ctx.fillText('సారిక & సంపత్', W / 2, 450);
+        ctx.fillText('సారిక & సంపత్', W / 2, 425);
       } else {
         ctx.font = 'bold 106px "Great Vibes", cursive, serif';
         ctx.fillStyle = '#851329';
         ctx.shadowColor = 'rgba(212, 175, 55, 0.45)';
         ctx.shadowBlur = 14;
-        ctx.fillText('Sarika & Sampath', W / 2, 450);
+        ctx.fillText('Sarika & Sampath', W / 2, 425);
       }
       ctx.shadowBlur = 0;
 
-      ctx.font = 'bold 32px "Cinzel", "Noto Sans Telugu", serif';
+      ctx.font = 'bold 30px "Cinzel", "Noto Sans Telugu", serif';
       ctx.fillStyle = '#8E6A26';
-      ctx.fillText('#SamRika', W / 2, 515);
+      ctx.fillText('#SamRika', W / 2, 485);
 
       ctx.beginPath();
-      ctx.moveTo(W / 2 - 260, 555);
-      ctx.lineTo(W / 2 + 260, 555);
+      ctx.moveTo(W / 2 - 260, 520);
+      ctx.lineTo(W / 2 + 260, 520);
       ctx.lineWidth = 2.5;
       ctx.strokeStyle = '#DFC394';
       ctx.stroke();
 
-      drawCanvasFlower(ctx, W / 2, 555, 12, '#DE3163', '#FFD54F');
+      drawCanvasFlower(ctx, W / 2, 520, 12, '#DE3163', '#FFD54F');
 
-      ctx.font = isTe ? 'bold 28px "Noto Sans Telugu", sans-serif' : 'italic 30px "Playfair Display", serif';
+      ctx.font = isTe ? 'bold 26px "Noto Sans Telugu", sans-serif' : 'italic 28px "Playfair Display", serif';
       ctx.fillStyle = '#4D3205';
       const leadText = isTe
         ? 'మా వివాహ మహోత్సవానికి విచ్చేసి నూతన వధూవరులను ఆశీర్వదించగలరని ప్రార్థన'
         : 'Soliciting your gracious presence and heartfelt blessings on our auspicious marriage';
-      renderCanvasWrapped(ctx, leadText, W / 2, 620, W - 280, 42);
+      renderCanvasWrapped(ctx, leadText, W / 2, 575, W - 280, 38);
 
       const cardBoxW = W - 240;
       const cardBoxX = 120;
 
+      // Bride Parents Card Box
       ctx.fillStyle = '#FFFFFF';
       ctx.strokeStyle = '#F1BFB3';
       ctx.lineWidth = 2.5;
       ctx.beginPath();
-      ctx.roundRect(cardBoxX, 700, cardBoxW, 170, 20);
+      ctx.roundRect(cardBoxX, 640, cardBoxW, 140, 18);
       ctx.fill();
       ctx.stroke();
 
-      ctx.font = isTe ? 'bold 26px "Noto Sans Telugu", sans-serif' : 'bold 24px "Cinzel", serif';
+      ctx.font = isTe ? 'bold 24px "Noto Sans Telugu", sans-serif' : 'bold 22px "Cinzel", serif';
       ctx.fillStyle = '#8E1F35';
-      ctx.fillText(isTe ? '🌸 వధువు తల్లిదండ్రులు' : '🌸 BRIDE\'S PARENTS', W / 2, 745);
+      ctx.fillText(isTe ? '🌸 వధువు తల్లిదండ్రులు' : '🌸 BRIDE\'S PARENTS', W / 2, 680);
 
-      ctx.font = isTe ? 'bold 30px "Noto Sans Telugu", sans-serif' : 'bold 32px "Playfair Display", serif';
+      ctx.font = isTe ? 'bold 28px "Noto Sans Telugu", sans-serif' : 'bold 30px "Playfair Display", serif';
       ctx.fillStyle = '#222222';
       const brideParents = isTe 
         ? 'దేశబోయిన వెంకటేశ్వర ప్రభు & శ్రీమతి శారదాంబ' 
         : 'Deshaboina Venkateshwara Prabhu & Mrs. Sharadamba';
-      renderCanvasWrapped(ctx, brideParents, W / 2, 800, cardBoxW - 50, 40);
+      renderCanvasWrapped(ctx, brideParents, W / 2, 730, cardBoxW - 50, 36);
 
+      // Groom Parents Card Box
       ctx.fillStyle = '#FFFFFF';
       ctx.strokeStyle = '#ECC968';
       ctx.lineWidth = 2.5;
       ctx.beginPath();
-      ctx.roundRect(cardBoxX, 895, cardBoxW, 170, 20);
+      ctx.roundRect(cardBoxX, 795, cardBoxW, 140, 18);
       ctx.fill();
       ctx.stroke();
 
-      ctx.font = isTe ? 'bold 26px "Noto Sans Telugu", sans-serif' : 'bold 24px "Cinzel", serif';
+      ctx.font = isTe ? 'bold 24px "Noto Sans Telugu", sans-serif' : 'bold 22px "Cinzel", serif';
       ctx.fillStyle = '#7A570D';
-      ctx.fillText(isTe ? '🪷 వరుని తల్లిదండ్రులు' : '🪷 GROOM\'S PARENTS', W / 2, 940);
+      ctx.fillText(isTe ? '🪷 వరుని తల్లిదండ్రులు' : '🪷 GROOM\'S PARENTS', W / 2, 835);
 
-      ctx.font = isTe ? 'bold 30px "Noto Sans Telugu", sans-serif' : 'bold 32px "Playfair Display", serif';
+      ctx.font = isTe ? 'bold 28px "Noto Sans Telugu", sans-serif' : 'bold 30px "Playfair Display", serif';
       ctx.fillStyle = '#222222';
       const groomParents = isTe 
         ? 'బోగ అశోక్ & శ్రీమతి గీత' 
         : 'Boga Ashok & Mrs. Geetha';
-      renderCanvasWrapped(ctx, groomParents, W / 2, 995, cardBoxW - 50, 40);
+      renderCanvasWrapped(ctx, groomParents, W / 2, 885, cardBoxW - 50, 36);
 
+      // In Loving Memory (Smrutulalo) Box
+      ctx.fillStyle = '#FFFDF5';
+      ctx.strokeStyle = '#DFC394';
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.roundRect(cardBoxX, 950, cardBoxW, 110, 16);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.font = isTe ? 'bold 22px "Noto Sans Telugu", sans-serif' : 'bold 20px "Cinzel", serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText(isTe ? '🕊️ దివ్య స్మృతులలో 🪷' : '🕊️ In Loving Memory (Smrutulalo) 🪷', W / 2, 985);
+
+      ctx.font = isTe ? 'bold 26px "Noto Sans Telugu", sans-serif' : 'bold 24px "Playfair Display", serif';
+      ctx.fillStyle = '#7A570D';
+      const ancestors = isTe 
+        ? 'దివంగతులు శ్రీ బోగ శివలింగం (తాతయ్య) & శ్రీమతి బోగ నర్సమ్మ (నానమ్మ)' 
+        : 'Late Boga Shivalingam (Thathayya) & Late Boga Narsamma (Nanamma)';
+      renderCanvasWrapped(ctx, ancestors, W / 2, 1025, cardBoxW - 40, 32);
+
+      // Sumuhurtham Card Box
       ctx.fillStyle = '#FFF8E6';
       ctx.strokeStyle = '#C59A3F';
       ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.roundRect(cardBoxX, 1090, cardBoxW, 280, 24);
+      ctx.roundRect(cardBoxX, 1075, cardBoxW, 260, 22);
       ctx.fill();
       ctx.stroke();
 
-      ctx.font = isTe ? 'bold 34px "Noto Sans Telugu", sans-serif' : 'bold 32px "Cinzel", serif';
+      ctx.font = isTe ? 'bold 32px "Noto Sans Telugu", sans-serif' : 'bold 30px "Cinzel", serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? '✨ సుముహూర్తం ✨' : '✨ SUMUHURTHAM ✨', W / 2, 1150);
+      ctx.fillText(isTe ? '✨ సుముహూర్తం ✨' : '✨ SUMUHURTHAM ✨', W / 2, 1130);
 
-      ctx.font = isTe ? 'bold 38px "Noto Sans Telugu", sans-serif' : 'bold 42px "Playfair Display", serif';
+      ctx.font = isTe ? 'bold 36px "Noto Sans Telugu", sans-serif' : 'bold 40px "Playfair Display", serif';
       ctx.fillStyle = '#222222';
-      ctx.fillText(isTe ? 'గురువారం, 26 నవంబర్ 2026' : 'Thursday, 26 November 2026', W / 2, 1225);
+      ctx.fillText(isTe ? 'గురువారం, 26 నవంబర్ 2026' : 'Thursday, 26 November 2026', W / 2, 1200);
 
-      ctx.font = isTe ? 'bold 58px "Noto Sans Telugu", sans-serif' : 'bold 64px "Cinzel", serif';
+      ctx.font = isTe ? 'bold 54px "Noto Sans Telugu", sans-serif' : 'bold 60px "Cinzel", serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? 'ఉదయం 9:15 గంటలకు' : '9:15 AM', W / 2, 1310);
+      ctx.fillText(isTe ? 'ఉదయం 9:15 గంటలకు' : '9:15 AM', W / 2, 1280);
 
+      // Venue Box
       ctx.fillStyle = '#FFFFFF';
       ctx.strokeStyle = '#DFC394';
       ctx.lineWidth = 2.5;
       ctx.beginPath();
-      ctx.roundRect(cardBoxX, 1395, cardBoxW, 250, 24);
+      ctx.roundRect(cardBoxX, 1350, cardBoxW, 235, 22);
       ctx.fill();
       ctx.stroke();
 
-      ctx.font = isTe ? 'bold 30px "Noto Sans Telugu", sans-serif' : 'bold 30px "Cinzel", serif';
+      ctx.font = isTe ? 'bold 28px "Noto Sans Telugu", sans-serif' : 'bold 28px "Cinzel", serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? '📍 వివాహ వేదిక: వీఐపీ గార్డెన్స్' : '📍 VENUE: VIP GARDENS', W / 2, 1450);
+      ctx.fillText(isTe ? '📍 వివాహ వేదిక: వీఐపీ గార్డెన్స్' : '📍 VENUE: VIP GARDENS', W / 2, 1400);
 
-      ctx.font = isTe ? '600 28px "Noto Sans Telugu", sans-serif' : '600 30px "Plus Jakarta Sans", sans-serif';
+      ctx.font = isTe ? '600 26px "Noto Sans Telugu", sans-serif' : '600 28px "Plus Jakarta Sans", sans-serif';
       ctx.fillStyle = '#2F2620';
       const venueAddress = isTe
         ? 'సూరారం విలేజ్ రోడ్, లక్ష్మీ నగర్ కాలనీ, సూరారం, హైదరాబాద్, తెలంగాణ 500055'
         : 'GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony, Suraram, Hyderabad, Telangana 500055';
-      renderCanvasWrapped(ctx, venueAddress, W / 2, 1515, cardBoxW - 60, 42);
+      renderCanvasWrapped(ctx, venueAddress, W / 2, 1460, cardBoxW - 60, 38);
 
-      ctx.font = isTe ? 'italic 26px "Noto Sans Telugu", sans-serif' : 'italic 28px "Playfair Display", serif';
+      // Traditional Blessing at Bottom
+      ctx.font = isTe ? 'italic 26px "Noto Sans Telugu", sans-serif' : 'italic 26px "Playfair Display", serif';
       ctx.fillStyle = '#8E6A26';
       const bottomBlessing = isTe
         ? 'శ్రీ వేంకటేశ్వర స్వామి వారి కృపాకటాక్షాలతో సుఖసంతోషాలతో వర్ధిల్లాలని ఆకాంక్షిస్తూ... 🙏'
         : 'May Lord Venkateshwara bless our union with eternal love, harmony & prosperity 🙏';
-      renderCanvasWrapped(ctx, bottomBlessing, W / 2, 1720, W - 280, 38);
+      renderCanvasWrapped(ctx, bottomBlessing, W / 2, 1690, W - 280, 36);
 
-      ctx.font = isTe ? 'bold 44px "Noto Sans Telugu", sans-serif' : 'bold 36px "Cinzel", serif';
+      ctx.font = isTe ? 'bold 42px "Noto Sans Telugu", sans-serif' : 'bold 36px "Cinzel", serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? 'సారిక & సంపత్' : 'SARIKA & SAMPATH', W / 2, 1825);
+      ctx.fillText(isTe ? 'సారిక & సంపత్' : 'SARIKA & SAMPATH', W / 2, 1795);
 
       const link = document.createElement('a');
       link.download = isTe ? 'సారిక_సంపత్_వివాహ_ఆహ్వాన_పత్రిక.jpg' : 'Sarika_Sampath_Wedding_Invitation_Card.jpg';
