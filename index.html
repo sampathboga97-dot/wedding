@@ -37,7 +37,7 @@
       padding: 14px 6px;
     }
 
-    /* TOP ACTION BUTTONS BAR */
+    /* TOP ACTION BAR */
     .top-action-bar {
       position: fixed;
       top: 14px;
@@ -50,7 +50,7 @@
       background: rgba(255, 255, 255, 0.95);
       border: 1.5px solid #DFC394;
       border-radius: 20px;
-      padding: 6px 13px;
+      padding: 6px 14px;
       font-size: 0.78rem;
       font-weight: 800;
       color: var(--maroon-primary);
@@ -59,7 +59,7 @@
       backdrop-filter: blur(6px);
       display: inline-flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
       transition: transform 0.2s ease, background 0.2s ease;
     }
     .top-btn:active {
@@ -161,54 +161,6 @@
     }
     .choice-arrow-icon {
       font-size: 1.4rem;
-    }
-
-    /* TOP INVITATION CARD DISPLAY & DOWNLOAD BANNER */
-    .invitation-card-preview-box {
-      margin: 10px auto 14px;
-      max-width: 380px;
-      background: radial-gradient(circle at center, #FFFDF9 0%, #FAF0DE 100%);
-      border: 1.5px solid #DFC394;
-      border-radius: 20px;
-      padding: 12px;
-      box-shadow: 0 8px 24px rgba(142, 106, 38, 0.12);
-      text-align: center;
-    }
-    .card-preview-img-wrap {
-      position: relative;
-      width: 100%;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 2px solid #E5CCA2;
-      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
-      background: #FFFFFF;
-      cursor: pointer;
-    }
-    .card-preview-img-wrap img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-    .card-preview-img-wrap:hover img {
-      transform: scale(1.02);
-    }
-    .btn-download-invite-card {
-      margin-top: 10px;
-      width: 100%;
-      background: linear-gradient(135deg, #DE3163 0%, #851329 100%);
-      color: #FFFFFF;
-      border: 1.5px solid #FFD700;
-      border-radius: 25px;
-      padding: 10px 18px;
-      font-size: 0.88rem;
-      font-weight: 800;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      box-shadow: 0 4px 14px rgba(133, 19, 41, 0.25);
     }
 
     /* WELCOME SURNAME FAMILY BANNER WITH TIME GREETING */
@@ -642,10 +594,10 @@
 </head>
 <body>
 
-  <!-- TOP ACTION BAR: LANGUAGE SWITCHER & DIRECT DOWNLOAD CARD BUTTON -->
+  <!-- TOP ACTION BAR: DYNAMIC CANVAS INVITATION GENERATOR & DOWNLOAD -->
   <div class="top-action-bar">
-    <button class="top-btn top-btn-download" id="topDownloadBtn" onclick="downloadCurrentInvitationCard()" title="Download Wedding Invitation Card">
-      📥 <span id="topDownloadLbl">Download Card</span>
+    <button class="top-btn top-btn-download" id="topDownloadBtn" onclick="generateAndDownloadInvitationCard()" title="Download Wedding Invitation Card">
+      📥 <span id="topDownloadLbl">Wedding Invitation Download Card</span>
     </button>
     <button class="top-btn" id="langToggleBtn" onclick="toggleLanguage()">తెలుగు / EN</button>
   </div>
@@ -732,19 +684,6 @@
           <div class="time-greeting-pill" id="timeGreetingPill">🌅 Good Morning</div>
           <div class="welcome-family-text" id="familyWelcomeEn">Boga Family Welcomes You</div>
           <div class="welcome-family-sub" id="familyWelcomeTe">బోగ వారి కుటుంబం తరపున సాదర సుస్వాగతం 🙏</div>
-        </div>
-
-        <!-- INVITATION CARD ON TOP (TAP TO VIEW & DOWNLOAD RIGHT AWAY) -->
-        <div class="invitation-card-preview-box">
-          <div style="font-family:'Cinzel', serif; font-size:0.86rem; font-weight:800; color:var(--maroon-primary); margin-bottom:8px;" id="cardHeaderLbl">
-            💌 Official Invitation Card (Tap to Download)
-          </div>
-          <div class="card-preview-img-wrap" onclick="downloadCurrentInvitationCard()" title="Click to Download Card">
-            <img id="topInvitationCardImg" src="1000360058.jpg" alt="Wedding Invitation Card" onerror="handleImgError(this, '1000360058')">
-          </div>
-          <button type="button" class="btn-download-invite-card" onclick="downloadCurrentInvitationCard()">
-            📥 <span id="downloadBtnTxt">Download Invitation Card (PDF/PNG)</span>
-          </button>
         </div>
 
         <!-- Sacred Shloka -->
@@ -1083,7 +1022,8 @@
     </div>
   </div>
 
-  <!-- HIDDEN CANVAS FOR CARD GENERATION -->
+  <!-- HIDDEN CANVASES FOR DYNAMIC GRAPHIC GENERATION -->
+  <canvas id="officialInviteCanvas" width="900" height="1600" style="display:none;"></canvas>
   <canvas id="blessingCanvas" width="900" height="1200" style="display:none;"></canvas>
 
   <script>
@@ -1133,22 +1073,187 @@
       }
     }
 
-    /* GUEST SIDE SELECTION (GROOM VS BRIDE) */
     let selectedSide = 'groom';
     let currentLang = 'en';
 
-    /* DOWNLOAD THE RELEVANT CARD (ENGLISH OR TELUGU) */
-    function downloadCurrentInvitationCard() {
+    /* DYNAMIC HIGH-RESOLUTION INVITATION CARD GENERATOR (CANVAS TO PNG) */
+    function generateAndDownloadInvitationCard() {
+      const canvas = document.getElementById('officialInviteCanvas');
+      const ctx = canvas.getContext('2d');
+      const W = canvas.width;
+      const H = canvas.height;
       const isTe = (currentLang === 'te');
-      const fileName = isTe ? '1000360060.jpg' : '1000360058.jpg';
-      const downloadName = isTe ? 'Sarika_Sampath_Wedding_Invitation_Telugu.jpg' : 'Sarika_Sampath_Wedding_Invitation_English.jpg';
 
-      const a = document.createElement('a');
-      a.href = fileName;
-      a.download = downloadName;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
+      // Card Background (Cream / Ivory)
+      const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 100, W / 2, H / 2, 900);
+      bgGrad.addColorStop(0, '#FFFDF8');
+      bgGrad.addColorStop(0.7, '#FDF6E9');
+      bgGrad.addColorStop(1, '#F7E7CD');
+      ctx.fillStyle = bgGrad;
+      ctx.fillRect(0, 0, W, H);
+
+      // Ornate Outer Maroon & Gold Borders
+      ctx.lineWidth = 18;
+      ctx.strokeStyle = '#851329';
+      ctx.strokeRect(30, 30, W - 60, H - 60);
+
+      ctx.lineWidth = 3.5;
+      ctx.strokeStyle = '#C59A3F';
+      ctx.strokeRect(48, 48, W - 96, H - 96);
+
+      // Gold Dotted Decorative Border
+      ctx.save();
+      ctx.strokeStyle = '#DFC394';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([8, 8]);
+      ctx.strokeRect(62, 62, W - 124, H - 124);
+      ctx.restore();
+
+      ctx.textAlign = 'center';
+
+      // Sacred Shloka Header
+      ctx.font = 'bold 26px "Noto Sans Telugu", sans-serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText('||  శ్రీరస్తు - శుభమస్తు - అవిఘ్నమస్తు  ||', W / 2, 140);
+
+      ctx.font = 'bold 22px "Cinzel", serif';
+      ctx.fillStyle = '#8E6A26';
+      ctx.fillText(isTe ? 'వివాహ మహోత్సవ ఆహ్వాన పత్రిక' : 'WEDDING INVITATION', W / 2, 185);
+
+      // Kalash / Icon
+      ctx.font = '36px sans-serif';
+      ctx.fillText('🏺', W / 2, 235);
+
+      // Couple Names
+      if (isTe) {
+        ctx.font = 'bold 78px "Suranna", "Noto Sans Telugu", serif';
+        ctx.fillStyle = '#851329';
+        ctx.fillText('సారిక & సంపత్', W / 2, 335);
+      } else {
+        ctx.font = 'bold 88px "Great Vibes", cursive, serif';
+        ctx.fillStyle = '#851329';
+        ctx.fillText('Sarika & Sampath', W / 2, 335);
+      }
+
+      ctx.font = 'bold 24px "Cinzel", serif';
+      ctx.fillStyle = '#8E6A26';
+      ctx.fillText('#SamRika', W / 2, 395);
+
+      // Invite Solicit Line
+      ctx.font = isTe ? 'italic 25px "Noto Sans Telugu", sans-serif' : 'italic 25px "Playfair Display", serif';
+      ctx.fillStyle = '#5A4634';
+      const solicitText = isTe 
+        ? 'మా వివాహ మహోత్సవానికి విచ్చేసి నూతన వధూవరులను ఆశీర్వదించగలరని ప్రార్థన'
+        : 'Soliciting your gracious presence and heartfelt blessings on our auspicious marriage';
+      renderWrappedLines(ctx, solicitText, W / 2, 445, W - 220, 36);
+
+      // Function to render styled white inner cards
+      function drawInnerCardBox(y, h) {
+        ctx.fillStyle = '#FFFFFF';
+        ctx.beginPath();
+        ctx.roundRect(110, y, W - 220, h, 20);
+        ctx.fill();
+        ctx.strokeStyle = '#E8D5B5';
+        ctx.lineWidth = 1.8;
+        ctx.stroke();
+      }
+
+      let startBoxY = 530;
+
+      // BOX 1: Bride's Parents
+      drawInnerCardBox(startBoxY, 145);
+      ctx.font = 'bold 19px "Cinzel", "Noto Sans Telugu", sans-serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText(isTe ? '🌸 వధువు తల్లిదండ్రులు' : '🌸 BRIDE\'S PARENTS', W / 2, startBoxY + 42);
+
+      ctx.font = 'bold 28px "Playfair Display", "Noto Sans Telugu", serif';
+      ctx.fillStyle = '#2F2620';
+      const brideParentsStr = isTe 
+        ? 'దేశబోయిన వెంకటేశ్వర ప్రభు & శ్రీమతి శారదాంబ' 
+        : 'Deshaboina Venkateshwara Prabhu & Mrs. Sharadamba';
+      ctx.fillText(brideParentsStr, W / 2, startBoxY + 98);
+
+      // BOX 2: Groom's Parents
+      startBoxY += 175;
+      drawInnerCardBox(startBoxY, 145);
+      ctx.font = 'bold 19px "Cinzel", "Noto Sans Telugu", sans-serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText(isTe ? '🪷 వరుని తల్లిదండ్రులు' : '🪷 GROOM\'S PARENTS', W / 2, startBoxY + 42);
+
+      ctx.font = 'bold 28px "Playfair Display", "Noto Sans Telugu", serif';
+      ctx.fillStyle = '#2F2620';
+      const groomParentsStr = isTe 
+        ? 'బోగ అశోక్ & శ్రీమతి గీత' 
+        : 'Boga Ashok & Mrs. Geetha';
+      ctx.fillText(groomParentsStr, W / 2, startBoxY + 98);
+
+      // (If groom side selected, optionally mention late grandparents)
+      if (selectedSide === 'groom') {
+        startBoxY += 175;
+        drawInnerCardBox(startBoxY, 130);
+        ctx.font = 'bold 17px "Cinzel", "Noto Sans Telugu", sans-serif';
+        ctx.fillStyle = '#8E6A26';
+        ctx.fillText(isTe ? '🕊️ దివ్య ఆశీస్సులతో (నానమ్మ & తాతయ్య)' : '🕊️ WITH THE BLESSINGS OF GRANDPARENTS', W / 2, startBoxY + 38);
+
+        ctx.font = 'bold 24px "Playfair Display", "Noto Sans Telugu", serif';
+        ctx.fillStyle = '#2F2620';
+        const gpStr = isTe 
+          ? 'స్వర్గీయ శ్రీమతి బోగ నర్సమ్మ & స్వర్గీయ శ్రీ బోగ శివలింగం' 
+          : 'Late Smt. Boga Narsamma & Late Sri Boga Shivalingam';
+        ctx.fillText(gpStr, W / 2, startBoxY + 86);
+      }
+
+      // BOX 3: Muhurtham Box
+      startBoxY += 165;
+      drawInnerCardBox(startBoxY, 180);
+      ctx.font = 'bold 22px "Cinzel", "Noto Sans Telugu", sans-serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText(isTe ? '✨ సుముహూర్తం ✨' : '✨ SUMUHURTHAM ✨', W / 2, startBoxY + 46);
+
+      ctx.font = 'bold 28px "Playfair Display", "Noto Sans Telugu", serif';
+      ctx.fillStyle = '#2F2620';
+      ctx.fillText(isTe ? 'గురువారం, 26 నవంబర్ 2026' : 'Thursday, 26 November 2026', W / 2, startBoxY + 95);
+
+      ctx.font = 'bold 36px "Cinzel", "Noto Sans Telugu", serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText(isTe ? 'ఉదయం 9:15 గంటలకు' : '9:15 AM', W / 2, startBoxY + 148);
+
+      // BOX 4: Venue Box
+      startBoxY += 210;
+      drawInnerCardBox(startBoxY, 175);
+      ctx.font = 'bold 20px "Cinzel", "Noto Sans Telugu", sans-serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText(isTe ? '📍 వివాహ వేదిక: విఐపీ గార్డెన్స్' : '📍 VENUE: VIP GARDENS', W / 2, startBoxY + 44);
+
+      ctx.font = '600 22px "Plus Jakarta Sans", "Noto Sans Telugu", sans-serif';
+      ctx.fillStyle = '#4A3B2C';
+      if (isTe) {
+        ctx.fillText('సూరారం విలేజ్ రోడ్, లక్ష్మీ నగర్ కాలనీ, సూరారం,', W / 2, startBoxY + 92);
+        ctx.fillText('హైదరాబాద్, తెలంగాణ 500055', W / 2, startBoxY + 128);
+      } else {
+        ctx.fillText('GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony,', W / 2, startBoxY + 92);
+        ctx.fillText('Suraram, Hyderabad, Telangana 500055', W / 2, startBoxY + 128);
+      }
+
+      // Footer Blessing
+      ctx.font = 'italic 23px "Playfair Display", "Noto Sans Telugu", serif';
+      ctx.fillStyle = '#7A6953';
+      const footerBless = isTe 
+        ? 'శ్రీ వేంకటేశ్వర స్వామి వారి కృపాకటాక్షాలతో సుఖసంతోషాలతో వర్ధిల్లాలని ఆకాంక్షిస్తూ... 🙏'
+        : 'May Lord Venkateshwara bless our union with eternal love, harmony & prosperity 🙏';
+      ctx.fillText(footerBless, W / 2, H - 105);
+
+      ctx.font = 'bold 28px "Cinzel", "Suranna", serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText(isTe ? 'సారిక & సంపత్' : 'SARIKA & SAMPATH', W / 2, H - 65);
+
+      // Trigger Instant Image Download
+      const link = document.createElement('a');
+      link.download = isTe 
+        ? 'Wedding_Invitation_Telugu_Sampath_Sarika.png' 
+        : 'Wedding_Invitation_English_Sampath_Sarika.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
 
       triggerHeartbeatPulse();
       showerAkshintalu();
@@ -1165,10 +1270,7 @@
       const groomParentsEl = document.getElementById('groomParentsText');
       const coupleTitle = document.getElementById('coupleTitle');
       const greetingPill = document.getElementById('timeGreetingPill');
-      const topCardImg = document.getElementById('topInvitationCardImg');
       const topDownloadLbl = document.getElementById('topDownloadLbl');
-      const cardHeaderLbl = document.getElementById('cardHeaderLbl');
-      const downloadBtnTxt = document.getElementById('downloadBtnTxt');
 
       // Update Dynamic Greeting above Surname
       const greeting = getTimeGreeting();
@@ -1176,18 +1278,9 @@
         greetingPill.innerText = currentLang === 'te' ? greeting.te : greeting.en;
       }
 
-      // Update Invitation Card Preview & labels
-      if (topCardImg) {
-        topCardImg.src = currentLang === 'te' ? '1000360060.jpg' : '1000360058.jpg';
-      }
+      // Update Top Button Label
       if (topDownloadLbl) {
-        topDownloadLbl.innerText = currentLang === 'te' ? 'పత్రిక డౌన్‌లోడ్' : 'Download Card';
-      }
-      if (cardHeaderLbl) {
-        cardHeaderLbl.innerText = currentLang === 'te' ? '💌 వివాహ ఆహ్వాన పత్రిక (డౌన్‌లోడ్ చేయడానికి తాకండి)' : '💌 Official Invitation Card (Tap to Download)';
-      }
-      if (downloadBtnTxt) {
-        downloadBtnTxt.innerText = currentLang === 'te' ? 'ఆహ్వాన పత్రికను డౌన్‌లోడ్ చేసుకోండి' : 'Download Invitation Card (Image)';
+        topDownloadLbl.innerText = currentLang === 'te' ? 'వివాహ ఆహ్వాన పత్రిక డౌన్‌లోడ్' : 'Wedding Invitation Download Card';
       }
 
       // Update Couple Name Font and Content
