@@ -7,7 +7,7 @@
   <meta name="description" content="Wedding Ceremony of Sampath &amp; Sarika on Thursday, November 26, 2026.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700&family=Cinzel:wght@600;700;800&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Telugu:wght@500;600;700;800&family=Suranna&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
   <style>
     :root {
@@ -383,7 +383,8 @@
     .petal:nth-child(4) { left: 84%; width: 11px; height: 15px; animation-duration: 11s; animation-delay: 4s; }
 
     .sacred-shloka { font-family: 'Noto Sans Telugu', sans-serif; font-size: 0.86rem; font-weight: 700; color: var(--maroon-primary); line-height: 1.6; margin: 8px auto 10px; padding: 7px 12px; background: rgba(255, 255, 255, 0.75); border-radius: 12px; border: 1px dashed rgba(163, 124, 50, 0.4); }
-    .couple-title { font-family: 'Great Vibes', cursive; font-size: 4.1rem; color: var(--maroon-primary); line-height: 1.1; margin: 8px 0 2px; text-shadow: 0 2px 4px rgba(133, 19, 41, 0.22), 0 0 20px rgba(245, 204, 114, 0.55); }
+    .couple-title { font-family: 'Great Vibes', cursive; font-size: 4.1rem; color: var(--maroon-primary); line-height: 1.1; margin: 8px 0 2px; text-shadow: 0 2px 4px rgba(133, 19, 41, 0.22), 0 0 20px rgba(245, 204, 114, 0.55); transition: font-size 0.3s ease; }
+    .couple-title.telugu-font { font-family: 'Suranna', 'Noto Sans Telugu', serif; font-size: 2.7rem; font-weight: 700; line-height: 1.25; }
     .hashtag-tag { font-family: 'Cinzel', serif; font-size: 1.2rem; font-weight: 800; color: var(--gold-deep); letter-spacing: 3px; margin-bottom: 6px; }
     .invite-lead { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.05rem; color: #615243; margin-bottom: 16px; }
 
@@ -417,18 +418,18 @@
     .polaroid-back h4 { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--maroon-primary); margin-bottom: 4px; }
     .polaroid-back p { font-size: 0.68rem; color: #4C4238; line-height: 1.35; font-style: italic; }
 
-    /* DIYA LIGHTING */
-    .diya-section { background: radial-gradient(circle at center, #FFFDF6 0%, #FAF1DF 100%); border: 1.5px solid #E8D7B8; border-radius: 22px; padding: 18px 14px 14px; margin: 18px auto 20px; max-width: 420px; position: relative; }
-    .diya-heading { font-family: 'Cinzel', serif; font-size: 1.15rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 1px; }
-    .diya-sub { font-size: 0.82rem; color: #7A6953; margin-top: 2px; margin-bottom: 12px; }
-    .diya-lamp-box { width: 100px; height: 100px; margin: 0 auto; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; }
-    .diya-aura { position: absolute; width: 120px; height: 120px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 200, 50, 0.65) 0%, rgba(255, 140, 0, 0.25) 50%, transparent 75%); opacity: 0; filter: blur(8px); transition: opacity 0.8s ease; }
+    /* DIYA LIGHTING (COMPACT & REFINED) */
+    .diya-section { background: radial-gradient(circle at center, #FFFDF6 0%, #FAF1DF 100%); border: 1.5px solid #E8D7B8; border-radius: 18px; padding: 12px 10px 10px; margin: 14px auto 16px; max-width: 350px; position: relative; }
+    .diya-heading { font-family: 'Cinzel', serif; font-size: 1.02rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 0.8px; }
+    .diya-sub { font-size: 0.76rem; color: #7A6953; margin-top: 2px; margin-bottom: 8px; }
+    .diya-lamp-box { width: 75px; height: 75px; margin: 0 auto; cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; }
+    .diya-aura { position: absolute; width: 90px; height: 90px; border-radius: 50%; background: radial-gradient(circle, rgba(255, 200, 50, 0.65) 0%, rgba(255, 140, 0, 0.25) 50%, transparent 75%); opacity: 0; filter: blur(6px); transition: opacity 0.8s ease; }
     .diya-flame { opacity: 0; transform-origin: center bottom; transition: opacity 0.4s ease; }
-    .diya-lamp-box.lit .diya-aura { opacity: 1; transform: scale(1.15); animation: flameFlicker 2s infinite alternate ease-in-out; }
+    .diya-lamp-box.lit .diya-aura { opacity: 1; transform: scale(1.12); animation: flameFlicker 2s infinite alternate ease-in-out; }
     .diya-lamp-box.lit .diya-flame { opacity: 1; animation: flameWiggle 1.4s infinite ease-in-out alternate; }
-    @keyframes flameFlicker { 0% { transform: scale(1.1); } 100% { transform: scale(1.25); } }
+    @keyframes flameFlicker { 0% { transform: scale(1.05); } 100% { transform: scale(1.2); } }
     @keyframes flameWiggle { 0% { transform: rotate(-2deg); } 100% { transform: rotate(3deg); } }
-    .diya-status-tag { font-size: 0.82rem; font-weight: 700; color: var(--gold-deep); margin-top: 8px; }
+    .diya-status-tag { font-size: 0.76rem; font-weight: 700; color: var(--gold-deep); margin-top: 6px; }
 
     /* MUHURTHAM EVENT CARD */
     .event-card { background: #FAF5EB; border: 1px solid #EFE2CB; border-radius: 22px; padding: 20px 14px; margin-bottom: 18px; box-shadow: 0 8px 22px rgba(142, 106, 38, 0.1); }
@@ -443,13 +444,14 @@
     .medal-val { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: #4D3205; line-height: 1; }
     .medal-lbl { font-size: 0.52rem; font-weight: 800; letter-spacing: 1px; color: #4D3205; text-transform: uppercase; margin-top: 3px; }
 
-    /* TALAMBRALU */
-    .talambralu-box { background: #FFFDF9; border: 1.5px solid #E8D7B8; border-radius: 20px; padding: 16px 12px; margin: 18px auto; max-width: 410px; }
+    /* TALAMBRALU (AKSHINTALU ONLY) */
+    .talambralu-box { background: #FFFDF9; border: 1.5px solid #E8D7B8; border-radius: 20px; padding: 16px 12px; margin: 18px auto; max-width: 380px; }
     .talambralu-title { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 2px; }
-    .talambralu-bowls-wrap { display: flex; justify-content: center; gap: 16px; margin: 12px 0 6px; }
-    .ceremonial-kinnam-btn { background: radial-gradient(circle, #FFF3D1 0%, #ECC968 100%); border: 2px solid #CFA233; border-radius: 18px; padding: 10px 14px; cursor: pointer; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 14px rgba(160, 115, 20, 0.25); min-width: 140px; }
-    .kinnam-icon { font-size: 1.8rem; line-height: 1; margin-bottom: 4px; }
-    .kinnam-lbl { font-size: 0.78rem; font-weight: 700; color: #5C3A10; }
+    .talambralu-bowls-wrap { display: flex; justify-content: center; margin: 12px 0 6px; }
+    .ceremonial-kinnam-btn { background: radial-gradient(circle, #FFF3D1 0%, #ECC968 100%); border: 2px solid #CFA233; border-radius: 20px; padding: 12px 28px; cursor: pointer; display: flex; flex-direction: column; align-items: center; box-shadow: 0 4px 14px rgba(160, 115, 20, 0.25); min-width: 170px; transition: transform 0.2s ease; }
+    .ceremonial-kinnam-btn:active { transform: scale(0.96); }
+    .kinnam-icon { font-size: 2rem; line-height: 1; margin-bottom: 4px; }
+    .kinnam-lbl { font-size: 0.95rem; font-weight: 800; color: #5C3A10; }
 
     /* DIGITAL SCRATCH CARD */
     .scratch-card-section {
@@ -592,8 +594,8 @@
         <!-- Groom Side Option -->
         <button type="button" class="side-choice-btn btn-groom-choice" onclick="selectGuestSide('groom')">
           <div class="choice-text-wrap">
-            <div class="choice-main-title" data-en="👑 Groom's Side" data-te="👑 వరుని వైపు (బోగ కుటుంబం)">👑 Groom's Side</div>
-            <div class="choice-sub-title" data-en="Boga Family Welcome" data-te="బోగ వారి కుటుంబం తరపున">Boga Family Welcome</div>
+            <div class="choice-main-title" data-en="👑 Groom's Side" data-te="👑 వరుని వైపు (బోగ వారి కుటుంబం)">👑 Groom's Side</div>
+            <div class="choice-sub-title" data-en="Boga Family Welcome" data-te="బోగ వారి కుటుంబం ఆహ్వానం">Boga Family Welcome</div>
           </div>
           <span class="choice-arrow-icon">➔</span>
         </button>
@@ -601,8 +603,8 @@
         <!-- Bride Side Option -->
         <button type="button" class="side-choice-btn btn-bride-choice" onclick="selectGuestSide('bride')">
           <div class="choice-text-wrap">
-            <div class="choice-main-title" data-en="🌸 Bride's Side" data-te="🌸 వధువు వైపు (దేశబోయిన కుటుంబం)">🌸 Bride's Side</div>
-            <div class="choice-sub-title" data-en="Deshaboina Family Welcome" data-te="దేశబోయిన వారి కుటుంబం తరపున">Deshaboina Family Welcome</div>
+            <div class="choice-main-title" data-en="🌸 Bride's Side" data-te="🌸 వధువు వైపు (దేశబోయిన వారి కుటుంబం)">🌸 Bride's Side</div>
+            <div class="choice-sub-title" data-en="Deshaboina Family Welcome" data-te="దేశబోయిన వారి కుటుంబం ఆహ్వానం">Deshaboina Family Welcome</div>
           </div>
           <span class="choice-arrow-icon">➔</span>
         </button>
@@ -672,8 +674,8 @@
           || మంగళం భగవాన్ విష్ణుః మంగళం గరుడధ్వజః | మంగళం పుండరీకాక్షో మంగళాయ తనో హరిః || 🙏
         </div>
 
-        <!-- HIGHLIGHTED COUPLE NAMES -->
-        <div class="couple-title">Sampath &amp; Sarika</div>
+        <!-- HIGHLIGHTED COUPLE NAMES (TELUGU / ENGLISH DYNAMIC) -->
+        <div class="couple-title" id="coupleTitle" data-en="Sampath &amp; Sarika" data-te="సంపత్ &amp; సారిక">Sampath &amp; Sarika</div>
         <div class="hashtag-tag">#SamRika</div>
         <div class="invite-lead" data-en="We invite you to celebrate our wedding" data-te="మా వివాహ మహోత్సవానికి మిమ్మల్ని సాదరంగా ఆహ్వానిస్తున్నాము">We invite you to celebrate our wedding</div>
 
@@ -687,10 +689,10 @@
         <!-- GROOM'S LATE GRANDPARENTS (SHOWN ONLY FOR GROOM SIDE) -->
         <div class="grandparents-memorial-card" id="groomGrandparentsSection">
           <div class="grandparents-tag" data-en="🕊️ With the Eternal Blessings of Grandparents" data-te="🕊️ దివ్య ఆశీస్సులతో (నానమ్మ &amp; తాతయ్య)">🕊️ With the Eternal Blessings of Grandparents</div>
-          <div class="grandparents-names">
+          <div class="grandparents-names" id="grandparentsNamesEn">
             Late Smt. Boga Narsamma &amp; Late Sri Boga Shivalingam
           </div>
-          <div class="grandparents-telugu">
+          <div class="grandparents-telugu" id="grandparentsNamesTe">
             (స్వర్గీయ శ్రీమతి బోగ నర్సమ్మ &amp; స్వర్గీయ శ్రీ బోగ శివలింగం గార్ల దివ్యాశీస్సులతో)
           </div>
         </div>
@@ -703,7 +705,7 @@
           <div class="royal-parent-card bride-royal-frame">
             <div class="bride-inner-border">
               <div class="card-badge bride-badge" data-en="🌸 BRIDE'S PARENTS" data-te="🌸 వధువు తల్లిదండ్రులు">🌸 BRIDE'S PARENTS</div>
-              <div class="parent-name">
+              <div class="parent-name" id="brideParentsText">
                 Deshaboina Venkateshwara Prabhu
                 <span class="parent-connector">&amp;</span>
                 Mrs. Sharadamba
@@ -715,7 +717,7 @@
           <div class="royal-parent-card groom-royal-frame">
             <div class="groom-inner-border">
               <div class="card-badge groom-badge" data-en="🪷 GROOM'S PARENTS" data-te="🪷 వరుని తల్లిదండ్రులు">🪷 GROOM'S PARENTS</div>
-              <div class="parent-name">
+              <div class="parent-name" id="groomParentsText">
                 Boga Ashok
                 <span class="parent-connector">&amp;</span>
                 Mrs. Geetha
@@ -792,14 +794,14 @@
           <span class="divider-line"></span>
         </div>
 
-        <!-- SACRED DIYA LIGHTING -->
+        <!-- SACRED DIYA LIGHTING (COMPACT) -->
         <div class="diya-section">
           <div class="diya-heading" data-en="Light the Sacred Diya" data-te="మంగళ దీపం వెలిగించండి">Light the Sacred Diya</div>
-          <div class="diya-sub" data-en="Touch the lamp to ignite divine blessings for Sampath &amp; Sarika 🪔" data-te="సంపత్ &amp; సారికల కొరకు మంగళ దీపాన్ని తాకి వెలిగించండి 🪔">Touch the lamp to ignite divine blessings for Sampath &amp; Sarika 🪔</div>
+          <div class="diya-sub" data-en="Touch the lamp to ignite divine blessings for the couple 🪔" data-te="వధూవరుల కొరకు మంగళ దీపాన్ని తాకి వెలిగించండి 🪔">Touch the lamp to ignite divine blessings for the couple 🪔</div>
           
           <div class="diya-lamp-box" id="diyaBox" onclick="lightTheDiya()">
             <div class="diya-aura"></div>
-            <svg viewBox="0 0 100 100" width="80" height="80">
+            <svg viewBox="0 0 100 100" width="62" height="62">
               <path class="diya-flame" d="M50 12 C44 26 40 38 50 48 C60 38 56 26 50 12 Z" fill="url(#flameGradient)"/>
               <ellipse class="diya-flame" cx="50" cy="38" rx="4" ry="7" fill="#FFFFFF" opacity="0.8"/>
               <path d="M24 55 Q50 68 76 55 Q78 68 62 76 L66 88 L34 88 L38 76 Q22 68 24 55 Z" fill="#D4AF37" stroke="#A67C1E" stroke-width="2"/>
@@ -848,18 +850,14 @@
           </div>
         </div>
 
-        <!-- TALAMBRALU CEREMONIAL BOWL SHOWER -->
+        <!-- TALAMBRALU CEREMONIAL BOWL SHOWER (AKSHINTALU ONLY) -->
         <div class="talambralu-box">
           <div class="talambralu-title" data-en="Talambralu Blessings 🌾" data-te="తలంబ్రాల ఆశీస్సులు 🌾">Talambralu Blessings 🌾</div>
-          <div style="font-size:0.8rem; color:#7A6953;" data-en="Tap the sacred bowls to shower blessings upon the couple" data-te="వధూవరులపై తలంబ్రాలు కురిపించడానికి తాకండి">Tap the sacred bowls to shower blessings upon the couple</div>
+          <div style="font-size:0.8rem; color:#7A6953;" data-en="Tap the sacred bowl to shower akshintalu upon the couple" data-te="వధూవరులపై అక్షింతలు కురిపించడానికి తాకండి">Tap the sacred bowl to shower akshintalu upon the couple</div>
           <div class="talambralu-bowls-wrap">
-            <button class="ceremonial-kinnam-btn" onclick="showerTalambralu('rice')">
+            <button class="ceremonial-kinnam-btn" onclick="showerTalambralu()">
               <span class="kinnam-icon">🍚</span>
-              <span class="kinnam-lbl" data-en="Yellow Akshintalu" data-te="పసుపు అక్షింతలు">Yellow Akshintalu</span>
-            </button>
-            <button class="ceremonial-kinnam-btn" onclick="showerTalambralu('petals')">
-              <span class="kinnam-icon">🌹</span>
-              <span class="kinnam-lbl" data-en="Rose Petals" data-te="గులాబీ రేకులు">Rose Petals</span>
+              <span class="kinnam-lbl" data-en="Akshintalu" data-te="అక్షింతలు">Akshintalu</span>
             </button>
           </div>
         </div>
@@ -900,7 +898,7 @@
           </div>
           <div class="event-tag" data-en="VENUE" data-te="కళ్యాణ వేదిక">VENUE</div>
           <div class="venue-title">VIP Gardens</div>
-          <div class="event-address">
+          <div class="event-address" data-en="GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony, Suraram Village, Suraram, Hyderabad, Telangana 500055" data-te="GCXG+6GH, సూరారం విలేజ్ రోడ్, లక్ష్మీ నగర్ కాలనీ, సూరారం విలేజ్, సూరారం, హైదరాబాద్, తెలంగాణ 500055">
             GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony,<br>
             Suraram Village, Suraram, Hyderabad, Telangana 500055
           </div>
@@ -990,7 +988,7 @@
         <div class="footer-bar">
           <em data-en="We can't wait to celebrate this auspicious day with you ❤️" data-te="ఈ శుభదినాన మీతో కలిసి వేడుక చేసుకోవడానికి వేచిచూస్తున్నాము ❤️">We can't wait to celebrate this auspicious day with you ❤️</em>
           <div style="font-size:0.85rem; margin-top:4px; color:#F8DFAD;" data-en="With Love," data-te="ప్రేమతో,">With Love,</div>
-          <div class="footer-couple">SAMPATH &amp; SARIKA</div>
+          <div class="footer-couple" id="footerCoupleText" data-en="SAMPATH &amp; SARIKA" data-te="సంపత్ &amp; సారిక">SAMPATH &amp; SARIKA</div>
         </div>
 
       </div>
@@ -1011,31 +1009,103 @@
   <canvas id="blessingCanvas" width="900" height="1200" style="display:none;"></canvas>
 
   <script>
-    /* GUEST SIDE SELECTION (GROOM VS BRIDE) */
-    let selectedSide = 'groom'; // Default to groom side
+    /* NAMES DATA REPOSITORY IN BOTH ENGLISH AND TELUGU */
+    const namesData = {
+      brideParents: {
+        en: `Deshaboina Venkateshwara Prabhu<span class="parent-connector">&amp;</span>Mrs. Sharadamba`,
+        te: `దేశబోయిన వెంకటేశ్వర ప్రభు<span class="parent-connector">&amp;</span>శ్రీమతి శారదాంబ`
+      },
+      groomParents: {
+        en: `Boga Ashok<span class="parent-connector">&amp;</span>Mrs. Geetha`,
+        te: `బోగ అశోక్<span class="parent-connector">&amp;</span>శ్రీమతి గీత`
+      },
+      grandparents: {
+        enPrimary: `Late Smt. Boga Narsamma &amp; Late Sri Boga Shivalingam`,
+        enSecondary: `(With the eternal blessings of Nanamma &amp; Thathya)`,
+        tePrimary: `స్వర్గీయ శ్రీమతి బోగ నర్సమ్మ &amp; స్వర్గీయ శ్రీ బోగ శివలింగం`,
+        teSecondary: `(నానమ్మ &amp; తాతయ్య గార్ల దివ్యాశీస్సులతో)`
+      },
+      welcomeBanner: {
+        groom: {
+          enTitle: "Boga Family Welcomes You",
+          enSub: "With warm hearts and warm blessings 🙏",
+          teTitle: "బోగ వారి కుటుంబం తరపున సాదర సుస్వాగతం",
+          teSub: "వధూవరులను ఆశీర్వదించడానికి విచ్చేయండి 🙏"
+        },
+        bride: {
+          enTitle: "Deshaboina Family Welcomes You",
+          enSub: "With warm hearts and warm blessings 🙏",
+          teTitle: "దేశబోయిన వారి కుటుంబం తరపున సాదర సుస్వాగతం",
+          teSub: "వధూవరులను ఆశీర్వదించడానికి విచ్చేయండి 🙏"
+        }
+      }
+    };
 
-    function applySelectedSide(side) {
-      selectedSide = side;
+    /* GUEST SIDE SELECTION (GROOM VS BRIDE) */
+    let selectedSide = 'groom';
+    let currentLang = 'en';
+
+    function renderSideAndNames() {
+      const bannerData = namesData.welcomeBanner[selectedSide];
       const welcomeEn = document.getElementById('familyWelcomeEn');
       const welcomeTe = document.getElementById('familyWelcomeTe');
       const gpSection = document.getElementById('groomGrandparentsSection');
+      const gpNamesEn = document.getElementById('grandparentsNamesEn');
+      const gpNamesTe = document.getElementById('grandparentsNamesTe');
+      const brideParentsEl = document.getElementById('brideParentsText');
+      const groomParentsEl = document.getElementById('groomParentsText');
+      const coupleTitle = document.getElementById('coupleTitle');
 
-      if (side === 'bride') {
-        if (welcomeEn) welcomeEn.innerText = "Deshaboina Family Welcomes You";
-        if (welcomeTe) welcomeTe.innerText = "దేశబోయిన వారి కుటుంబం తరపున సాదర సుస్వాగతం 🙏";
-        if (gpSection) gpSection.style.display = 'none'; // Only groom side gets grandparents
+      // Update Couple Name Font and Content
+      if (coupleTitle) {
+        if (currentLang === 'te') {
+          coupleTitle.innerHTML = coupleTitle.getAttribute('data-te');
+          coupleTitle.classList.add('telugu-font');
+        } else {
+          coupleTitle.innerHTML = coupleTitle.getAttribute('data-en');
+          coupleTitle.classList.remove('telugu-font');
+        }
+      }
+
+      // Update Parents Names
+      if (brideParentsEl) brideParentsEl.innerHTML = namesData.brideParents[currentLang];
+      if (groomParentsEl) groomParentsEl.innerHTML = namesData.groomParents[currentLang];
+
+      // Update Welcome Family Banner
+      if (welcomeEn) welcomeEn.innerText = currentLang === 'te' ? bannerData.teTitle : bannerData.enTitle;
+      if (welcomeTe) welcomeTe.innerText = currentLang === 'te' ? bannerData.teSub : bannerData.enSub;
+
+      // Handle Grandparents Section (Only Groom Side)
+      if (selectedSide === 'bride') {
+        if (gpSection) gpSection.style.display = 'none';
       } else {
-        if (welcomeEn) welcomeEn.innerText = "Boga Family Welcomes You";
-        if (welcomeTe) welcomeTe.innerText = "బోగ వారి కుటుంబం తరపున సాదర సుస్వాగతం 🙏";
-        if (gpSection) gpSection.style.display = 'block'; // Show Nanamma & Thathya
+        if (gpSection) {
+          gpSection.style.display = 'block';
+          if (gpNamesEn) gpNamesEn.innerHTML = currentLang === 'te' ? namesData.grandparents.tePrimary : namesData.grandparents.enPrimary;
+          if (gpNamesTe) gpNamesTe.innerHTML = currentLang === 'te' ? namesData.grandparents.teSecondary : namesData.grandparents.enSecondary;
+        }
       }
     }
 
     function selectGuestSide(side) {
-      applySelectedSide(side);
+      selectedSide = side;
+      renderSideAndNames();
       const modal = document.getElementById('sidePickerModal');
       if (modal) modal.classList.add('closed');
       triggerHeartbeatPulse();
+    }
+
+    /* MULTI-LANGUAGE TOGGLE (ENGLISH / TELUGU) */
+    function toggleLanguage() {
+      currentLang = currentLang === 'en' ? 'te' : 'en';
+      document.querySelectorAll('[data-en]').forEach(el => {
+        if (el.id !== 'coupleTitle') {
+          el.innerHTML = el.getAttribute(`data-${currentLang}`);
+        }
+      });
+      document.getElementById('guestName').placeholder = currentLang === 'en' ? 'Your Name (e.g., Ramesh Uncle)' : 'మీ పేరు (ఉదా: రమేష్ బాబాయ్)';
+      document.getElementById('guestMessage').placeholder = currentLang === 'en' ? 'Your blessing / wish...' : 'మీ ఆశీస్సులు / శుభాకాంక్షలు...';
+      renderSideAndNames();
     }
 
     const extList = ['.jpeg', '.jpg', '.png', '.jfif'];
@@ -1059,17 +1129,6 @@
       }
     }
     applyTimeOfDayTheme();
-
-    /* MULTI-LANGUAGE TOGGLE (ENGLISH / TELUGU) */
-    let currentLang = 'en';
-    function toggleLanguage() {
-      currentLang = currentLang === 'en' ? 'te' : 'en';
-      document.querySelectorAll('[data-en]').forEach(el => {
-        el.innerText = el.getAttribute(`data-${currentLang}`);
-      });
-      document.getElementById('guestName').placeholder = currentLang === 'en' ? 'Your Name (e.g., Ramesh Uncle)' : 'మీ పేరు (ఉదా: రమేష్ బాబాయ్)';
-      document.getElementById('guestMessage').placeholder = currentLang === 'en' ? 'Your blessing / wish...' : 'మీ ఆశీస్సులు / శుభాకాంక్షలు...';
-    }
 
     /* AUDIO & SCROLL MUSIC SWELL CONTROLLER */
     const audio = document.getElementById('weddingAudio');
@@ -1302,25 +1361,15 @@
       card.classList.toggle('flipped');
     }
 
-    function showerTalambralu(type) {
+    function showerTalambralu() {
       triggerHeartbeatPulse();
-      if (type === 'rice') {
-        confetti({
-          particleCount: 65,
-          spread: 80,
-          angle: 90,
-          origin: { y: 0.65 },
-          colors: ['#FFD700', '#FFEA00', '#FFFDD0', '#E5B80B']
-        });
-      } else {
-        confetti({
-          particleCount: 50,
-          spread: 75,
-          angle: 90,
-          origin: { y: 0.65 },
-          colors: ['#C41E3A', '#DE3163', '#FF4081', '#FFB7B2']
-        });
-      }
+      confetti({
+        particleCount: 75,
+        spread: 85,
+        angle: 90,
+        origin: { y: 0.65 },
+        colors: ['#FFD700', '#FFEA00', '#FFFDD0', '#E5B80B']
+      });
     }
 
     /* VIRTUAL PHOTO BOOTH */
@@ -1725,7 +1774,7 @@
       loadCloudCounter();
       setInterval(updateWeddingCountdown, 1000);
       updateWeddingCountdown();
-      applySelectedSide('groom');
+      renderSideAndNames();
     });
   </script>
 </body>
