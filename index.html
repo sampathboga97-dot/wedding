@@ -442,13 +442,69 @@
     @keyframes flameWiggle { 0% { transform: rotate(-2deg); } 100% { transform: rotate(3deg); } }
     .diya-status-tag { font-size: 0.76rem; font-weight: 700; color: var(--gold-deep); margin-top: 6px; }
 
-    /* MUHURTHAM EVENT CARD */
+    /* MUHURTHAM EVENT CARD & DYNAMIC EVENT STATUS */
     .event-card { background: #FAF5EB; border: 1px solid #EFE2CB; border-radius: 22px; padding: 20px 14px; margin-bottom: 18px; box-shadow: 0 8px 22px rgba(142, 106, 38, 0.1); }
     .event-img-wrap { width: 100%; max-width: 290px; height: 240px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; border: 2px solid #E5CCA2; background: #FFF; }
     .event-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .event-tag { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 4px; }
     .event-subtitle { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: #6C5D4B; margin-bottom: 8px; }
     .event-time-highlight { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 800; color: var(--maroon-primary); margin-top: 4px; }
+
+    /* LIVE SMART EVENT STATUS BANNER */
+    .event-dynamic-status-banner {
+      display: none;
+      background: linear-gradient(135deg, #FFF9E6 0%, #FEEBB2 100%);
+      border: 1.5px solid #E6B800;
+      border-radius: 16px;
+      padding: 12px 14px;
+      margin: 14px auto 10px;
+      max-width: 92%;
+      box-shadow: 0 4px 14px rgba(230, 184, 0, 0.25);
+      animation: pulseNotice 2s infinite ease-in-out;
+    }
+    @keyframes pulseNotice {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+    }
+    .status-msg-title {
+      font-family: 'Cinzel', 'Noto Sans Telugu', serif;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #7A570D;
+      line-height: 1.35;
+    }
+    .status-msg-desc {
+      font-family: 'Playfair Display', 'Noto Sans Telugu', serif;
+      font-size: 0.82rem;
+      font-style: italic;
+      color: #5C3A10;
+      margin-top: 3px;
+    }
+
+    /* MARRIED LIFE CELEBRATION BOX (SHOWN WHEN 9:15 AM ARRIVES) */
+    .married-celebration-box {
+      display: none;
+      background: radial-gradient(circle at center, #FFFDF8 0%, #FDEED6 100%);
+      border: 2px solid #851329;
+      border-radius: 18px;
+      padding: 16px 12px;
+      margin: 16px auto 10px;
+      max-width: 90%;
+      box-shadow: 0 6px 20px rgba(133, 19, 41, 0.18);
+    }
+    .married-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.3rem;
+      color: #851329;
+      line-height: 1.1;
+    }
+    .married-sub {
+      font-family: 'Cinzel', 'Noto Sans Telugu', serif;
+      font-size: 0.94rem;
+      font-weight: 800;
+      color: #8E6A26;
+      margin-top: 4px;
+    }
 
     .countdown-medals { display: flex; justify-content: center; gap: 10px; margin: 18px 0 10px; }
     .medal-item { width: 70px; height: 70px; border-radius: 50%; background: radial-gradient(circle at 35% 35%, #FFF6DB 0%, #E3BC6A 60%, #9C7227 100%); border: 2px solid #FFFFFF; box-shadow: 0 6px 15px rgba(156, 114, 39, 0.4); display: flex; flex-direction: column; align-items: center; justify-content: center; }
@@ -641,7 +697,7 @@
       <div class="side-picker-sub" data-en="Please choose your side to enter our wedding invitation" data-te="దయచేసి మీ వైపు ఎంచుకొని ఆహ్వానాన్ని చూడండి">Please choose your side to enter our wedding invitation</div>
 
       <div class="side-btn-group">
-        <!-- 1. Bride Side Option (Queen Emoji 👑/👸) -->
+        <!-- 1. Bride Side Option (Queen Emoji 👸) -->
         <button type="button" class="side-choice-btn btn-bride-choice" onclick="selectGuestSide('bride')">
           <div class="choice-text-wrap">
             <div class="choice-main-title" data-en="👸 Bride's Side" data-te="👸 వధువు వైపు (దేశబోయిన వారి కుటుంబం)">👸 Bride's Side</div>
@@ -871,7 +927,7 @@
           <div class="diya-status-tag" id="diyaStatus" data-en="Touch to light the Diya ✨" data-te="దీపం వెలిగించడానికి తాకండి ✨">Touch to light the Diya ✨</div>
         </div>
 
-        <!-- Muhurtham Section -->
+        <!-- Muhurtham Section (WITH SMART EVENT STATUS & WEDDING CELEBRATION BADGE) -->
         <div class="event-card">
           <div class="event-img-wrap">
             <img src="kalyanam.jpeg" alt="Sita Rama Kalyanam" onerror="handleImgError(this, 'kalyanam')">
@@ -881,8 +937,20 @@
           <div style="font-size: 1.05rem; font-weight:700;" data-en="Thursday, 26 November 2026" data-te="గురువారం, 26 నవంబర్ 2026">Thursday, 26 November 2026</div>
           <div class="event-time-highlight" data-en="9:15 AM" data-te="ఉదయం 9:15 గంటలకు">9:15 AM</div>
 
+          <!-- SMART NOTICE BANNER: HALDI EVENT (NOV 25) / GRAND KALYANAM SOON (NOV 26) -->
+          <div class="event-dynamic-status-banner" id="eventStatusBanner">
+            <div class="status-msg-title" id="statusTitle"></div>
+            <div class="status-msg-desc" id="statusDesc"></div>
+          </div>
+
+          <!-- HAPPY MARRIED LIFE CELEBRATION (DISPLAYED AFTER 9:15 AM ON NOV 26) -->
+          <div class="married-celebration-box" id="marriedCelebrationBox">
+            <div class="married-title">Happy Married Life!</div>
+            <div class="married-sub" id="marriedSubTxt">❤️ To the Amazing Couple Sarika &amp; Sampath! ❤️</div>
+          </div>
+
           <!-- CIRCULAR MEDAL COUNTDOWN BADGES -->
-          <div class="countdown-medals">
+          <div class="countdown-medals" id="countdownMedalsRow">
             <div class="medal-item">
               <div class="medal-val" id="days">--</div>
               <div class="medal-lbl" data-en="Days" data-te="రోజులు">Days</div>
@@ -1111,7 +1179,6 @@
     let selectedSide = 'bride';
     let currentLang = 'en';
 
-    /* REOPEN SIDE PICKER MODAL (BACK BUTTON) */
     function reopenSidePicker() {
       const modal = document.getElementById('sidePickerModal');
       if (modal) modal.classList.remove('closed');
@@ -1126,7 +1193,6 @@
       const H = canvas.height;
       const isTe = (currentLang === 'te');
 
-      // Card Background (Cream / Ivory)
       const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 100, W / 2, H / 2, 900);
       bgGrad.addColorStop(0, '#FFFDF8');
       bgGrad.addColorStop(0.7, '#FDF6E9');
@@ -1134,7 +1200,6 @@
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, W, H);
 
-      // Ornate Outer Maroon & Gold Borders
       ctx.lineWidth = 18;
       ctx.strokeStyle = '#851329';
       ctx.strokeRect(30, 30, W - 60, H - 60);
@@ -1143,7 +1208,6 @@
       ctx.strokeStyle = '#C59A3F';
       ctx.strokeRect(48, 48, W - 96, H - 96);
 
-      // Gold Dotted Decorative Border
       ctx.save();
       ctx.strokeStyle = '#DFC394';
       ctx.lineWidth = 2;
@@ -1153,7 +1217,6 @@
 
       ctx.textAlign = 'center';
 
-      // Sacred Shloka Header
       ctx.font = 'bold 26px "Noto Sans Telugu", sans-serif';
       ctx.fillStyle = '#851329';
       ctx.fillText('||  శ్రీరస్తు - శుభమస్తు - అవిఘ్నమస్తు  ||', W / 2, 140);
@@ -1162,11 +1225,9 @@
       ctx.fillStyle = '#8E6A26';
       ctx.fillText(isTe ? 'వివాహ మహోత్సవ ఆహ్వాన పత్రిక' : 'WEDDING INVITATION', W / 2, 185);
 
-      // Kalash / Icon
       ctx.font = '36px sans-serif';
       ctx.fillText('🏺', W / 2, 235);
 
-      // Couple Names: Sarika & Sampath
       if (isTe) {
         ctx.font = 'bold 78px "Suranna", "Noto Sans Telugu", serif';
         ctx.fillStyle = '#851329';
@@ -1181,7 +1242,6 @@
       ctx.fillStyle = '#8E6A26';
       ctx.fillText('#SamRika', W / 2, 395);
 
-      // Invite Solicit Line
       ctx.font = isTe ? 'italic 25px "Noto Sans Telugu", sans-serif' : 'italic 25px "Playfair Display", serif';
       ctx.fillStyle = '#5A4634';
       const solicitText = isTe 
@@ -1276,7 +1336,6 @@
         ctx.fillText('Suraram, Hyderabad, Telangana 500055', W / 2, startBoxY + 128);
       }
 
-      // Footer Blessing
       ctx.font = 'italic 23px "Playfair Display", "Noto Sans Telugu", serif';
       ctx.fillStyle = '#7A6953';
       const footerBless = isTe 
@@ -1312,18 +1371,15 @@
       const greetingPill = document.getElementById('timeGreetingPill');
       const topDownloadLbl = document.getElementById('topDownloadLbl');
 
-      // Update Dynamic Greeting above Surname
       const greeting = getTimeGreeting();
       if (greetingPill) {
         greetingPill.innerText = currentLang === 'te' ? greeting.te : greeting.en;
       }
 
-      // Update Top Button Label
       if (topDownloadLbl) {
         topDownloadLbl.innerText = currentLang === 'te' ? 'వివాహ ఆహ్వాన పత్రిక డౌన్‌లోడ్' : 'Wedding Invitation Download Card';
       }
 
-      // Update Couple Name Font and Content (Sarika & Sampath)
       if (coupleTitle) {
         if (currentLang === 'te') {
           coupleTitle.innerHTML = coupleTitle.getAttribute('data-te');
@@ -1334,15 +1390,12 @@
         }
       }
 
-      // Update Parents Names
       if (brideParentsEl) brideParentsEl.innerHTML = namesData.brideParents[currentLang];
       if (groomParentsEl) groomParentsEl.innerHTML = namesData.groomParents[currentLang];
 
-      // Update Welcome Family Banner
       if (welcomeEn) welcomeEn.innerText = currentLang === 'te' ? bannerData.teTitle : bannerData.enTitle;
       if (welcomeTe) welcomeTe.innerText = currentLang === 'te' ? bannerData.teSub : bannerData.enSub;
 
-      // Handle Grandparents Section (Only Groom Side)
       if (selectedSide === 'bride') {
         if (gpSection) gpSection.style.display = 'none';
       } else {
@@ -1373,6 +1426,7 @@
       document.getElementById('guestName').placeholder = currentLang === 'en' ? 'Your Name (e.g., Ramesh Uncle)' : 'మీ పేరు (ఉదా: రమేష్ బాబాయ్)';
       document.getElementById('guestMessage').placeholder = currentLang === 'en' ? 'Your blessing / wish...' : 'మీ ఆశీస్సులు / శుభాకాంక్షలు...';
       renderSideAndNames();
+      updateWeddingCountdown();
     }
 
     const extList = ['.jpeg', '.jpg', '.png', '.jfif'];
@@ -1422,7 +1476,6 @@
       }
     });
 
-    /* HAPTIC HEARTBEAT PULSE + AUDIBLE LUB-DUB SOUND */
     function triggerHeartbeatPulse() {
       if (navigator.vibrate) {
         navigator.vibrate([60, 40, 80]);
@@ -1508,7 +1561,6 @@
       }
     }
 
-    /* DIGITAL GOLD FOIL SCRATCH CARD */
     function initScratchCard() {
       const canvas = document.getElementById('scratchCanvas');
       if (!canvas) return;
@@ -1560,7 +1612,6 @@
       canvas.addEventListener('touchmove', scratch);
     }
 
-    /* DIYA LIGHTING & TEMPLE BELL */
     function playTempleBellChime() {
       try {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -1626,7 +1677,6 @@
       });
     }
 
-    /* VIRTUAL PHOTO BOOTH */
     let streamObj = null;
     let capturedSelfieBase64 = null;
 
@@ -1697,7 +1747,6 @@
       document.getElementById('capturedPhotoPreview').style.display = 'none';
     }
 
-    /* AUDIO GUESTBOOK */
     let mediaRecorder = null;
     let audioChunks = [];
     let capturedAudioBase64 = null;
@@ -1782,7 +1831,6 @@
       document.getElementById('recordVoiceBtn').innerText = "🎙️ Voice Note (10s)";
     }
 
-    /* DOWNLOADABLE BLESSING CARD */
     function renderWrappedLines(ctx, text, x, startY, maxWidth, lineHeight) {
       const words = text.split(' ');
       let line = '';
@@ -1877,7 +1925,6 @@
       link.click();
     }
 
-    /* THANK YOU MODAL */
     function openThankYouModal() {
       document.getElementById('thankyouModal').classList.add('active');
       showerAkshintalu();
@@ -1886,7 +1933,6 @@
       document.getElementById('thankyouModal').classList.remove('active');
     }
 
-    /* FIREBASE INTEGRATION & UNBLOCKED SUBMISSION */
     const FIREBASE_ENDPOINT = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/wishes.json";
     const FIREBASE_COUNTER_URL = "https://wedding-wishes-3fdbe-default-rtdb.firebaseio.com/counter.json";
     let totalBlessings = 356;
@@ -2010,12 +2056,75 @@
       });
     }
 
-    // Countdown
+    /* SMART DATE AND LIVE COUNTDOWN LOGIC */
     const weddingDate = new Date('2026-11-26T09:15:00+05:30').getTime();
+
     function updateWeddingCountdown() {
-      const now = new Date().getTime();
-      const diff = weddingDate - now;
-      if (diff <= 0) return;
+      const now = new Date();
+      const diff = weddingDate - now.getTime();
+
+      const statusBanner = document.getElementById('eventStatusBanner');
+      const statusTitle = document.getElementById('statusTitle');
+      const statusDesc = document.getElementById('statusDesc');
+      const celebrationBox = document.getElementById('marriedCelebrationBox');
+      const countdownRow = document.getElementById('countdownMedalsRow');
+      const marriedSubTxt = document.getElementById('marriedSubTxt');
+
+      const currentYear = now.getFullYear();
+      const currentMonth = now.getMonth(); // 10 = Nov (0-indexed)
+      const currentDate = now.getDate();
+
+      // Check dates
+      const isNov25 = (currentYear === 2026 && currentMonth === 10 && currentDate === 25);
+      const isNov26 = (currentYear === 2026 && currentMonth === 10 && currentDate === 26);
+
+      // 1. November 25: Haldi Event Alert
+      if (isNov25) {
+        if (statusBanner) {
+          statusBanner.style.display = 'block';
+          if (currentLang === 'te') {
+            statusTitle.innerText = "💛 ఈరోజు: పవిత్ర పసుపు వేడుక (హల్దీ)!";
+            statusDesc.innerText = "వధూవరులను ఆశీర్వదించడానికి తప్పక విచ్చేయగలరు 🙏";
+          } else {
+            statusTitle.innerText = "💛 Today: Sacred Haldi Ceremony!";
+            statusDesc.innerText = "Please join and shower your blessings upon Sarika & Sampath 🙏";
+          }
+        }
+      } 
+      // 2. November 26 Before 9:15 AM: Kalyanam starting soon alert
+      else if (isNov26 && diff > 0) {
+        if (statusBanner) {
+          statusBanner.style.display = 'block';
+          if (currentLang === 'te') {
+            statusTitle.innerText = "✨ సుముహూర్త సమయం సమీపిస్తోంది!";
+            statusDesc.innerText = "ఈరోజే పవిత్ర కల్యాణ మహోత్సవం... కొద్దిసేపట్లో ప్రారంభం కానుంది!";
+          } else {
+            statusTitle.innerText = "✨ The Grand Kalyanam is taking place today!";
+            statusDesc.innerText = "The sacred ceremony is starting very soon!";
+          }
+        }
+      } else {
+        if (statusBanner) statusBanner.style.display = 'none';
+      }
+
+      // 3. Reached Muhurtham Time (Nov 26, 9:15 AM onwards)
+      if (diff <= 0) {
+        if (countdownRow) countdownRow.style.display = 'none';
+        if (celebrationBox) {
+          celebrationBox.style.display = 'block';
+          if (marriedSubTxt) {
+            marriedSubTxt.innerText = currentLang === 'te' 
+              ? "❤️ నూతన వధూవరులు సారిక & సంపత్ లకు వివాహ శుభాకాంక్షలు! ❤️" 
+              : "❤️ Happy Married Life to the Amazing Couple Sarika & Sampath! ❤️";
+          }
+        }
+        return;
+      }
+
+      // Live countdown active
+      if (countdownRow) countdownRow.style.display = 'flex';
+      if (celebrationBox) celebrationBox.style.display = 'none';
+
       document.getElementById('days').innerText = String(Math.floor(diff / (1000 * 60 * 60 * 24))).padStart(2, '0');
       document.getElementById('hours').innerText = String(Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))).padStart(2, '0');
       document.getElementById('mins').innerText = String(Math.floor((diff % (1000 * 60)) / (1000 * 60))).padStart(2, '0');
