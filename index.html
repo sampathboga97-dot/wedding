@@ -23,7 +23,6 @@
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     
-    /* DYNAMIC TIME OF DAY & THEMES */
     body {
       background-color: #F8F3EA;
       background-image: 
@@ -48,8 +47,6 @@
       background-color: #120712;
       color: #E8D7B8;
     }
-
-    /* NIGHT BEFORE WEDDING EVE THEME (HALDI / MEHENDI CELEBRATION) */
     body.theme-night-before {
       --theme-bg-grad: radial-gradient(circle at 50% 0%, #FFF4D0 0%, #FCE082 50%, #EAA812 100%) !important;
       background-color: #FCE082 !important;
@@ -60,7 +57,6 @@
       box-shadow: 0 20px 70px rgba(230, 140, 10, 0.35) !important;
     }
 
-    /* SIDE THEME ADAPTATIONS */
     body.side-groom {
       --side-accent-color: #851329;
       --side-glow: rgba(133, 19, 41, 0.35);
@@ -71,7 +67,7 @@
       --gold-deep: #946E12;
     }
 
-    /* TOP PERSISTENT ACTIONS BAR */
+    /* TOP ACTION BAR */
     .top-action-bar {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -87,18 +83,18 @@
       box-shadow: 0 2px 10px rgba(0,0,0,0.06);
     }
     .btn-offline-snapshot {
-      background: linear-gradient(135deg, #C59A3F 0%, #8E6A26 100%);
+      background: linear-gradient(135deg, #DE3163 0%, #851329 100%);
       color: #FFFFFF;
-      border: 1px solid #FFE4A0;
+      border: 1.5px solid #FFD700;
       border-radius: 20px;
-      padding: 6px 12px;
-      font-size: 0.72rem;
+      padding: 6px 14px;
+      font-size: 0.74rem;
       font-weight: 700;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      box-shadow: 0 2px 8px rgba(142, 106, 38, 0.3);
+      box-shadow: 0 3px 10px rgba(133, 19, 41, 0.28);
       transition: transform 0.15s ease;
     }
     .btn-offline-snapshot:active { transform: scale(0.96); }
@@ -113,12 +109,11 @@
       cursor: pointer;
     }
 
-    /* BRIDE VS GROOM SIDE SELECTION MODAL */
+    /* BRIDE VS GROOM MODAL */
     .side-picker-overlay {
       position: fixed;
       inset: 0;
-      width: 100vw;
-      height: 100dvh;
+      width: 100vw; height: 100dvh;
       z-index: 1100;
       background: rgba(14, 8, 5, 0.94);
       backdrop-filter: blur(10px);
@@ -196,7 +191,6 @@
     .side-btn-text h4 { font-family: 'Cinzel', serif; font-size: 0.98rem; font-weight: 800; color: #222; }
     .side-btn-text p { font-size: 0.74rem; color: #666; margin-top: 1px; }
 
-    /* RECOGNITION WELCOME BANNER */
     .family-welcome-banner {
       display: none;
       background: rgba(255, 255, 255, 0.95);
@@ -211,8 +205,6 @@
       color: var(--side-accent-color);
       box-shadow: 0 4px 15px var(--side-glow);
     }
-
-    /* NIGHT BEFORE CELEBRATION ALERT BANNER */
     .night-before-banner {
       display: none;
       background: linear-gradient(135deg, #FF6F00 0%, #D84315 100%);
@@ -229,12 +221,11 @@
       animation: pulseTarget 2.5s infinite ease-in-out;
     }
 
-    /* FULL-SCREEN REACHING HANDS OVERLAY */
+    /* REACHING HANDS SCREEN */
     .hands-overlay-screen {
       position: fixed;
       inset: 0;
-      width: 100vw;
-      height: 100dvh;
+      width: 100vw; height: 100dvh;
       z-index: 1000;
       background: #000000;
       overflow: hidden;
@@ -249,23 +240,16 @@
     }
     .hands-layer-initial {
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
+      inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
       transition: opacity 0.5s ease, transform 0.5s ease;
       z-index: 1;
     }
     .hands-layer-united {
       position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center;
-      opacity: 0;
-      transform: scale(0.96);
+      inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: center;
+      opacity: 0; transform: scale(0.96);
       transition: opacity 0.5s ease, transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
       z-index: 2;
     }
@@ -279,9 +263,7 @@
       border-radius: 50%;
       background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(255,225,140,0.5) 45%, transparent 75%);
       box-shadow: 0 0 45px rgba(255, 220, 140, 0.95);
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      display: flex; align-items: center; justify-content: center;
       z-index: 10;
       animation: pulseTarget 1.8s infinite ease-in-out;
     }
@@ -293,8 +275,7 @@
     .tap-guide-prompt {
       position: absolute;
       bottom: clamp(26px, 5vh, 40px);
-      left: 50%;
-      transform: translateX(-50%);
+      left: 50%; transform: translateX(-50%);
       font-family: 'Playfair Display', serif;
       font-style: italic;
       font-size: clamp(0.98rem, 2.4vh, 1.2rem);
@@ -314,7 +295,7 @@
       50% { transform: translate(-50%, -6px); }
     }
 
-    /* MAIN INVITATION FRAME CONTAINER */
+    /* INVITATION CONTAINER */
     .invitation-container {
       width: 100%;
       max-width: 490px;
@@ -369,7 +350,6 @@
 
     .sacred-shloka { font-family: 'Noto Sans Telugu', sans-serif; font-size: 0.86rem; font-weight: 700; color: var(--maroon-primary); line-height: 1.6; margin: 8px auto 10px; padding: 7px 12px; background: rgba(255, 255, 255, 0.75); border-radius: 12px; border: 1px dashed rgba(163, 124, 50, 0.4); }
     
-    /* HIGHLIGHTED COUPLE TITLE: SARIKA & SAMPATH */
     .couple-title {
       font-family: 'Great Vibes', cursive;
       font-size: 4.1rem;
@@ -424,7 +404,7 @@
     @keyframes flameWiggle { 0% { transform: rotate(-2deg); } 100% { transform: rotate(3deg); } }
     .diya-status-tag { font-size: 0.82rem; font-weight: 700; color: var(--gold-deep); margin-top: 8px; }
 
-    /* MUHURTHAM SECTION & CONVERSATIONAL TIME-LEFT TRACKER */
+    /* MUHURTHAM SECTION & TIME-LEFT TRACKER */
     .event-card { background: #FAF5EB; border: 1px solid #EFE2CB; border-radius: 22px; padding: 20px 14px; margin-bottom: 18px; box-shadow: 0 8px 22px rgba(142, 106, 38, 0.1); }
     .event-img-wrap { width: 100%; max-width: 290px; height: 240px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; border: 2px solid #E5CCA2; background: #FFF; }
     .event-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
@@ -449,7 +429,6 @@
       z-index: 2;
     }
     
-    /* CONVERSATIONAL TIME-LEFT TRACKER CARD */
     .conversational-tracker-box {
       background: radial-gradient(circle, #FFFBF0 0%, #FAEDD0 100%);
       border: 1.5px solid #DFC394;
@@ -1037,7 +1016,7 @@
       }
     }
 
-    /* 1. BRIDE VS GROOM SIDE SELECTION (DIRECT TO REACHING HANDS) */
+    /* 1. BRIDE VS GROOM SIDE SELECTION */
     function selectWeddingSide(side) {
       const overlay = document.getElementById('sidePickerOverlay');
       const banner = document.getElementById('familyWelcomeBanner');
@@ -1060,7 +1039,7 @@
       if (navigator.vibrate) navigator.vibrate([40, 30, 40]);
     }
 
-    /* 2. NIGHT BEFORE WEDDING EVE AUTO-CHECK (NOV 25, 2026, 6:00 PM) */
+    /* 2. NIGHT BEFORE WEDDING EVE CHECK (NOV 25, 2026, 6:00 PM) */
     const weddingDateTime = new Date('2026-11-26T09:15:00+05:30').getTime();
     const nightBeforeDateTime = new Date('2026-11-25T18:00:00+05:30').getTime();
 
@@ -1073,7 +1052,7 @@
       }
     }
 
-    /* 3. CONVERSATIONAL "TIME-LEFT" TRACKER SCRIPT */
+    /* 3. CONVERSATIONAL TIME-LEFT TRACKER */
     function updateConversationalTracker() {
       const now = new Date();
       const diffMs = weddingDateTime - now.getTime();
@@ -1088,14 +1067,13 @@
       }
 
       const totalDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-      const currentDayOfWeek = now.getDay(); // 4 = Thursday
+      const currentDayOfWeek = now.getDay();
 
       if (now >= nightBeforeDateTime && now < weddingDateTime) {
         trackerEl.innerText = currentLang === 'en'
           ? "✨ Tonight is the night! Tomorrow morning Sarika & Sampath tie the knot! 💍"
           : "✨ రేపు ఉదయమే సారిక & సంపత్ ల వివాహ మహోత్సవం! 💍";
       } else if (currentDayOfWeek === 4) {
-        // Today is Thursday! Calculate how many Thursdays remain
         const thursdaysLeft = Math.ceil(totalDays / 7);
         if (thursdaysLeft <= 1) {
           trackerEl.innerText = currentLang === 'en'
@@ -1124,7 +1102,7 @@
       }
     }
 
-    /* 4. LIVE AUSPICIOUS GLOW ENGINE (MUHURTHAM 9:15 AM) */
+    /* 4. LIVE AUSPICIOUS GLOW */
     function updateAuspiciousGlow() {
       const now = new Date().getTime();
       const diffMs = weddingDateTime - now;
@@ -1149,142 +1127,276 @@
       }
     }
 
-    /* 5. OFFLINE SNAPSHOT MODE (SARIKA & SAMPATH) */
+    /* CANVAS TEXT-WRAPPING HELPER TO PREVENT ANY OVERFLOW */
+    function renderCanvasWrapped(ctx, text, x, startY, maxWidth, lineHeight) {
+      const words = String(text).split(' ');
+      let line = '';
+      let currentY = startY;
+      for (let n = 0; n < words.length; n++) {
+        const testLine = line + words[n] + ' ';
+        const metrics = ctx.measureText(testLine);
+        if (metrics.width > maxWidth && n > 0) {
+          ctx.fillText(line.trim(), x, currentY);
+          line = words[n] + ' ';
+          currentY += lineHeight;
+        } else {
+          line = testLine;
+        }
+      }
+      ctx.fillText(line.trim(), x, currentY);
+      return currentY;
+    }
+
+    /* FLORAL ORNAMENTATION CANVAS DRAWING HELPERS */
+    function drawCanvasFlower(ctx, cx, cy, radius, primaryColor, centerColor) {
+      ctx.save();
+      // Draw 6 petals
+      for (let i = 0; i < 6; i++) {
+        const angle = (i * Math.PI) / 3;
+        const px = cx + Math.cos(angle) * (radius * 0.7);
+        const py = cy + Math.sin(angle) * (radius * 0.7);
+        ctx.beginPath();
+        ctx.arc(px, py, radius * 0.55, 0, Math.PI * 2);
+        ctx.fillStyle = primaryColor;
+        ctx.fill();
+      }
+      // Draw Flower Center Core
+      ctx.beginPath();
+      ctx.arc(cx, cy, radius * 0.45, 0, Math.PI * 2);
+      ctx.fillStyle = centerColor;
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawCanvasLotusCorner(ctx, cx, cy, size, flipX, flipY) {
+      ctx.save();
+      ctx.translate(cx, cy);
+      ctx.scale(flipX ? -1 : 1, flipY ? -1 : 1);
+      
+      // Side Petals
+      ctx.fillStyle = '#FF6584';
+      ctx.beginPath();
+      ctx.ellipse(-size * 0.4, -size * 0.2, size * 0.28, size * 0.55, -0.4, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.beginPath();
+      ctx.ellipse(size * 0.4, -size * 0.2, size * 0.28, size * 0.55, 0.4, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Center Main Petal
+      ctx.fillStyle = '#FFA8B6';
+      ctx.beginPath();
+      ctx.ellipse(0, -size * 0.35, size * 0.3, size * 0.65, 0, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Golden Base Calyx
+      ctx.fillStyle = '#E5B80B';
+      ctx.beginPath();
+      ctx.arc(0, 0, size * 0.28, 0, Math.PI);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    /* 5. VIBRANT FLORAL OFFLINE SNAPSHOT CARD GENERATOR */
     function downloadOfflineSnapshotCard() {
       const canvas = document.getElementById('offlineSnapshotCanvas');
       const ctx = canvas.getContext('2d');
       const W = canvas.width;
       const H = canvas.height;
 
-      const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 100, W / 2, H / 2, 1100);
+      // 1. Warm Silk Parchment Base
+      const bgGrad = ctx.createRadialGradient(W / 2, H / 2, 100, W / 2, H / 2, 1150);
       bgGrad.addColorStop(0, '#FFFDF8');
-      bgGrad.addColorStop(0.65, '#F9EED9');
-      bgGrad.addColorStop(1, '#EED5B0');
+      bgGrad.addColorStop(0.5, '#FFF8EC');
+      bgGrad.addColorStop(1, '#F7E7CD');
       ctx.fillStyle = bgGrad;
       ctx.fillRect(0, 0, W, H);
 
-      ctx.lineWidth = 18;
-      ctx.strokeStyle = '#851329';
+      // 2. Multi-tier Royal Silk & Gold Borders
+      ctx.lineWidth = 22;
+      ctx.strokeStyle = '#851329'; // Royal Maroon
       ctx.strokeRect(32, 32, W - 64, H - 64);
 
-      ctx.lineWidth = 4;
-      ctx.strokeStyle = '#C59A3F';
-      ctx.strokeRect(54, 54, W - 108, H - 108);
+      ctx.lineWidth = 5;
+      ctx.strokeStyle = '#D4AF37'; // Pure Gold
+      ctx.strokeRect(52, 52, W - 104, H - 104);
 
+      ctx.lineWidth = 2;
+      ctx.strokeStyle = '#C59A3F';
+      ctx.setLineDash([10, 8]);
+      ctx.strokeRect(66, 66, W - 132, H - 132);
+      ctx.setLineDash([]);
+
+      // 3. Mango Leaves & Marigold Garland Toranam across the Top
+      ctx.save();
+      const toranamY = 82;
+      const step = 64;
+      for (let x = 90; x <= W - 90; x += step) {
+        // Mango Leaf (Vibrant Green)
+        ctx.fillStyle = '#2E7D32';
+        ctx.beginPath();
+        ctx.moveTo(x - 16, toranamY);
+        ctx.quadraticCurveTo(x, toranamY + 44, x, toranamY + 54);
+        ctx.quadraticCurveTo(x, toranamY + 44, x + 16, toranamY);
+        ctx.closePath();
+        ctx.fill();
+
+        // Marigold Blossom Studs (Alternating Saffron & Yellow)
+        const isYellow = (x / step) % 2 === 0;
+        drawCanvasFlower(ctx, x, toranamY + 12, 11, isYellow ? '#FFD54F' : '#FF8F00', isYellow ? '#E65100' : '#FFF9C4');
+      }
+      ctx.restore();
+
+      // 4. Side Hanging Marigold Blossom Strands (Left & Right Borders)
+      const garlandTop = 160;
+      const garlandBottom = H - 160;
+      const garlandStep = 60;
+      for (let y = garlandTop; y <= garlandBottom; y += garlandStep) {
+        const isOrange = (y / garlandStep) % 2 === 0;
+        // Left Strand
+        drawCanvasFlower(ctx, 42, y, 12, isOrange ? '#FF8F00' : '#FFD54F', isOrange ? '#FFF59D' : '#E65100');
+        // Right Strand
+        drawCanvasFlower(ctx, W - 42, y, 12, isOrange ? '#FF8F00' : '#FFD54F', isOrange ? '#FFF59D' : '#E65100');
+      }
+
+      // 5. Corner Lotus Blooms
+      drawCanvasLotusCorner(ctx, 110, 110, 38, false, false);
+      drawCanvasLotusCorner(ctx, W - 110, 110, 38, true, false);
+      drawCanvasLotusCorner(ctx, 110, H - 110, 38, false, true);
+      drawCanvasLotusCorner(ctx, W - 110, H - 110, 38, true, true);
+
+      // 6. Sacred Crest & Shloka
       ctx.textAlign = 'center';
       ctx.font = '54px sans-serif';
-      ctx.fillText('🏺', W / 2, 170);
+      ctx.fillText('🏺', W / 2, 195);
 
-      ctx.font = 'bold 36px "Noto Sans Telugu", sans-serif';
+      ctx.font = 'bold 34px "Noto Sans Telugu", sans-serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText('|| శ్రీరస్తు - శుభమస్తు - అవిఘ్నమస్తు ||', W / 2, 235);
+      ctx.fillText('|| శ్రీరస్తు - శుభమస్తు - అవిఘ్నమస్తు ||', W / 2, 255);
 
-      ctx.font = 'bold 32px "Cinzel", serif';
+      ctx.font = 'bold 30px "Cinzel", serif';
       ctx.fillStyle = '#8E6A26';
       ctx.letterSpacing = '3px';
-      ctx.fillText('WEDDING INVITATION', W / 2, 310);
+      ctx.fillText('WEDDING INVITATION', W / 2, 320);
 
-      // Names in Sarika & Sampath order
-      ctx.font = 'bold 110px "Great Vibes", cursive, serif';
+      // 7. Couple Names: SARIKA & SAMPATH
+      ctx.font = 'bold 106px "Great Vibes", cursive, serif';
       ctx.fillStyle = '#851329';
+      ctx.shadowColor = 'rgba(212, 175, 55, 0.45)';
+      ctx.shadowBlur = 14;
       ctx.fillText('Sarika & Sampath', W / 2, 450);
+      ctx.shadowBlur = 0;
 
       ctx.font = 'bold 32px "Cinzel", serif';
       ctx.fillStyle = '#8E6A26';
       ctx.fillText('#SamRika', W / 2, 515);
 
+      // Gold Filigree Divider
       ctx.beginPath();
-      ctx.moveTo(W / 2 - 280, 560);
-      ctx.lineTo(W / 2 + 280, 560);
+      ctx.moveTo(W / 2 - 260, 555);
+      ctx.lineTo(W / 2 + 260, 555);
       ctx.lineWidth = 2.5;
       ctx.strokeStyle = '#DFC394';
       ctx.stroke();
 
+      drawCanvasFlower(ctx, W / 2, 555, 12, '#DE3163', '#FFD54F');
+
+      // 8. Lead-in Text (Strictly Contained & Wrapped)
       ctx.font = 'italic 30px "Playfair Display", serif';
       ctx.fillStyle = '#4D3205';
-      ctx.fillText('Soliciting your gracious presence on our auspicious marriage', W / 2, 630);
+      renderCanvasWrapped(ctx, "Soliciting your gracious presence and heartfelt blessings on our auspicious marriage", W / 2, 620, W - 280, 42);
 
-      // Bride Parents Box
+      // 9. Bride Parents Card Box (Strictly Contained)
+      const cardBoxW = W - 240;
+      const cardBoxX = 120;
+
       ctx.fillStyle = '#FFFFFF';
       ctx.strokeStyle = '#F1BFB3';
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 2.5;
       ctx.beginPath();
-      ctx.roundRect(140, 680, W - 280, 160, 20);
+      ctx.roundRect(cardBoxX, 700, cardBoxW, 170, 20);
       ctx.fill();
       ctx.stroke();
 
       ctx.font = 'bold 24px "Cinzel", serif';
       ctx.fillStyle = '#8E1F35';
-      ctx.fillText('🌸 BRIDE\'S PARENTS', W / 2, 725);
-      ctx.font = 'bold 34px "Playfair Display", serif';
-      ctx.fillStyle = '#222';
-      ctx.fillText('Deshaboina Venkateshwara Prabhu & Mrs. Sharadamba', W / 2, 790);
+      ctx.fillText('🌸 BRIDE\'S PARENTS', W / 2, 745);
 
-      // Groom Parents Box
+      ctx.font = 'bold 32px "Playfair Display", serif';
+      ctx.fillStyle = '#222222';
+      renderCanvasWrapped(ctx, "Deshaboina Venkateshwara Prabhu & Mrs. Sharadamba", W / 2, 800, cardBoxW - 50, 40);
+
+      // 10. Groom Parents Card Box (Strictly Contained)
       ctx.fillStyle = '#FFFFFF';
       ctx.strokeStyle = '#ECC968';
+      ctx.lineWidth = 2.5;
       ctx.beginPath();
-      ctx.roundRect(140, 870, W - 280, 160, 20);
+      ctx.roundRect(cardBoxX, 895, cardBoxW, 170, 20);
       ctx.fill();
       ctx.stroke();
 
       ctx.font = 'bold 24px "Cinzel", serif';
       ctx.fillStyle = '#7A570D';
-      ctx.fillText('🪷 GROOM\'S PARENTS', W / 2, 915);
-      ctx.font = 'bold 34px "Playfair Display", serif';
-      ctx.fillStyle = '#222';
-      ctx.fillText('Boga Ashok & Mrs. Geetha', W / 2, 980);
+      ctx.fillText('🪷 GROOM\'S PARENTS', W / 2, 940);
 
-      // Muhurtham Card Box
+      ctx.font = 'bold 32px "Playfair Display", serif';
+      ctx.fillStyle = '#222222';
+      renderCanvasWrapped(ctx, "Boga Ashok & Mrs. Geetha", W / 2, 995, cardBoxW - 50, 40);
+
+      // 11. Sumuhurtham Card Box
       ctx.fillStyle = '#FFF8E6';
       ctx.strokeStyle = '#C59A3F';
       ctx.lineWidth = 3;
       ctx.beginPath();
-      ctx.roundRect(140, 1070, W - 280, 280, 24);
-      ctx.fill();
-      ctx.stroke();
-
-      ctx.font = 'bold 34px "Cinzel", serif';
-      ctx.fillStyle = '#851329';
-      ctx.fillText('✨ SUMUHURTHAM ✨', W / 2, 1140);
-      ctx.font = 'bold 44px "Playfair Display", serif';
-      ctx.fillStyle = '#222';
-      ctx.fillText('Thursday, 26 November 2026', W / 2, 1220);
-      ctx.font = 'bold 64px "Cinzel", serif';
-      ctx.fillStyle = '#851329';
-      ctx.fillText('9:15 AM', W / 2, 1305);
-
-      // Venue Box
-      ctx.fillStyle = '#FFFFFF';
-      ctx.strokeStyle = '#DFC394';
-      ctx.lineWidth = 2;
-      ctx.beginPath();
-      ctx.roundRect(140, 1380, W - 280, 260, 24);
+      ctx.roundRect(cardBoxX, 1090, cardBoxW, 280, 24);
       ctx.fill();
       ctx.stroke();
 
       ctx.font = 'bold 32px "Cinzel", serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText('📍 VENUE: VIP GARDENS', W / 2, 1445);
-      ctx.font = '600 32px "Plus Jakarta Sans", sans-serif';
-      ctx.fillStyle = '#222';
-      ctx.fillText('Suraram Village Rd, Lakshmi Nagar Colony,', W / 2, 1515);
-      ctx.fillText('Suraram, Hyderabad, Telangana 500055', W / 2, 1570);
+      ctx.fillText('✨ SUMUHURTHAM ✨', W / 2, 1150);
 
+      ctx.font = 'bold 42px "Playfair Display", serif';
+      ctx.fillStyle = '#222222';
+      ctx.fillText('Thursday, 26 November 2026', W / 2, 1225);
+
+      ctx.font = 'bold 64px "Cinzel", serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText('9:15 AM', W / 2, 1310);
+
+      // 12. Venue Box
+      ctx.fillStyle = '#FFFFFF';
+      ctx.strokeStyle = '#DFC394';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.roundRect(cardBoxX, 1395, cardBoxW, 250, 24);
+      ctx.fill();
+      ctx.stroke();
+
+      ctx.font = 'bold 30px "Cinzel", serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText('📍 VENUE: VIP GARDENS', W / 2, 1450);
+
+      ctx.font = '600 30px "Plus Jakarta Sans", sans-serif';
+      ctx.fillStyle = '#2F2620';
+      renderCanvasWrapped(ctx, "GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony, Suraram, Hyderabad, Telangana 500055", W / 2, 1515, cardBoxW - 60, 42);
+
+      // 13. Blessing Note at Bottom (Strictly Contained)
       ctx.font = 'italic 28px "Playfair Display", serif';
       ctx.fillStyle = '#8E6A26';
-      ctx.fillText('May Lord Venkateshwara bless our union with love & prosperity 🙏', W / 2, 1720);
-      ctx.font = 'bold 34px "Cinzel", serif';
-      ctx.fillStyle = '#851329';
-      ctx.fillText('SARIKA & SAMPATH', W / 2, 1790);
+      renderCanvasWrapped(ctx, "May Lord Venkateshwara bless our union with eternal love, harmony & prosperity 🙏", W / 2, 1720, W - 280, 38);
 
+      ctx.font = 'bold 36px "Cinzel", serif';
+      ctx.fillStyle = '#851329';
+      ctx.fillText('SARIKA & SAMPATH', W / 2, 1825);
+
+      // 14. Trigger Download
       const link = document.createElement('a');
       link.download = 'Sarika_Sampath_Wedding_Invitation_Card.jpg';
-      link.href = canvas.toDataURL('image/jpeg', 0.92);
+      link.href = canvas.toDataURL('image/jpeg', 0.95);
       link.click();
     }
 
-    /* DYNAMIC TIME OF DAY THEME DETECTION */
+    /* DYNAMIC TIME THEMES */
     function applyTimeOfDayTheme() {
       const hour = new Date().getHours();
       if (hour >= 5 && hour < 12) {
@@ -1309,7 +1421,7 @@
       updateConversationalTracker();
     }
 
-    /* AUDIO & SCROLL MUSIC SWELL CONTROLLER */
+    /* AUDIO SWELL CONTROLLER */
     const audio = document.getElementById('weddingAudio');
     const audioIcon = document.getElementById('audioPillIcon');
     let isPlaying = false;
@@ -1347,7 +1459,7 @@
       }
     });
 
-    /* HAPTIC HEARTBEAT PULSE + AUDIBLE LUB-DUB SOUND */
+    /* HAPTIC HEARTBEAT + AUDIBLE SOUND */
     function triggerHeartbeatPulse() {
       if (navigator.vibrate) navigator.vibrate([60, 40, 80]);
     }
@@ -1425,7 +1537,7 @@
       }
     }
 
-    /* DIGITAL GOLD FOIL SCRATCH CARD */
+    /* DIGITAL GOLD SCRATCH CARD */
     function initScratchCard() {
       const canvas = document.getElementById('scratchCanvas');
       if (!canvas) return;
@@ -1477,7 +1589,7 @@
       canvas.addEventListener('touchmove', scratch);
     }
 
-    /* DIYA LIGHTING & TEMPLE BELL */
+    /* DIYA LIGHTING */
     function playTempleBellChime() {
       try {
         const AudioContext = window.AudioContext || window.webkitAudioContext;
@@ -1709,26 +1821,7 @@
       document.getElementById('recordVoiceBtn').innerText = "🎙️ Voice Note (10s)";
     }
 
-    /* DOWNLOADABLE BLESSING CARD */
-    function renderWrappedLines(ctx, text, x, startY, maxWidth, lineHeight) {
-      const words = text.split(' ');
-      let line = '';
-      let currentY = startY;
-      for (let n = 0; n < words.length; n++) {
-        const testLine = line + words[n] + ' ';
-        const metrics = ctx.measureText(testLine);
-        if (metrics.width > maxWidth && n > 0) {
-          ctx.fillText(line.trim(), x, currentY);
-          line = words[n] + ' ';
-          currentY += lineHeight;
-        } else {
-          line = testLine;
-        }
-      }
-      ctx.fillText(line.trim(), x, currentY);
-      return currentY;
-    }
-
+    /* DOWNLOADABLE WHATSAPP BLESSING CARD */
     let lastPostedName = "";
     let lastPostedWish = "";
 
@@ -1785,13 +1878,13 @@
       const messageText = lastPostedWish || "Wishing you both a lifetime of happiness, divine harmony, and endless love!";
       ctx.font = 'italic 34px "Playfair Display", serif';
       ctx.fillStyle = '#2F2620';
-      const lastMsgY = renderWrappedLines(ctx, `"${messageText}"`, W / 2, boxY + 120, boxW - 80, 48);
+      const lastMsgY = renderCanvasWrapped(ctx, `"${messageText}"`, W / 2, boxY + 120, boxW - 80, 48);
 
       const divY = Math.max(lastMsgY + 40, boxY + 280);
       const guestAuthor = lastPostedName || "Well Wisher";
       ctx.font = 'bold 28px "Playfair Display", serif';
       ctx.fillStyle = '#851329';
-      renderWrappedLines(ctx, `— With Love & Blessings, ${guestAuthor}`, W / 2, divY + 45, boxW - 60, 38);
+      renderCanvasWrapped(ctx, `— With Love & Blessings, ${guestAuthor}`, W / 2, divY + 45, boxW - 60, 38);
 
       ctx.font = '600 24px "Plus Jakarta Sans", sans-serif';
       ctx.fillStyle = '#7A6953';
@@ -1872,7 +1965,6 @@
       }
     }
 
-    /* UNBLOCKED SUBMISSION WITH AUTO-STOPPING VOICE RECORDER */
     async function submitWish() {
       const postBtn = document.getElementById('postWishBtn');
 
@@ -1938,7 +2030,6 @@
       });
     }
 
-    // Countdown Medals Engine
     function updateWeddingCountdown() {
       const now = new Date().getTime();
       const diff = weddingDateTime - now;
