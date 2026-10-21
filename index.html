@@ -416,6 +416,100 @@
     .parent-name { font-family: 'Playfair Display', serif; font-size: 1.05rem; font-weight: 700; color: #241C16; line-height: 1.35; }
     .parent-connector { font-family: 'Great Vibes', cursive; font-size: 1.35rem; color: #B8860B; display: block; margin: 1px 0; }
 
+    /* VIDEO CARDS: PRE-WEDDING & LIVE STREAM */
+    .video-showcase-card { 
+      background: #FFFDF9; 
+      border: 1.5px solid #DFC394; 
+      border-radius: 22px; 
+      padding: 18px 14px; 
+      margin: 18px auto 20px; 
+      max-width: 430px; 
+      box-shadow: 0 8px 24px rgba(133, 19, 41, 0.08); 
+      text-align: center; 
+    }
+    .video-showcase-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 4px; }
+    .video-showcase-sub { font-size: 0.82rem; color: #6C5D4B; margin-bottom: 12px; }
+    .video-embed-box { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; border: 2px solid #E5CCA2; box-shadow: 0 6px 18px rgba(0,0,0,0.12); background: #120A05; margin-bottom: 12px; }
+    .video-embed-box iframe, .video-embed-box video { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; object-fit: cover; }
+    .video-placeholder-state {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      color: #ECC968;
+      text-align: center;
+      background: radial-gradient(circle, #261117 0%, #120A05 100%);
+    }
+
+    /* PRE-WEDDING CELEBRATIONS & COMING SOON EVENTS */
+    .upcoming-events-container {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 14px auto 18px;
+      max-width: 410px;
+    }
+    .festive-sub-card {
+      background: #FFFDF9;
+      border: 1.5px solid #EAD8B8;
+      border-radius: 18px;
+      padding: 14px 14px;
+      text-align: left;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      box-shadow: 0 4px 14px rgba(142, 106, 38, 0.07);
+    }
+    .festive-icon-circle {
+      width: 46px;
+      height: 46px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+      border: 1.5px solid #DFC394;
+    }
+    .bg-haldi { background: radial-gradient(circle, #FFF7D1 0%, #FFE680 100%); }
+    .bg-pelliko { background: radial-gradient(circle, #FFEAEA 0%, #FFCDD2 100%); }
+    .festive-details { flex: 1; }
+    .festive-title {
+      font-family: 'Cinzel', 'Noto Sans Telugu', serif;
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--maroon-primary);
+    }
+    .festive-time {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--gold-deep);
+      margin-top: 2px;
+    }
+    .festive-desc {
+      font-size: 0.76rem;
+      color: #6C5D4B;
+      font-style: italic;
+      margin-top: 2px;
+    }
+    .badge-coming-soon {
+      font-family: 'Cinzel', serif;
+      font-size: 0.62rem;
+      letter-spacing: 1px;
+      font-weight: 800;
+      text-transform: uppercase;
+      background: #FFF3CD;
+      color: #856404;
+      border: 1px solid #FFEEBA;
+      border-radius: 12px;
+      padding: 3px 8px;
+      display: inline-block;
+      margin-bottom: 3px;
+    }
+
     /* STORY CARDS */
     .story-section { margin: 18px auto 26px; max-width: 420px; }
     .story-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; perspective: 1000px; margin-top: 14px; }
@@ -429,7 +523,7 @@
     .polaroid-back h4 { font-family: 'Cinzel', serif; font-size: 0.78rem; color: var(--maroon-primary); margin-bottom: 4px; }
     .polaroid-back p { font-size: 0.68rem; color: #4C4238; line-height: 1.35; font-style: italic; }
 
-    /* DIYA LIGHTING (COMPACT & REFINED) */
+    /* DIYA LIGHTING */
     .diya-section { background: radial-gradient(circle at center, #FFFDF6 0%, #FAF1DF 100%); border: 1.5px solid #E8D7B8; border-radius: 18px; padding: 12px 10px 10px; margin: 14px auto 16px; max-width: 350px; position: relative; }
     .diya-heading { font-family: 'Cinzel', serif; font-size: 1.02rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 0.8px; }
     .diya-sub { font-size: 0.76rem; color: #7A6953; margin-top: 2px; margin-bottom: 8px; }
@@ -442,15 +536,15 @@
     @keyframes flameWiggle { 0% { transform: rotate(-2deg); } 100% { transform: rotate(3deg); } }
     .diya-status-tag { font-size: 0.76rem; font-weight: 700; color: var(--gold-deep); margin-top: 6px; }
 
-    /* MUHURTHAM EVENT CARD & DYNAMIC EVENT STATUS */
+    /* EVENT CARD */
     .event-card { background: #FAF5EB; border: 1px solid #EFE2CB; border-radius: 22px; padding: 20px 14px; margin-bottom: 18px; box-shadow: 0 8px 22px rgba(142, 106, 38, 0.1); }
-    .event-img-wrap { width: 100%; max-width: 290px; height: 240px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; border: 2px solid #E5CCA2; background: #FFF; }
+    .event-img-wrap { width: 100%; max-width: 290px; height: 230px; margin: 0 auto 12px; border-radius: 16px; overflow: hidden; border: 2px solid #E5CCA2; background: #FFF; }
     .event-img-wrap img { width: 100%; height: 100%; object-fit: contain; display: block; }
     .event-tag { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; color: var(--maroon-primary); letter-spacing: 2.5px; text-transform: uppercase; margin-bottom: 4px; }
     .event-subtitle { font-family: 'Playfair Display', serif; font-style: italic; font-size: 0.9rem; color: #6C5D4B; margin-bottom: 8px; }
     .event-time-highlight { font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 800; color: var(--maroon-primary); margin-top: 4px; }
 
-    /* LIVE SMART EVENT STATUS BANNER */
+    /* SMART NOTICE BANNER */
     .event-dynamic-status-banner {
       display: none;
       background: linear-gradient(135deg, #FFF9E6 0%, #FEEBB2 100%);
@@ -481,7 +575,6 @@
       margin-top: 3px;
     }
 
-    /* MARRIED LIFE CELEBRATION BOX (SHOWN WHEN 9:15 AM ARRIVES) */
     .married-celebration-box {
       display: none;
       background: radial-gradient(circle at center, #FFFDF8 0%, #FDEED6 100%);
@@ -511,7 +604,7 @@
     .medal-val { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: #4D3205; line-height: 1; }
     .medal-lbl { font-size: 0.52rem; font-weight: 800; letter-spacing: 1px; color: #4D3205; text-transform: uppercase; margin-top: 3px; }
 
-    /* TALAMBRALU (AKSHINTALU ONLY) */
+    /* TALAMBRALU */
     .talambralu-box { background: #FFFDF9; border: 1.5px solid #E8D7B8; border-radius: 20px; padding: 16px 12px; margin: 18px auto; max-width: 380px; }
     .talambralu-title { font-family: 'Cinzel', serif; font-size: 1.1rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 2px; }
     .talambralu-bowls-wrap { display: flex; justify-content: center; margin: 12px 0 6px; }
@@ -574,23 +667,13 @@
       cursor: crosshair;
     }
 
-    /* LIVE STREAMING */
-    .livestream-card { background: #FFFDF9; border: 1.5px solid #DFC394; border-radius: 22px; padding: 20px 14px; margin: 18px auto 20px; max-width: 430px; box-shadow: 0 8px 24px rgba(133, 19, 41, 0.08); text-align: center; }
-    .livestream-badge { display: inline-flex; align-items: center; gap: 6px; background: #FFE8E8; color: #D32F2F; border: 1px solid #FFCDD2; border-radius: 20px; padding: 4px 14px; font-family: 'Cinzel', serif; font-size: 0.76rem; font-weight: 800; letter-spacing: 1.5px; margin-bottom: 8px; }
-    .live-dot { width: 8px; height: 8px; border-radius: 50%; background: #D32F2F; animation: livePulse 1.4s infinite; }
-    @keyframes livePulse { 0% { opacity: 1; transform: scale(1); } 50% { opacity: 0.4; transform: scale(1.3); } 100% { opacity: 1; transform: scale(1); } }
-    .livestream-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 4px; }
-    .livestream-sub { font-size: 0.82rem; color: #6C5D4B; margin-bottom: 14px; }
-    .livestream-player-box { position: relative; width: 100%; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; border: 2px solid #E5CCA2; box-shadow: 0 6px 18px rgba(0,0,0,0.12); background: #000; margin-bottom: 12px; }
-    .livestream-player-box iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
-    .btn-watch-youtube { display: inline-flex; align-items: center; justify-content: center; gap: 8px; background: #FF0000; color: #FFFFFF; font-size: 0.92rem; font-weight: 700; padding: 11px 22px; border-radius: 25px; text-decoration: none; box-shadow: 0 4px 14px rgba(255, 0, 0, 0.28); }
-
-    /* VENUE */
+    /* VENUE & BUTTONS */
     .venue-title { font-family: 'Cinzel', serif; font-size: 1.25rem; font-weight: 800; color: var(--maroon-primary); margin-bottom: 4px; }
     .event-address { font-size: 0.92rem; font-weight: 600; color: #2F2620; line-height: 1.5; margin: 8px 0 14px; }
     .btn-group { display: flex; flex-direction: column; gap: 10px; margin: 14px 0 6px; }
     .cta-btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 13px 20px; border-radius: 30px; font-size: 0.94rem; font-weight: 700; text-decoration: none; cursor: pointer; border: none; }
     .btn-maps { background: #9E1F3B; color: #FFF; box-shadow: 0 4px 14px rgba(158, 31, 59, 0.3); }
+    .btn-reception-maps { background: #8E6A26; color: #FFF; box-shadow: 0 4px 14px rgba(142, 106, 38, 0.3); }
     .btn-whatsapp { background: #139B50; color: #FFF; box-shadow: 0 4px 14px rgba(19, 155, 80, 0.3); }
 
     /* BLESSINGS TICKER */
@@ -643,7 +726,7 @@
     .footer-bar em { font-family: 'Playfair Display', serif; font-size: 0.92rem; font-style: italic; color: #F8DFAD; }
     .footer-couple { font-family: 'Cinzel', serif; font-size: 1.35rem; font-weight: 800; letter-spacing: 2px; color: #FFF; margin-top: 6px; }
 
-    /* FLOATING BOTTOM CONTROLS (MUSIC + BACK TO SIDE PICKER) */
+    /* FLOATING BOTTOM CONTROLS */
     .bottom-floating-controls {
       position: fixed;
       bottom: 20px;
@@ -733,7 +816,7 @@
     <div class="tap-guide-prompt" id="tapPrompt" data-en="Tap in the middle to unite hands 💛" data-te="చేతులు కలపడానికి మధ్యలో తాకండి 💛">Tap in the middle to unite hands 💛</div>
   </div>
 
-  <!-- FLOATING BOTTOM CONTROLS (BACK TO WELCOME & MUSIC TOGGLE WITHOUT TEXT) -->
+  <!-- FLOATING BOTTOM CONTROLS -->
   <div class="bottom-floating-controls">
     <button class="floating-circle-btn" onclick="reopenSidePicker()" title="Back to Namaste &amp; Welcome (Change Side)">
       🔙
@@ -782,7 +865,7 @@
           || మంగళం భగవాన్ విష్ణుః మంగళం గరుడధ్వజః | మంగళం పుండరీకాక్షో మంగళాయ తనో హరిః || 🙏
         </div>
 
-        <!-- HIGHLIGHTED COUPLE NAMES: SARIKA & SAMPATH (TELUGU / ENGLISH DYNAMIC) -->
+        <!-- HIGHLIGHTED COUPLE NAMES: SARIKA & SAMPATH -->
         <div class="couple-title" id="coupleTitle" data-en="Sarika &amp; Sampath" data-te="సారిక &amp; సంపత్">Sarika &amp; Sampath</div>
         <div class="hashtag-tag">#SamRika</div>
         <div class="invite-lead" data-en="We invite you to celebrate our wedding" data-te="మా వివాహ మహోత్సవానికి మిమ్మల్ని సాదరంగా ఆహ్వానిస్తున్నాము">We invite you to celebrate our wedding</div>
@@ -831,6 +914,68 @@
                 Mrs. Geetha
               </div>
             </div>
+          </div>
+        </div>
+
+        <!-- PRE-WEDDING SHOOT VIDEO SHOWCASE (READY FOR YOUTUBE LINK OR LOCAL FILE) -->
+        <div class="video-showcase-card">
+          <div class="video-showcase-title" data-en="Pre-Wedding Film" data-te="ప్రీ-వెడ్డింగ్ వీడియో గ్లింప్స్">Pre-Wedding Film</div>
+          <div class="video-showcase-sub" data-en="A glimpse into the magical journey of Sarika &amp; Sampath 🎬✨" data-te="సారిక &amp; సంపత్ ల మధుర జ్ఞాపకాలు 🎬✨">A glimpse into the magical journey of Sarika &amp; Sampath 🎬✨</div>
+          <div class="video-embed-box" id="preWeddingVideoContainer">
+            
+            <!-- OPTION 1: If using YouTube, paste your embed link in src below (e.g. https://www.youtube-nocookie.com/embed/YOUR_VIDEO_ID) -->
+            <iframe 
+              id="preWeddingIframe" 
+              src="" 
+              title="Sarika &amp; Sampath Pre-Wedding Film" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+              allowfullscreen 
+              style="display:none;">
+            </iframe>
+
+            <!-- OPTION 2: If uploading an MP4 video directly to the repo, put the file name in src below (e.g. prewedding.mp4) -->
+            <video id="preWeddingLocalVideo" controls playsinline preload="metadata" style="display:none;">
+              <source src="" type="video/mp4">
+              Your browser does not support the video tag.
+            </video>
+
+            <!-- PLACEHOLDER STATE (Shown cleanly until you add the video link or file) -->
+            <div class="video-placeholder-state" id="preWeddingPlaceholder">
+              <span style="font-size:38px; line-height:1; margin-bottom:8px;">🎬</span>
+              <div style="font-family:'Cinzel', serif; font-size:1.05rem; font-weight:800; letter-spacing:1px;" data-en="Pre-Wedding Film Coming Soon" data-te="ప్రీ-వెడ్డింగ్ వీడియో త్వరలో రాబోతోంది">Pre-Wedding Film Coming Soon</div>
+              <div style="font-size:0.78rem; opacity:0.85; margin-top:4px;" data-en="Glimpses of our love story will be unveiled here ✨" data-te="మా ప్రేమ ప్రయాణం యొక్క మధుర దృశ్యాలు ఇక్కడ ప్రదర్శించబడతాయి ✨">Glimpses of our love story will be unveiled here ✨</div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- COMING SOON / UPCOMING WEDDING CELEBRATIONS SECTION -->
+        <div style="margin: 22px 0 10px;">
+          <div class="section-title" data-en="Celebration Timeline" data-te="శుభకార్యాల వివరాలు">Celebration Timeline</div>
+          <div class="upcoming-events-container">
+            
+            <!-- 1. Pelli Koduku / Pelli Koothuru Event -->
+            <div class="festive-sub-card">
+              <div class="festive-icon-circle bg-pelliko">🪷</div>
+              <div class="festive-details">
+                <span class="badge-coming-soon" data-en="Upcoming Ceremony" data-te="శుభ సమయం">Upcoming Ceremony</span>
+                <div class="festive-title" id="pelliKTitle" data-en="Pelli Koothuru Ceremony" data-te="పెళ్లి కూతురు వేడుక">Pelli Koothuru Ceremony</div>
+                <div class="festive-time" data-en="Tuesday, 24 November 2026" data-te="మంగళవారం, 24 నవంబర్ 2026">Tuesday, 24 November 2026</div>
+                <div class="festive-desc" data-en="Traditional family ceremony &amp; blessings at home" data-te="సంప్రదాయబద్ధంగా జరిగే శుభ వేడుక">Traditional family ceremony &amp; blessings at home</div>
+              </div>
+            </div>
+
+            <!-- 2. Haldi Ceremony -->
+            <div class="festive-sub-card">
+              <div class="festive-icon-circle bg-haldi">💛</div>
+              <div class="festive-details">
+                <span class="badge-coming-soon" data-en="Upcoming Celebration" data-te="ఆహ్వానం">Upcoming Celebration</span>
+                <div class="festive-title" data-en="Sacred Haldi Ceremony (పసుపు వేడుక)" data-te="మంగళకరమైన పసుపు వేడుక (హల్దీ)">Sacred Haldi Ceremony (పసుపు వేడుక)</div>
+                <div class="festive-time" data-en="Wednesday, 25 November 2026" data-te="బుధవారం, 25 నవంబర్ 2026">Wednesday, 25 November 2026</div>
+                <div class="festive-desc" data-en="Celebrate with yellow hues, music &amp; joyful laughter" data-te="పసుపు వర్ణాలతో, ఆనందోత్సాహాలతో సాగే పవిత్ర వేడుక">Celebrate with yellow hues, music &amp; joyful laughter</div>
+              </div>
+            </div>
+
           </div>
         </div>
 
@@ -927,7 +1072,7 @@
           <div class="diya-status-tag" id="diyaStatus" data-en="Touch to light the Diya ✨" data-te="దీపం వెలిగించడానికి తాకండి ✨">Touch to light the Diya ✨</div>
         </div>
 
-        <!-- Muhurtham Section (WITH SMART EVENT STATUS & WEDDING CELEBRATION BADGE) -->
+        <!-- 1. MUHURTHAM EVENT CARD -->
         <div class="event-card">
           <div class="event-img-wrap">
             <img src="kalyanam.jpeg" alt="Sita Rama Kalyanam" onerror="handleImgError(this, 'kalyanam')">
@@ -970,6 +1115,48 @@
           </div>
         </div>
 
+        <!-- 2. WEDDING VENUE (VIP GARDENS) -->
+        <div class="event-card">
+          <div class="event-img-wrap" style="height: 210px;">
+            <img src="temple.jpeg" alt="VIP Gardens" onerror="handleImgError(this, 'temple')">
+          </div>
+          <div class="event-tag" data-en="KALYANAM VENUE" data-te="కల్యాణ వేదిక">KALYANAM VENUE</div>
+          <div class="venue-title">VIP Gardens</div>
+          <div class="event-address" data-en="GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony, Suraram Village, Suraram, Hyderabad, Telangana 500055" data-te="GCXG+6GH, సూరారం విలేజ్ రోడ్, లక్ష్మీ నగర్ కాలనీ, సూరారం విలేజ్, సూరారం, హైదరాబాద్, తెలంగాణ 500055">
+            GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony,<br>
+            Suraram Village, Suraram, Hyderabad, Telangana 500055
+          </div>
+
+          <div class="btn-group">
+            <a class="cta-btn btn-maps" href="https://maps.google.com/?q=VIP+Gardens+Suraram+Hyderabad" target="_blank" data-en="📍 View Kalyanam Venue on Maps" data-te="📍 కల్యాణ వేదిక మ్యాప్స్ లో చూడండి">
+              📍 View Kalyanam Venue on Maps
+            </a>
+          </div>
+        </div>
+
+        <!-- 3. GRAND RECEPTION EVENT CARD (THUMMA GARDENS, SINGARAJPALLE / JANGAON) -->
+        <div class="event-card" style="border: 2px solid #C89B2B; background: radial-gradient(circle at center, #FFFDF8 0%, #FAF0D8 100%);">
+          <div class="event-tag" style="color:#7A570D;" data-en="GRAND RECEPTION" data-te="రిసెప్షన్ వేడుక">GRAND RECEPTION</div>
+          <div class="event-subtitle" data-en="Join us to celebrate the joyous evening with the newlyweds" data-te="నూతన వధూవరులను ఆశీర్వదించేందుకు విచ్చేయగలరు">Join us to celebrate the joyous evening with the newlyweds</div>
+          <div style="font-size: 1.15rem; font-weight:800; color:var(--maroon-primary);" data-en="Friday, 27 November 2026" data-te="శుక్రవారం, 27 నవంబర్ 2026">Friday, 27 November 2026</div>
+          <div class="event-time-highlight" style="font-size:1.6rem;" data-en="From 7:00 PM Onwards" data-te="సాయంత్రం 7:00 గంటల నుండి">From 7:00 PM Onwards</div>
+          
+          <div class="venue-title" style="margin-top:14px;">Thumma Gardens</div>
+          <div class="event-address" data-en="Jangaon - Suryapet Rd, Singarajpalle, Telangana 506303" data-te="జనగాం - సూర్యాపేట రోడ్, సింగరాజుపల్లి, తెలంగాణ 506303">
+            Jangaon - Suryapet Rd, Singarajpalle,<br>
+            Telangana 506303
+          </div>
+
+          <div class="btn-group">
+            <a class="cta-btn btn-reception-maps" href="https://share.google/QofqGM9v04Efehgxu" target="_blank" data-en="📍 View Reception Venue on Maps" data-te="📍 రిసెప్షన్ వేదిక మ్యాప్స్ లో చూడండి">
+              📍 View Reception Venue on Maps
+            </a>
+            <a class="cta-btn btn-whatsapp" href="https://wa.me/917675975990?text=Congratulations%20Sarika%20%26%20Sampath!%20Excited%20to%20attend%20your%20Wedding%20%26%20Reception." target="_blank" data-en="💬 Send Wishes on WhatsApp" data-te="💬 వాట్సాప్‌లో శుభాకాంక్షలు పంపండి">
+              💬 Send Wishes on WhatsApp
+            </a>
+          </div>
+        </div>
+
         <!-- TALAMBRALU CEREMONIAL BOWL SHOWER (AKSHINTALU ONLY) -->
         <div class="talambralu-box">
           <div class="talambralu-title" data-en="Talambralu Blessings 🌾" data-te="తలంబ్రాల ఆశీస్సులు 🌾">Talambralu Blessings 🌾</div>
@@ -990,14 +1177,14 @@
         </div>
 
         <!-- LIVE STREAMING SECTION -->
-        <div class="livestream-card">
-          <div class="livestream-badge">
-            <span class="live-dot"></span> <span data-en="LIVE BROADCAST" data-te="ప్రత్యక్ష ప్రసారం">LIVE BROADCAST</span>
+        <div class="video-showcase-card">
+          <div style="display:inline-flex; align-items:center; gap:6px; background:#FFE8E8; color:#D32F2F; border:1px solid #FFCDD2; border-radius:20px; padding:4px 14px; font-family:'Cinzel', serif; font-size:0.76rem; font-weight:800; letter-spacing:1.5px; margin-bottom:8px;">
+            <span style="width:8px; height:8px; border-radius:50%; background:#D32F2F;"></span> <span data-en="LIVE BROADCAST" data-te="ప్రత్యక్ష ప్రసారం">LIVE BROADCAST</span>
           </div>
-          <div class="livestream-title" data-en="Watch Live Kalyanam" data-te="కల్యాణ మహోత్సవం లైవ్">Watch Live Kalyanam</div>
-          <div class="livestream-sub" data-en="Join our sacred ceremony virtually from anywhere in the world 🎥✨" data-te="ఎక్కడి నుంచైనా మా వివాహాన్ని ప్రత్యక్షంగా వీక్షించండి 🎥✨">Join our sacred ceremony virtually from anywhere in the world 🎥✨</div>
+          <div class="video-showcase-title" data-en="Watch Live Kalyanam" data-te="కల్యాణ మహోత్సవం లైవ్">Watch Live Kalyanam</div>
+          <div class="video-showcase-sub" data-en="Join our sacred ceremony virtually from anywhere in the world 🎥✨" data-te="ఎక్కడి నుంచైనా మా వివాహాన్ని ప్రత్యక్షంగా వీక్షించండి 🎥✨">Join our sacred ceremony virtually from anywhere in the world 🎥✨</div>
 
-          <div class="livestream-player-box">
+          <div class="video-embed-box">
             <iframe 
               src="https://www.youtube-nocookie.com/embed/85FWdlUqBkw" 
               title="Sarika &amp; Sampath Wedding Live Stream" 
@@ -1006,31 +1193,9 @@
             </iframe>
           </div>
 
-          <a class="btn-watch-youtube" href="https://www.youtube.com/live/85FWdlUqBkw?si=OjerFT0wgh_VMp9-" target="_blank" data-en="▶️ Open in YouTube App" data-te="▶️ యూట్యూబ్‌లో చూడండి">
+          <a class="cta-btn" style="background:#FF0000; color:#FFF; margin:0 auto; max-width:240px; box-shadow:0 4px 14px rgba(255,0,0,0.25);" href="https://www.youtube.com/live/85FWdlUqBkw?si=OjerFT0wgh_VMp9-" target="_blank" data-en="▶️ Open in YouTube App" data-te="▶️ యూట్యూబ్‌లో చూడండి">
             ▶️ Open in YouTube App
           </a>
-        </div>
-
-        <!-- Venue Section -->
-        <div class="event-card">
-          <div class="event-img-wrap" style="height: 220px;">
-            <img src="temple.jpeg" alt="VIP Gardens" onerror="handleImgError(this, 'temple')">
-          </div>
-          <div class="event-tag" data-en="VENUE" data-te="కళ్యాణ వేదిక">VENUE</div>
-          <div class="venue-title">VIP Gardens</div>
-          <div class="event-address" data-en="GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony, Suraram Village, Suraram, Hyderabad, Telangana 500055" data-te="GCXG+6GH, సూరారం విలేజ్ రోడ్, లక్ష్మీ నగర్ కాలనీ, సూరారం విలేజ్, సూరారం, హైదరాబాద్, తెలంగాణ 500055">
-            GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony,<br>
-            Suraram Village, Suraram, Hyderabad, Telangana 500055
-          </div>
-
-          <div class="btn-group">
-            <a class="cta-btn btn-maps" href="https://maps.google.com/?q=VIP+Gardens+Suraram+Hyderabad" target="_blank" data-en="📍 View on Google Maps" data-te="📍 గూగుల్ మ్యాప్స్ లో చూడండి">
-              📍 View on Google Maps
-            </a>
-            <a class="cta-btn btn-whatsapp" href="https://wa.me/917675975990?text=Congratulations%20Sarika%20%26%20Sampath!%20Sending%20our%20warmest%20wishes%20for%20your%20wedding." target="_blank" data-en="💬 Send Wishes on WhatsApp" data-te="💬 వాట్సాప్‌లో శుభాకాంక్షలు పంపండి">
-              💬 Send Wishes on WhatsApp
-            </a>
-          </div>
         </div>
 
         <!-- Interactive Shower Akshintalu & Petals Button -->
@@ -1126,10 +1291,42 @@
   </div>
 
   <!-- HIDDEN CANVASES FOR DYNAMIC GRAPHIC GENERATION -->
-  <canvas id="officialInviteCanvas" width="900" height="1600" style="display:none;"></canvas>
+  <canvas id="officialInviteCanvas" width="900" height="1680" style="display:none;"></canvas>
   <canvas id="blessingCanvas" width="900" height="1200" style="display:none;"></canvas>
 
   <script>
+    /* PRE-WEDDING SHOOT CONFIGURATION 
+       Option A (YouTube): Set YOUTUBE_EMBED_URL to e.g. "https://www.youtube-nocookie.com/embed/YOUR_ID"
+       Option B (Repo Video File): Set LOCAL_VIDEO_FILE to e.g. "prewedding.mp4"
+    */
+    const PRE_WEDDING_CONFIG = {
+      YOUTUBE_EMBED_URL: "",  // Keep empty for now. Paste YouTube embed URL whenever ready.
+      LOCAL_VIDEO_FILE: ""    // Keep empty for now. Or set file name like "prewedding.mp4" if in repo.
+    };
+
+    function setupPreWeddingVideo() {
+      const iframe = document.getElementById('preWeddingIframe');
+      const localVid = document.getElementById('preWeddingLocalVideo');
+      const placeholder = document.getElementById('preWeddingPlaceholder');
+
+      if (PRE_WEDDING_CONFIG.YOUTUBE_EMBED_URL && PRE_WEDDING_CONFIG.YOUTUBE_EMBED_URL.trim() !== "") {
+        iframe.src = PRE_WEDDING_CONFIG.YOUTUBE_EMBED_URL;
+        iframe.style.display = 'block';
+        if (localVid) localVid.style.display = 'none';
+        if (placeholder) placeholder.style.display = 'none';
+      } else if (PRE_WEDDING_CONFIG.LOCAL_VIDEO_FILE && PRE_WEDDING_CONFIG.LOCAL_VIDEO_FILE.trim() !== "") {
+        localVid.src = PRE_WEDDING_CONFIG.LOCAL_VIDEO_FILE;
+        localVid.style.display = 'block';
+        if (iframe) iframe.style.display = 'none';
+        if (placeholder) placeholder.style.display = 'none';
+      } else {
+        // If both are empty, show clean coming soon preview card
+        if (iframe) iframe.style.display = 'none';
+        if (localVid) localVid.style.display = 'none';
+        if (placeholder) placeholder.style.display = 'flex';
+      }
+    }
+
     /* NAMES DATA REPOSITORY IN BOTH ENGLISH AND TELUGU */
     const namesData = {
       brideParents: {
@@ -1185,7 +1382,7 @@
       triggerHeartbeatPulse();
     }
 
-    /* DYNAMIC HIGH-RESOLUTION INVITATION CARD GENERATOR (CANVAS TO PNG) */
+    /* DYNAMIC INVITATION CARD GENERATOR (WITH KALYANAM & RECEPTION DETAILS) */
     function generateAndDownloadInvitationCard() {
       const canvas = document.getElementById('officialInviteCanvas');
       const ctx = canvas.getContext('2d');
@@ -1219,133 +1416,130 @@
 
       ctx.font = 'bold 26px "Noto Sans Telugu", sans-serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText('||  శ్రీరస్తు - శుభమస్తు - అవిఘ్నమస్తు  ||', W / 2, 140);
+      ctx.fillText('||  శ్రీరస్తు - శుభమస్తు - అవిఘ్నమస్తు  ||', W / 2, 130);
 
       ctx.font = 'bold 22px "Cinzel", serif';
       ctx.fillStyle = '#8E6A26';
-      ctx.fillText(isTe ? 'వివాహ మహోత్సవ ఆహ్వాన పత్రిక' : 'WEDDING INVITATION', W / 2, 185);
+      ctx.fillText(isTe ? 'వివాహ మహోత్సవ ఆహ్వాన పత్రిక' : 'WEDDING INVITATION', W / 2, 175);
 
       ctx.font = '36px sans-serif';
-      ctx.fillText('🏺', W / 2, 235);
+      ctx.fillText('🏺', W / 2, 225);
 
       if (isTe) {
         ctx.font = 'bold 78px "Suranna", "Noto Sans Telugu", serif';
         ctx.fillStyle = '#851329';
-        ctx.fillText('సారిక & సంపత్', W / 2, 335);
+        ctx.fillText('సారిక & సంపత్', W / 2, 320);
       } else {
         ctx.font = 'bold 88px "Great Vibes", cursive, serif';
         ctx.fillStyle = '#851329';
-        ctx.fillText('Sarika & Sampath', W / 2, 335);
+        ctx.fillText('Sarika & Sampath', W / 2, 320);
       }
 
       ctx.font = 'bold 24px "Cinzel", serif';
       ctx.fillStyle = '#8E6A26';
-      ctx.fillText('#SamRika', W / 2, 395);
+      ctx.fillText('#SamRika', W / 2, 375);
 
-      ctx.font = isTe ? 'italic 25px "Noto Sans Telugu", sans-serif' : 'italic 25px "Playfair Display", serif';
+      ctx.font = isTe ? 'italic 24px "Noto Sans Telugu", sans-serif' : 'italic 24px "Playfair Display", serif';
       ctx.fillStyle = '#5A4634';
       const solicitText = isTe 
         ? 'మా వివాహ మహోత్సవానికి విచ్చేసి నూతన వధూవరులను ఆశీర్వదించగలరని ప్రార్థన'
         : 'Soliciting your gracious presence and heartfelt blessings on our auspicious marriage';
-      renderWrappedLines(ctx, solicitText, W / 2, 445, W - 220, 36);
+      renderWrappedLines(ctx, solicitText, W / 2, 420, W - 220, 34);
 
       function drawInnerCardBox(y, h) {
         ctx.fillStyle = '#FFFFFF';
         ctx.beginPath();
-        ctx.roundRect(110, y, W - 220, h, 20);
+        ctx.roundRect(100, y, W - 200, h, 18);
         ctx.fill();
         ctx.strokeStyle = '#E8D5B5';
-        ctx.lineWidth = 1.8;
+        ctx.lineWidth = 1.6;
         ctx.stroke();
       }
 
-      let startBoxY = 530;
+      let startBoxY = 490;
 
       // BOX 1: Bride's Parents
-      drawInnerCardBox(startBoxY, 145);
-      ctx.font = 'bold 19px "Cinzel", "Noto Sans Telugu", sans-serif';
+      drawInnerCardBox(startBoxY, 130);
+      ctx.font = 'bold 18px "Cinzel", "Noto Sans Telugu", sans-serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? '🌸 వధువు తల్లిదండ్రులు' : '🌸 BRIDE\'S PARENTS', W / 2, startBoxY + 42);
+      ctx.fillText(isTe ? '🌸 వధువు తల్లిదండ్రులు' : '🌸 BRIDE\'S PARENTS', W / 2, startBoxY + 38);
 
-      ctx.font = 'bold 28px "Playfair Display", "Noto Sans Telugu", serif';
+      ctx.font = 'bold 26px "Playfair Display", "Noto Sans Telugu", serif';
       ctx.fillStyle = '#2F2620';
       const brideParentsStr = isTe 
         ? 'దేశబోయిన వెంకటేశ్వర ప్రభు & శ్రీమతి శారదాంబ' 
         : 'Deshaboina Venkateshwara Prabhu & Mrs. Sharadamba';
-      ctx.fillText(brideParentsStr, W / 2, startBoxY + 98);
+      ctx.fillText(brideParentsStr, W / 2, startBoxY + 90);
 
       // BOX 2: Groom's Parents
-      startBoxY += 175;
-      drawInnerCardBox(startBoxY, 145);
-      ctx.font = 'bold 19px "Cinzel", "Noto Sans Telugu", sans-serif';
+      startBoxY += 150;
+      drawInnerCardBox(startBoxY, 130);
+      ctx.font = 'bold 18px "Cinzel", "Noto Sans Telugu", sans-serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? '🪷 వరుని తల్లిదండ్రులు' : '🪷 GROOM\'S PARENTS', W / 2, startBoxY + 42);
+      ctx.fillText(isTe ? '🪷 వరుని తల్లిదండ్రులు' : '🪷 GROOM\'S PARENTS', W / 2, startBoxY + 38);
 
-      ctx.font = 'bold 28px "Playfair Display", "Noto Sans Telugu", serif';
+      ctx.font = 'bold 26px "Playfair Display", "Noto Sans Telugu", serif';
       ctx.fillStyle = '#2F2620';
       const groomParentsStr = isTe 
         ? 'బోగ అశోక్ & శ్రీమతి గీత' 
         : 'Boga Ashok & Mrs. Geetha';
-      ctx.fillText(groomParentsStr, W / 2, startBoxY + 98);
+      ctx.fillText(groomParentsStr, W / 2, startBoxY + 90);
 
-      // Late grandparents (for groom side)
       if (selectedSide === 'groom') {
-        startBoxY += 175;
-        drawInnerCardBox(startBoxY, 130);
-        ctx.font = 'bold 17px "Cinzel", "Noto Sans Telugu", sans-serif';
+        startBoxY += 150;
+        drawInnerCardBox(startBoxY, 115);
+        ctx.font = 'bold 16px "Cinzel", "Noto Sans Telugu", sans-serif';
         ctx.fillStyle = '#8E6A26';
-        ctx.fillText(isTe ? '🕊️ దివ్య ఆశీస్సులతో (నానమ్మ & తాతయ్య)' : '🕊️ WITH THE BLESSINGS OF GRANDPARENTS', W / 2, startBoxY + 38);
+        ctx.fillText(isTe ? '🕊️ దివ్య ఆశీస్సులతో (నానమ్మ & తాతయ్య)' : '🕊️ WITH THE BLESSINGS OF GRANDPARENTS', W / 2, startBoxY + 36);
 
-        ctx.font = 'bold 24px "Playfair Display", "Noto Sans Telugu", serif';
+        ctx.font = 'bold 22px "Playfair Display", "Noto Sans Telugu", serif';
         ctx.fillStyle = '#2F2620';
         const gpStr = isTe 
           ? 'స్వర్గీయ శ్రీమతి బోగ నర్సమ్మ & స్వర్గీయ శ్రీ బోగ శివలింగం' 
           : 'Late Smt. Boga Narsamma & Late Sri Boga Shivalingam';
-        ctx.fillText(gpStr, W / 2, startBoxY + 86);
+        ctx.fillText(gpStr, W / 2, startBoxY + 80);
       }
 
       // BOX 3: Muhurtham Box
-      startBoxY += 165;
-      drawInnerCardBox(startBoxY, 180);
+      startBoxY += 155;
+      drawInnerCardBox(startBoxY, 175);
       ctx.font = 'bold 22px "Cinzel", "Noto Sans Telugu", sans-serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? '✨ సుముహూర్తం ✨' : '✨ SUMUHURTHAM ✨', W / 2, startBoxY + 46);
+      ctx.fillText(isTe ? '✨ సుముహూర్తం & కళ్యాణ వేదిక ✨' : '✨ SUMUHURTHAM & VENUE ✨', W / 2, startBoxY + 42);
 
-      ctx.font = 'bold 28px "Playfair Display", "Noto Sans Telugu", serif';
+      ctx.font = 'bold 25px "Playfair Display", "Noto Sans Telugu", serif';
       ctx.fillStyle = '#2F2620';
-      ctx.fillText(isTe ? 'గురువారం, 26 నవంబర్ 2026' : 'Thursday, 26 November 2026', W / 2, startBoxY + 95);
+      ctx.fillText(isTe ? 'గురువారం, 26 నవంబర్ 2026  •  ఉదయం 9:15 గంటలకు' : 'Thursday, 26 November 2026  •  9:15 AM', W / 2, startBoxY + 84);
 
-      ctx.font = 'bold 36px "Cinzel", "Noto Sans Telugu", serif';
-      ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? 'ఉదయం 9:15 గంటలకు' : '9:15 AM', W / 2, startBoxY + 148);
+      ctx.font = '600 20px "Plus Jakarta Sans", "Noto Sans Telugu", sans-serif';
+      ctx.fillStyle = '#5A4634';
+      ctx.fillText(isTe ? 'విఐపీ గార్డెన్స్, సూరారం విలేజ్, హైదరాబాద్' : 'VIP Gardens, Suraram Village, Hyderabad', W / 2, startBoxY + 124);
 
-      // BOX 4: Venue Box
-      startBoxY += 210;
+      // BOX 4: Reception Box (Thumma Gardens)
+      startBoxY += 200;
       drawInnerCardBox(startBoxY, 175);
-      ctx.font = 'bold 20px "Cinzel", "Noto Sans Telugu", sans-serif';
-      ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? '📍 వివాహ వేదిక: విఐపీ గార్డెన్స్' : '📍 VENUE: VIP GARDENS', W / 2, startBoxY + 44);
+      ctx.font = 'bold 22px "Cinzel", "Noto Sans Telugu", sans-serif';
+      ctx.fillStyle = '#8E6A26';
+      ctx.fillText(isTe ? '🎉 గ్రాండ్ రిసెప్షన్ వేడుక 🎉' : '🎉 GRAND RECEPTION 🎉', W / 2, startBoxY + 42);
 
-      ctx.font = '600 22px "Plus Jakarta Sans", "Noto Sans Telugu", sans-serif';
-      ctx.fillStyle = '#4A3B2C';
-      if (isTe) {
-        ctx.fillText('సూరారం విలేజ్ రోడ్, లక్ష్మీ నగర్ కాలనీ, సూరారం,', W / 2, startBoxY + 92);
-        ctx.fillText('హైదరాబాద్, తెలంగాణ 500055', W / 2, startBoxY + 128);
-      } else {
-        ctx.fillText('GCXG+6GH, Suraram Village Rd, Lakshmi Nagar Colony,', W / 2, startBoxY + 92);
-        ctx.fillText('Suraram, Hyderabad, Telangana 500055', W / 2, startBoxY + 128);
-      }
+      ctx.font = 'bold 25px "Playfair Display", "Noto Sans Telugu", serif';
+      ctx.fillStyle = '#2F2620';
+      ctx.fillText(isTe ? 'శుక్రవారం, 27 నవంబర్ 2026  •  సాయంత్రం 7:00 గంటల నుండి' : 'Friday, 27 November 2026  •  7:00 PM Onwards', W / 2, startBoxY + 84);
 
-      ctx.font = 'italic 23px "Playfair Display", "Noto Sans Telugu", serif';
+      ctx.font = '600 20px "Plus Jakarta Sans", "Noto Sans Telugu", sans-serif';
+      ctx.fillStyle = '#5A4634';
+      ctx.fillText(isTe ? 'తుమ్మ గార్డెన్స్, సింగరాజుపల్లి (జనగాం - సూర్యాపేట రోడ్)' : 'Thumma Gardens, Singarajpalle (Jangaon - Suryapet Rd)', W / 2, startBoxY + 124);
+
+      ctx.font = 'italic 22px "Playfair Display", "Noto Sans Telugu", serif';
       ctx.fillStyle = '#7A6953';
       const footerBless = isTe 
         ? 'శ్రీ వేంకటేశ్వర స్వామి వారి కృపాకటాక్షాలతో సుఖసంతోషాలతో వర్ధిల్లాలని ఆకాంక్షిస్తూ... 🙏'
         : 'May Lord Venkateshwara bless our union with eternal love, harmony & prosperity 🙏';
-      ctx.fillText(footerBless, W / 2, H - 105);
+      ctx.fillText(footerBless, W / 2, H - 95);
 
-      ctx.font = 'bold 28px "Cinzel", "Suranna", serif';
+      ctx.font = 'bold 26px "Cinzel", "Suranna", serif';
       ctx.fillStyle = '#851329';
-      ctx.fillText(isTe ? 'సారిక & సంపత్' : 'SARIKA & SAMPATH', W / 2, H - 65);
+      ctx.fillText(isTe ? 'సారిక & సంపత్' : 'SARIKA & SAMPATH', W / 2, H - 55);
 
       const link = document.createElement('a');
       link.download = isTe 
@@ -1370,6 +1564,7 @@
       const coupleTitle = document.getElementById('coupleTitle');
       const greetingPill = document.getElementById('timeGreetingPill');
       const topDownloadLbl = document.getElementById('topDownloadLbl');
+      const pelliKTitle = document.getElementById('pelliKTitle');
 
       const greeting = getTimeGreeting();
       if (greetingPill) {
@@ -1378,6 +1573,14 @@
 
       if (topDownloadLbl) {
         topDownloadLbl.innerText = currentLang === 'te' ? 'వివాహ ఆహ్వాన పత్రిక డౌన్‌లోడ్' : 'Wedding Invitation Download Card';
+      }
+
+      if (pelliKTitle) {
+        if (selectedSide === 'bride') {
+          pelliKTitle.innerText = currentLang === 'te' ? 'పెళ్లి కూతురు వేడుక' : 'Pelli Koothuru Ceremony';
+        } else {
+          pelliKTitle.innerText = currentLang === 'te' ? 'పెళ్లి కొడుకు వేడుక' : 'Pelli Koduku Ceremony';
+        }
       }
 
       if (coupleTitle) {
@@ -1415,7 +1618,6 @@
       triggerHeartbeatPulse();
     }
 
-    /* MULTI-LANGUAGE TOGGLE (ENGLISH / TELUGU) */
     function toggleLanguage() {
       currentLang = currentLang === 'en' ? 'te' : 'en';
       document.querySelectorAll('[data-en]').forEach(el => {
@@ -1438,7 +1640,6 @@
       }
     }
 
-    /* AUDIO & SCROLL MUSIC SWELL CONTROLLER */
     const audio = document.getElementById('weddingAudio');
     const audioIcon = document.getElementById('audioPillIcon');
     let isPlaying = false;
@@ -2071,10 +2272,9 @@
       const marriedSubTxt = document.getElementById('marriedSubTxt');
 
       const currentYear = now.getFullYear();
-      const currentMonth = now.getMonth(); // 10 = Nov (0-indexed)
+      const currentMonth = now.getMonth(); // 10 = Nov
       const currentDate = now.getDate();
 
-      // Check dates
       const isNov25 = (currentYear === 2026 && currentMonth === 10 && currentDate === 25);
       const isNov26 = (currentYear === 2026 && currentMonth === 10 && currentDate === 26);
 
@@ -2091,7 +2291,7 @@
           }
         }
       } 
-      // 2. November 26 Before 9:15 AM: Kalyanam starting soon alert
+      // 2. November 26 Before 9:15 AM
       else if (isNov26 && diff > 0) {
         if (statusBanner) {
           statusBanner.style.display = 'block';
@@ -2121,7 +2321,6 @@
         return;
       }
 
-      // Live countdown active
       if (countdownRow) countdownRow.style.display = 'flex';
       if (celebrationBox) celebrationBox.style.display = 'none';
 
@@ -2135,6 +2334,7 @@
       initScratchCard();
       loadCloudWishes();
       loadCloudCounter();
+      setupPreWeddingVideo();
       setInterval(updateWeddingCountdown, 1000);
       updateWeddingCountdown();
       renderSideAndNames();
